@@ -23,7 +23,7 @@
     <favorites_list name="MarkdownD" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.59947985">
+    <splitter split-orientation="vertical" split-proportion="0.2542373">
       <split-first>
         <leaf>
           <file leaf-file-name="style.less" pinned="false" current-in-tab="false">
@@ -105,7 +105,7 @@
           <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/js/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.7777778" vertical-offset="400" max-vertical-offset="5088">
+                <state vertical-scroll-proportion="2.0240965" vertical-offset="400" max-vertical-offset="4822">
                   <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
                   <folding>
                     <element signature="e#53#134#0" expanded="true" />
@@ -140,10 +140,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="plugins_define.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="plugins_define.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/js/IAP/plugins_define.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-3.6307693" vertical-offset="1392" max-vertical-offset="2404">
+                <state vertical-scroll-proportion="0.0" vertical-offset="1392" max-vertical-offset="2384">
                   <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
                   <folding>
                     <element signature="e#60#582#0" expanded="true" />
@@ -153,6 +153,16 @@
                     <element signature="e#3024#3127#0" expanded="true" />
                     <element signature="e#3372#4000#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/readme.md">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0625" vertical-offset="0" max-vertical-offset="544">
+                  <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -167,7 +177,6 @@
         <option value="$PROJECT_DIR$/public/js/plugins/plugins_define.js" />
         <option value="$PROJECT_DIR$/public/js/bs.js" />
         <option value="$PROJECT_DIR$/../WinGapApp/WinApp/WinApp/bin/Debug/Contents/Resources/public/main.js" />
-        <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/public/js/util.js" />
         <option value="$PROJECT_DIR$/public/styles/style.css" />
         <option value="$PROJECT_DIR$/public/view/left-nav-tmp.html" />
@@ -184,6 +193,7 @@
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/js/files_cache.js" />
         <option value="$PROJECT_DIR$/public/js/app.js" />
+        <option value="$PROJECT_DIR$/readme.md" />
       </list>
     </option>
   </component>
@@ -195,8 +205,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="447" />
-    <option name="y" value="97" />
+    <option name="x" value="469" />
+    <option name="y" value="468" />
     <option name="width" value="1439" />
     <option name="height" value="925" />
   </component>
@@ -438,7 +448,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="447" y="97" width="1439" height="925" extended-state="0" />
+    <frame x="469" y="468" width="1439" height="925" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -635,6 +645,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="848" max-vertical-offset="880">
           <caret line="53" column="41" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -727,6 +738,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="352" max-vertical-offset="384">
           <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -804,6 +816,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -818,13 +831,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26666668" vertical-offset="352" max-vertical-offset="5000">
           <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="2101">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -919,7 +925,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7777778" vertical-offset="400" max-vertical-offset="5088">
+        <state vertical-scroll-proportion="2.0240965" vertical-offset="400" max-vertical-offset="4822">
           <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
           <folding>
             <element signature="e#53#134#0" expanded="true" />
@@ -951,7 +957,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/IAP/plugins_define.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.6307693" vertical-offset="1392" max-vertical-offset="2404">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1392" max-vertical-offset="2384">
           <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
           <folding>
             <element signature="e#60#582#0" expanded="true" />
@@ -961,6 +967,14 @@
             <element signature="e#3024#3127#0" expanded="true" />
             <element signature="e#3372#4000#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0625" vertical-offset="0" max-vertical-offset="544">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
