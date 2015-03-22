@@ -60,14 +60,14 @@
      * @param useTmpFile 是否使用tmp文件
      * @param cb 回调函数
      */
-    fc.createNewFile = function(name = 'untitled', useTmpFile = false, cb = null){
+    fc.createNewFile = function(name, useTmpFile, cb){
         "use strict";
         var t = this;
 
         var fileObj = {
             id: Date.now().toString(),
-            name: name,
-            is_tmp : useTmpFile,
+            name: name || 'untitled',
+            is_tmp : useTmpFile || false,
             path: "",
             ext: "md",
             content:""

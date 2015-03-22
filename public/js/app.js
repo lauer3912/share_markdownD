@@ -26,6 +26,7 @@
 
         // UI 的Actions
         c$.UIActions = {
+
             buyPlugin:function(id){
                 alert(id);
                 var $iap = IAPModule;
@@ -162,8 +163,10 @@
         if (typeof Router === "undefined"){console.error('director router not config...');return;}
 
         var fn_showOrHide = function(eleList, show, auto){
-            $.each(eleList, function(index, ele){
-                if(show){
+            $.each(eleList, function(index, ele) {
+                if(auto == true){
+                    $(ele).is(":visible")==false ? $(ele).show(): $(ele).hide();
+                } else if(show){
                     if($(ele).is(":visible")==false){$(ele).show()}
                 }else{
                     if($(ele).is(":visible")==true)$(ele).hide();
@@ -192,9 +195,16 @@
                 var html = template('tpl_leftNav', o);
                 ele.html(html);
 
+                fn_showOrHide(['#leftNav'], true);
+
+                $('#appbar-sidenav-toggle').on('click', function(){
+                    fn_showOrHide(['#leftNav'], false, true);
+                });
+
             }
 
-            fn_showOrHide(['#leftNav'], true);
+
+
         };
 
         var files = function(){

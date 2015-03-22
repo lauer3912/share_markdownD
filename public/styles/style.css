@@ -1,5 +1,5 @@
 body {
-  font-family: ubuntu, sans-serif;
+  font-family: ubuntu, consolas, monospace, sans-serif;
 }
 #g-wrapper #app-header {
   position: fixed;
