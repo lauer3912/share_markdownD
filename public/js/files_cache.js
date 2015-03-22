@@ -159,6 +159,7 @@
         $.each(t.data, function(index, obj){
             if(obj.id == id){
                 cb && cb(obj);
+                t.data.splice($.inArray(obj, t.data), 1);
                 return false;
             }
         })

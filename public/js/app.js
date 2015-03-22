@@ -36,16 +36,23 @@
             }
 
             ,loadFile:function(id){
-
                 $fc.reLoadFile(id, function(obj){
-                    alert('loadFile')
+                    var filePath = obj.path;
+                    var cbName = b$._get_callback(function(obj){
+
+                    }, true);
+
+                    b$.Binary.getUTF8TextContentFromFile({callback:cbName, filePath:filePath});
                 })
             }
             ,saveFile:function(id){
                 alert('saveFile')
             }
             ,removeFilesItem:function(id){
-                alert('removeFilesItem')
+                $fc.removeFile(id, function(obj){
+                    var ele = '#view-files li[data-id="fileId_' + obj.id + '"]';
+                    $(ele).remove();
+                });
             }
             ,createNew:function(){
                 alert('crateItem')
@@ -204,6 +211,18 @@
 
             fn_showOrHide(['#leftNav','#view-workspace','#view-plugins', '#view-settings', '#view-help'], false);
             fn_showOrHide(['#view-files'], true);
+
+            $('#view-files input').on("blur", function(){
+                if ( $(this).data('field') == 'name'){
+                    var id = $(this).data('id');
+                    var newName = this.value;
+                    $fc.findFile(id, function(obj){
+                        obj.name = newName;
+                    });
+                }
+
+            })
+
         };
 
         var workspace = function(){

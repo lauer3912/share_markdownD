@@ -52,21 +52,24 @@
     <div class="mui-panel">
         <ul>
             {{each files as obj i}}
-            <li>
+            <li data-id="fileId_{{ obj.id }}">
                 <section class="mui-row">
 
-                    <span class="mui-col-md-7 mui-col-xs-7">
+                    <span class="mui-col-md-8 mui-col-xs-8">
                         <div class="mui-row">
                             <i class="mui-col-md-1 mui-col-xs-1">
                                 <label>{{ i+1 }}</label>
                             </i>
-                            <i class="mui-col-md-11 mui-col-xs-11">
-                                <input type="text" class="mui-form-control" value="{{ obj.path }}" readonly>
+                            <i class="mui-col-md-3 mui-col-xs-3">
+                                <input type="text" class="mui-form-control" data-id="{{ obj.id }}" data-field="name" value="{{ obj.name }}">
+                            </i>
+                            <i class="mui-col-md-8 mui-col-xs-8">
+                                <input type="text" class="mui-form-control" data-id="{{ obj.id }}" data-field="path" value="{{ obj.path }}" readonly>
                             </i>
                         </div>
 
                     </span>
-                    <li class="mui-col-md-5 mui-col-xs-5">
+                    <li class="mui-col-md-4 mui-col-xs-4">
                         <fieldset>
                             <button class="mui-btn mui-btn-default mui-btn-flat icon-edit" onclick="window.UI.c$.UIActions.loadFile('{{ obj.id  }}')">Load</button>
                             <button class="mui-btn mui-btn-default mui-btn-flat icon-save" onclick="window.UI.c$.UIActions.saveFile('{{ obj.id }}')">Save</button>

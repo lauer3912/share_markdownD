@@ -73,6 +73,10 @@ body {
 #view-files ul input {
   font-size: 11px;
 }
+#view-files ul button {
+  width: 84px;
+  padding: 0 5px;
+}
 #view-files ul button span {
   font-size: 0.8em;
 }
