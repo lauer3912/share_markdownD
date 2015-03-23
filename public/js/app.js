@@ -12,6 +12,8 @@
     var c$ = {};
     var b$ = BS.b$;
     var $fc = FilesCacheModule;
+    var $Router = c$.RouterMethods = {};
+
     c$ = $.extend(window.UI.c$, {});
 
     // 初始化标题及版本
@@ -56,7 +58,9 @@
                 });
             }
             ,createNew:function(){
-                alert('crateItem')
+                $fc.createNewFile('untitled', true, function(fileObj){
+                    $Router.go_files();
+                });
             }
             ,importFiles:function(){
                 alert('importFiles')
@@ -162,7 +166,9 @@
 
         if (typeof Router === "undefined"){console.error('director router not config...');return;}
 
-        var fn_showOrHide = function(eleList, show, auto){
+
+
+        $Router.fn_showOrHide = function(eleList, show, auto){
             $.each(eleList, function(index, ele) {
                 if(auto == true){
                     $(ele).is(":visible")==false ? $(ele).show(): $(ele).hide();
@@ -176,7 +182,7 @@
         };
 
 
-        var leftNav = function(){
+        $Router.go_leftNav = function(){
             console.log("left nav");
             var ele = $('#leftNav');
             if($.trim(ele.html()).length == 0){
@@ -195,10 +201,10 @@
                 var html = template('tpl_leftNav', o);
                 ele.html(html);
 
-                fn_showOrHide(['#leftNav'], true);
+                $Router.fn_showOrHide(['#leftNav'], true);
 
                 $('#appbar-sidenav-toggle').on('click', function(){
-                    fn_showOrHide(['#leftNav'], false, true);
+                    $Router.fn_showOrHide(['#leftNav'], false, true);
                 });
 
             }
@@ -207,9 +213,8 @@
 
         };
 
-        var files = function(){
+        $Router.go_files = function(){
             console.log("files");
-
 
             var o = {
                 files: $fc.getAllFiles()
@@ -219,8 +224,8 @@
             var html = template('tpl_files', o);
             ele.html(html);
 
-            fn_showOrHide(['#leftNav','#view-workspace','#view-plugins', '#view-settings', '#view-help'], false);
-            fn_showOrHide(['#view-files'], true);
+            $Router.fn_showOrHide(['#leftNav','#view-workspace','#view-plugins', '#view-settings', '#view-help'], false);
+            $Router.fn_showOrHide(['#view-files'], true);
 
             $('#view-files input').on("blur", function(){
                 if ( $(this).data('field') == 'name'){
@@ -230,30 +235,29 @@
                         obj.name = newName;
                     });
                 }
-
             })
 
         };
 
-        var workspace = function(){
+        $Router.go_workspace = function(){
             console.log("workspace");
 
             var ele = $('#view-workspace');
             var html = template('tpl_workspace', {});
             ele.html(html);
 
-            fn_showOrHide(['#leftNav','#view-files','#view-plugins', '#view-settings', '#view-help'], false);
-            fn_showOrHide(['#view-workspace'], true);
+            $Router.fn_showOrHide(['#leftNav','#view-files','#view-plugins', '#view-settings', '#view-help'], false);
+            $Router.fn_showOrHide(['#view-workspace'], true);
         };
 
-        var settings = function(){
+        $Router.go_settings = function(){
             console.log("settings");
 
-            fn_showOrHide(['#leftNav','#view-files','#view-plugins', '#view-workspace', '#view-help'], false);
-            fn_showOrHide(['#view-settings'], true);
+            $Router.fn_showOrHide(['#leftNav','#view-files','#view-plugins', '#view-workspace', '#view-help'], false);
+            $Router.fn_showOrHide(['#view-settings'], true);
         };
 
-        var pluginsMgr = function(){
+        $Router.go_pluginsMgr = function(){
             console.log("pluginsMgr");
             var ele = $('#view-plugins');
 
@@ -262,8 +266,6 @@
             var $iap = IAPModule;
             var enablePlugins = $iap.getAllEnablePlugins();
 
-
-
             var o = {
                 plugins:enablePlugins
             };
@@ -271,29 +273,30 @@
             var html = template('tpl_pluginsMgr', o);
             ele.html(html);
 
-            fn_showOrHide(['#leftNav', '#view-files','#view-workspace','#view-settings', '#view-help'], false);
-            fn_showOrHide(['#view-plugins'], true);
+            $Router.fn_showOrHide(['#leftNav', '#view-files','#view-workspace','#view-settings', '#view-help'], false);
+            $Router.fn_showOrHide(['#view-plugins'], true);
         };
 
-        var help = function(){
+        $Router.go_help = function(){
             console.log("help");
 
-            fn_showOrHide(['#leftNav','#view-files', '#view-plugins', '#view-workspace', '#view-settings'], false);
-            fn_showOrHide(['#view-help'], true);
+            $Router.fn_showOrHide(['#leftNav','#view-files', '#view-plugins', '#view-workspace', '#view-settings'], false);
+            $Router.fn_showOrHide(['#view-help'], true);
         };
 
         var myRoutes = {
-            "/leftNav":leftNav,
-            '/files':files,
-            '/workspace':workspace,
-            '/settings' : settings,
-            '/pluginsMgr': pluginsMgr,
-            '/help':help
+            "/leftNav":$Router.go_leftNav,
+            '/files':$Router.go_files,
+            '/workspace':$Router.go_workspace,
+            '/settings' : $Router.go_settings,
+            '/pluginsMgr': $Router.go_pluginsMgr,
+            '/help':$Router.go_help
 
         };
 
-        var router = Router(myRoutes);
-        router.init();
+        // 全局路由
+        c$.g_router = Router(myRoutes);
+        c$.g_router.init();
 
 
 
