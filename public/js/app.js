@@ -166,7 +166,8 @@
 
         if (typeof Router === "undefined"){console.error('director router not config...');return;}
 
-
+        // 所有的页面配置
+        var allPageList = ['#leftNav','#view-files','#view-workspace','#view-plugins', '#view-settings', '#view-help', "#view-about"];
 
         $Router.fn_showOrHide = function(eleList, show, auto){
             $.each(eleList, function(index, ele) {
@@ -184,7 +185,10 @@
 
         $Router.go_leftNav = function(){
             console.log("left nav");
-            var ele = $('#leftNav');
+
+            var thisPage = '#leftNav';
+
+            var ele = $(thisPage);
             if($.trim(ele.html()).length == 0){
                 var o = {
                     appName: "MarkdownD",
@@ -194,6 +198,7 @@
                         ,{name: "Plugins", href: "#/pluginsMgr", class:" icon-extension"}
                         ,{name: "Settings", href: "#/settings", class:" icon-settings"}
                         ,{name: "Help", href: "#/help", class:" icon-help"}
+                        ,{name: "About", href: "#/about", class:" icon-about"}
 
                     ]
                 };
@@ -201,31 +206,30 @@
                 var html = template('tpl_leftNav', o);
                 ele.html(html);
 
-                $Router.fn_showOrHide(['#leftNav'], true);
+                $Router.fn_showOrHide([thisPage], true);
 
                 $('#appbar-sidenav-toggle').on('click', function(){
-                    $Router.fn_showOrHide(['#leftNav'], false, true);
+                    $Router.fn_showOrHide([thisPage], false, true);
                 });
 
             }
-
-
 
         };
 
         $Router.go_files = function(){
             console.log("files");
+            var thisPage = '#view-files';
 
             var o = {
                 files: $fc.getAllFiles()
             };
 
-            var ele = $('#view-files');
+            var ele = $(thisPage);
             var html = template('tpl_files', o);
             ele.html(html);
 
-            $Router.fn_showOrHide(['#leftNav','#view-workspace','#view-plugins', '#view-settings', '#view-help'], false);
-            $Router.fn_showOrHide(['#view-files'], true);
+            $Router.fn_showOrHide(allPageList, false);
+            $Router.fn_showOrHide([thisPage], true);
 
             $('#view-files input').on("blur", function(){
                 if ( $(this).data('field') == 'name'){
@@ -242,25 +246,29 @@
         $Router.go_workspace = function(){
             console.log("workspace");
 
+            var thisPage = '#view-workspace';
+
             var ele = $('#view-workspace');
             var html = template('tpl_workspace', {});
             ele.html(html);
 
-            $Router.fn_showOrHide(['#leftNav','#view-files','#view-plugins', '#view-settings', '#view-help'], false);
-            $Router.fn_showOrHide(['#view-workspace'], true);
+            $Router.fn_showOrHide(allPageList, false);
+            $Router.fn_showOrHide([thisPage], true);
         };
 
         $Router.go_settings = function(){
             console.log("settings");
 
-            $Router.fn_showOrHide(['#leftNav','#view-files','#view-plugins', '#view-workspace', '#view-help'], false);
-            $Router.fn_showOrHide(['#view-settings'], true);
+            var thisPage = '#view-settings';
+
+            $Router.fn_showOrHide(allPageList, false);
+            $Router.fn_showOrHide([thisPage], true);
         };
 
         $Router.go_pluginsMgr = function(){
             console.log("pluginsMgr");
-            var ele = $('#view-plugins');
 
+            var thisPage = '#view-settings';
 
             //从插件系统中，获取并整理
             var $iap = IAPModule;
@@ -271,17 +279,77 @@
             };
 
             var html = template('tpl_pluginsMgr', o);
+            var ele = $(thisPage);
             ele.html(html);
 
-            $Router.fn_showOrHide(['#leftNav', '#view-files','#view-workspace','#view-settings', '#view-help'], false);
-            $Router.fn_showOrHide(['#view-plugins'], true);
+            $Router.fn_showOrHide(allPageList, false);
+            $Router.fn_showOrHide([thisPage], true);
         };
 
         $Router.go_help = function(){
             console.log("help");
 
-            $Router.fn_showOrHide(['#leftNav','#view-files', '#view-plugins', '#view-workspace', '#view-settings'], false);
-            $Router.fn_showOrHide(['#view-help'], true);
+            var thisPage = '#view-help';
+
+            $Router.fn_showOrHide(allPageList, false);
+            $Router.fn_showOrHide([thisPage], true);
+        };
+
+        $Router.go_about$license = function(){
+            console.log("about$license");
+
+            var thisPage = '#view-about';
+
+            var ele = $(thisPage);
+            if($.trim(ele.html()).length == 0){
+
+                //动态创建Div来加载
+                $('<div id="tmp-load-div"style="display: none"></div>').appendTo('#g-wrapper');
+
+                var o = {
+                    appName: b$.App.getAppName(),
+                    version: b$.App.getAppVersion(),
+                    logoUrl: 'images/logo_64.png',
+                    description: '追求速度、简约和可靠的Markdown编辑器',
+                    creditsTitle:"的诞生离不开开源项目及其他开源软件",
+                    credits:[
+                        {id:"credit-arTemplate", title:"artTemplate, high performance js template engine.", licenseUrl:"licenses/artTemplate/LICENSE", homepageUrl:"github.com/aui/artTemplate"}
+                        ,{id:"credit-director.js", title:"director.js, routing is the process of determining what code to run when a URL is requested.", licenseUrl:"licenses/director.js/LICENSE", homepageUrl:"github.com/flatiron/director"}
+                        ,{id:"credit-editor.md", title:"editor.md, a simple online markdown editor", licenseUrl:"licenses/editor.md/LICENSE", homepageUrl:"github.com/pandao/editor.md"}
+                        ,{id:"credit-es6-shim", title:"es6-shim, provides compatibility shims so that legacy JavaScript engines behave as closely as possible to ECMAScript 6 (Harmony)", licenseUrl:"licenses/es6-shim/LICENSE", homepageUrl:"github.com/paulmillr/es6-shim"}
+                        ,{id:"credit-jquery", title:"jquery, a fast, small, and feature-rich JavaScript library.", licenseUrl:"licenses/jquery/LICENSE", homepageUrl:"jquery.com"}
+                        ,{id:"credit-mui", title:"mui, is a lightweight HTML, CSS and JS framework for sites that follow Google's Material Design guidelines.", licenseUrl:"licenses/mui/LICENSE", homepageUrl:"github.com/amorey/mui"}
+
+                    ]
+                };
+
+                var html = template('tpl_about', o);
+                ele.html(html);
+
+                //配置点击showlicense的动作
+                $('#view-about a.third-show').on("click", function(){
+                    if (typeof  $(this).data('creditid') != "undefined"){
+                        var creditId = $(this).data('creditid');
+                        var licenseUrl = $(this).data('url');
+                        var ele = "#view-about div.third-licence[data-creditid='" + creditId + "']";
+
+                        if($(ele + ":has(pre)").length > 0){
+                            $(ele).html("");
+                        }else{
+                            if($.trim(licenseUrl).length > 0){
+                                $('#tmp-load-div').load(licenseUrl, function(data){
+                                    $(ele).html("<pre class='mui-panel'>" + data + "</pre>");
+                                });
+                            }
+                        }
+
+                    }
+                })
+
+            }
+
+            $Router.fn_showOrHide(allPageList, false);
+            $Router.fn_showOrHide([thisPage], true);
         };
 
         var myRoutes = {
@@ -290,15 +358,13 @@
             '/workspace':$Router.go_workspace,
             '/settings' : $Router.go_settings,
             '/pluginsMgr': $Router.go_pluginsMgr,
-            '/help':$Router.go_help
-
+            '/help':$Router.go_help,
+            '/about':$Router.go_about$license
         };
 
         // 全局路由
         c$.g_router = Router(myRoutes);
         c$.g_router.init();
-
-
 
     };
 

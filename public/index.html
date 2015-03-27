@@ -26,6 +26,7 @@
         <div id="view-plugins" style="display: none"></div>
         <div id="view-settings" style="display: none"></div>
         <div id="view-help" style="display: none"></div>
+        <div id="view-about" style="display: none"></div>
     </div>
     <div id="leftNav" style="display: none"></div>
     <input id="g-input-file" type="file" class="mui-form-control" style="display: none">
@@ -51,7 +52,7 @@
     <!--文件视图-->
     <div class="mui-panel">
         <ul>
-            {{each files as obj i}}
+                    {{each files as obj i}}
             <li data-id="fileId_{{ obj.id }}">
                 <section class="mui-row">
 
@@ -130,6 +131,61 @@
             </a>
         </section>
         {{/each}}
+
+    </div>
+</script>
+
+<script id="tpl_about" type='text/html'>
+    <!--关于部分-->
+    <div class="mui-panel">
+        <div class="mui-row">
+            <div class="mui-col-lg-1 mui-col-md-1 mui-col-xs-2">
+                <img src="{{ logoUrl }}" />
+            </div>
+            <div class="mui-col-lg-8 mui-col-md-8 mui-col-xs-8">
+                <i class="mui-align-middle mui-text-subhead">{{ appName }} Ver.{{ version }}</i>
+                <p>
+                    {{ description }}
+                </p>
+            </div>
+        </div>
+        <!--版权信息-->
+        <div class="mui-row">
+            {{  }}
+        </div>
+        <!--使用第三方软件信息-->
+        <div class="mui-container ref-credits">
+            <div class="mui-text-center">
+                {{ appName }} {{ creditsTitle }}
+            </div>
+
+            <ul>
+            {{each credits as creditObj j}}
+                <li>
+                    <section class="mui-row">
+                        <div class="third-product">
+                            <div class="mui-col-md-10 mui-col-xs-8 mui-col-lg-10">
+                                <span class="">{{ j+1 }}. {{ creditObj.title }}</span>
+                            </div>
+                            <div class="mui-col-md-1 mui-col-xs-2 mui-col-lg-1 mui-text-center">
+                                <span class="third-homepage">
+                                    <a data-url="{{ creditObj.homepageUrl }}">HomePage</a>
+                                </span>
+                            </div>
+                            <div class="mui-col-md-1 mui-col-xs-2 mui-col-lg-1 mui-text-center">
+                                <a class="third-show" data-creditid="{{ creditObj.id }}" data-url="{{ creditObj.licenseUrl }}">License</a>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mui-row">
+                        <div class="third-licence" data-creditid="{{ creditObj.id }}">
+                            <!--协议内容-->
+                        </div>
+                    </section>
+                </li>
+            {{/each}}
+            </ul>
+        </div>
 
     </div>
 </script>

@@ -113,3 +113,29 @@ body {
   text-transform: uppercase;
   font-size: 1em;
 }
+#view-about {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 13px;
+}
+#view-about .ref-credits {
+  padding: 8px;
+  margin-top: 40px;
+}
+#view-about ul {
+  padding: 2px;
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+#view-about ul li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+  text-decoration: none;
+}
+#view-about ul li section {
+  border-bottom: 1px dotted #e6e6e6;
+}
+#view-about ul li a {
+  cursor: pointer;
+}
