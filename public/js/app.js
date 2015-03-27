@@ -218,8 +218,10 @@
 
         $Router.go_files = function(){
             console.log("files");
-            var thisPage = '#view-files';
+            $('#nav-title').html('Files');
 
+
+            var thisPage = '#view-files';
             var o = {
                 files: $fc.getAllFiles()
             };
@@ -245,6 +247,7 @@
 
         $Router.go_workspace = function(){
             console.log("workspace");
+            $('#nav-title').html('Workspace');
 
             var thisPage = '#view-workspace';
 
@@ -258,6 +261,7 @@
 
         $Router.go_settings = function(){
             console.log("settings");
+            $('#nav-title').html('Settings');
 
             var thisPage = '#view-settings';
 
@@ -267,6 +271,7 @@
 
         $Router.go_pluginsMgr = function(){
             console.log("pluginsMgr");
+            $('#nav-title').html('Plugins');
 
             var thisPage = '#view-settings';
 
@@ -288,6 +293,7 @@
 
         $Router.go_help = function(){
             console.log("help");
+            $('#nav-title').html('Help');
 
             var thisPage = '#view-help';
 
@@ -297,8 +303,10 @@
 
         $Router.go_about$license = function(){
             console.log("about$license");
+            $('#nav-title').html('About');
 
             var thisPage = '#view-about';
+
 
             var ele = $(thisPage);
             if($.trim(ele.html()).length == 0){
@@ -344,7 +352,14 @@
                         }
 
                     }
-                })
+                });
+
+                //配置打开HomePage的事件
+                $('#view-about a.third-homepage').on("click", function(){
+                    var url = $(this).data('url');
+                    //alert(url);
+                    b$.App.open(url)
+                });
 
             }
 

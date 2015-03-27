@@ -15,7 +15,14 @@
     <header id="app-header" class="header-shadow">
         <nav class="mui-appbar" role="navigation">
             <div class="mui-container">
-                <a id="appbar-sidenav-toggle" href="#/leftNav"><i class="icon-menu"></i></a>
+                <div class="mui-row">
+                    <div class="mui-col-md-1 mui-text-left">
+                        <a id="appbar-sidenav-toggle" href="#/leftNav"><i class="icon-menu"></i></a>
+                    </div>
+                    <div class="mui-col-md-8 mui-text-display2">
+                        <span id="nav-title"></span>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
@@ -168,9 +175,7 @@
                                 <span class="">{{ j+1 }}. {{ creditObj.title }}</span>
                             </div>
                             <div class="mui-col-md-1 mui-col-xs-2 mui-col-lg-1 mui-text-center">
-                                <span class="third-homepage">
-                                    <a data-url="{{ creditObj.homepageUrl }}">HomePage</a>
-                                </span>
+                                <a class="third-homepage" data-url="{{ creditObj.homepageUrl }}">HomePage</a>
                             </div>
                             <div class="mui-col-md-1 mui-col-xs-2 mui-col-lg-1 mui-text-center">
                                 <a class="third-show" data-creditid="{{ creditObj.id }}" data-url="{{ creditObj.licenseUrl }}">License</a>
