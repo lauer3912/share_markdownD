@@ -257,12 +257,16 @@
 
             var thisPage = '#view-workspace';
 
-            var ele = $('#view-workspace');
-            var html = template('tpl_workspace', {});
-            ele.html(html);
+            var ele = $(thisPage);
+            if($.trim(ele.html()).length == 0){
+                var html = template('tpl_workspace', {});
+                ele.html(html);
 
-            c$.UIConfigs.MarkdownEditor.reset();
-            c$.UIActions.configEditor("uic-editormd");
+                c$.UIConfigs.MarkdownEditor.reset();
+                c$.UIActions.configEditor("uic-editormd");
+            }
+
+
 
             $Router.fn_showOrHide(allPageList, false);
             $Router.fn_showOrHide([thisPage], true);
