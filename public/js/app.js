@@ -26,9 +26,41 @@
     c$.setupUI = function(){
         "use strict";
 
+        // UI 的配置部分
+        c$.UIConfigs = {
+            MarkdownEditor:{
+                default_toolbarIcons:function(){
+                    return ["undo", "redo", "|",
+                        "bold","del", "italic", "quote", "|",
+                        "h1", "h2", "h4", "h4", "h5", "h6", "|",
+                        "list-ul", "list-ol", "hr", "|",
+                        "link", "anchor", "image", "code", "|",
+                        "preview", "watch", "|",
+                        "clear"]
+                },
+                reset:function(){
+                    //配置emoji的. 配置 You can custom Emoji's graphics files url path
+                    editormd.emoji = {
+                        path  : "http://www.emoji-cheat-sheet.com/graphics/emojis/",
+                        ext   : ".png"
+                    };
+
+                    //配置Twemoji的. Twitter Emoji (Twemoji)  graphics files url path
+                    editormd.twemoji = {
+                        path : "http://twemoji.maxcdn.com/72x72/",
+                        ext  : ".png"
+                    };
+
+                    //配置@link 的base url前缀
+                    editormd.urls.atLinkBase = "https://github.com/";
+                }
+            }
+
+
+        };
+
         // UI 的Actions
         c$.UIActions = {
-
             buyPlugin:function(id){
                 alert(id);
                 var $iap = IAPModule;
@@ -65,99 +97,73 @@
             ,importFiles:function(){
                 alert('importFiles')
             }
+            ,configEditor:function(ui_ele){
+                //插件
+                c$.ui_ele_editor = editormd(ui_ele, {
+                    width: "100%",
+                    height: "1400",
+                    path: 'common/editor.md/1.3/editor.md/lib/'
+                    //toolbarIcons: default_toolbarIcons()
+                });
+
+                return;
+
+                //工具栏自动固定定位的开启与禁用
+                c$.ui_ele_editor.config("toolbarAutoFixed", true);
+
+                //设置自动高度处理
+                c$.ui_ele_editor.config("autoHeight", true);
+
+                //激活Github Flavored Markdown task lists
+                c$.ui_ele_editor.config("taskList", true);
+
+                //激活emoji表情功能
+                c$.ui_ele_editor.config("emoji", true);
+
+                //激活atLink
+                c$.ui_ele_editor.config("atLink", true);
+
+                //激活emailLink
+                c$.ui_ele_editor.config("emailLink", true);
+
+                //激活flowChart
+                c$.ui_ele_editor.config("flowChart", true);
+
+                //激活sequenceDiagram
+                c$.ui_ele_editor.config("sequenceDiagram", true);
+
+                //激活科学公式 Tex
+                c$.ui_ele_editor.config("tex", true);
+
+                //激活Toc(目录功能)
+                c$.ui_ele_editor.config("toc", true);
+
+                //激活代码折叠功能
+                c$.ui_ele_editor.config("codeFold", true);
+
+                //激活htmlDecode.开启HTML标签解析，为了安全性，默认不开启
+                c$.ui_ele_editor.config("htmlDecode", true);
+
+                //高亮显示当前行
+                c$.ui_ele_editor.config("styleActiveLine", true);
+
+                //显示行号
+                c$.ui_ele_editor.config("lineNumbers", true);
+
+                //激活只读模式
+                c$.ui_ele_editor.config("readOnly", true);
+
+                //激活实时预览
+                c$.ui_ele_editor.config("watch", true);
+
+                //激活搜索替换功能
+                c$.ui_ele_editor.config("searchReplace", true);
+
+                //激活控制键盘快捷键的映射(禁用某些快捷键的功能)
+                c$.ui_ele_editor.config("disabledKeyMaps",[]);
+            }
         };
 
-
-        // 配置编辑器
-        function config_editor(){
-            //配置emoji的. 配置 You can custom Emoji's graphics files url path
-            editormd.emoji = {
-                path  : "http://www.emoji-cheat-sheet.com/graphics/emojis/",
-                ext   : ".png"
-            };
-
-            //配置Twemoji的. Twitter Emoji (Twemoji)  graphics files url path
-            editormd.twemoji = {
-                path : "http://twemoji.maxcdn.com/72x72/",
-                ext  : ".png"
-            };
-
-            //配置@link 的base url前缀
-            editormd.urls.atLinkBase = "https://github.com/";
-
-            //配置
-            var default_toolbarIcons = function () {
-                return ["undo", "redo", "|",
-                    "bold","del", "italic", "quote", "|",
-                    "h1", "h2", "h4", "h4", "h5", "h6", "|",
-                    "list-ul", "list-ol", "hr", "|",
-                    "link", "anchor", "image", "code", "|",
-                    "preview", "watch", "|",
-                    "clear"]
-            };
-
-            //插件
-            c$.ui_ele_editor = editormd("test-editormd", {
-                width: "100%",
-                height: "720",
-                path: 'common/editor.md/1.3/editor.md/lib/'
-                //toolbarIcons: default_toolbarIcons()
-            });
-
-            //工具栏自动固定定位的开启与禁用
-            c$.ui_ele_editor.config("toolbarAutoFixed", true);
-
-            //设置自动高度处理
-            c$.ui_ele_editor.config("autoHeight", true);
-
-            //激活Github Flavored Markdown task lists
-            c$.ui_ele_editor.config("taskList", true);
-
-            //激活emoji表情功能
-            c$.ui_ele_editor.config("emoji", true);
-
-            //激活atLink
-            c$.ui_ele_editor.config("atLink", true);
-
-            //激活emailLink
-            c$.ui_ele_editor.config("emailLink", true);
-
-            //激活flowChart
-            c$.ui_ele_editor.config("flowChart", true);
-
-            //激活sequenceDiagram
-            c$.ui_ele_editor.config("sequenceDiagram", true);
-
-            //激活科学公式 Tex
-            c$.ui_ele_editor.config("tex", true);
-
-            //激活Toc(目录功能)
-            c$.ui_ele_editor.config("toc", true);
-
-            //激活代码折叠功能
-            c$.ui_ele_editor.config("codeFold", true);
-
-            //激活htmlDecode.开启HTML标签解析，为了安全性，默认不开启
-            c$.ui_ele_editor.config("htmlDecode", true);
-
-            //高亮显示当前行
-            c$.ui_ele_editor.config("styleActiveLine", true);
-
-            //显示行号
-            c$.ui_ele_editor.config("lineNumbers", true);
-
-            //激活只读模式
-            c$.ui_ele_editor.config("readOnly", true);
-
-            //激活实时预览
-            c$.ui_ele_editor.config("watch", true);
-
-            //激活搜索替换功能
-            c$.ui_ele_editor.config("searchReplace", true);
-
-            //激活控制键盘快捷键的映射(禁用某些快捷键的功能)
-            c$.ui_ele_editor.config("disabledKeyMaps",[]);
-        }
     };
 
     // 配置路由控制
@@ -254,6 +260,9 @@
             var ele = $('#view-workspace');
             var html = template('tpl_workspace', {});
             ele.html(html);
+
+            c$.UIConfigs.MarkdownEditor.reset();
+            c$.UIActions.configEditor("uic-editormd");
 
             $Router.fn_showOrHide(allPageList, false);
             $Router.fn_showOrHide([thisPage], true);
@@ -531,20 +540,20 @@
             ,{enable:true, inAppStore: false, id:prefix + "support.dragFile", type:"", quantity:1, price:"1$", name:"Drag File", description: "支持拖拽文件", img:defaultImg}
             ,{enable:true, inAppStore: false, id:prefix + "support.fileSave", type:"", quantity:1, price:"2$", name:"File Save", description: "支持保存文件功能", img:defaultImg}
             ,{enable:true, inAppStore: true, id:prefix + "support.dirTree", type:"", quantity:0, price:"3$", name:"File Directory", description: "支持目录树功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.taskList", type:"", quantity:0, price:"2$", name:"Support TaskList", description: "支持Github task lists", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.emoji", type:"", quantity:0, price:"3$", name:"Support Emoji", description: "支持emoji表情功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.atLink", type:"", quantity:0, price:"1$", name:"Support atLink", description: "支持atLink功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.emailLink", type:"", quantity:0, price:"1$", name:"Support emailLink", description: "支持emailLink功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.flowChart", type:"", quantity:0, price:"2$", name:"Support FlowChart", description: "支持flowChart功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.sequenceDiagram", type:"", quantity:0, price:"2$", name:"Support SequenceDiagram", description: "支持sequenceDiagram功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.tex", type:"", quantity:0, price:"2$", name:"Support Tex", description: "支持tex功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.toc", type:"", quantity:0, price:"2$", name:"Support Toc", description: "支持toc功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.codeFold", type:"", quantity:0, price:"1$", name:"Support CodeFold", description: "支持codeFold功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.htmlDecode", type:"", quantity:0, price:"1$", name:"Support HTMLDecode", description: "支持htmlDecode功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.styleActiveLine", type:"", quantity:0, price:"1$", name:"Support Style Active Line", description: "支持styleActiveLine功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.lineNumbers", type:"", quantity:0, price:"1$", name:"Support Line Numbers", description: "支持lineNumbers功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.readOnly", type:"", quantity:0, price:"1$", name:"Support ReadOnly", description: "支持readOnly功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.searchReplace", type:"", quantity:0, price:"1$", name:"Support Search Replace", description: "支持searchReplace功能", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.taskList", type:"", quantity:0, price:"2$", name:"TaskList", description: "支持Github task lists", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.emoji", type:"", quantity:0, price:"3$", name:"Emoji", description: "支持emoji表情功能", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.atLink", type:"", quantity:0, price:"1$", name:"atLink", description: "支持atLink功能", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.emailLink", type:"", quantity:0, price:"1$", name:"emailLink", description: "支持emailLink功能", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.flowChart", type:"", quantity:0, price:"2$", name:"FlowChart", description: "支持flowChart功能", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.sequenceDiagram", type:"", quantity:0, price:"2$", name:"SequenceDiagram", description: "支持sequenceDiagram功能", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.tex", type:"", quantity:0, price:"2$", name:"Tex", description: "支持tex功能", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.toc", type:"", quantity:0, price:"2$", name:"Toc", description: "支持toc功能", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.codeFold", type:"", quantity:0, price:"1$", name:"CodeFold", description: "支持codeFold功能", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.htmlDecode", type:"", quantity:0, price:"1$", name:"HTMLDecode", description: "支持htmlDecode功能", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.styleActiveLine", type:"", quantity:0, price:"1$", name:"Style Active Line", description: "支持styleActiveLine功能", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.lineNumbers", type:"", quantity:0, price:"1$", name:"Line Numbers", description: "支持lineNumbers功能", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.readOnly", type:"", quantity:0, price:"1$", name:"ReadOnly", description: "支持readOnly功能", img:defaultImg}
+            ,{enable:true, inAppStore: true, id:prefix + "support.searchReplace", type:"", quantity:0, price:"1$", name:"Search Replace", description: "支持searchReplace功能", img:defaultImg}
         ];
 
         var $iap = IAPModule;
