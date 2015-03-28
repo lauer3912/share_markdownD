@@ -92,7 +92,9 @@
         <button class="mui-btn mui-btn-default mui-btn-raised" onclick="window.UI.c$.UIActions.importFiles()">Import Files</button>
         <p>
             <em class="icon-live-help">Note:</em>
-            Your changes and your files only get stored in cache. If you want save files changes, please to save file.
+            <strong>
+                Your changes and your files only get stored in cache. If you want save files changes, please to save file.
+            </strong>
         </p>
     </div>
 </script>
@@ -142,6 +144,18 @@
     </div>
 </script>
 
+<script id="tpl_settings" type='text/html'>
+    <!--设置-->
+    <div class="mui-panel">
+    </div>
+</script>
+
+<script id="tpl_help" type='text/html'>
+    <!--帮助-->
+    <div class="mui-panel">
+    </div>
+</script>
+
 <script id="tpl_about" type='text/html'>
     <!--关于部分-->
     <div class="mui-panel">
@@ -150,22 +164,22 @@
                 <img src="{{ logoUrl }}" />
             </div>
             <div class="mui-col-lg-8 mui-col-md-8 mui-col-xs-8">
-                <i class="mui-align-middle mui-text-subhead">{{ appName }} Ver.{{ version }}</i>
+                <strong class="mui-align-middle mui-text-subhead">{{ appName }} Ver.{{ version }}</strong>
                 <p>
                     {{ description }}
                 </p>
             </div>
         </div>
-        <!--版权信息-->
-        <div class="mui-row">
-            {{  }}
+        <div class="mui-text-left">
+            <div>
+                <strong>{{ copyright }}</strong>
+            </div>
+            <div>
+                <strong>{{ appName }} {{ creditsTitle }}</strong>
+            </div>
         </div>
         <!--使用第三方软件信息-->
         <div class="mui-container ref-credits">
-            <div class="mui-text-center">
-                {{ appName }} {{ creditsTitle }}
-            </div>
-
             <ul>
             {{each credits as creditObj j}}
                 <li>

@@ -198,7 +198,7 @@
                         ,{name: "Plugins", href: "#/pluginsMgr", class:" icon-extension"}
                         ,{name: "Settings", href: "#/settings", class:" icon-settings"}
                         ,{name: "Help", href: "#/help", class:" icon-help"}
-                        ,{name: "About", href: "#/about", class:" icon-about"}
+                        ,{name: "About", href: "#/about", class:" icon-info"}
 
                     ]
                 };
@@ -273,7 +273,7 @@
             console.log("pluginsMgr");
             $('#nav-title').html('Plugins');
 
-            var thisPage = '#view-settings';
+            var thisPage = '#view-plugins';
 
             //从插件系统中，获取并整理
             var $iap = IAPModule;
@@ -318,8 +318,9 @@
                     appName: b$.App.getAppName(),
                     version: b$.App.getAppVersion(),
                     logoUrl: 'images/logo_64.png',
-                    description: '追求速度、简约和可靠的Markdown编辑器',
-                    creditsTitle:"的诞生离不开开源项目及其他开源软件",
+                    description: 'A markdown editor built for speed,simplicity,and security.',
+                    copyright:"Copyright 2015 Romanysoft LAB. All rights reserved.",
+                    creditsTitle:" is mad possible by some open source project and other open source software.",
                     credits:[
                         {id:"credit-arTemplate", title:"artTemplate, high performance js template engine.", licenseUrl:"licenses/artTemplate/LICENSE", homepageUrl:"github.com/aui/artTemplate"}
                         ,{id:"credit-director.js", title:"director.js, routing is the process of determining what code to run when a URL is requested.", licenseUrl:"licenses/director.js/LICENSE", homepageUrl:"github.com/flatiron/director"}
