@@ -30,15 +30,18 @@
         c$.UIConfigs = {
             MarkdownEditor:{
                 default_toolbarIcons:function(){
-                    return ["undo", "redo", "|",
-                        "bold","del", "italic", "quote", "|",
-                        "h1", "h2", "h4", "h4", "h5", "h6", "|",
-                        "list-ul", "list-ol", "hr", "|",
-                        "link", "anchor", "image", "code", "|",
-                        "preview", "watch", "|",
-                        "clear"]
+                    if(editormd.version == "1.4.0"){
+                        return ["undo", "redo", "|",
+                            "bold","del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
+                            "h1", "h2", "h4", "h4", "h5", "h6", "|",
+                            "list-ul", "list-ol", "hr", "|",
+                            "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
+                            "goto-line", "watch", "preview", "watch", "fullscreen","|",
+                            "search", "clear"]
+                    }
+
                 },
-                reset:function(){
+                configEmoji:function(){
                     //配置emoji的. 配置 You can custom Emoji's graphics files url path
                     editormd.emoji = {
                         path  : "http://www.emoji-cheat-sheet.com/graphics/emojis/",
@@ -51,8 +54,6 @@
                         ext  : ".png"
                     };
 
-                    //配置@link 的base url前缀
-                    editormd.urls.atLinkBase = "https://github.com/";
                 }
             }
 
@@ -97,70 +98,84 @@
             ,importFiles:function(){
                 alert('importFiles')
             }
-            ,configEditor:function(ui_ele){
+            ,configEditor:function(ui_ele, in_config){
+
+                var _config = in_config || {};
+
                 //插件
-                c$.ui_ele_editor = editormd(ui_ele, {
-                    width: "100%",
-                    height: "1400",
-                    path: 'common/editor.md/1.3/editor.md/lib/'
-                    //toolbarIcons: default_toolbarIcons()
+                var ui_ele_editor = editormd(ui_ele, {
+                    width: _config.width || "100%",
+                    height: _config.height || $(document).height,
+                    path: 'common/editor.md/1.4/editor.md/lib/'
+                    ,toolbarIcons: c$.UIConfigs.MarkdownEditor.default_toolbarIcons()
+                    ,appendMarkdown: _config.content || ""   // 附加的md内容
+
+
+                    //其他配置项
+                    //,pluginPath: ''           //插件路径
+                    //,delay: 300               //启动延时处理
+                    //,watch: true              //开启实时预览
+                    //,placeholder: ""          //默认替换文字
+                    //,gotoLine: true           //是否开启gotoLine的功能
+                    //,codeFold: false          //是否开启代码折叠功能
+                    //,autoHeight: false        //是否开启自动高度
+                    //,autoCloseTags: true      //是否自动补全标签
+                    //,searchReplace: true      //是否开启查找替换功能
+                    //,readOnly: false          //是否开启只读模式
+                    //,lineNumbers: true        //是否显示行号
+                    //,matchWordHighlight: true //是否匹配文件高亮
+                    //,styleActiveLine: true    //是否高亮当前行
+                    //,dialogLockScreen: true   //是否对话框锁住屏幕
+                    //,dialogShowMask: true     //是否对话框显示Mask
+                    //,dialogDraggable: true    //是否对话框可以拖拽
+                    //,dialogMaskBgColor: "#fff" //设置对话框的Mask背景颜色
+                    //,dialogMaskOpacity: 0.1   //设置对话框的透明度
+                    //,fontSize: "13px"         //设置编辑器的字体大小
+                    //,saveHTMLToTextarea: false //开启是否保存HTML到文本区域
+                    //,disabledKeyMaps: []      //屏蔽哪些快捷键
+
+                    //,imageUpload: false       //图片是否上传
+                    //,imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"] //至此的图片格式
+                    //,imageUploadURL: ""       //图片上传的URL地址
+                    //,crossDomainUpload: false //是否跨域上传
+                    //,uploadCallbackURL: ""    //图片上传的回调URL
+
+                    //,toc: true                //是否开启Table of contents 功能
+                    //,tocm: false              //是否Using [TOCM] auto create Toc dropdown menu
+                    //,tocTitle: ""             //是否指定Toc dropdown menu btn
+                    //,tocStartLevel：1         //指定 Said from H1 to create Toc
+                    //,tocContainer: ""         //指定toc的容器
+                    //,htmlDecode: false        //是否开启Open the HTML tag identification
+                    //,pageBreak: true          //是否开启解析 page break [======]
+                    //,atLink: true             //是否开启@link功能
+                    //,emailLink: true          //是否开启Email地址自动link功能
+                    //,taskList: false          //是否开启Github Flavored Markdown task lists
+                    //,emoji: false             //是否开启emoji
+                    //,tex: false               //是否开启Tex(Latex)，based on KaTex功能
+                    //,flowChart: false         //是否开启FlowChart 功能
+                    //,sequenceDiagram: false   //是否开启SequenceDiagram 功能
+                    //,previewCodeHighlight: true //是否开启预览代码高亮功能
+                    //,toolbar: true            //是否显示工具栏
+                    ,toolbarAutoFixed: _config.toolbarAutoFixed || true   //工具栏是否自动填充位置
+
+
+                    ////////////加载Handler的处理方式
+                    ,onload: _config.onload || function(){}     //加载成功后的处理
+                    ,onresize: _config.onresize || function(){}   //大小发生变化的时候
+                    ,onchange: _config.onchange || function(){}   //内容发生变化的时候
+                    ,onwatch: _config.onwatch || function(){}    //实时预览的时候
+                    ,onunwatch: _config.onunwatch || function(){}  //实时预览关闭的时候
+                    ,onpreviewing: _config.onpreviewing || function(){} //当预览的时候
+                    ,onpreviewed:_config.onpreviewed ||  function(){}  //当已经预览过的时候
+                    ,onfullscreen:_config.onfullscreen || function(){}  //当全屏的时候
+                    ,onfullscreenExit:_config.onfullscreenExit || function(){} //当全屏退出的时候
+                    ,onscroll:_config.onscroll || function(){}     //当滚动的时候
+                    ,onpreviewscroll:_config.onpreviewscroll || function(){} //当预览滚动的时候
+
                 });
 
-                return;
+                return ui_ele_editor;
 
-                //工具栏自动固定定位的开启与禁用
-                c$.ui_ele_editor.config("toolbarAutoFixed", true);
-
-                //设置自动高度处理
-                c$.ui_ele_editor.config("autoHeight", true);
-
-                //激活Github Flavored Markdown task lists
-                c$.ui_ele_editor.config("taskList", true);
-
-                //激活emoji表情功能
-                c$.ui_ele_editor.config("emoji", true);
-
-                //激活atLink
-                c$.ui_ele_editor.config("atLink", true);
-
-                //激活emailLink
-                c$.ui_ele_editor.config("emailLink", true);
-
-                //激活flowChart
-                c$.ui_ele_editor.config("flowChart", true);
-
-                //激活sequenceDiagram
-                c$.ui_ele_editor.config("sequenceDiagram", true);
-
-                //激活科学公式 Tex
-                c$.ui_ele_editor.config("tex", true);
-
-                //激活Toc(目录功能)
-                c$.ui_ele_editor.config("toc", true);
-
-                //激活代码折叠功能
-                c$.ui_ele_editor.config("codeFold", true);
-
-                //激活htmlDecode.开启HTML标签解析，为了安全性，默认不开启
-                c$.ui_ele_editor.config("htmlDecode", true);
-
-                //高亮显示当前行
-                c$.ui_ele_editor.config("styleActiveLine", true);
-
-                //显示行号
-                c$.ui_ele_editor.config("lineNumbers", true);
-
-                //激活只读模式
-                c$.ui_ele_editor.config("readOnly", true);
-
-                //激活实时预览
-                c$.ui_ele_editor.config("watch", true);
-
-                //激活搜索替换功能
-                c$.ui_ele_editor.config("searchReplace", true);
-
-                //激活控制键盘快捷键的映射(禁用某些快捷键的功能)
-                c$.ui_ele_editor.config("disabledKeyMaps",[]);
             }
         };
 
@@ -259,13 +274,45 @@
 
             var ele = $(thisPage);
             if($.trim(ele.html()).length == 0){
-                var html = template('tpl_workspace', {});
+                var html = template('tpl_workspace', {id:"uic-editormd"});
                 ele.html(html);
 
-                c$.UIConfigs.MarkdownEditor.reset();
-                c$.UIActions.configEditor("uic-editormd");
-            }
+                $.getScript("common/editor.md/1.4/editor.md/editormd.min.js", function(){
+                    c$.UIConfigs.MarkdownEditor.configEmoji();
+                    var editormdObj = c$.UIActions.configEditor("uic-editormd",
+                        {
+                            height:$(document).height()
+                            ,toolbarAutoFixed: false
+                            ,onchange: function(){}
+                            ,onscroll: function(){
+                            }
+                        }
+                    );
 
+                    editormdObj.setToolbarAutoFixed(false);
+
+                    var alreayFixed = false;
+                    var customAutoFixedHandler = function(){
+                        if(! alreayFixed) return;
+                        
+                        var toolbar = editormdObj.toolbar;
+                        var editor = editormdObj.editor;
+                        var $window = $(window);
+
+                        toolbar.css({
+                            position: "fixed",
+                            "overflow-y": "auto",
+                            width: editor.width() + "px",
+                            top: $('#app-header').height() + "px",
+                            left: ($window.width() - editor.width()) / 2 + "px"
+                        });
+
+                        alreayFixed = true;
+                    };
+
+                    $(window).bind("scroll", customAutoFixedHandler);
+                });
+            }
 
 
             $Router.fn_showOrHide(allPageList, false);

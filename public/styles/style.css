@@ -4,7 +4,7 @@ body {
 #g-wrapper #app-header {
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 999;
   width: 100%;
 }
 #g-wrapper .app-content-container {
@@ -12,6 +12,9 @@ body {
 }
 .mui-appbar {
   color: #000000;
+}
+.mui-appbar .mui-container {
+  width: 100%;
 }
 .mui-appbar #appbar-sidenav-toggle {
   width: 63px;
@@ -90,6 +93,9 @@ body {
 }
 #view-files em {
   color: #FF0000;
+}
+#view-workspace .mui-panel {
+  padding: 0px 15px 15px;
 }
 #view-plugins {
   margin-left: auto;
