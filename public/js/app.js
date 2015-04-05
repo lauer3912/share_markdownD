@@ -177,6 +177,85 @@
                 return ui_ele_editor;
 
             }
+
+            // Markdown编辑器
+            ,MarkdownEditor:{
+                /**
+                 * 获取编辑器区域的内容
+                 * @param editor    editormd的实例对象
+                 * @returns {String}
+                 */
+                fn_getMarkdownContent:function(editor){
+                    var _editor = editor || UI.c$.g_editor;
+                    return  _editor.getMarkdown();
+                }
+
+                /**
+                 * 设置编辑器区域的内容
+                 * @param content       markdown 内容字符串
+                 * @param editor        editormd的实例对象
+                 */
+                ,fn_setMarkdownContent:function(content, editor){
+                    var _editor = editor || UI.c$.g_editor;
+                    _editor.setMarkdown(content);
+                }
+
+                /**
+                 * 追加markdown
+                 * @param content       markdown 内容字符串
+                 * @param editor        editormd的实例对象
+                 */
+                ,fn_appendMarkdownContent:function(content, editor){
+                    var _editor = editor || UI.c$.g_editor;
+                    _editor.appendMarkdown(content);
+                }
+
+                /**
+                 * 获得当前的光标位置
+                 * @param editor    editormd的实例对象
+                 * @returns {Object}     pos 位置键值对象，例:{line:1, ch:0, xRel:1}
+                 */
+                ,fn_getCursorPosition:function(editor){
+                    var _editor = editor || UI.c$.g_editor;
+                    return _editor.getCursor();
+                }
+
+                /**
+                 * 设置光标位置
+                 * @param pos {Object} pos 位置键值对象，例:{line:1, ch:0, xRel:1}
+                 * @param editor    editormd的实例对象
+                 */
+                ,fn_setCursorPosition:function(pos, editor){
+                    var _editor = editor || UI.c$.g_editor;
+                    _editor.setCursor(pos);
+                }
+
+                // 聚焦光标位
+                ,fn_focusCursorPosition:function(editor){
+                    var _editor = editor || UI.c$.g_editor;
+                    _editor.focus();
+                }
+
+                /**
+                 * 获取光标选中的文本范围
+                 * @param editor
+                 * @returns {Array}
+                 */
+                ,fn_getSelections:function(editor){
+                    var _editor = editor || UI.c$.g_editor;
+                    return _editor.getSelections();
+                }
+
+                /**
+                 * 设置光标选中的文本范围
+                 * @param ranges {Array}
+                 * @param editor
+                 */
+                ,fn_setSelections:function(ranges, editor){
+                    var _editor = editor || UI.c$.g_editor;
+                    _editor.setSelections(ranges);
+                }
+            }
         };
 
     };
@@ -268,10 +347,11 @@
 
         $Router.go_workspace = function(){
             console.log("workspace");
-            $('#nav-title').html('Workspace');
 
+            var curDocument = "1.welcome.md";
+
+            $('#nav-title').html('Workspace - ' + curDocument);
             var thisPage = '#view-workspace';
-
             var ele = $(thisPage);
             if($.trim(ele.html()).length == 0){
                 var html = template('tpl_workspace', {id:"uic-editormd"});
@@ -279,7 +359,7 @@
 
                 $.getScript("common/editor.md/1.4/editor.md/editormd.min.js", function(){
                     c$.UIConfigs.MarkdownEditor.configEmoji();
-                    var editormdObj = c$.UIActions.configEditor("uic-editormd",
+                     var editormdObj = c$.g_editor = c$.UIActions.configEditor("uic-editormd",
                         {
                             height:$(document).height()
                             ,toolbarAutoFixed: false
@@ -294,7 +374,7 @@
                     var alreayFixed = false;
                     var customAutoFixedHandler = function(){
                         if(! alreayFixed) return;
-                        
+
                         var toolbar = editormdObj.toolbar;
                         var editor = editormdObj.editor;
                         var $window = $(window);
