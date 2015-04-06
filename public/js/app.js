@@ -13,12 +13,125 @@
     var b$ = BS.b$;
     var $fc = FilesCacheModule;
     var $Router = c$.RouterMethods = {};
+    var $Cache = c$.Cache = {}; // 此单元的缓存部分
 
     c$ = $.extend(window.UI.c$, {});
 
     // 初始化标题及版本
     c$.initTitleAndVersion = function(){
         document.title = b$.App.getAppName();
+    };
+
+
+    // 配置Cache
+    c$.setupCache = function(){
+        "use strict";
+
+        $Cache.key = "UI.c$.cache";
+        $Cache.data = [
+            //{key:"file-markdown-id", value:"json string", type:"file-markdown-cache"}
+        ];
+
+        $Cache.Methods = {
+
+            /**
+             * 保存缓存信息
+             * @returns {boolean}
+             */
+            fn_save:function(){
+                if(window.localStorage){
+                    var dataStr = JSON.stringify($Cache.data);
+                    window.localStorage.setItem($Cache.key, dataStr);
+                    return true;
+                }
+
+                return false;
+            },
+
+            /**
+             * 还原缓存信息
+             * @returns {boolean}
+             */
+            fn_restore:function(){
+                if(window.localStorage){
+                    var dataStr = window.localStorage.getItem($Cache.key);
+                    $Cache.data.length = 0;
+                    $Cache.data.concat(JSON.parse(dataStr));
+                    return true;
+                }
+
+                return false;
+            },
+
+            /**
+             * 查找缓存信息
+             * @param key      关键字
+             * @param type     信息类型
+             * @returns {null/string}   返回的是字符串或者空值
+             */
+            fn_find:function(key, type){
+                $.each($Cache.data, function(index, obj){
+                    if(obj){
+                        var _key = obj.key, _value = obj.value, _type = obj.type;
+                        if( key === _key && type === _type){
+                            return _value;
+                        }
+                    }
+                });
+
+                return null;
+            },
+
+            /**
+             * 添加或者更新指定的缓存信息项
+             * @param key     关键字
+             * @param value   对应的值，String
+             * @param type    对应的缓存信息类型，String
+             */
+            fn_update:function(key, value, type){
+                var exits = false;
+                $.each($Cache.data, function(index, obj){
+                    if(obj){
+                        exits = true;
+                        var _key = obj.key, _value = obj.value, _type = obj.type;
+                        if( key === _key && type === _type){
+                            if(_value !== value){
+                                obj.value = value;
+                            }
+                        }
+                    }
+                });
+
+                if(!exits){
+                    $Cache.data.push({key:key, value:value, type:type});
+                }
+
+                $Cache.Methods.fn_save();
+            },
+
+            /**
+             * 删除指定缓存项
+             * @param key   关键字
+             * @param type  对应的缓存信息类型，String
+             */
+            fn_delete:function(key, type){
+                var exits = false;
+                $.each($Cache.data, function(index, obj){
+                    if(obj){
+                        var _key = obj.key, _type = obj.type;
+                        if( key === _key && type === _type){
+                            $Cache.data.splice($.inArray(obj, $Cache.data), 1);
+                            exits = true;
+                        }
+                    }
+                });
+
+                if(exits){
+                    $Cache.Methods.fn_save();
+                }
+            }
+        };
+
     };
 
 
@@ -256,7 +369,12 @@
                     _editor.setSelections(ranges);
                 }
             }
+
         };
+
+        (function (){
+            $Router.go_workspace();
+        })();
 
     };
 
@@ -754,6 +872,7 @@
         c$.initTitleAndVersion();
         c$.configIAP();
         c$.configRoute();
+        c$.setupCache();
         c$.setupUI();
     };
 

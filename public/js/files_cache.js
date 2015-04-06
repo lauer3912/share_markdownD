@@ -38,17 +38,7 @@
     var fc = {};
 
     fc.data = [
-        {
-            id:'id001',        // 唯一标识
-            name:'welcome.md', // 别名
-            is_tmp:false,      // 是否是临时文件
-            path:'/usr/local/1.md', // 路径
-            ext:'md',          // 扩展名
-            editing:false,     // 是否正在编辑, reload, 或者进入到workspace
-            changed:false,     // 是否已经发生变化, 与编辑前的内容对比
-            inWorkSpace:false, // 是否在工作空间内，是否在workspace内已经处于打开编辑状态
-            content:''         // 内容。base64编码
-        }
+        //{Object}
     ];
 
     fc.getAllFiles = function(){
@@ -68,15 +58,15 @@
         var t = this;
 
         var fileObj = {
-            id: Date.now().toString(),
-            name: name || 'untitled',
-            is_tmp : useTmpFile || false,
-            path: "",
-            ext: "md",
-            editing:false,
-            changed:false,
-            inWorkSpace:false,
-            content:"push code..."
+            id: Date.now().toString(),      // 唯一标识
+            name: name || 'untitled',       // 别名
+            is_tmp : useTmpFile || false,   // 是否是临时文件
+            path: "",                       // 路径
+            ext: "md",                      // 扩展名
+            editing:false,                  // 是否正在编辑, reload, 或者进入到workspace
+            changed:false,                  // 是否已经发生变化, 与编辑前的内容对比
+            inWorkSpace:false,              // 是否在工作空间内，是否在workspace内已经处于打开编辑状态
+            content:""                      // 内容。base64编码
         };
 
         t.data.push(fileObj);
