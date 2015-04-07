@@ -48,60 +48,57 @@
     };
 
     /**
-     * 创建新文件
-     * @param name 新文件的名称
-     * @param useTmpFile 是否使用tmp文件
-     * @param cb 回调函数
+     * 获得一个新的文件对象
+     * @returns {{id: (number|*), name: string, is_tmp: boolean, path: string, ext: string, editing: boolean, changed: boolean, inWorkSpace: boolean, lastModify: (number|*)}}
      */
-    fc.createNewFile = function(name, useTmpFile, cb){
+    fc.getNewFileObj = function(){
         "use strict";
-        var t = this;
-
         var fileObj = {
-            id: Date.now().toString(),      // 唯一标识
-            name: name || 'untitled',       // 别名
-            is_tmp : useTmpFile || false,   // 是否是临时文件
+            id: $.now(),                    // 唯一标识
+            name: 'untitled',               // 别名
+            is_tmp : false,                 // 是否是临时文件
             path: "",                       // 路径
             ext: "md",                      // 扩展名
             editing:false,                  // 是否正在编辑, reload, 或者进入到workspace
             changed:false,                  // 是否已经发生变化, 与编辑前的内容对比
             inWorkSpace:false,              // 是否在工作空间内，是否在workspace内已经处于打开编辑状态
-            content:""                      // 内容。base64编码
+            lastModify:$.now()              // 最后修改时间戳
+            ,assEditorParamsObj:{}          // 关联的Editor的对象的信息
         };
-
-        t.data.push(fileObj);
-        cb && cb(fileObj);
 
         return fileObj;
     };
+
+    /**
+     * 获取最后修改的文件对象
+     * @returns {Array.<T>}
+     */
+    fc.getLastModifyFileObj = function(){
+        "use strict";
+        var t = this;
+
+        if(t.data.length > 0){
+            var sortDataList =  t.data.sort(function(a, b){
+                if(a.lastModify < b.lastModify) return -1;
+                if(a.lastModify > b.lastModify) return 1;
+                return 0;
+            });
+
+            return sortDataList[0];
+        }
+
+        return null;
+    };
+
 
     /**
      * 添加文件到缓存
      * @param params 文件对象
      * @param cb 回调处理
      */
-    fc.addFile = function(params, cb){
+    fc.addFile = function(fileObj, cb){
         "use strict";
         var t = this;
-
-        $.each(t.data, function(index, obj){
-            try{
-                if(obj.path == params.path){
-                    cb && cb(false);
-                    return false;
-                }
-            }catch(e){console.error(e)}
-        });
-
-
-        var fileObj = {
-            id: Date.now().toString(),
-            name: params.name || 'untitled',
-            is_tmp:false,
-            path:params.path,
-            ext:params.ext || 'md',
-            content:params.content
-        };
 
         t.data.push(fileObj);
         cb && cb(fileObj);

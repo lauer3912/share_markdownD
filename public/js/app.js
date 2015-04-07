@@ -10,12 +10,12 @@
 (function () {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     var c$ = {};
+    c$ = $.extend(window.UI.c$, {});
+
     var b$ = BS.b$;
     var $fc = FilesCacheModule;
     var $Router = c$.RouterMethods = {};
     var $Cache = c$.Cache = {}; // 此单元的缓存部分
-
-    c$ = $.extend(window.UI.c$, {});
 
     // 初始化标题及版本
     c$.initTitleAndVersion = function(){
@@ -55,9 +55,11 @@
             fn_restore:function(){
                 if(window.localStorage){
                     var dataStr = window.localStorage.getItem($Cache.key);
-                    $Cache.data.length = 0;
-                    $Cache.data.concat(JSON.parse(dataStr));
-                    return true;
+                    if(dataStr){
+                        $Cache.data.length = 0;
+                        $Cache.data.concat(JSON.parse(dataStr));
+                        return true;
+                    }
                 }
 
                 return false;
@@ -204,9 +206,9 @@
                 });
             }
             ,createNew:function(){
-                $fc.createNewFile('untitled', true, function(fileObj){
-                    $Router.go_files();
-                });
+                var newFileObj = $fc.getNewFileObj();
+                $fc.addFile(newFileObj);
+                $Router.go_files();
             }
             ,importFiles:function(){
                 alert('importFiles')
@@ -299,8 +301,8 @@
                  * @returns {String}
                  */
                 fn_getMarkdownContent:function(editor){
-                    var _editor = editor || UI.c$.g_editor;
-                    return  _editor.getMarkdown();
+                    var _e = editor || UI.c$.g_editor;
+                    return  _e.getMarkdown();
                 }
 
                 /**
@@ -309,8 +311,8 @@
                  * @param editor        editormd的实例对象
                  */
                 ,fn_setMarkdownContent:function(content, editor){
-                    var _editor = editor || UI.c$.g_editor;
-                    _editor.setMarkdown(content);
+                    var _e = editor || UI.c$.g_editor;
+                    _e.setMarkdown(content);
                 }
 
                 /**
@@ -319,8 +321,8 @@
                  * @param editor        editormd的实例对象
                  */
                 ,fn_appendMarkdownContent:function(content, editor){
-                    var _editor = editor || UI.c$.g_editor;
-                    _editor.appendMarkdown(content);
+                    var _e = editor || UI.c$.g_editor;
+                    _e.appendMarkdown(content);
                 }
 
                 /**
@@ -329,8 +331,8 @@
                  * @returns {Object}     pos 位置键值对象，例:{line:1, ch:0, xRel:1}
                  */
                 ,fn_getCursorPosition:function(editor){
-                    var _editor = editor || UI.c$.g_editor;
-                    return _editor.getCursor();
+                    var _e = editor || UI.c$.g_editor;
+                    return _e.getCursor();
                 }
 
                 /**
@@ -339,14 +341,14 @@
                  * @param editor    editormd的实例对象
                  */
                 ,fn_setCursorPosition:function(pos, editor){
-                    var _editor = editor || UI.c$.g_editor;
-                    _editor.setCursor(pos);
+                    var _e = editor || UI.c$.g_editor;
+                    _e.setCursor(pos);
                 }
 
                 // 聚焦光标位
                 ,fn_focusCursorPosition:function(editor){
-                    var _editor = editor || UI.c$.g_editor;
-                    _editor.focus();
+                    var _e = editor || UI.c$.g_editor;
+                    _e.focus();
                 }
 
                 /**
@@ -355,25 +357,134 @@
                  * @returns {Array}
                  */
                 ,fn_getSelections:function(editor){
-                    var _editor = editor || UI.c$.g_editor;
-                    return _editor.getSelections();
+                    var _e = editor || UI.c$.g_editor;
+                    return _e.getSelections();
                 }
 
                 /**
                  * 设置光标选中的文本范围
                  * @param ranges {Array}
-                 * @param editor
+                 * @param editor    编辑器实例
                  */
                 ,fn_setSelections:function(ranges, editor){
+                    var _e = editor || UI.c$.g_editor;
+                    _e.setSelections(ranges);
+                }
+
+                /**
+                 * 调整编辑器的尺寸和布局
+                 * @param width     宽度
+                 * @param height    高度
+                 * @param editor    编辑器实例
+                 */
+                ,fn_resize:function(width, height, editor){
+                    var _e = editor || UI.c$.g_editor;
+                    _e.resize(width, height);
+                }
+            }
+
+            // Markdown编辑器与fileObj的操作
+            ,FileObjAndMarkdownEditor:{
+
+                /**
+                 * 根据文件对象的内容来更新Markdown编辑器里面的内容
+                 * @param editor        Markdown编辑对象
+                 * @param fileObj       Markdown文件对象
+                 */
+                fn_updateMarkdownEditorWithFileObj:function(editor, fileObj){
                     var _editor = editor || UI.c$.g_editor;
-                    _editor.setSelections(ranges);
+                    var _fileObj = fileObj || $fc.getLastModifyFileObj();
+                    var _aeObj = _fileObj.assEditorParamsObj;
+                    var tm = UI.c$.UIActions.MarkdownEditor;
+
+                    //简化操作，核查数据项校验
+                    if(_editor.curFileObjId === _fileObj.id) return;
+
+                    console.log("fn_updateMarkdownEditorWithFileObj");
+
+                    //markdown 的内容
+                    if(typeof _aeObj.content !== "undefined"){
+                        if(_aeObj.content !== tm.fn_getMarkdownContent(_editor)){
+                            tm.fn_setMarkdownContent(_aeObj.content, _editor);
+                        }
+                    }
+
+                    //markdown 光标位置
+                    if(typeof _aeObj.cursorPosition !== "undefined"){
+                        if(_aeObj.cursorPosition !== tm.fn_getCursorPosition(_editor)){
+                            tm.fn_setCursorPosition(_aeObj.cursorPosition, _editor);
+                        }
+                    }
+
+                    //markdown 的选择范围
+                    if(typeof _aeObj.selections !== "undefined"){
+                        if(_aeObj.selections !== tm.fn_getSelections(_editor)){
+                            tm.fn_setSelections(_aeObj.selections, _editor);
+                        }
+                    }
+
+                    //触发焦点
+                    tm.fn_focusCursorPosition(_editor);
+                }
+
+                /**
+                 * 更新文件对象，通过Markdown编辑器中的参数
+                 * @param fileObj  Markdown文件对象
+                 * @param editor   Markdown编辑对象
+                 */
+                ,fn_updateFileObjWithMarkdownEditor:function(fileObj, editor){
+                    var _editor = editor || UI.c$.g_editor;
+                    var _fileObj = fileObj || null;
+                    var _aeObj = _fileObj.assEditorParamsObj;
+
+                    if(fileObj == null){console.error('fileObj can not as null');return;}
+
+                    var tm = UI.c$.UIActions.MarkdownEditor;
+                    _aeObj.content = tm.fn_getMarkdownContent(_editor);
+                    _aeObj.cursorPosition = tm.fn_getCursorPosition(_editor);
+                    _aeObj.selections = tm.fn_getSelections(_editor);
                 }
             }
 
         };
 
         (function (){
-            $Router.go_workspace();
+            // 先恢复缓存数据
+            $Cache.Methods.fn_restore();
+
+            // 查找是否有缓存的数据文件
+            var cacheList = [];
+            $.each($Cache.data, function(index, obj){
+                if(obj){
+                    var _type = obj.type;
+                    if (_type === "file-markdown-cache"){
+                        cacheList.push(obj);
+                    }
+                }
+            });
+
+            // 恢复处理
+            if(cacheList.length > 0){
+                $.each(cacheList, function(index, obj){
+                    var _id = obj.key, _value = obj.value;
+                    var dataObj = JSON.parse(_value);
+
+                    // _id === fileObj.id === editorObj.fileId 这是前提条件
+                    var fileObj = dataObj.fileObj; // editorObj = dataObj.editorObj; // 文件数据单元及编辑器内容单元
+                    $fc.addFile(fileObj);
+                });
+
+                // 获取最后的
+                var lastFileObj = $fc.getLastModifyFileObj();
+                if(lastFileObj){
+                    var assEditorObj = lastFileObj.assEditorObj;
+                }
+            }else{
+                var newFileObj = $fc.getNewFileObj();
+                $fc.addFile(newFileObj);
+            }
+
+            $Router.go_workspace($fc.getLastModifyFileObj());
         })();
 
     };
@@ -463,13 +574,22 @@
 
         };
 
-        $Router.go_workspace = function(){
+        /**
+         * 打开编辑器工作空间
+         * @param fileObj 传入文件对象 参见$fc.getNewFileObj()
+         */
+        $Router.go_workspace = function(fileObj){
             console.log("workspace");
-
-            var curDocument = "1.welcome.md";
-
-            $('#nav-title').html('Workspace - ' + curDocument);
             var thisPage = '#view-workspace';
+
+            // 处理标题
+            var _curFileObj = fileObj || $fc.getLastModifyFileObj();
+            var _title = _curFileObj.name;
+
+            $('#nav-title').html('Workspace - ' + _title);
+
+
+            // 初始化内容
             var ele = $(thisPage);
             if($.trim(ele.html()).length == 0){
                 var html = template('tpl_workspace', {id:"uic-editormd"});
@@ -479,9 +599,18 @@
                     c$.UIConfigs.MarkdownEditor.configEmoji();
                      var editormdObj = c$.g_editor = c$.UIActions.configEditor("uic-editormd",
                         {
-                            height:$(document).height()
+                            height:$(window).height()
                             ,toolbarAutoFixed: false
-                            ,onchange: function(){}
+                            ,onload:function(){
+                                var t = c$.UIActions.FileObjAndMarkdownEditor;
+                                //$.proxy(t.fn_updateMarkdownEditorWithFileObj, t)(UI.c$.g_editor, _curFileObj);
+                                $.proxy(t.fn_updateMarkdownEditorWithFileObj, t)(this, _curFileObj);
+                                this.curFileObjId = _curFileObj.id;
+                            }
+                            ,onchange: function(){
+                                var t = c$.UIActions.FileObjAndMarkdownEditor;
+                                $.proxy(t.fn_updateMarkdownEditorWithFileObj, t)(this, _curFileObj);
+                            }
                             ,onscroll: function(){
                             }
                         }
@@ -490,8 +619,8 @@
                     editormdObj.setToolbarAutoFixed(false);
 
                     var alreayFixed = false;
-                    var customAutoFixedHandler = function(){
-                        if(! alreayFixed) return;
+                    var customAutoFixedHandler = function(force){
+                        if(! alreayFixed && !force) return;
 
                         var toolbar = editormdObj.toolbar;
                         var editor = editormdObj.editor;
@@ -508,13 +637,22 @@
                         alreayFixed = true;
                     };
 
-                    $(window).bind("scroll", customAutoFixedHandler);
+                    $(window).on("scroll", customAutoFixedHandler);
+                    $(window).on('resize', function(e){
+                        var w = c$.g_editor.width(), h = $(window).height();
+                        c$.UIActions.MarkdownEditor.fn_resize(w, h, c$.g_editor);
+                        customAutoFixedHandler(true);
+                    });
                 });
+            }else{
+                var t = c$.UIActions.FileObjAndMarkdownEditor;
+                $.proxy(t.fn_updateMarkdownEditorWithFileObj, t)(UI.c$.g_editor, _curFileObj);
             }
-
 
             $Router.fn_showOrHide(allPageList, false);
             $Router.fn_showOrHide([thisPage], true);
+
+
         };
 
         $Router.go_settings = function(){
