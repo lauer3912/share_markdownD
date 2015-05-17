@@ -36,6 +36,8 @@
             }
         }
 
+        $.rty_log
+
         $.enable_AppConfig_debug = false;
         $.ConfigClass = {
             domain: function(){

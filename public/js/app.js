@@ -9,13 +9,17 @@
 
 (function () {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    window.$fem = new RomanySoftPlugins.FileEditorManger();
+    window.$fc = window.$fem.fileCache;
+
     var c$ = {};
     c$ = $.extend(window.UI.c$, {});
 
     var b$ = BS.b$;
-    var $fc = FilesCacheModule;
+
     var $Router = c$.RouterMethods = {};
-    var $Cache = c$.Cache = {}; // 此单元的缓存部分
+    var $Cache = null; // 此单元的缓存部分
+    var $EditorProvider = c$.EditorProvider = new RomanySoftPlugins.EditorMdServices();
 
     // 初始化标题及版本
     c$.initTitleAndVersion = function(){
@@ -26,154 +30,13 @@
     // 配置Cache
     c$.setupCache = function(){
         "use strict";
-
-        $Cache.key = "UI.c$.cache";
-        $Cache.data = [
-            //{key:"file-markdown-id", value:"json string", type:"file-markdown-cache"}
-        ];
-
-        $Cache.Methods = {
-
-            /**
-             * 保存缓存信息
-             * @returns {boolean}
-             */
-            fn_save:function(){
-                if(window.localStorage){
-                    var dataStr = JSON.stringify($Cache.data);
-                    window.localStorage.setItem($Cache.key, dataStr);
-                    return true;
-                }
-
-                return false;
-            },
-
-            /**
-             * 还原缓存信息
-             * @returns {boolean}
-             */
-            fn_restore:function(){
-                if(window.localStorage){
-                    var dataStr = window.localStorage.getItem($Cache.key);
-                    if(dataStr){
-                        $Cache.data.length = 0;
-                        $Cache.data.concat(JSON.parse(dataStr));
-                        return true;
-                    }
-                }
-
-                return false;
-            },
-
-            /**
-             * 查找缓存信息
-             * @param key      关键字
-             * @param type     信息类型
-             * @returns {null/string}   返回的是字符串或者空值
-             */
-            fn_find:function(key, type){
-                $.each($Cache.data, function(index, obj){
-                    if(obj){
-                        var _key = obj.key, _value = obj.value, _type = obj.type;
-                        if( key === _key && type === _type){
-                            return _value;
-                        }
-                    }
-                });
-
-                return null;
-            },
-
-            /**
-             * 添加或者更新指定的缓存信息项
-             * @param key     关键字
-             * @param value   对应的值，String
-             * @param type    对应的缓存信息类型，String
-             */
-            fn_update:function(key, value, type){
-                var exits = false;
-                $.each($Cache.data, function(index, obj){
-                    if(obj){
-                        exits = true;
-                        var _key = obj.key, _value = obj.value, _type = obj.type;
-                        if( key === _key && type === _type){
-                            if(_value !== value){
-                                obj.value = value;
-                            }
-                        }
-                    }
-                });
-
-                if(!exits){
-                    $Cache.data.push({key:key, value:value, type:type});
-                }
-
-                $Cache.Methods.fn_save();
-            },
-
-            /**
-             * 删除指定缓存项
-             * @param key   关键字
-             * @param type  对应的缓存信息类型，String
-             */
-            fn_delete:function(key, type){
-                var exits = false;
-                $.each($Cache.data, function(index, obj){
-                    if(obj){
-                        var _key = obj.key, _type = obj.type;
-                        if( key === _key && type === _type){
-                            $Cache.data.splice($.inArray(obj, $Cache.data), 1);
-                            exits = true;
-                        }
-                    }
-                });
-
-                if(exits){
-                    $Cache.Methods.fn_save();
-                }
-            }
-        };
-
+        $Cache = c$.Cache = new RomanySoftPlugins.Cache("UI.c$.cache");
     };
 
 
     // 设置UI部分与逻辑交互
     c$.setupUI = function(){
         "use strict";
-
-        // UI 的配置部分
-        c$.UIConfigs = {
-            MarkdownEditor:{
-                default_toolbarIcons:function(){
-                    if(editormd.version == "1.4.0"){
-                        return ["undo", "redo", "|",
-                            "bold","del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
-                            "h1", "h2", "h4", "h4", "h5", "h6", "|",
-                            "list-ul", "list-ol", "hr", "|",
-                            "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
-                            "goto-line", "watch", "preview", "watch", "fullscreen","|",
-                            "search", "clear"]
-                    }
-
-                },
-                configEmoji:function(){
-                    //配置emoji的. 配置 You can custom Emoji's graphics files url path
-                    editormd.emoji = {
-                        path  : "http://www.emoji-cheat-sheet.com/graphics/emojis/",
-                        ext   : ".png"
-                    };
-
-                    //配置Twemoji的. Twitter Emoji (Twemoji)  graphics files url path
-                    editormd.twemoji = {
-                        path : "http://twemoji.maxcdn.com/72x72/",
-                        ext  : ".png"
-                    };
-
-                }
-            }
-
-
-        };
 
         // UI 的Actions
         c$.UIActions = {
@@ -186,282 +49,65 @@
                 })
             }
 
+            ,getEditorDivEle:function(id){
+                var div_id = "div_editor" + id;
+                return div_id;
+            }
             ,loadFile:function(id){
-                $fc.reLoadFile(id, function(obj){
-                    var filePath = obj.path;
-                    var cbName = b$._get_callback(function(obj){
-
-                    }, true);
-
-                    b$.Binary.getUTF8TextContentFromFile({callback:cbName, filePath:filePath});
-                })
+                window.$fc.reLoadFile(id, function(fileObj){
+                    if(fileObj.is_tmp && $.trim(fileObj.path) === ""){ // 临时文件
+                        $Router.go_workspace(fileObj);
+                    }else{ // 本地文件
+                        if(fileObj.mustReloadNextTime){
+                            b$.Binary.getUTF8TextContentFromFile({
+                                callback:b$._get_callback(function(obj){
+                                    //TODO: 实现获取文件内容，然后处理内容
+                                    fileObj.content_utf8 = "";
+                                    $Router.go_workspace(fileObj);
+                                }, true),
+                                filePath:fileObj.path
+                            });
+                        }else{
+                            $Router.go_workspace(fileObj);
+                        }
+                    }
+                });
             }
             ,saveFile:function(id){
+                window.$fc.saveFile(id, function(fileObj){
+
+                });
                 alert('saveFile')
             }
             ,removeFilesItem:function(id){
-                $fc.removeFile(id, function(obj){
+                window.$fc.removeFile(id, function(obj){
                     var ele = '#view-files li[data-id="fileId_' + obj.id + '"]';
                     $(ele).remove();
+
+                    // 发送代理事件
+                    var div_id = c$.UIActions.getEditorDivEle(obj.id);
+                    $('#'+div_id).trigger("onFileRemove",obj);
                 });
             }
             ,createNew:function(){
-                var newFileObj = $fc.getNewFileObj();
-                $fc.addFile(newFileObj);
+                var newFileObj = window.$fc.getNewFileObj();
+                window.$fc.addFile(newFileObj, function(){});
+                window.$fem.addNewFileObj(newFileObj);
                 $Router.go_files();
             }
             ,importFiles:function(){
+                //TODO: 实现加载文件
                 alert('importFiles')
-            }
-            ,configEditor:function(ui_ele, in_config){
-
-                var _config = in_config || {};
-
-                //插件
-                var ui_ele_editor = editormd(ui_ele, {
-                    width: _config.width || "100%",
-                    height: _config.height || $(document).height,
-                    path: 'common/editor.md/1.4/editor.md/lib/'
-                    ,toolbarIcons: c$.UIConfigs.MarkdownEditor.default_toolbarIcons()
-                    ,appendMarkdown: _config.content || ""   // 附加的md内容
-
-
-                    //其他配置项
-                    //,pluginPath: ''           //插件路径
-                    //,delay: 300               //启动延时处理
-                    //,watch: true              //开启实时预览
-                    //,placeholder: ""          //默认替换文字
-                    //,gotoLine: true           //是否开启gotoLine的功能
-                    //,codeFold: false          //是否开启代码折叠功能
-                    //,autoHeight: false        //是否开启自动高度
-                    //,autoCloseTags: true      //是否自动补全标签
-                    //,searchReplace: true      //是否开启查找替换功能
-                    //,readOnly: false          //是否开启只读模式
-                    //,lineNumbers: true        //是否显示行号
-                    //,matchWordHighlight: true //是否匹配文件高亮
-                    //,styleActiveLine: true    //是否高亮当前行
-                    //,dialogLockScreen: true   //是否对话框锁住屏幕
-                    //,dialogShowMask: true     //是否对话框显示Mask
-                    //,dialogDraggable: true    //是否对话框可以拖拽
-                    //,dialogMaskBgColor: "#fff" //设置对话框的Mask背景颜色
-                    //,dialogMaskOpacity: 0.1   //设置对话框的透明度
-                    //,fontSize: "13px"         //设置编辑器的字体大小
-                    //,saveHTMLToTextarea: false //开启是否保存HTML到文本区域
-                    //,disabledKeyMaps: []      //屏蔽哪些快捷键
-
-                    //,imageUpload: false       //图片是否上传
-                    //,imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"] //至此的图片格式
-                    //,imageUploadURL: ""       //图片上传的URL地址
-                    //,crossDomainUpload: false //是否跨域上传
-                    //,uploadCallbackURL: ""    //图片上传的回调URL
-
-                    //,toc: true                //是否开启Table of contents 功能
-                    //,tocm: false              //是否Using [TOCM] auto create Toc dropdown menu
-                    //,tocTitle: ""             //是否指定Toc dropdown menu btn
-                    //,tocStartLevel：1         //指定 Said from H1 to create Toc
-                    //,tocContainer: ""         //指定toc的容器
-                    //,htmlDecode: false        //是否开启Open the HTML tag identification
-                    //,pageBreak: true          //是否开启解析 page break [======]
-                    //,atLink: true             //是否开启@link功能
-                    //,emailLink: true          //是否开启Email地址自动link功能
-                    //,taskList: false          //是否开启Github Flavored Markdown task lists
-                    //,emoji: false             //是否开启emoji
-                    //,tex: false               //是否开启Tex(Latex)，based on KaTex功能
-                    //,flowChart: false         //是否开启FlowChart 功能
-                    //,sequenceDiagram: false   //是否开启SequenceDiagram 功能
-                    //,previewCodeHighlight: true //是否开启预览代码高亮功能
-                    //,toolbar: true            //是否显示工具栏
-                    ,toolbarAutoFixed: _config.toolbarAutoFixed || true   //工具栏是否自动填充位置
-
-
-                    ////////////加载Handler的处理方式
-                    ,onload: _config.onload || function(){}     //加载成功后的处理
-                    ,onresize: _config.onresize || function(){}   //大小发生变化的时候
-                    ,onchange: _config.onchange || function(){}   //内容发生变化的时候
-                    ,onwatch: _config.onwatch || function(){}    //实时预览的时候
-                    ,onunwatch: _config.onunwatch || function(){}  //实时预览关闭的时候
-                    ,onpreviewing: _config.onpreviewing || function(){} //当预览的时候
-                    ,onpreviewed:_config.onpreviewed ||  function(){}  //当已经预览过的时候
-                    ,onfullscreen:_config.onfullscreen || function(){}  //当全屏的时候
-                    ,onfullscreenExit:_config.onfullscreenExit || function(){} //当全屏退出的时候
-                    ,onscroll:_config.onscroll || function(){}     //当滚动的时候
-                    ,onpreviewscroll:_config.onpreviewscroll || function(){} //当预览滚动的时候
-
-                });
-
-                return ui_ele_editor;
-
-            }
-
-            // Markdown编辑器
-            ,MarkdownEditor:{
-                /**
-                 * 获取编辑器区域的内容
-                 * @param editor    editormd的实例对象
-                 * @returns {String}
-                 */
-                fn_getMarkdownContent:function(editor){
-                    var _e = editor || UI.c$.g_editor;
-                    return  _e.getMarkdown();
-                }
-
-                /**
-                 * 设置编辑器区域的内容
-                 * @param content       markdown 内容字符串
-                 * @param editor        editormd的实例对象
-                 */
-                ,fn_setMarkdownContent:function(content, editor){
-                    var _e = editor || UI.c$.g_editor;
-                    _e.setMarkdown(content);
-                }
-
-                /**
-                 * 追加markdown
-                 * @param content       markdown 内容字符串
-                 * @param editor        editormd的实例对象
-                 */
-                ,fn_appendMarkdownContent:function(content, editor){
-                    var _e = editor || UI.c$.g_editor;
-                    _e.appendMarkdown(content);
-                }
-
-                /**
-                 * 获得当前的光标位置
-                 * @param editor    editormd的实例对象
-                 * @returns {Object}     pos 位置键值对象，例:{line:1, ch:0, xRel:1}
-                 */
-                ,fn_getCursorPosition:function(editor){
-                    var _e = editor || UI.c$.g_editor;
-                    return _e.getCursor();
-                }
-
-                /**
-                 * 设置光标位置
-                 * @param pos {Object} pos 位置键值对象，例:{line:1, ch:0, xRel:1}
-                 * @param editor    editormd的实例对象
-                 */
-                ,fn_setCursorPosition:function(pos, editor){
-                    var _e = editor || UI.c$.g_editor;
-                    _e.setCursor(pos);
-                }
-
-                // 聚焦光标位
-                ,fn_focusCursorPosition:function(editor){
-                    var _e = editor || UI.c$.g_editor;
-                    _e.focus();
-                }
-
-                /**
-                 * 获取光标选中的文本范围
-                 * @param editor
-                 * @returns {Array}
-                 */
-                ,fn_getSelections:function(editor){
-                    var _e = editor || UI.c$.g_editor;
-                    return _e.getSelections();
-                }
-
-                /**
-                 * 设置光标选中的文本范围
-                 * @param ranges {Array}
-                 * @param editor    编辑器实例
-                 */
-                ,fn_setSelections:function(ranges, editor){
-                    var _e = editor || UI.c$.g_editor;
-                    _e.setSelections(ranges);
-                }
-
-                /**
-                 * 调整编辑器的尺寸和布局
-                 * @param width     宽度
-                 * @param height    高度
-                 * @param editor    编辑器实例
-                 */
-                ,fn_resize:function(width, height, editor){
-                    var _e = editor || UI.c$.g_editor;
-                    _e.resize(width, height);
-                }
-            }
-
-            // Markdown编辑器与fileObj的操作
-            ,FileObjAndMarkdownEditor:{
-
-                /**
-                 * 根据文件对象的内容来更新Markdown编辑器里面的内容
-                 * @param editor        Markdown编辑对象
-                 * @param fileObj       Markdown文件对象
-                 */
-                fn_updateMarkdownEditorWithFileObj:function(editor, fileObj){
-                    var _editor = editor || UI.c$.g_editor;
-                    var _fileObj = fileObj || $fc.getLastModifyFileObj();
-                    var _aeObj = _fileObj.assEditorParamsObj;
-                    var tm = UI.c$.UIActions.MarkdownEditor;
-
-                    //简化操作，核查数据项校验
-                    if(_editor.curFileObjId === _fileObj.id) return;
-
-                    console.log("fn_updateMarkdownEditorWithFileObj");
-
-                    //markdown 的内容
-                    if(typeof _aeObj.content !== "undefined"){
-                        if(_aeObj.content !== tm.fn_getMarkdownContent(_editor)){
-                            tm.fn_setMarkdownContent(_aeObj.content, _editor);
-                        }
-                    }
-
-                    //markdown 光标位置
-                    if(typeof _aeObj.cursorPosition !== "undefined"){
-                        if(_aeObj.cursorPosition !== tm.fn_getCursorPosition(_editor)){
-                            tm.fn_setCursorPosition(_aeObj.cursorPosition, _editor);
-                        }
-                    }
-
-                    //markdown 的选择范围
-                    if(typeof _aeObj.selections !== "undefined"){
-                        if(_aeObj.selections !== tm.fn_getSelections(_editor)){
-                            tm.fn_setSelections(_aeObj.selections, _editor);
-                        }
-                    }
-
-                    //触发焦点
-                    tm.fn_focusCursorPosition(_editor);
-                }
-
-                /**
-                 * 更新文件对象，通过Markdown编辑器中的参数
-                 * @param fileObj  Markdown文件对象
-                 * @param editor   Markdown编辑对象
-                 */
-                ,fn_updateFileObjWithMarkdownEditor:function(fileObj, editor){
-                    var _editor = editor || UI.c$.g_editor;
-                    var _fileObj = fileObj || null;
-                    var _aeObj = _fileObj.assEditorParamsObj;
-
-                    if(fileObj == null){console.error('fileObj can not as null');return;}
-
-                    var tm = UI.c$.UIActions.MarkdownEditor;
-                    _aeObj.content = tm.fn_getMarkdownContent(_editor);
-                    _aeObj.cursorPosition = tm.fn_getCursorPosition(_editor);
-                    _aeObj.selections = tm.fn_getSelections(_editor);
-                }
             }
 
         };
 
         (function (){
             // 先恢复缓存数据
-            $Cache.Methods.fn_restore();
+            $Cache.restore();
 
             // 查找是否有缓存的数据文件
-            var cacheList = [];
-            $.each($Cache.data, function(index, obj){
-                if(obj){
-                    var _type = obj.type;
-                    if (_type === "file-markdown-cache"){
-                        cacheList.push(obj);
-                    }
-                }
-            });
+            var cacheList = $Cache.findObjList("file-markdown-cache");
 
             // 恢复处理
             if(cacheList.length > 0){
@@ -471,20 +117,19 @@
 
                     // _id === fileObj.id === editorObj.fileId 这是前提条件
                     var fileObj = dataObj.fileObj; // editorObj = dataObj.editorObj; // 文件数据单元及编辑器内容单元
-                    $fc.addFile(fileObj);
+                    window.$fc.addFile(fileObj, function(){});
+                    window.$fem.addNewFileObj(fileObj);
+
                 });
 
-                // 获取最后的
-                var lastFileObj = $fc.getLastModifyFileObj();
-                if(lastFileObj){
-                    var assEditorObj = lastFileObj.assEditorObj;
-                }
             }else{
-                var newFileObj = $fc.getNewFileObj();
-                $fc.addFile(newFileObj);
+                var newFileObj = window.$fc.getNewFileObj();
+                window.$fc.addFile(newFileObj, function(){});
+                window.$fem.addNewFileObj(newFileObj);
+
             }
 
-            $Router.go_workspace($fc.getLastModifyFileObj());
+            $Router.go_workspace(window.$fc.getLastModifyFileObj());
         })();
 
     };
@@ -541,6 +186,14 @@
                     $Router.fn_showOrHide([thisPage], false, true);
                 });
 
+                // 当点击DIV以外的地方，隐藏该DIV
+                $('body').on('click', function(evt){
+                    if($(evt.target).parents(thisPage).length == 0
+                    && $(evt.target).parents('#appbar-sidenav-toggle').length == 0){
+                        $(thisPage).hide();
+                    }
+                });
+
             }
 
         };
@@ -552,7 +205,7 @@
 
             var thisPage = '#view-files';
             var o = {
-                files: $fc.getAllFiles()
+                files: window.$fc.getAllFiles()
             };
 
             var ele = $(thisPage);
@@ -566,7 +219,7 @@
                 if ( $(this).data('field') == 'name'){
                     var id = $(this).data('id');
                     var newName = this.value;
-                    $fc.findFile(id, function(obj){
+                    window.$fc.findFile(id, function(obj){
                         obj.name = newName;
                     });
                 }
@@ -576,78 +229,167 @@
 
         /**
          * 打开编辑器工作空间
-         * @param fileObj 传入文件对象 参见$fc.getNewFileObj()
+         * @param fileObj 传入文件对象 参见window.$fc.getNewFileObj()
          */
         $Router.go_workspace = function(fileObj){
             console.log("workspace");
             var thisPage = '#view-workspace';
 
             // 处理标题
-            var _curFileObj = fileObj || $fc.getLastModifyFileObj();
-            var _title = _curFileObj.name;
+            var _curFileObj = fileObj || window.$fc.getLastModifyFileObj();
 
-            $('#nav-title').html('Workspace - ' + _title);
+            if(false == fileObj.changed){
+                $('#nav-title').html('Workspace - ' + _curFileObj.name);
+            }else{
+                $('#nav-title').html('Workspace - ' + _curFileObj.name + ' [*]');
+            }
 
 
             // 初始化内容
             var ele = $(thisPage);
             if($.trim(ele.html()).length == 0){
-                var html = template('tpl_workspace', {id:"uic-editormd"});
+                var html = template('tpl_workspace', {});
                 ele.html(html);
-
-                $.getScript("common/editor.md/1.4/editor.md/editormd.min.js", function(){
-                    c$.UIConfigs.MarkdownEditor.configEmoji();
-                     var editormdObj = c$.g_editor = c$.UIActions.configEditor("uic-editormd",
-                        {
-                            height:$(window).height()
-                            ,toolbarAutoFixed: false
-                            ,onload:function(){
-                                var t = c$.UIActions.FileObjAndMarkdownEditor;
-                                //$.proxy(t.fn_updateMarkdownEditorWithFileObj, t)(UI.c$.g_editor, _curFileObj);
-                                $.proxy(t.fn_updateMarkdownEditorWithFileObj, t)(this, _curFileObj);
-                                this.curFileObjId = _curFileObj.id;
-                            }
-                            ,onchange: function(){
-                                var t = c$.UIActions.FileObjAndMarkdownEditor;
-                                $.proxy(t.fn_updateMarkdownEditorWithFileObj, t)(this, _curFileObj);
-                            }
-                            ,onscroll: function(){
-                            }
-                        }
-                    );
-
-                    editormdObj.setToolbarAutoFixed(false);
-
-                    var alreayFixed = false;
-                    var customAutoFixedHandler = function(force){
-                        if(! alreayFixed && !force) return;
-
-                        var toolbar = editormdObj.toolbar;
-                        var editor = editormdObj.editor;
-                        var $window = $(window);
-
-                        toolbar.css({
-                            position: "fixed",
-                            "overflow-y": "auto",
-                            width: editor.width() + "px",
-                            top: $('#app-header').height() + "px",
-                            left: ($window.width() - editor.width()) / 2 + "px"
-                        });
-
-                        alreayFixed = true;
-                    };
-
-                    $(window).on("scroll", customAutoFixedHandler);
-                    $(window).on('resize', function(e){
-                        var w = c$.g_editor.width(), h = $(window).height();
-                        c$.UIActions.MarkdownEditor.fn_resize(w, h, c$.g_editor);
-                        customAutoFixedHandler(true);
-                    });
-                });
-            }else{
-                var t = c$.UIActions.FileObjAndMarkdownEditor;
-                $.proxy(t.fn_updateMarkdownEditorWithFileObj, t)(UI.c$.g_editor, _curFileObj);
             }
+
+            // 查找对应的Editor是否存在
+            var div_id = c$.UIActions.getEditorDivEle(_curFileObj.id);
+            if(window.$fem.findEditorByFileId(_curFileObj.id)){
+                // 使用CSS来控制显示
+                $(thisPage + " > div").addClass("mui-hide").removeClass("mui-show");
+                $('#' + div_id).addClass("mui-show").removeClass("mui-hide");
+            }else{
+                $(thisPage + " > div").removeClass("mui-show").addClass("mui-hide");
+
+                // 先创建Div
+                var html_ele = '<div id="' + div_id + '"' +' class="mui-panel"></div>';
+                ele.append(html_ele);
+
+                // 绑定Div的事件
+                $('#'+div_id).bind("onFileRemove", function(event, fileObj){
+                    var editor = fileObj.assEditor;
+                    editor.length = 0;
+                    $(this).remove();
+                });
+
+
+                // 然后创建编辑器, 并做关联
+                var newEditorMd = _curFileObj.assEditor = $EditorProvider.createEditor(div_id, {
+                    height:$(window).height()
+                    ,toolbarAutoFixed: false
+                    ,onload:function(){
+                        $EditorProvider.setContent(_curFileObj.content_utf8, this);
+                    }
+                    ,onchange:function(){
+                        var oldContent = _curFileObj.content_utf8;
+                        var curContent = $EditorProvider.getContent(this);
+                        _curFileObj.changed = (oldContent != curContent);
+
+                        if(false == _curFileObj.changed){
+                            $('#nav-title').html('Workspace - ' + _curFileObj.name);
+                        }else{
+                            $('#nav-title').html('Workspace - ' + _curFileObj.name + ' [*]');
+                        }
+                    }
+                    ,onscroll:function(){
+
+                    }
+                });
+
+
+                newEditorMd.setToolbarAutoFixed(false);
+
+                var alreayFixed = false;
+                var customAutoFixedHandler = function(force){
+                    if(! alreayFixed && !force) return;
+
+                    var toolbar = newEditorMd.toolbar;
+                    var editor = newEditorMd.editor;
+                    var $window = $(window);
+
+                    toolbar.css({
+                        position: "fixed",
+                        "overflow-y": "auto",
+                        width: editor.width() + "px",
+                        top: $('#app-header').height() + "px",
+                        left: ($window.width() - editor.width()) / 2 + "px"
+                    });
+
+                    alreayFixed = true;
+                };
+
+                var handle_onResize= function(e){
+                    var w = newEditorMd.width(), h = $(window).height();
+                    $EditorProvider.resize(w, h, newEditorMd);
+                    customAutoFixedHandler(true);
+                };
+
+                $(window).on("scroll", customAutoFixedHandler);
+                $(window).on('resize', handle_onResize);
+
+            }
+
+
+
+
+            //if($.trim(ele.html()).length == 0){
+            //    var html = template('tpl_workspace', {id:"uic-editormd"});
+            //    ele.html(html);
+            //
+            //    //c$.UIConfigs.MarkdownEditor.configEmoji();
+            //    var editormdObj = c$.g_editor = c$.UIActions.configEditor("uic-editormd",
+            //        {
+            //            height:$(window).height()
+            //            ,toolbarAutoFixed: false
+            //            ,onload:function(){
+            //                var t = c$.UIActions.FileObjAndMarkdownEditor;
+            //                var fo = _g_getCurFileObj();
+            //                this.curFileObjId = fo.id;
+            //                $.proxy(t.fn_updateMarkdownEditorWithFileObj, t)(this, fo);
+            //            }
+            //            ,onchange: function(){
+            //                var t = c$.UIActions.FileObjAndMarkdownEditor;
+            //                var fo = _g_getCurFileObj();
+            //                this.curFileObjId = fo.id;
+            //                $.proxy(t.fn_updateFileObjWithMarkdownEditor, t)(fo, this);
+            //            }
+            //            ,onscroll: function(){
+            //        }
+            //        }
+            //    );
+            //
+            //    editormdObj.setToolbarAutoFixed(false);
+            //
+            //    var alreayFixed = false;
+            //    var customAutoFixedHandler = function(force){
+            //        if(! alreayFixed && !force) return;
+            //
+            //        var toolbar = editormdObj.toolbar;
+            //        var editor = editormdObj.editor;
+            //        var $window = $(window);
+            //
+            //        toolbar.css({
+            //            position: "fixed",
+            //            "overflow-y": "auto",
+            //            width: editor.width() + "px",
+            //            top: $('#app-header').height() + "px",
+            //            left: ($window.width() - editor.width()) / 2 + "px"
+            //        });
+            //
+            //        alreayFixed = true;
+            //    };
+            //
+            //    $(window).on("scroll", customAutoFixedHandler);
+            //    $(window).on('resize', function(e){
+            //        var w = c$.g_editor.width(), h = $(window).height();
+            //        c$.UIActions.MarkdownEditor.fn_resize(w, h, c$.g_editor);
+            //        customAutoFixedHandler(true);
+            //    });
+            //
+            //}else{
+            //    var t = c$.UIActions.FileObjAndMarkdownEditor;
+            //    $.proxy(t.fn_updateMarkdownEditorWithFileObj, t)(UI.c$.g_editor, _g_getCurFileObj());
+            //}
 
             $Router.fn_showOrHide(allPageList, false);
             $Router.fn_showOrHide([thisPage], true);
