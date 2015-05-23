@@ -178,6 +178,8 @@
          * App 内容封装
          */
         b$.App = {
+			
+			/// 获得App的名称
             appName:null,
             getAppName:function(){
                 if(b$.pN){
@@ -189,6 +191,7 @@
                 return "AppName";
             },
 
+			/// 获得产品的版本
             appVersion:null,
             getAppVersion:function(){
                 if(b$.pN){
@@ -200,6 +203,7 @@
                 return "4.5.6";
             },
 
+			/// 获得产品的ID
             appId:null,
             getAppId:function(){
                 if(b$.pN){
@@ -211,6 +215,7 @@
                 return "AppID";
             },
 
+			/// 获得App是否在沙盒内
             getSandboxEnable:function(){
                 if(b$.pN){
                     var sandboxEnable = b$.pN.app.getSandboxEnable();
@@ -219,6 +224,7 @@
                 return false;
             },
 
+			/// 获取App内部注册信息
             getRegInfoJSONString:function(){
                 if(b$.pN){
                     var str = b$.pN.app.getRegInfoJSONString();
@@ -227,6 +233,7 @@
                 return "";
             },
 
+			/// 获取App认证的内部序列号信息
             getSerialNumber:function(){
                 if(b$.pN){
                     var str = b$.pN.app.getStringSerialNumber();
@@ -235,6 +242,7 @@
                 return "";
             },
 
+			/// 获取本地IP地址
             getLocalIP:function(){
                 if(b$.pN){
                     var str = b$.pN.app.getLocalIP();
@@ -243,9 +251,54 @@
                 return "";
             },
 
+			
+			/// 终止运行，退出系统
+			terminate: function(){
+				if(b$.pN){
+                    b$.pN.app.terminate();
+                }				
+			},
+			
+			/// 激活自己
+			activate: function(){
+				if(b$.pN){
+                    b$.pN.app.activate();
+                }
+			},
+			
+			/// 隐藏自己
+			hide:function(){
+				if(b$.pN){
+                    b$.pN.app.hide();
+                }
+			},
+			
+			/// 取消隐藏自己
+			unhide:function(){
+				if(b$.pN){
+                    b$.pN.app.unhide();
+                }
+			},
+			
+			/// 发出beep声音
+			beep:function(){
+				if(b$.pN){
+                    b$.pN.app.beep();
+                }
+			},
+			
+			/// 激活Bounce事件
+			bounce:function(){
+				if(b$.pN){
+                    b$.pN.app.bounce();
+                }
+			},
+			
+			
+			/// 打开链接地址
             open:function(data){
                 if(b$.pN){
-                    return b$.pN.app.open(data);
+                    return b$.pN.app.open(data || "http://www.baidu.com");
                 }else{
                     try{
                         window.open(data);
@@ -253,8 +306,48 @@
 
                 }
             },
+			
+			
+			/// 打开文件，使用系统默认行为
+			openFileWithDefaultApp:function(filePath){
+				if(b$.pN){
+					var _path = filePath || (b$.pN.path.tempDir() + "tmp.txt");
+                    b$.pN.app.openFile(_path);
+                }
+			},
 
+			
+			/// 通过应用程序的名称，启动应用程序
+			launchApplication:function(applicationName){
+				if(b$.pN){
+                    b$.pN.app.launch(applicationName || 'Safari'); //Safari.app
+                }
+			},
+			
+			/// 发送电子邮件
+			sendEmail:function(parms){
+                if(b$.pN){
+                    try{
+                        parms = parms || {};
+                        //限制内部属性：
+                        parms['sendAddress'] = parms['sendAddress'] || "admin@gmail.com";
+                        parms['toAddress'] = parms['toAddress'] ||"admin@gmail.com";
+                        parms['subject'] = parms['subject'] ||"Hello";
+                        parms['body'] = parms['body'] ||"Hello!!";
+						
+
+                        b$.pN.app.sendEmailWithMail($.toJSON(parms));
+                    }catch(e){
+                        console.error(e);
+                    }
+                }else{
+                    alert('启动发送邮件')
+                }				
+			},
+			
+			
             //{开启启动部分}
+			//是否开启自动启动{苹果商店App 无效}
             isStartAtLogin:function(){
                 if(b$.pN){
                     return b$.pN.app.isStartAtLogin();
@@ -263,6 +356,7 @@
                 return false;
             },
 
+			//开启自动启动功能{苹果商店App 无效}
             setStartAtLogin:function(enable){
                 if(b$.pN){
                     return b$.pN.app.setStartAtLogin(enable); //备注：沙盒状态下无效
@@ -270,18 +364,21 @@
             },
 
             //{NSUserDefaults}
+			//存储信息{key: value: }方式,Map方式
             setInfoToUserDefaults:function(jsonObj){
                 if(b$.pN){
                     var obj = jsonObj || {callback: 'console.log', key:'', value:''};
                     b$.pN.window.setInfoToUserDefaults($.toJSON(obj));
                 }
             },
+			//获取存储信息{key: value: }方式,Map方式
             getInfoFromUserDefaults:function(jsonObj){
                 if(b$.pN){
                     var obj = jsonObj || {callback: 'console.log', key:''};
                     b$.pN.window.getInfoFromUserDefaults($.toJSON(obj));
                 }
             },
+			//移除存储信息{key: value: }方式,Map方式
             removeItemFromUserDefaults:function(jsonObj){
                 if(b$.pN){
                     var obj = jsonObj || {callback: 'console.log', key:''};
@@ -319,11 +416,165 @@
                 }
                 return "";
             },
+			
+			/// 获得App的包的目录
+			getAppBundlePath: function(){
+				if(b$.pN){
+                    return b$.pN.path.application();
+                }
+                return "";
+			},
+			
+			/// 获得AppDataHomeDir
+			getAppDataHomeDir:function(){
+				if(b$.pN){
+                    return b$.pN.path.appDataHomeDir();
+                }
+                return "";
+			},
+			
+			/// 获得Home Directory
+			getHomeDir: function(){
+				if(b$.pN){
+                    return b$.pN.path.homeDir();
+                }
+                return "";
+			},
+			
+			/// 获得DocumentsDir
+			getDocumentsDir: function(){
+				if(b$.pN){
+                    return b$.pN.path.documentsDir();
+                }
+                return "";
+			},
+			
+			/// 获得本地Documents目录
+			getLocalDocumentsDir:function(){
+				if(b$.pN){
+                    return b$.pN.path.localDocumentsDir();
+                }
+                return "";
+			},
+			
+			/// 获得LibraryDir
+			getLibraryDir: function(){
+				if(b$.pN){
+                    return b$.pN.path.libraryDir();
+                }
+                return "";
+			},
+			
+			/// 获得临时目录
+			getTempDir: function(){
+				if(b$.pN){
+                    return b$.pN.path.tempDir();
+                }
+                return "";
+			},
+			
+			/// 获得Cache目录
+			getCacheDir: function(){
+				if(b$.pN){
+                    return b$.pN.path.cacheDir();
+                }
+                return "";
+			},
+			
+			/// 获得Application目录
+			getApplicationDir: function(){
+				if(b$.pN){
+                    return b$.pN.path.applicationDir();
+                }
+                return "";
+			},
+			
+			/// 获得DesktopDir，桌面路径
+			getDesktopDir: function(){
+				if(b$.pN){
+                    return b$.pN.path.desktopDir();
+                }
+                return "";
+			},
+			
+			/// 获得downloadDir，下载目录路径
+			getDownloadDir:function(){
+				if(b$.pN){
+                    return b$.pN.path.downloadDir();
+                }
+                return "";
+			},
+			
+			/// 获得本地download目录路径
+			getLocalDownloadDir:function(){
+				if(b$.pN){
+                    return b$.pN.path.localDownloadDir();
+                }
+                return "";
+			},
+			
+			/// 获得Movies目录路径
+			getMoviesDir:function(){
+				if(b$.pN){
+                    return b$.pN.path.moviesDir();
+                }
+                return "";
+			},
+			
+			/// 获得本地Movies目录路径
+			getLocalMoviesDir:function(){
+				if(b$.pN){
+                    return b$.pN.path.localMoviesDir();
+                }
+                return "";
+			},
+			
+			/// 获得Music目录
+			getMusicDir:function(){
+				if(b$.pN){
+                    return b$.pN.path.musicDir();
+                }
+                return "";
+			},
+			
+			/// 获得本地Music目录
+			getLocalMusicDir: function(){
+				if(b$.pN){
+                    return b$.pN.path.localMusicDir();
+                }
+                return "";
+			},
+			
+			/// 获得本地Pictures目录
+			getLocalPicturesDir:function(){
+				if(b$.pN){
+                    return b$.pN.path.localPicturesDir();
+                }
+                return "";
+			},
+			
+			/// 获得UserName
+			getUserName: function(){
+				if(b$.pN){
+                    return b$.pN.path.userName();
+                }
+                return "";
+			},
+			
+			/// 获得User全名(UserFullName)
+			getUserFullName: function(){
+				if(b$.pN){
+                    return b$.pN.path.userFullName();
+                }
+                return "";
+			},
+			
 
             /// 检测路径是否存在
             checkPathIsExist: b$.pathIsExist = function(path){
                 if(b$.pN){
-                    return b$.pN.path.pathIsExist(path);
+					var _path = path || b$.pN.path.tempDir();
+                    return b$.pN.path.pathIsExist(_path);
                 }
 
                 return false;
@@ -332,7 +583,8 @@
             ///文件是否为0Byte
             checkFileIsZero: b$.checkFileIsZeroSize = function(file_path){
                 if(b$.pN){
-                    return b$.pN.path.fileIsZeroSize(file_path);
+					var _path = file_path || b$.pN.path.tempDir();
+                    return b$.pN.path.fileIsZeroSize(_path);
                 }
 
                 return false;
@@ -341,7 +593,8 @@
             ///路径是否可以写
             checkPathIsWritable: b$.checkPathIsWritable = function(path){
                 if(b$.pN){
-                    return b$.pN.path.checkPathIsWritable(path);
+					var _path = path || b$.pN.path.tempDir();
+                    return b$.pN.path.checkPathIsWritable(_path);
                 }
 
                 return false;
@@ -350,7 +603,8 @@
             ///创建空文件
             createEmptyFile: b$.createEmptyFile = function(file_path){
                 if(b$.pN){
-                    return b$.pN.window.createEmptyFile($.toJSON({path:file_path}));
+					var _path = file_path || (b$.pN.path.tempDir() + "tmp.txt");
+                    return b$.pN.window.createEmptyFile($.toJSON({path:_path}));
                 }
             },
 
@@ -361,10 +615,10 @@
                         var parms = {};
                         //限制内部属性：
                         parms['callback'] = parms['callback'] || b$._get_callback(function(obj){}, true);
-                        parms['path'] = dir_path || "";
+                        parms['path'] = dir_path || (b$.pN.path.tempDir() + "tmp_dir001");
                         if(atts)  parms['atts'] = atts || {};
 
-                        b$.pN.window.removeDir($.toJSON(parms));
+                        b$.pN.window.createDir($.toJSON(parms));
                     }catch(e){
                         console.error(e);
                     }
@@ -374,7 +628,8 @@
             ///删除文件
             removeFile: b$.removeFile = function(file_path){
                 if(b$.pN){
-                    return b$.pN.window.removeFile($.toJSON({path:file_path}));
+					var _path = file_path || (b$.pN.path.tempDir() + "tmp.txt");
+                    return b$.pN.window.removeFile($.toJSON({path:_path}));
                 }
             },
 
@@ -385,7 +640,7 @@
                         var parms = {};
                         //限制内部属性：
                         parms['callback'] = parms['callback'] || b$._get_callback(function(obj){}, true);
-                        parms['path'] = dir_path || "";
+                        parms['path'] = dir_path || (b$.pN.path.tempDir() + "/tmp_dir001");
 
 
                         b$.pN.window.removeDir($.toJSON(parms));
@@ -422,7 +677,7 @@
                         parms['src'] = parms['src'] || "";
                         parms['dest'] = parms['dest'] || "";
 
-                        b$.pN.window.copyFile($.toJSON(parms));
+                        b$.pN.window.copyDir($.toJSON(parms));
                     }catch(e){
                         console.error(e);
                     }
@@ -464,17 +719,28 @@
             },
 
             ///查找文件是否在此目录中存在
-            findFile: b$.findFile = function(dir, fileName){
+            findFile: b$.findFile = function(dir, fileName, cb){
                 if(b$.pN){
-                    return b$.pN.window.findFile($.toJSON({dir:dir, fileName:fileName}));
+					var _dir = dir || b$.pN.path.tempDir();
+					var _fileName = fileName || 'tmp.txt';
+					
+					var parms = {
+						callback: cb || b$._get_callback(function(obj){}, true),
+						dir: _dir,
+						fileName: _fileName
+					}
+					
+                    return b$.pN.window.findFile($.toJSON(parms));
                 }
+				
                 return null;
             },
 
             ///判断路径是否可读
             checkPathIsReadable:function(path){
                 if(b$.pN){
-                    return b$.pN.path.checkPathIsReadable(path);
+					var _path = path || b$.pN.path.tempDir();
+                    return b$.pN.path.checkPathIsReadable(_path);
                 }
 
                 return false;
@@ -483,7 +749,8 @@
             ///判断路径是否可运行
             checkPathIsExecutable:function(path){
                 if(b$.pN){
-                    return b$.pN.path.checkPathIsExecutable(path);
+					var _path = path || b$.pN.path.tempDir();
+                    return b$.pN.path.checkPathIsExecutable(_path);
                 }
 
                 return false;
@@ -492,7 +759,8 @@
             ///判断路径是否可删除
             checkPathIsDeletable:function(path){
                 if(b$.pN){
-                    return b$.pN.path.checkPathIsDeletable(path);
+					var _path = path || b$.pN.path.tempDir();
+                    return b$.pN.path.checkPathIsDeletable(_path);
                 }
 
                 return false;
@@ -502,7 +770,8 @@
             ///判断是否为文件
             checkPathIsFile:function(path){
                 if(b$.pN){
-                    return b$.pN.path.checkPathIsFile(path);
+					var _path = path || b$.pN.path.tempDir();
+                    return b$.pN.path.checkPathIsFile(_path);
                 }
 
                 return false;
@@ -511,7 +780,8 @@
             ///判断是否为目录
             checkPathIsDir:function(path){
                 if(b$.pN){
-                    return b$.pN.path.checkPathIsDir(path);
+					var _path = path || b$.pN.path.tempDir();
+                    return b$.pN.path.checkPathIsDir(_path);
                 }
 
                 return false;
@@ -520,7 +790,8 @@
             ///获取文件扩展名
             getFileExt:function(path){
                 if(b$.pN){
-                    return b$.pN.path.getFileExt(path);
+					var _path = path || (b$.pN.path.tempDir() + "tmp.txt");
+                    return b$.pN.path.getFileExt(_path);
                 }
 
                 return "";
@@ -529,7 +800,8 @@
             ///获取路径上一级目录路径
             getPathParentPath:function(path){
                 if(b$.pN){
-                    return b$.pN.path.getPathParentPath(path);
+					var _path = path || b$.pN.path.tempDir();
+                    return b$.pN.path.getPathParentPath(_path);
                 }
 
                 return "";
@@ -539,7 +811,8 @@
             ///获取文件的基本属性
             getFilePropertyJSONString:function(path){
                 if(b$.pN){
-                    return b$.pN.path.getFilePropertyJSONString(path);
+					var _path = path || (b$.pN.path.tempDir() + "tmp.txt");
+                    return b$.pN.path.getFilePropertyJSONString(_path);
                 }
 
                 return "";
@@ -549,7 +822,8 @@
             ///获得文件/目录size(实际字节数 1024)
             fileSizeAtPath:function(path){
                 if(b$.pN){
-                    return b$.pN.app.fileSizeAtPath(path);
+					var _path = path || (b$.pN.path.tempDir() + "tmp.txt");
+                    return b$.pN.app.fileSizeAtPath(_path);
                 }
 
                 return "";
@@ -558,7 +832,8 @@
             ///获得文件/目录占用磁盘(字节数 1000)
             diskSizeAtPath:function(path){
                 if(b$.pN){
-                    return b$.pN.app.diskSizeAtPath(path);
+					var _path = path || (b$.pN.path.tempDir() + "tmp.txt");
+                    return b$.pN.app.diskSizeAtPath(_path);
                 }
 
                 return "";
@@ -567,7 +842,7 @@
             ///获得字符串的md5值
             md5Digest:function(str){
                 if(b$.pN){
-                    return b$.pN.app.md5Digest(str);
+                    return b$.pN.app.md5Digest(str || "testMd5");
                 }
 
                 return "";
@@ -670,6 +945,23 @@
                 return console.error('调用方式不正确，需要的参数为:Native2Webkit 或者webkitCompatible');
             },
 
+			
+			///设置用户的语言
+			setUserLanguage:function(language){
+				if(b$.pN){
+                    b$.pN.app.setUserLanguage(language || 'en-us');
+                }
+			},
+			
+			///获取用户设置的语言
+			getUserLanguage:function(){
+				if(b$.pN){
+                   return b$.pN.app.curUserLanguage();
+                }
+				
+				return "en-us";
+			},
+			
             ///截屏[整个屏幕]
             captureFull:function(parms){
                 if(b$.pN){
@@ -677,7 +969,7 @@
                         parms = parms || {};
                         //限制内部属性：
                         parms['callback'] = parms['callback'] || b$._get_callback(function(obj){}, true);
-                        parms['filePath'] = parms['filePath'] || ""; // 保存文件
+                        parms['filePath'] = parms['filePath'] || (b$.pN.path.tempDir() + "cap_screen.png");// 保存文件
 
 
                         b$.pN.window.capture($.toJSON(parms));
@@ -694,18 +986,28 @@
          * @type {{minimize: Function, maximize: Function, toggleFullScreen: Function, restore: Function, isMaximized: Function, move: Function, resize: Function, setMinSize: Function, setMaxSize: Function}}
          */
         b$.Window = {
+			
+			// 最小化窗体
             minimize:function(){
                 if (b$.pN) b$.pN.window.minimize();
             },
+			
+			// 最大化窗体
             maximize:function(){
                 if (b$.pN) b$.pN.window.maximize();
             },
+			
+			// 全屏切换
             toggleFullScreen:function(){
                 if (b$.pN) b$.pN.window.toggleFullscreen();
             },
+			
+			// 窗体状态恢复
             restore:function(){
                 if (b$.pN) b$.pN.window.restore();
             },
+			
+			// 是否最大化
             isMaximized:function(){
                 if (b$.pN){
                     return b$.pN.window.isMaximized();
@@ -713,6 +1015,16 @@
 
                 return false;
             },
+			
+			// 获取原点坐标
+			getOrigin:function(){
+				if(b$.pN){
+                    return JSON.parse(b$.pN.window.getOrigin());
+                }
+                return {x:0, y:0};
+			},
+			
+			// 移动窗体
             move:function(parms){
                 if(b$.pN){
                     try{
@@ -729,6 +1041,8 @@
                     alert('启动窗体移动!')
                 }
             },
+			
+			// 改变窗体大小
             resize:function(parms){
                 if(b$.pN){
                     try{
@@ -745,12 +1059,16 @@
                     alert('启动窗体重置大小!')
                 }
             },
+			
+			// 获取窗体尺寸最小值
             getMinSize:function(){
                 if(b$.pN){
                     return JSON.parse(b$.pN.window.getMinSize());
                 }
                 return {width:600, height:400};
             },
+			
+			// 设置窗体尺寸最小值
             setMinSize:function(parms){
                 if(b$.pN){
                     try{
@@ -767,12 +1085,16 @@
                     alert('启动窗体设置最小尺寸!')
                 }
             },
+			
+			// 获取窗体最大值
             getMaxSize:function(){
                 if(b$.pN){
                     return JSON.parse(b$.pN.window.getMaxSize());
                 }
                 return {width:600, height:400};
             },
+			
+			// 设置窗体最大值
             setMaxSize:function(parms){
                 if(b$.pN){
                     try{
@@ -789,6 +1111,8 @@
                     alert('启动窗体设置最大尺寸!')
                 }
             },
+			
+			// 获取窗体当前尺寸
             getSize:function(){
                 if(b$.pN){
                     return JSON.parse(b$.pN.window.getSize());
@@ -796,6 +1120,8 @@
 
                 return {width:600, height:400};
             },
+			
+			// 设置窗体当前尺寸
             setSize:function(parms){
                 b$.Window.resize(parms);
             }
@@ -869,7 +1195,7 @@
             },
             paste:function(){
                 if(b$.pN){
-                    b$.pN.clipboard.paste();
+                   return b$.pN.clipboard.paste();
                 }
             }
         };
@@ -887,7 +1213,7 @@
             },
             getBadge:function(){
                 if(b$.pN){
-                    return b$.pN.dock.badge();
+                    return b$.pN.dock.badge;
                 }
 
                 return "dock";
@@ -944,10 +1270,24 @@
                     try{
                         parms = parms || {};
                         //限制内部属性：
-                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj){}, true);
+                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj){
+							/**
+							obj.success = true || false
+							obj.content = 内容
+							**/
+						}, true);
                         parms['filePath'] = parms['filePath'] || "";
+						parms['encode'] = parms['encode'] || 'utf8';
+						parms['async'] = parms['async'] || true;  // 异步的时候，回调函数有效，否则无效，直接返回内容值
+						
+						/**
+						encode:
+						    ASCII,NEXTSTEP,JapaneseEUC,UTF8,ISOLatin1,Symbol,NonLossyASCII,ShiftJIS,ISOLatin2,Unicode
+							WindowsCP1251,WindowsCP1252,WindowsCP1253,WindowsCP1254,WindowsCP1250,ISO2022JP,MacOSRoman
+							UTF16,UTF16BigEndian,UTF16LittleEndian
+						**/
 
-                        b$.pN.binaryFileWriter.getTextFromFile($.toJSON(parms));
+                        b$.pN.binaryFileWriter.getTextFromFile($.toJSON(parms));  //使用非异步模式(async == false)，直接返回content内容
                     }catch(e){
                         console.error(e);
                     }
@@ -1157,6 +1497,20 @@
                     parms['canChooseFiles'] = true;
                     parms['canChooseDir'] = false;
                     parms['types'] = parms['types'] || [];
+					
+					//下拉文件类型选择处理
+					if("enableFileFormatCombox" in parms){ 
+						parms["enableFileFormatCombox"] = parms["enableFileFormatCombox"] || false;
+					}
+					if("typesDescript" in params){
+						parms["typesDescript"] = parms["typesDescript"] || [];
+					}
+					if("lable" in params){
+						parms["lable"] = parms["lable"] || "File Format:";
+					}
+					//[end]下拉文件类型选择处理
+				
+
 
 
                     b$.pN.window.openFile($.toJSON(parms));
@@ -1243,18 +1597,21 @@
             }
         };
 
-        // 定位文件
+        // 定位文件/目录
         b$.cb_revealInFinder = null; // 选择定位文件的回调
         b$.revealInFinder = function(path){
             if(b$.pN){
-                try{
+                try{	
                     b$.pN.window.revealInFinder($.toJSON({
+						callback: "BS.b$.cb_revealInFinder",
                         filePath:path
                     }));
                 }catch(e){
                     console.error(e)
                 }
-            }
+            }else{
+				alert('启动定位路径功能')
+			}
         };
 
         // 预览文件

@@ -8,7 +8,7 @@ var RomanySoftPlugins;
     var FileObj = (function () {
         function FileObj() {
             this.id = $.now(); // 唯一标识
-            this.name = "New"; // 别名
+            this.name = "New_" + $.now(); // 别名
             this.is_tmp = true; // 是否是临时文件, 默认是临时的
             this.path = ""; // 路径
             this.ext = "md"; // 扩展名

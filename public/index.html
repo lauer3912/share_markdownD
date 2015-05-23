@@ -79,21 +79,21 @@
                     </span>
                     <li class="mui-col-md-4 mui-col-xs-4">
                         <fieldset>
-                            <button class="mui-btn mui-btn-default mui-btn-flat icon-edit" onclick="window.UI.c$.UIActions.loadFile('{{ obj.id  }}')">Load</button>
-                            <button class="mui-btn mui-btn-default mui-btn-flat icon-save" onclick="window.UI.c$.UIActions.saveFile('{{ obj.id }}')">Save</button>
-                            <button class="mui-btn mui-btn-default mui-btn-flat icon-remove-circle-outline" onclick="window.UI.c$.UIActions.removeFilesItem('{{  obj.id }}')">Remove</button>
+                            <button class="mui-btn mui-btn-default mui-btn-flat icon-edit" onclick="window.UI.c$.UIActions.loadFile('{{ obj.id  }}')">{{btnLoadTitle}}</button>
+                            <button class="mui-btn mui-btn-default mui-btn-flat icon-save" onclick="window.UI.c$.UIActions.saveFile('{{ obj.id }}')">{{btnSaveTitle}}</button>
+                            <button class="mui-btn mui-btn-default mui-btn-flat icon-remove-circle-outline" onclick="window.UI.c$.UIActions.removeFilesItem('{{  obj.id }}')">{{btnRemoveTitle}}</button>
                         </fieldset>
                     </li>
                 </section>
             </li>
             {{/each}}
         </ul>
-        <button class="mui-btn mui-btn-default mui-btn-raised" onclick="window.UI.c$.UIActions.createNew()">New File</button>
-        <button class="mui-btn mui-btn-default mui-btn-raised" onclick="window.UI.c$.UIActions.importFiles()">Import Files</button>
+        <button class="mui-btn mui-btn-default mui-btn-raised" onclick="window.UI.c$.UIActions.createNew()">{{btnNewFileTitle}}</button>
+        <button class="mui-btn mui-btn-default mui-btn-raised" onclick="window.UI.c$.UIActions.importFiles()">{{btnImportTitle}}</button>
         <p>
-            <em class="icon-live-help">Note:</em>
+            <em class="icon-live-help">{{emLabel}}</em>
             <strong>
-                Your changes and your files only get stored in cache. If you want save files changes, please to save file.
+                {{noteLabel}}
             </strong>
         </p>
     </div>
@@ -110,7 +110,7 @@
         <section class="mui-col-lg-2 mui-col-md-4 mui-col-xs-6 mui-panel">
             <header>
                 <a rel target="_blank">
-                    <img class="plugin-screen" src="{{ obj.img }}">
+                    <img class="plugin-screen" src="{{ obj.imageUrl }}">
                 </a>
             </header>
             <span class="mui-text-title">{{ obj.name }}</span>
@@ -126,7 +126,7 @@
             <a>
                 {{if (obj.quantity == 0 && obj.inAppStore == true)}}
                 <button class="mui-btn mui-btn-default mui-btn-raised"
-                        onclick="window.UI.c$.UIActions.buyPlugin('{{ obj.id }}')"><i class="icon-shopping-basket">Purchase</i>
+                        onclick="window.UI.c$.UIActions.buyPlugin('{{ obj.id }}')"><i class="icon-shopping-basket">{{btnBuyTitle}}</i>
                 </button>
                 {{else}}
                 <button class="mui-btn mui-btn-default mui-btn-flat" disabled>
@@ -205,12 +205,16 @@
 </script>
 
 
-
+<!--基础库加载-->
 <script src="common/es6-shim/es6-shim.min.js"></script>
 <script src="common/jquery/jquery-1.11.3.min.js"></script>
 
+<!--加载国际化-->
+<script src="common/format.js/intl/0.1.4/Intl.min.js"></script>
+<script src="common/format.js/intl/0.1.4/locale-data/jsonp/en-US.js"></script>
+<script src="common/format.js/intl-messageformat/1.1.0/intl-messageformat-with-locales.min.js"></script>
+
 <!--加载路由设置-->
-<script src="common/knockoutjs/3.3.0/knockout-3.3.0.js"></script>
 <script src="common/director.js/director.min.js"></script>
 <script src="common/mui/mui-0.1.2/js/mui.min.js"></script>
 <script src="common/artTemplate/3.0/template.js"></script>
@@ -219,12 +223,16 @@
 <!--核心启动加载-->
 <script src="js/util.js"></script>
 <script src="js/bs.js"></script>
-<script src="js/IAP/plugins_define.js"></script>
+
+<!--插件部分加载-->
+<script src="js/plugins/plugin.iap.js"></script>
 <script src="js/plugins/plugin.cache.js"></script>
 <script src="js/plugins/plugin.files-cache.js"></script>
 <script src="js/plugins/plugin.user-settings.js"></script>
 <script src="js/plugins/plugin.file-editor-mgr.js"></script>
 <script src="js/plugins/plugin.editormd.js"></script>
+
+<!--App-->
 <script src="js/app.js"></script>
 <script src="js/test.js"></script>
 <script type="text/javascript">

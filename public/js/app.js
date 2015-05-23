@@ -19,11 +19,45 @@
 
     var $Router = c$.RouterMethods = {};
     var $Cache = null; // 此单元的缓存部分
-    var $EditorProvider = c$.EditorProvider = new RomanySoftPlugins.EditorMdServices();
+    var $EditorProvider = c$.EditorProvider = new RomanySoftPlugins.EditorMdServices(); // 编辑器服务
+    var $IAPProvider = c$.IAPProvider = RomanySoftPlugins.IAP.IAP$Helper.create();      // IAP服务
+    var $NoticeCenter = c$.NoticeCenter = $.Callbacks();                                // 消息中心
+
+    // 默认的本地化语言
+    c$.language = 'en-US';
 
     // 初始化标题及版本
     c$.initTitleAndVersion = function(){
         document.title = b$.App.getAppName();
+    };
+
+    // 配置国际化
+    c$.configInternationalization = function(deferred){
+        "use strict";
+
+        // 获取当前浏览器的语言
+        //c$.language = window.navigator.language || window.navigator.browserLanguage;
+        function autoSetup(lang, success_cb, fail_cb) {
+            $.ajax({
+                url: "locales/" + lang + ".js",
+                dataType: "script",
+                success: function (data, status) {
+                    console.log(status);
+                    eval(data);
+                    deferred.resolve();
+                    success_cb && success_cb(data, status);
+                },
+                error: function (req, status, err) {
+                    console.log(status);
+                    fail_cb && fail_cb(req, status, err);
+                }
+            })
+        }
+
+        autoSetup(c$.language, function(data, staus){}, function(req, status, err){
+            c$.language = "en-US";
+            autoSetup(c$.language);
+        });
     };
 
 
@@ -61,9 +95,12 @@
                         if(fileObj.mustReloadNextTime){
                             b$.Binary.getUTF8TextContentFromFile({
                                 callback:b$._get_callback(function(obj){
-                                    //TODO: 实现获取文件内容，然后处理内容
-                                    fileObj.content_utf8 = "";
-                                    $Router.go_workspace(fileObj);
+                                    if(obj.success){
+                                        fileObj.content_utf8 = obj.content;
+                                        fileObj.mustReloadNextTime = false;
+                                        $Router.go_workspace(fileObj);
+                                    }
+
                                 }, true),
                                 filePath:fileObj.path
                             });
@@ -75,9 +112,37 @@
             }
             ,saveFile:function(id){
                 window.$fc.saveFile(id, function(fileObj){
+                    if(fileObj.assEditor){
+                        fileObj.content_utf8 = $EditorProvider.getContent(fileObj.assEditor);
+                    }else{
+                        fileObj.content_utf8 = "";
+                    }
 
+                    // 保存到本地
+                    b$.selectOutFile({
+                        callback: b$._get_callback(function(info){
+                            if(info.success){
+                                fileObj.name = info.fileName;
+                                fileObj.is_tmp = false;
+                                fileObj.path = info.filePath;
+
+                                //TODO: 页面上要有反应
+                                $Router.go_files();
+
+                                b$.Binary.createTextFile({
+                                    filePath:fileObj.path,
+                                    text:fileObj.content_utf8
+                                });
+                            }
+                        }, true),
+                        title : (new IntlMessageFormat(I18N.UI.filePage["SaveDialog-Title"], c$.language)).format(),
+                        prompt: (new IntlMessageFormat(I18N.UI.filePage["SaveDialog-BtnSave"], c$.language)).format(),
+                        fileName : fileObj.name,
+                        types : 'md'
+
+                    });
                 });
-                alert('saveFile')
+
             }
             ,removeFilesItem:function(id){
                 window.$fc.removeFile(id, function(obj){
@@ -96,8 +161,29 @@
                 $Router.go_files();
             }
             ,importFiles:function(){
-                //TODO: 实现加载文件
-                alert('importFiles')
+                b$.importFiles({
+                    callback: b$._get_callback(function(info){
+                        if(info.success){
+                            $.each(info.filesArray, function(index, obj){
+                                var newFileObj = window.$fc.getNewFileObj();
+                                newFileObj.name = obj.fileName;
+                                newFileObj.path = obj.filePath;
+                                newFileObj.ext = obj.extension;
+                                newFileObj.is_tmp = false;
+                                newFileObj.mustReloadNextTime = true;
+                                window.$fc.addFile(newFileObj, function(){});
+                                window.$fem.addNewFileObj(newFileObj);
+                            });
+
+                            $Router.go_files();
+                        }
+                    }, true),
+                    title: (new IntlMessageFormat(I18N.UI.filePage["ImportDialog-Title"], c$.language)).format(),
+                    prompt: (new IntlMessageFormat(I18N.UI.filePage["ImportDialog-BtnImport"], c$.language)).format(),
+                    allowOtherFileTypes: true,
+                    allowMulSelection: true,
+                    types:["*","md"]
+                });
             }
 
         };
@@ -143,7 +229,7 @@
         // 所有的页面配置
         var allPageList = ['#leftNav','#view-files','#view-workspace','#view-plugins', '#view-settings', '#view-help', "#view-about"];
 
-        $Router.fn_showOrHide = function(eleList, show, auto){
+        $Router.fn_showOrHide = function(eleList, show, auto, cb){
             $.each(eleList, function(index, ele) {
                 if(auto == true){
                     $(ele).is(":visible")==false ? $(ele).show(): $(ele).hide();
@@ -154,6 +240,8 @@
                 }
 
             });
+
+            cb && cb();
         };
 
 
@@ -167,12 +255,12 @@
                 var o = {
                     appName: "MarkdownD",
                     navList: [
-                        {name: "Files", href: "#/files", class:" icon-tab"}
-                        ,{name: "Workspace", href: "#/workspace", class:" icon-dashboard"}
-                        ,{name: "Plugins", href: "#/pluginsMgr", class:" icon-extension"}
-                        ,{name: "Settings", href: "#/settings", class:" icon-settings"}
-                        ,{name: "Help", href: "#/help", class:" icon-help"}
-                        ,{name: "About", href: "#/about", class:" icon-info"}
+                        {name: (new IntlMessageFormat(I18N.UI.navPage["Files"], c$.language)).format(), href: "#/files", class:" icon-tab"}
+                        ,{name: (new IntlMessageFormat(I18N.UI.navPage["Workspace"], c$.language)).format(), href: "#/workspace", class:" icon-dashboard"}
+                        ,{name: (new IntlMessageFormat(I18N.UI.navPage["Plugins"], c$.language)).format(), href: "#/pluginsMgr", class:" icon-extension"}
+                        ,{name: (new IntlMessageFormat(I18N.UI.navPage["Settings"], c$.language)).format(), href: "#/settings", class:" icon-settings"}
+                        ,{name: (new IntlMessageFormat(I18N.UI.navPage["Help"], c$.language)).format(), href: "#/help", class:" icon-help"}
+                        ,{name: (new IntlMessageFormat(I18N.UI.navPage["About"], c$.language)).format(), href: "#/about", class:" icon-info"}
 
                     ]
                 };
@@ -200,12 +288,18 @@
 
         $Router.go_files = function(){
             console.log("files");
-            $('#nav-title').html('Files');
-
+            $('#nav-title').html((new IntlMessageFormat(I18N.UI.filePage["Title"], c$.language)).format());
 
             var thisPage = '#view-files';
             var o = {
-                files: window.$fc.getAllFiles()
+                files: window.$fc.getAllFiles(),
+                btnLoadTitle: (new IntlMessageFormat(I18N.UI.filePage["Btn-Load"], c$.language)).format(),
+                btnSaveTitle: (new IntlMessageFormat(I18N.UI.filePage["Btn-Save"], c$.language)).format(),
+                btnRemoveTitle: (new IntlMessageFormat(I18N.UI.filePage["Btn-Remove"], c$.language)).format(),
+                btnNewFileTitle: (new IntlMessageFormat(I18N.UI.filePage["Btn-New"], c$.language)).format(),
+                btnImportTitle: (new IntlMessageFormat(I18N.UI.filePage["Btn-ImportFiles"], c$.language)).format(),
+                emLabel:(new IntlMessageFormat(I18N.UI.filePage["em-label"], c$.language)).format(),
+                noteLabel:(new IntlMessageFormat(I18N.UI.filePage["note-label"], c$.language)).format()
             };
 
             var ele = $(thisPage);
@@ -238,10 +332,12 @@
             // 处理标题
             var _curFileObj = fileObj || window.$fc.getLastModifyFileObj();
 
-            if(false == fileObj.changed){
-                $('#nav-title').html('Workspace - ' + _curFileObj.name);
+            var wk = (new IntlMessageFormat(I18N.UI.workspacePage["Title"], c$.language)).format();
+
+            if(false == _curFileObj.changed){
+                $('#nav-title').html(wk + ' - ' + _curFileObj.name);
             }else{
-                $('#nav-title').html('Workspace - ' + _curFileObj.name + ' [*]');
+                $('#nav-title').html(wk + ' - ' +  _curFileObj.name + ' [*]');
             }
 
 
@@ -254,10 +350,12 @@
 
             // 查找对应的Editor是否存在
             var div_id = c$.UIActions.getEditorDivEle(_curFileObj.id);
+
             if(window.$fem.findEditorByFileId(_curFileObj.id)){
                 // 使用CSS来控制显示
                 $(thisPage + " > div").addClass("mui-hide").removeClass("mui-show");
                 $('#' + div_id).addClass("mui-show").removeClass("mui-hide");
+
             }else{
                 $(thisPage + " > div").removeClass("mui-show").addClass("mui-hide");
 
@@ -279,6 +377,7 @@
                     ,toolbarAutoFixed: false
                     ,onload:function(){
                         $EditorProvider.setContent(_curFileObj.content_utf8, this);
+                        this['toolBar_offset'] = this.editor.offset();
                     }
                     ,onchange:function(){
                         var oldContent = _curFileObj.content_utf8;
@@ -296,110 +395,52 @@
                     }
                 });
 
-
                 newEditorMd.setToolbarAutoFixed(false);
 
                 var alreayFixed = false;
                 var customAutoFixedHandler = function(force){
+                    console.log('customAutoFixedHandler');
                     if(! alreayFixed && !force) return;
 
                     var toolbar = newEditorMd.toolbar;
                     var editor = newEditorMd.editor;
-                    var $window = $(window);
 
                     toolbar.css({
                         position: "fixed",
                         "overflow-y": "auto",
-                        width: editor.width() + "px",
+                        //width: editor.width() + "px",
                         top: $('#app-header').height() + "px",
-                        left: ($window.width() - editor.width()) / 2 + "px"
+                        left: newEditorMd["toolBar_offset"].left + "px"
                     });
 
                     alreayFixed = true;
                 };
 
-                var handle_onResize= function(e){
-                    var w = newEditorMd.width(), h = $(window).height();
-                    $EditorProvider.resize(w, h, newEditorMd);
-                    customAutoFixedHandler(true);
-                };
 
                 $(window).on("scroll", customAutoFixedHandler);
-                $(window).on('resize', handle_onResize);
+                $(window).on('resize', function(e){
+                    customAutoFixedHandler(true);
+                });
 
             }
 
 
-
-
-            //if($.trim(ele.html()).length == 0){
-            //    var html = template('tpl_workspace', {id:"uic-editormd"});
-            //    ele.html(html);
-            //
-            //    //c$.UIConfigs.MarkdownEditor.configEmoji();
-            //    var editormdObj = c$.g_editor = c$.UIActions.configEditor("uic-editormd",
-            //        {
-            //            height:$(window).height()
-            //            ,toolbarAutoFixed: false
-            //            ,onload:function(){
-            //                var t = c$.UIActions.FileObjAndMarkdownEditor;
-            //                var fo = _g_getCurFileObj();
-            //                this.curFileObjId = fo.id;
-            //                $.proxy(t.fn_updateMarkdownEditorWithFileObj, t)(this, fo);
-            //            }
-            //            ,onchange: function(){
-            //                var t = c$.UIActions.FileObjAndMarkdownEditor;
-            //                var fo = _g_getCurFileObj();
-            //                this.curFileObjId = fo.id;
-            //                $.proxy(t.fn_updateFileObjWithMarkdownEditor, t)(fo, this);
-            //            }
-            //            ,onscroll: function(){
-            //        }
-            //        }
-            //    );
-            //
-            //    editormdObj.setToolbarAutoFixed(false);
-            //
-            //    var alreayFixed = false;
-            //    var customAutoFixedHandler = function(force){
-            //        if(! alreayFixed && !force) return;
-            //
-            //        var toolbar = editormdObj.toolbar;
-            //        var editor = editormdObj.editor;
-            //        var $window = $(window);
-            //
-            //        toolbar.css({
-            //            position: "fixed",
-            //            "overflow-y": "auto",
-            //            width: editor.width() + "px",
-            //            top: $('#app-header').height() + "px",
-            //            left: ($window.width() - editor.width()) / 2 + "px"
-            //        });
-            //
-            //        alreayFixed = true;
-            //    };
-            //
-            //    $(window).on("scroll", customAutoFixedHandler);
-            //    $(window).on('resize', function(e){
-            //        var w = c$.g_editor.width(), h = $(window).height();
-            //        c$.UIActions.MarkdownEditor.fn_resize(w, h, c$.g_editor);
-            //        customAutoFixedHandler(true);
-            //    });
-            //
-            //}else{
-            //    var t = c$.UIActions.FileObjAndMarkdownEditor;
-            //    $.proxy(t.fn_updateMarkdownEditorWithFileObj, t)(UI.c$.g_editor, _g_getCurFileObj());
-            //}
-
             $Router.fn_showOrHide(allPageList, false);
-            $Router.fn_showOrHide([thisPage], true);
+            $Router.fn_showOrHide([thisPage], true, false, function(){
+                // 修正编辑器的尺寸
+                try{
+                    window.$fem.findEditorByFileId(_curFileObj.id).resize();
+                }catch(e){}
 
+            });
 
         };
 
         $Router.go_settings = function(){
             console.log("settings");
-            $('#nav-title').html('Settings');
+
+            var title = (new IntlMessageFormat(I18N.UI.settingsPage["Title"], c$.language)).format();
+            $('#nav-title').html(title);
 
             var thisPage = '#view-settings';
 
@@ -409,16 +450,30 @@
 
         $Router.go_pluginsMgr = function(){
             console.log("pluginsMgr");
-            $('#nav-title').html('Plugins');
+
+            var title = (new IntlMessageFormat(I18N.UI.pluginMgrPage["Title"], c$.language)).format();
+            $('#nav-title').html(title);
 
             var thisPage = '#view-plugins';
 
             //从插件系统中，获取并整理
-            var $iap = IAPModule;
-            var enablePlugins = $iap.getAllEnablePlugins();
+            var enablePlugins =[];
 
+            //国际化整理
+            I18N.PluginUI.pre = b$.App.getAppId() + ".plugin.";
+            $.each($IAPProvider.getAllEnableProducts(), function(index, product){
+                try{
+                    product.name = (new IntlMessageFormat(I18N.PluginUI.data()[product.id].name, c$.language)).format();
+                    product.description = (new IntlMessageFormat(I18N.PluginUI.data()[product.id].description, c$.language)).format();
+                }catch(e){}
+
+                enablePlugins.push(product);
+            });
+
+            // 设置传递参数
             var o = {
-                plugins:enablePlugins
+                plugins:enablePlugins,
+                btnBuyTitle:(new IntlMessageFormat(I18N.UI.pluginMgrPage["Btn-Buy"], c$.language)).format()
             };
 
             var html = template('tpl_pluginsMgr', o);
@@ -431,7 +486,8 @@
 
         $Router.go_help = function(){
             console.log("help");
-            $('#nav-title').html('Help');
+            var title = (new IntlMessageFormat(I18N.UI.helpPage["Title"], c$.language)).format();
+            $('#nav-title').html(title);
 
             var thisPage = '#view-help';
 
@@ -441,7 +497,8 @@
 
         $Router.go_about$license = function(){
             console.log("about$license");
-            $('#nav-title').html('About');
+            var title = (new IntlMessageFormat(I18N.UI.aboutPage["Title"], c$.language)).format();
+            $('#nav-title').html(title);
 
             var thisPage = '#view-about';
 
@@ -661,99 +718,126 @@
     c$.configIAP = function(cb){
         "use strict";
 
-        if(typeof IAPModule == 'undefined'){return console.error('IAPModule is undefined.')}
-
         var prefix = b$.App.getAppId() + ".plugin.", defaultImg = "images/linearicons.png";
-        var pluginsData = [
-            {enable:true, inAppStore: false, id:prefix + "support.importFile", type:"", quantity:1, price:"1$", name:"Open File", description: "支持导入文件", img:"images/linearicons.png"}
-            ,{enable:true, inAppStore: false, id:prefix + "support.dragFile", type:"", quantity:1, price:"1$", name:"Drag File", description: "支持拖拽文件", img:defaultImg}
-            ,{enable:true, inAppStore: false, id:prefix + "support.fileSave", type:"", quantity:1, price:"2$", name:"File Save", description: "支持保存文件功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.dirTree", type:"", quantity:0, price:"3$", name:"File Directory", description: "支持目录树功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.taskList", type:"", quantity:0, price:"2$", name:"TaskList", description: "支持Github task lists", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.emoji", type:"", quantity:0, price:"3$", name:"Emoji", description: "支持emoji表情功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.atLink", type:"", quantity:0, price:"1$", name:"atLink", description: "支持atLink功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.emailLink", type:"", quantity:0, price:"1$", name:"emailLink", description: "支持emailLink功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.flowChart", type:"", quantity:0, price:"2$", name:"FlowChart", description: "支持flowChart功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.sequenceDiagram", type:"", quantity:0, price:"2$", name:"SequenceDiagram", description: "支持sequenceDiagram功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.tex", type:"", quantity:0, price:"2$", name:"Tex", description: "支持tex功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.toc", type:"", quantity:0, price:"2$", name:"Toc", description: "支持toc功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.codeFold", type:"", quantity:0, price:"1$", name:"CodeFold", description: "支持codeFold功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.htmlDecode", type:"", quantity:0, price:"1$", name:"HTMLDecode", description: "支持htmlDecode功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.styleActiveLine", type:"", quantity:0, price:"1$", name:"Style Active Line", description: "支持styleActiveLine功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.lineNumbers", type:"", quantity:0, price:"1$", name:"Line Numbers", description: "支持lineNumbers功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.readOnly", type:"", quantity:0, price:"1$", name:"ReadOnly", description: "支持readOnly功能", img:defaultImg}
-            ,{enable:true, inAppStore: true, id:prefix + "support.searchReplace", type:"", quantity:0, price:"1$", name:"Search Replace", description: "支持searchReplace功能", img:defaultImg}
-        ];
+        var ProductC = RomanySoftPlugins.IAP.Product;
 
-        var $iap = IAPModule;
+        // 内置的功能
+        $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.importFile", quantity:1,  name:"Open File", description: "支持导入文件", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.dragFile", quantity:1,  name:"Drag File", description: "支持拖拽文件", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.fileSave", quantity:1,  name:"File Save", description: "支持保存文件功能", imageUrl:defaultImg}));
 
-        $iap.init(pluginsData);
+        // 编辑器功能
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.dirTree", price:"3$", name:"File Directory", description: "支持目录树功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.taskList", price:"2$", name:"TaskList", description: "支持Github task lists", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.emoji", price:"3$", name:"Emoji", description: "支持emoji表情功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.atLink", price:"1$", name:"atLink", description: "支持atLink功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.emailLink", price:"1$", name:"emailLink", description: "支持emailLink功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.flowChart", price:"1$", name:"FlowChart", description: "支持flowChart功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.sequenceDiagram", price:"1$", name:"SequenceDiagram", description: "支持sequenceDiagram功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.tex", price:"2$", name:"Tex", description: "支持tex功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.toc", price:"2$", name:"Toc", description: "支持toc功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.codeFold",  price:"1$", name:"CodeFold", description: "支持codeFold功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.htmlDecode", price:"1$", name:"HTMLDecode", description: "支持htmlDecode功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.styleActiveLine", price:"1$", name:"StyleActiveLine", description: "支持styleActiveLine功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.lineNumbers", price:"1$", name:"LineNumbers", description: "支持lineNumbers功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.readOnly", price:"1$", name:"ReadOnly", description: "支持readOnly功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.searchReplace", price:"1$", name:"Search Replace", description: "支持searchReplace功能", imageUrl:defaultImg}));
 
-        // IAP的回调函数
-        var fnName = b$._get_callback(function(obj){
-            try{
-                var info = obj.info, notifyType = obj.notifyType;
+        // 文档控制部分
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "+5documentCount", price:"1$", name:"文档数量+5", description: "最大文档数量增加5", imageUrl:defaultImg}));
 
-                if(notifyType == "ProductBuyFailed"){
-                    //@"{'productIdentifier':'%@', 'message':'No products found in apple store'}"
-                    var pluginId = info.productIdentifier;
-                    var message = info.message;
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 开启IAP的功能
+        b$.IAP.enableIAP({
+            cb_IAP_js: b$._get_callback(function(obj){
+                try{
+                    var info = obj.info, notifyType = obj.notifyType;
 
-                    var log = $.stringFormat("{0} order plugin failed! {1}", pluginId, message);
-                    console.warn(log);
-                }else if(notifyType == "ProductPurchased"){
-                    //@"{'productIdentifier':'%@', 'quantity':'%@'}"
-                    var pluginId = info.productIdentifier;
-                    $iap.syncDataWithAppStore(pluginId);
+                    if(notifyType == "ProductBuyFailed"){
+                        //@"{'productIdentifier':'%@', 'message':'No products found in apple store'}"
+                        var pluginId = info.productIdentifier;
+                        var message = info.message;
 
-                    var log = $.stringFormat("{0} order plugin success!", pluginId);
-                    console.log(log);
-                }else if(notifyType == "ProductPurchaseFailed"){
-                    //@"{‘transactionId':'%@',‘transactionDate’:'%@', 'payment':{'productIdentifier':'%@','quantity':'%@'}}"
-                    var pluginId = info.payment.productIdentifier;
-                    var orderDate = info.transactionDate;
+                        var log = $.stringFormat("{0} order plugin failed! {1}", pluginId, message);
+                        console.warn(log);
+                    }else if(notifyType == "ProductPurchased"){
+                        //@"{'productIdentifier':'%@', 'quantity':'%@'}"
+                        var pluginId = info.productIdentifier;
+                        $IAPProvider.syncProductWithAppStore(pluginId, function(product){
+                            //说明：product{enable, inAppStore, quantity, price}
+                            //使用消息中心发送商品已经购买的消息
+                            $NoticeCenter.fire({MsgType:'ProductPurchased', Info: product});
+                        });
 
-                    var log = $.stringFormat("{0} order plugin failed! orderDate {1}", pluginId, orderDate);
-                    console.log(log);
-                }else if(notifyType == "ProductPurchaseFailedDetail"){
-                    //@"{'failBy':'cancel', 'transactionId':'%@', 'message':'%@', ‘transactionDate’:'%@', 'payment':{'productIdentifier':'%@','quantity':'%@'}}"
-                    var pluginId = info.payment.productIdentifier;
+                        var log = $.stringFormat("{0} order plugin success!", pluginId);
+                        console.log(log);
+                    }else if(notifyType == "ProductPurchaseFailed"){
+                        //@"{‘transactionId':'%@',‘transactionDate’:'%@', 'payment':{'productIdentifier':'%@','quantity':'%@'}}"
+                        var pluginId = info.payment.productIdentifier;
+                        var orderDate = info.transactionDate;
 
-                    var log = $.stringFormat("error: {0} failed by {1} ({2}) order date: {3}", pluginId, info.failBy, info.message, info.transactionDate);
-                    console.log(log);
-                }else if(notifyType == "ProductRequested"){
-                    var productInfoList = info;
-                    if(typeof info == "string"){
-                        productInfoList = JSON.parse(info);
+                        var log = $.stringFormat("{0} order plugin failed! orderDate {1}", pluginId, orderDate);
+                        console.log(log);
+                    }else if(notifyType == "ProductPurchaseFailedDetail"){
+                        //@"{'failBy':'cancel', 'transactionId':'%@', 'message':'%@', ‘transactionDate’:'%@', 'payment':{'productIdentifier':'%@','quantity':'%@'}}"
+                        var pluginId = info.payment.productIdentifier;
+
+                        var log = $.stringFormat("error: {0} failed by {1} ({2}) order date: {3}", pluginId, info.failBy, info.message, info.transactionDate);
+                        console.log(log);
+                    }else if(notifyType == "ProductRequested"){
+                        var productInfoList = info;
+                        if(typeof info == "string"){
+                            productInfoList = JSON.parse(info);
+                        }
+
+                        var log = $.stringFormat("Request product info from app store.");
+                        console.log(log);
+
+                        //说明：productInfoList = [{productIdentifier, description, price}]
+                        $.each(productInfoList, function(index, product){
+                            var info = {
+                                id: product.productIdentifier,
+                                price:product.price,
+                                description:product.description
+                            };
+
+                            $IAPProvider.updateProductByIdWhitAppStore(info.id, info, undefined);
+                        });
+
+                        //使用消息中心发送商品信息请求的消息
+                        $NoticeCenter.fire({MsgType:'ProductRequested', Info: productInfoList});
+
+                    }else if(notifyType == "ProductCompletePurchased"){
+                        //@"{'productIdentifier':'%@', 'transactionId':'%@', 'receipt':'%@'}"
+                        var pluginId = info.productIdentifier;
+                        var log = $.stringFormat("pluginId: {0}, transactionId: {1}, receipt: {2}", pluginId, info.transactionId, info.receipt);
+                        console.log(log);
                     }
 
-                    var log = $.stringFormat("Request product info from app store.");
-                    console.log(log);
 
-                    $iap.updatePluginsDataWithList(productInfoList);
-                }else if(notifyType == "ProductCompletePurchased"){
-                    //@"{'productIdentifier':'%@', 'transactionId':'%@', 'receipt':'%@'}"
-                    var pluginId = info.productIdentifier;
-                    var log = $.stringFormat("pluginId: {0}, transactionId: {1}, receipt: {2}", pluginId, info.transactionId, info.receipt);
-                    console.log(log);
-                }
+                }catch(e){console.error(e)}
+            }, true),
+            productIds: $IAPProvider.getAllEnableInAppStoreProductIds()
+        });
 
-
-            }catch(e){console.error(e)}
-        }, true);
-
-        // 开启IAP
-        b$.IAP.enableIAP({cb_IAP_js: fnName, productIds: $iap.getEnableInAppStorePluginIDs()});
     };
 
     // 启动
     c$.launch = function(){
         "use strict";
-        c$.initTitleAndVersion();
-        c$.configIAP();
-        c$.configRoute();
-        c$.setupCache();
-        c$.setupUI();
+
+        var deferred = $.Deferred();
+        deferred.done(function(){
+            c$.initTitleAndVersion();
+            c$.configIAP();
+            c$.configRoute();
+            c$.setupCache();
+            c$.setupUI();
+        });
+
+        c$.configInternationalization(deferred);
+
+
     };
 
 
