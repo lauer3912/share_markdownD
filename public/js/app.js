@@ -38,8 +38,8 @@
         var pre = "Message_";
         c$.NCMessage = {
             UNKnown: pre + "UNKnown"
-            ,fileChange: pre + "fileChange"      // 文件对象发生变化
-
+            ,fileChange: pre + "fileChange"                       // 文件对象发生变化
+            ,userSettingsChange: pre + "userSettingsChange"       // 用户设置发生变化
         };
     };
 
@@ -139,8 +139,8 @@
                                 fileObj.is_tmp = false;
                                 fileObj.path = info.filePath;
 
-                                // TODO:发送消息通知
-
+                                // 发送消息通知
+                                $NoticeCenter.fire(c$.NCMessage.fileChange);
 
                                 $Router.go_files();
 
@@ -200,10 +200,6 @@
                         ,content: fn(I18N.UI.filePage.createNewDocTip["Content"],{docCount:curFilesCount})
                         ,btn:[btnBuy, btnCancel]
                         ,yes: function(index){
-
-                            //TODO:google分析记录
-
-
                             if(typeof $UserSettings.documentSetting["pl$maxDocumentCount"] != undefined){
                                 var productId = $UserSettings.documentSetting["pl$maxDocumentCount"];
                                 b$.IAP.buyProduct({
@@ -215,7 +211,6 @@
                             layer.close(index);
                         }
                         ,cancel: function(index){
-                            //TODO:google分析记录
                         }
                     })
                 }
@@ -253,9 +248,6 @@
         };
 
         (function (){
-            // 先恢复缓存数据
-            $Cache.restore();
-
             // 注册缓存数据变更的消息处理函数(来自消息中心)
             $NoticeCenter.add(function(message){
                 if(message === c$.NCMessage.fileChange){
@@ -270,6 +262,11 @@
                     $Cache.save();
                 }
             });
+
+            // 检查用户设置，是否设置了自动恢复功能
+            if(c$.UserSettings.documentSetting.autoRestore){
+                $Cache.restore();// 恢复缓存数据
+            }
 
 
             // 查找是否有缓存的数据文件
@@ -455,21 +452,33 @@
                     ,onload:function(){
                         $EditorProvider.setContent(_curFileObj.content_utf8, this);
                         this['toolBar_offset'] = this.editor.offset();
+
+                        _curFileObj.lastModified = $.now();
                     }
                     ,onchange:function(){
                         var oldContent = _curFileObj.content_utf8;
                         var curContent = $EditorProvider.getContent(this);
                         _curFileObj.changed = (oldContent != curContent);
 
-                        //自动保存时间，是否立即保存
-                        var settings = c$.UserSettings.documentSetting;
-                        if(settings.autoSave){
-                            // 检查间隔
-                            if(($.now() - _curFileObj.lastModified) >= settings.autoSaveSecs*1000){
-                                _curFileObj.content_utf8 = curContent;
-                                _curFileObj.lastModified = $.now();
-                                _curFileObj.changed = fileName;
-                                $NoticeCenter.fire(c$.NCMessage.fileChange);
+                        if(false == _curFileObj.changed){
+                            //自动保存时间，是否立即保存
+                            var settings = c$.UserSettings.documentSetting;
+                            if(settings.autoSave){
+                                // 检查间隔
+                                if(($.now() - _curFileObj.lastModified) >= settings.autoSaveSecs*1000){
+                                    _curFileObj.content_utf8 = curContent;
+                                    _curFileObj.changed = false;
+
+                                    if(false == _curFileObj.is_tmp){ // 非临时文件
+                                        try{
+                                            b$.Binary.createTextFile({
+                                                filePath:_curFileObj.path,
+                                                text:_curFileObj.content_utf8
+                                            });
+                                        }catch(e){}
+                                    }
+                                    $NoticeCenter.fire(c$.NCMessage.fileChange);
+                                }
                             }
                         }
 
