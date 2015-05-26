@@ -7,14 +7,18 @@ module RomanySoftPlugins{
     export class FileEditorManger{
         fileCache: FilesCache;
 
-        constructor(){
-            this.fileCache = new FilesCache();
+
+        constructor(options: any){
+            var t = this;
+            t.fileCache = new FilesCache();
+
         }
 
         // 添加新的文件对象到管理器
         addNewFileObj(fileObj: FileObj){
+            var t = this;
             var key = "FileObj" + fileObj.id;
-            this[key] = fileObj;
+            t[key] = fileObj;
         }
 
         // 根据ID获取文件对象
@@ -27,8 +31,11 @@ module RomanySoftPlugins{
 
         // 移除文件对象，通过ID
         removeFileObjById(fileId:number){
+            var t = this;
             var key = "FileObj" + fileId;
-            if (key in this) this[key] = null;
+            if (key in t){
+                t[key] = null;
+            }
         }
 
         // 创建文件对象与编辑器的关联

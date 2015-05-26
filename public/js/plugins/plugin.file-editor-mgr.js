@@ -5,13 +5,15 @@
 var RomanySoftPlugins;
 (function (RomanySoftPlugins) {
     var FileEditorManger = (function () {
-        function FileEditorManger() {
-            this.fileCache = new RomanySoftPlugins.FilesCache();
+        function FileEditorManger(options) {
+            var t = this;
+            t.fileCache = new RomanySoftPlugins.FilesCache();
         }
         // 添加新的文件对象到管理器
         FileEditorManger.prototype.addNewFileObj = function (fileObj) {
+            var t = this;
             var key = "FileObj" + fileObj.id;
-            this[key] = fileObj;
+            t[key] = fileObj;
         };
         // 根据ID获取文件对象
         FileEditorManger.prototype.findFileObjById = function (fileId) {
@@ -22,9 +24,11 @@ var RomanySoftPlugins;
         };
         // 移除文件对象，通过ID
         FileEditorManger.prototype.removeFileObjById = function (fileId) {
+            var t = this;
             var key = "FileObj" + fileId;
-            if (key in this)
-                this[key] = null;
+            if (key in t) {
+                t[key] = null;
+            }
         };
         // 创建文件对象与编辑器的关联
         FileEditorManger.prototype.createNewEditor = function (fileId, editor) {

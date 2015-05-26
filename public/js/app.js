@@ -17,11 +17,12 @@
 
     var b$ = BS.b$;
 
-    var $Router = c$.RouterMethods = {};
-    var $Cache = null; // 此单元的缓存部分
+    var $Cache = null;                                                                  // 此单元的缓存部分
+    var $NoticeCenter = c$.NoticeCenter = $.Callbacks();                                // 消息中心
+    var $Router = c$.RouterMethods = {};                                                // 路由控制器
     var $EditorProvider = c$.EditorProvider = new RomanySoftPlugins.EditorMdServices(); // 编辑器服务
     var $IAPProvider = c$.IAPProvider = RomanySoftPlugins.IAP.IAP$Helper.create();      // IAP服务
-    var $NoticeCenter = c$.NoticeCenter = $.Callbacks();                                // 消息中心
+    var $UserSettings = c$.UserSettings = new RomanySoftPlugins.Settings.UserSetting(); // 用户设置
 
     // 默认的本地化语言
     c$.language = 'en-US';
@@ -29,6 +30,17 @@
     // 初始化标题及版本
     c$.initTitleAndVersion = function(){
         document.title = b$.App.getAppName();
+    };
+
+    // 配置消息中心统一标识
+    c$.configNoticeCenter = function(){
+        "use strict";
+        var pre = "Message_";
+        c$.NCMessage = {
+            UNKnown: pre + "UNKnown"
+            ,fileChange: pre + "fileChange"      // 文件对象发生变化
+
+        };
     };
 
     // 配置国际化
@@ -55,7 +67,7 @@
         }
 
         autoSetup(c$.language, function(data, staus){}, function(req, status, err){
-            c$.language = "en-US";
+            c$.language = "en-US"; // 上线删除
             autoSetup(c$.language);
         });
     };
@@ -75,9 +87,7 @@
         // UI 的Actions
         c$.UIActions = {
             buyPlugin:function(id){
-                alert(id);
-                var $iap = IAPModule;
-                $iap.buyProduct({
+                b$.IAP.buyProduct({
                     productIdentifier:id,
                     quantity:1
                 })
@@ -98,6 +108,9 @@
                                     if(obj.success){
                                         fileObj.content_utf8 = obj.content;
                                         fileObj.mustReloadNextTime = false;
+
+                                        // TODO:发送消息通知
+
                                         $Router.go_workspace(fileObj);
                                     }
 
@@ -126,7 +139,9 @@
                                 fileObj.is_tmp = false;
                                 fileObj.path = info.filePath;
 
-                                //TODO: 页面上要有反应
+                                // TODO:发送消息通知
+
+
                                 $Router.go_files();
 
                                 b$.Binary.createTextFile({
@@ -152,13 +167,60 @@
                     // 发送代理事件
                     var div_id = c$.UIActions.getEditorDivEle(obj.id);
                     $('#'+div_id).trigger("onFileRemove",obj);
+
+                    // 发送消息通知
+                    $NoticeCenter.fire(c$.NCMessage.fileChange);
                 });
             }
             ,createNew:function(){
-                var newFileObj = window.$fc.getNewFileObj();
-                window.$fc.addFile(newFileObj, function(){});
-                window.$fem.addNewFileObj(newFileObj);
-                $Router.go_files();
+                //检查当前的文档数量，然后，判断是否还可以继续创建文档
+                var curFilesCount = window.$fc.getAllFiles().length;
+                var macFileCount = $UserSettings.documentSetting.maxDocumentCount;
+                if(curFilesCount < macFileCount){
+                    var newFileObj = window.$fc.getNewFileObj();
+                    window.$fc.addFile(newFileObj, function(){});
+                    window.$fem.addNewFileObj(newFileObj);
+
+                    // 发送消息通知
+                    $NoticeCenter.fire(c$.NCMessage.fileChange);
+
+                    $Router.go_files();
+                }else{
+
+                    var fn = function(ele, parm){
+                        return (new IntlMessageFormat(ele, c$.language)).format(parm);
+                    };
+
+                    var btnBuy = fn(I18N.UI.filePage.createNewDocTip["btn-Buy"]);
+                    var btnCancel = fn(I18N.UI.filePage.createNewDocTip["btn-Cancel"]);
+
+                    layer.open({
+                        icon:0
+                        ,title: fn(I18N.UI.filePage.createNewDocTip["Title"])
+                        ,content: fn(I18N.UI.filePage.createNewDocTip["Content"],{docCount:curFilesCount})
+                        ,btn:[btnBuy, btnCancel]
+                        ,yes: function(index){
+
+                            //TODO:google分析记录
+
+
+                            if(typeof $UserSettings.documentSetting["pl$maxDocumentCount"] != undefined){
+                                var productId = $UserSettings.documentSetting["pl$maxDocumentCount"];
+                                b$.IAP.buyProduct({
+                                    productIdentifier:productId,
+                                    quantity:1
+                                })
+                            }
+
+                            layer.close(index);
+                        }
+                        ,cancel: function(index){
+                            //TODO:google分析记录
+                        }
+                    })
+                }
+
+
             }
             ,importFiles:function(){
                 b$.importFiles({
@@ -173,6 +235,8 @@
                                 newFileObj.mustReloadNextTime = true;
                                 window.$fc.addFile(newFileObj, function(){});
                                 window.$fem.addNewFileObj(newFileObj);
+
+                                // TODO:发送消息通知
                             });
 
                             $Router.go_files();
@@ -192,20 +256,24 @@
             // 先恢复缓存数据
             $Cache.restore();
 
+            // 注册缓存数据变更的消息处理函数(来自消息中心)
+            $NoticeCenter.add(function(message){
+                if(message === c$.NCMessage.fileChange){
+                    // 缓存 "file-markdown-cache" 里面的内容
+                }
+            });
+
+
             // 查找是否有缓存的数据文件
             var cacheList = $Cache.findObjList("file-markdown-cache");
-
             // 恢复处理
             if(cacheList.length > 0){
-                $.each(cacheList, function(index, obj){
-                    var _id = obj.key, _value = obj.value;
-                    var dataObj = JSON.parse(_value);
-
-                    // _id === fileObj.id === editorObj.fileId 这是前提条件
-                    var fileObj = dataObj.fileObj; // editorObj = dataObj.editorObj; // 文件数据单元及编辑器内容单元
+                $.each(cacheList, function(index, fileObj){
                     window.$fc.addFile(fileObj, function(){});
                     window.$fem.addNewFileObj(fileObj);
 
+                    //发送消息通知
+                    $NoticeCenter.fire(c$.NCMessage.fileChange);
                 });
 
             }else{
@@ -213,6 +281,8 @@
                 window.$fc.addFile(newFileObj, function(){});
                 window.$fem.addNewFileObj(newFileObj);
 
+                //发送消息通知
+                $NoticeCenter.fire(c$.NCMessage.fileChange);
             }
 
             $Router.go_workspace(window.$fc.getLastModifyFileObj());
@@ -744,7 +814,7 @@
         $IAPProvider.addProduct(ProductC.create({id:prefix + "support.searchReplace", price:"1$", name:"Search Replace", description: "支持searchReplace功能", imageUrl:defaultImg}));
 
         // 文档控制部分
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "+5documentCount", price:"1$", name:"文档数量+5", description: "最大文档数量增加5", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "append5documentCount", price:"1$", name:"文档数量+5", description: "最大文档数量增加5", imageUrl:defaultImg}));
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 开启IAP的功能
@@ -820,6 +890,9 @@
             productIds: $IAPProvider.getAllEnableInAppStoreProductIds()
         });
 
+        // 配置内部的可以关联的插件
+        $UserSettings.documentSetting.pl$maxDocumentCount = prefix + "append5documentCount";
+
     };
 
     // 启动
@@ -829,6 +902,7 @@
         var deferred = $.Deferred();
         deferred.done(function(){
             c$.initTitleAndVersion();
+            c$.configNoticeCenter();
             c$.configIAP();
             c$.configRoute();
             c$.setupCache();

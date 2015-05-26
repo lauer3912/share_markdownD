@@ -33,7 +33,13 @@ var I18N;
             "SaveDialog-Title": "Save as",
             "SaveDialog-BtnSave": "Save",
             "ImportDialog-Title": "Open .md files",
-            "ImportDialog-BtnImport": "Open"
+            "ImportDialog-BtnImport": "Open",
+            createNewDocTip: {
+                "Title": "Message",
+                "Content": "Already have the largest number of the current document [{docCount}], you could increase the maximum number of documents to meet your requirements.Every purchase, increased 5 documents.",
+                "btn-Buy": "Buy",
+                "btn-Cancel": "Cancel"
+            }
         };
         UI.workspacePage = {
             "Title": "Workspace"
