@@ -16,6 +16,31 @@ module RomanySoftPlugins {
         lastModify: number = $.now();       // 最后修改时间戳
         assEditor: any = null;              // 关联的Editor的对象的信息
         content_utf8: string = "111wewe";   // 内容
+
+        // 获取核心的数据的json系列化
+        coreDataToJSON():string{
+            var obj = {};
+            for(var key in this){
+                if(key != "assEditor"){
+                    obj[key] = this[key];
+                }
+            }
+
+            return JSON.stringify(obj);
+        }
+
+        // 核心数据的反序列化
+        coreDataFromJSON(str:string){
+            try{
+                var obj:any = JSON.parse(str);
+                for (var key in obj){
+                    if(key in this){
+                        this[key] = obj[key];
+                    }
+                }
+            }catch(e){}
+
+        }
     }
 
     // 文件缓存对象

@@ -25,22 +25,24 @@ var RomanySoftPlugins;
                 var dataStr = ls.getItem(this.key);
                 if (dataStr) {
                     this.data.length = 0;
-                    this.data.concat(JSON.parse(dataStr));
+                    this.data = JSON.parse(dataStr);
                     return true;
                 }
             }
             return false;
         };
         Cache.prototype.findObj = function (key, type) {
+            var foundObj = null;
             $.each(this.data, function (index, obj) {
                 if (obj) {
                     var _key = obj.key, _value = obj.value, _type = obj.type;
                     if (key === _key && type === _type) {
-                        return obj;
+                        foundObj = obj;
+                        return false;
                     }
                 }
             });
-            return null;
+            return foundObj;
         };
         Cache.prototype.findObjList = function (type) {
             var objList = [];
@@ -68,13 +70,11 @@ var RomanySoftPlugins;
             else {
                 this.data.push({ key: key, value: value, type: type });
             }
-            this.save();
         };
         Cache.prototype.delete = function (key, type) {
             var obj = this.findObj(key, type);
             if (obj) {
                 this.data.splice($.inArray(obj, this.data), 1);
-                this.save();
             }
         };
         return Cache;

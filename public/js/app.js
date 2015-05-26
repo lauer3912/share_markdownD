@@ -259,32 +259,39 @@
             // 注册缓存数据变更的消息处理函数(来自消息中心)
             $NoticeCenter.add(function(message){
                 if(message === c$.NCMessage.fileChange){
-                    // 缓存 "file-markdown-cache" 里面的内容
+
+                    // 缓存 "file-markdown-cache" 类型的内容
+                    var fileList = window.$fc.getAllFiles();
+                    var fileJSONList = [];
+                    $.each(fileList, function(index, obj){
+                        $Cache.update(obj.id, "file-markdown-cache", obj.coreDataToJSON())
+                    });
+
+                    $Cache.save();
                 }
             });
 
 
             // 查找是否有缓存的数据文件
-            var cacheList = $Cache.findObjList("file-markdown-cache");
+            var cacheList = $Cache.findObjList("file-markdown-cache"); // 查找缓存 "file-markdown-cache" 类型的内容
             // 恢复处理
             if(cacheList.length > 0){
-                $.each(cacheList, function(index, fileObj){
-                    window.$fc.addFile(fileObj, function(){});
-                    window.$fem.addNewFileObj(fileObj);
-
-                    //发送消息通知
-                    $NoticeCenter.fire(c$.NCMessage.fileChange);
+                $.each(cacheList, function(index, cacheObj){
+                    var newFileObj = window.$fc.getNewFileObj();
+                    newFileObj.coreDataFromJSON(cacheObj.value); // 数据还原
+                    window.$fc.addFile(newFileObj, function(){});
+                    window.$fem.addNewFileObj(newFileObj);
                 });
+
 
             }else{
                 var newFileObj = window.$fc.getNewFileObj();
                 window.$fc.addFile(newFileObj, function(){});
                 window.$fem.addNewFileObj(newFileObj);
-
-                //发送消息通知
-                $NoticeCenter.fire(c$.NCMessage.fileChange);
             }
 
+            //发送消息通知
+            $NoticeCenter.fire(c$.NCMessage.fileChange);
             $Router.go_workspace(window.$fc.getLastModifyFileObj());
         })();
 
@@ -453,6 +460,19 @@
                         var oldContent = _curFileObj.content_utf8;
                         var curContent = $EditorProvider.getContent(this);
                         _curFileObj.changed = (oldContent != curContent);
+
+                        //自动保存时间，是否立即保存
+                        var settings = c$.UserSettings.documentSetting;
+                        if(settings.autoSave){
+                            // 检查间隔
+                            if(($.now() - _curFileObj.lastModified) >= settings.autoSaveSecs*1000){
+                                _curFileObj.content_utf8 = curContent;
+                                _curFileObj.lastModified = $.now();
+                                _curFileObj.changed = fileName;
+                                $NoticeCenter.fire(c$.NCMessage.fileChange);
+                            }
+                        }
+
 
                         if(false == _curFileObj.changed){
                             $('#nav-title').html('Workspace - ' + _curFileObj.name);

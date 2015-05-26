@@ -40,7 +40,7 @@ module RomanySoftPlugins {
                 var dataStr = ls.getItem(this.key);
                 if(dataStr){
                     this.data.length = 0;
-                    this.data.concat(JSON.parse(dataStr));
+                    this.data = JSON.parse(dataStr);
                     return true;
                 }
             }
@@ -49,16 +49,18 @@ module RomanySoftPlugins {
         }
 
         findObj(key: string, type: string):any{
+            var foundObj = null;
             $.each(this.data, function(index, obj){
                 if(obj){
                     var _key = obj.key, _value = obj.value, _type = obj.type;
                     if( key === _key && type === _type){
-                        return obj;
+                        foundObj = obj;
+                        return false;
                     }
                 }
             });
 
-            return null;
+            return foundObj;
         }
 
         findObjList(type:string): any[]{
@@ -89,15 +91,12 @@ module RomanySoftPlugins {
             }else{
                 this.data.push({key:key, value:value, type:type})
             }
-
-            this.save();
         }
 
         delete(key: string, type: string){
             var obj = this.findObj(key, type);
             if(obj){
                 this.data.splice($.inArray(obj, this.data), 1);
-                this.save();
             }
         }
     }

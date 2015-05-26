@@ -18,6 +18,29 @@ var RomanySoftPlugins;
             this.assEditor = null; // 关联的Editor的对象的信息
             this.content_utf8 = "111wewe"; // 内容
         }
+        // 获取核心的数据的json系列化
+        FileObj.prototype.coreDataToJSON = function () {
+            var obj = {};
+            for (var key in this) {
+                if (key != "assEditor") {
+                    obj[key] = this[key];
+                }
+            }
+            return JSON.stringify(obj);
+        };
+        // 核心数据的反序列化
+        FileObj.prototype.coreDataFromJSON = function (str) {
+            try {
+                var obj = JSON.parse(str);
+                for (var key in obj) {
+                    if (key in this) {
+                        this[key] = obj[key];
+                    }
+                }
+            }
+            catch (e) {
+            }
+        };
         return FileObj;
     })();
     RomanySoftPlugins.FileObj = FileObj;

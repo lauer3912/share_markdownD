@@ -10,7 +10,8 @@ module RomanySoftPlugins {
             pl$maxDocumentCount:string = "";// 默认关联的插件，以pl$为前缀
 
             enableTabMode:boolean = false;  // 默认不使用Tab页签模式
-            autoSave:boolean = false;       // 是否默认保存
+            autoSave:boolean = false;       // 是否默认自动保存
+            autoSaveSecs:number = 0;        // 自动保存的间隔时间(秒数)，默认是立即保存，
             autoRestore: boolean = false;   // 是否自动恢复之前使用的文档
         }
 
