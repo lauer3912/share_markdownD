@@ -64,10 +64,6 @@ module RomanySoftPlugins{
         export class IAP$Helper implements IAPServices{
             productList: Product[] = [];        // 商品列表
 
-            static create():IAP$Helper{
-                return new this();
-            }
-
             addProduct(product: Product):boolean{
                 var find_product = this.getProduct(product.id);
                 if(null == find_product){

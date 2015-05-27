@@ -21,7 +21,7 @@
     var $NoticeCenter = c$.NoticeCenter = $.Callbacks();                                // 消息中心
     var $Router = c$.RouterMethods = {};                                                // 路由控制器
     var $EditorProvider = c$.EditorProvider = new RomanySoftPlugins.EditorMdServices(); // 编辑器服务
-    var $IAPProvider = c$.IAPProvider = RomanySoftPlugins.IAP.IAP$Helper.create();      // IAP服务
+    var $IAPProvider = c$.IAPProvider = new RomanySoftPlugins.IAP.IAP$Helper();         // IAP服务
     var $UserSettings = c$.UserSettings = new RomanySoftPlugins.Settings.UserSetting(); // 用户设置
 
     // 默认的本地化语言
@@ -910,6 +910,77 @@
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // 注册数据变更的消息处理函数(来自消息中心)
+        $NoticeCenter.add(function(message, info){
+
+            // 根据插件的情况来同步用户设置的同步
+            function syncAndCheckUserSettings(product) {
+
+                var isBuy = $IAPProvider.getProductIsPurchased(product.id);
+                if (isBuy) {
+
+                    // [商品]文档控制部分
+                    var _us_d = $UserSettings.documentSetting;
+                    if (product.id == (prefix + "append5documentCount")) _us_d.maxDocumentCount = 2 + product.quantity * 5;
+                    if (product.id == (prefix + "enableAutoSave")) _us_d.autoSave = true;
+                    if (product.id == (prefix + "enableAutoRestore")) _us_d.autoRestore = true;
+                    // [商品]编辑器功能
+                    var _us_e = $UserSettings.editorSetting;
+                    if (product.id == (prefix + "support.taskList")) _us_e.enable_TaskList = true;
+                    if (product.id == (prefix + "support.emoji")) _us_e.enable_Emoji = true;
+                    if (product.id == (prefix + "support.atLink")) _us_e.enable_AtLink = true;
+                    if (product.id == (prefix + "support.emailLink")) _us_e.enable_EmailLink = true;
+                    if (product.id == (prefix + "support.flowChart")) _us_e.enable_FlowChart = true;
+                    if (product.id == (prefix + "support.sequenceDiagram")) _us_e.enable_SequenceDiagram = true;
+                    if (product.id == (prefix + "support.tex")) _us_e.enable_Tex = true;
+                    if (product.id == (prefix + "support.toc")) _us_e.enable_Toc = true;
+                    if (product.id == (prefix + "support.codeFold")) _us_e.enable_CodeFold = true;
+                    if (product.id == (prefix + "support.htmlDecode")) _us_e.enable_HtmlDecode = true;
+                    if (product.id == (prefix + "support.styleActiveLine")) _us_e.enable_StyleActiveLine = true;
+                    if (product.id == (prefix + "support.lineNumbers")) _us_e.enable_LineNumbers = true;
+                    if (product.id == (prefix + "support.readOnly")) _us_e.enable_ReadOnly = true;
+                    if (product.id == (prefix + "support.searchReplace")) _us_e.enable_SearchReplace = true;
+                    if (product.id == (prefix + "support.tocm")) _us_e.enable_Tocm = true;
+
+                    $NoticeCenter.fire(c$.NCMessage.userSettingsChange);
+                }
+            }
+
+            // 产品同步
+            if(c$.NCMessage.productRequested === message){
+                // 检查与用户设置的匹配程度
+                //说明：productInfoList = [{productIdentifier, description, price}]
+
+                //TODO: 查看信息同步部分的内容
+                var productInfoList = info;
+                $.each(productInfoList, function(index, productInfo){
+
+                    var id = productInfo.productIdentifier;
+                    // 插件的数量的影响
+                    var product_quantity = b$.IAP.getUseableProductCount(id);
+                    var product = $IAPProvider.getProduct(id);
+                    product.quantity = product_quantity;
+
+                    syncAndCheckUserSettings(product);
+                });
+
+            }
+
+            // 产品购买
+            if(c$.NCMessage.productPurchased === message){
+                // 产品购买，对相关内的内容的影响
+                // 说明：info 为 product.id
+                var id = info;
+                // 插件的数量的影响
+                var product_quantity = b$.IAP.getUseableProductCount(id);
+                var product = $IAPProvider.getProduct(id);
+                product.quantity = product_quantity;
+                syncAndCheckUserSettings(product);
+            }
+        });
+
+
         // 开启IAP的功能
         b$.IAP.enableIAP({
             cb_IAP_js: b$._get_callback(function(obj){
@@ -930,7 +1001,7 @@
                             //说明：product{enable, inAppStore, quantity, price}
 
                             //使用消息中心发送商品已经购买的消息
-                            $NoticeCenter.fire(c$.NCMessage.productPurchased, product);
+                            $NoticeCenter.fire(c$.NCMessage.productPurchased, pluginId);
                         });
 
                         var log = $.stringFormat("{0} order plugin success!", pluginId);

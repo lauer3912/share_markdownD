@@ -118,12 +118,18 @@
                 <span class="mui-text-caption">{{ obj.description }}</span>
             </div>
 
-            {{if (obj.enable && obj.quantity > 0)}}
-            <div class="ribbon">
-                <i class="icon-check"></i>
+
+
+            <div data-id= "{{ obj.id }}" class="ribbon">
+                {{if (obj.enable && obj.quantity > 0)}}
+                <i class="icon-check mui-show"></i>
+                {{else}}
+                <i class="icon-check mui-hide"></i>
+                {{/if }}
             </div>
-            {{/if }}
-            <a>
+
+
+            <a data-id="{{ obj.id }}">
                 {{if (obj.quantity == 0 && obj.inAppStore == true)}}
                 <button class="mui-btn mui-btn-danger mui-btn-raised"
                         onclick="window.UI.c$.UIActions.buyPlugin('{{ obj.id }}')">{{btnBuyTitle}}

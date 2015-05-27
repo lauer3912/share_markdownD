@@ -57,7 +57,10 @@ module RomanySoftPlugins {
 
         export class UserSetting{
             documentSetting: DocumentUnit = new DocumentUnit();
+            default_documentSetting: DocumentUnit = new DocumentUnit(); // 默认文档设置
+
             editorSetting: EditorUnit = new EditorUnit();
+            default_editorSetting: EditorUnit = new EditorUnit();      // 默认编辑器设置
 
             // 恢复数据，根据传入的Info
             private restoreCoreDataWithInfo(info:any){

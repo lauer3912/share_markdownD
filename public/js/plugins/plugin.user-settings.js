@@ -55,7 +55,9 @@ var RomanySoftPlugins;
         var UserSetting = (function () {
             function UserSetting() {
                 this.documentSetting = new DocumentUnit();
+                this.default_documentSetting = new DocumentUnit(); // 默认文档设置
                 this.editorSetting = new EditorUnit();
+                this.default_editorSetting = new EditorUnit(); // 默认编辑器设置
             }
             // 恢复数据，根据传入的Info
             UserSetting.prototype.restoreCoreDataWithInfo = function (info) {

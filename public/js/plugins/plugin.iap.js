@@ -40,9 +40,6 @@ var RomanySoftPlugins;
             function IAP$Helper() {
                 this.productList = []; // 商品列表
             }
-            IAP$Helper.create = function () {
-                return new this();
-            };
             IAP$Helper.prototype.addProduct = function (product) {
                 var find_product = this.getProduct(product.id);
                 if (null == find_product) {
