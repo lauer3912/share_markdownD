@@ -40,6 +40,8 @@
             UNKnown: pre + "UNKnown"
             ,fileChange: pre + "fileChange"                       // 文件对象发生变化
             ,userSettingsChange: pre + "userSettingsChange"       // 用户设置发生变化
+            ,productPurchased: pre + "productPurchased"           // 商品已经被购买
+            ,productRequested: pre + "productRequested"           // 商品发送到服务器，进行验证
         };
     };
 
@@ -74,9 +76,12 @@
 
 
     // 配置Cache
-    c$.setupCache = function(){
+    c$.configCache = function(){
         "use strict";
         $Cache = c$.Cache = new RomanySoftPlugins.Cache("UI.c$.cache");
+
+        //尝试恢复缓存数据
+        $Cache.restore();
     };
 
 
@@ -231,7 +236,8 @@
                                 window.$fc.addFile(newFileObj, function(){});
                                 window.$fem.addNewFileObj(newFileObj);
 
-                                // TODO:发送消息通知
+                                // 发送消息通知
+                                $NoticeCenter.fire(c$.NCMessage.fileChange);
                             });
 
                             $Router.go_files();
@@ -264,28 +270,28 @@
             });
 
             // 检查用户设置，是否设置了自动恢复功能
+            var mustCreateNew = true; // 是否必须创建一个新的文件对象
             if(c$.UserSettings.documentSetting.autoRestore){
-                $Cache.restore();// 恢复缓存数据
+                // 查找是否有缓存的数据文件
+                var cacheList = $Cache.findObjList("file-markdown-cache"); // 查找缓存 "file-markdown-cache" 类型的内容
+                // 恢复处理
+                if(cacheList.length > 0){
+                    $.each(cacheList, function(index, cacheObj){
+                        var newFileObj = window.$fc.getNewFileObj();
+                        newFileObj.coreDataFromJSON(cacheObj.value); // 数据还原
+                        window.$fc.addFile(newFileObj, function(){});
+                        window.$fem.addNewFileObj(newFileObj);
+                        mustCreateNew = false;
+                    });
+                }
             }
 
-
-            // 查找是否有缓存的数据文件
-            var cacheList = $Cache.findObjList("file-markdown-cache"); // 查找缓存 "file-markdown-cache" 类型的内容
-            // 恢复处理
-            if(cacheList.length > 0){
-                $.each(cacheList, function(index, cacheObj){
-                    var newFileObj = window.$fc.getNewFileObj();
-                    newFileObj.coreDataFromJSON(cacheObj.value); // 数据还原
-                    window.$fc.addFile(newFileObj, function(){});
-                    window.$fem.addNewFileObj(newFileObj);
-                });
-
-
-            }else{
+            if(mustCreateNew){
                 var newFileObj = window.$fc.getNewFileObj();
                 window.$fc.addFile(newFileObj, function(){});
                 window.$fem.addNewFileObj(newFileObj);
             }
+
 
             //发送消息通知
             $NoticeCenter.fire(c$.NCMessage.fileChange);
@@ -449,6 +455,29 @@
                 var newEditorMd = _curFileObj.assEditor = $EditorProvider.createEditor(div_id, {
                     height:$(window).height()
                     ,toolbarAutoFixed: false
+
+                    // 与用户设置有关的(不关联商品)
+                    ,matchWordHighlight:$UserSettings.editorSetting.enable_matchWordHighlight
+
+                    // 与用户设置有关的(关联商品)
+                    ,taskList:$UserSettings.editorSetting.enable_TaskList
+                    ,emoji:$UserSettings.editorSetting.enable_Emoji
+                    ,atLink:$UserSettings.editorSetting.enable_AtLink
+                    ,emailLink:$UserSettings.editorSetting.enable_EmailLink
+                    ,flowChart:$UserSettings.editorSetting.enable_FlowChart
+                    ,sequenceDiagram:$UserSettings.editorSetting.enable_SequenceDiagram
+                    ,tex:$UserSettings.editorSetting.enable_Tex
+                    ,toc:$UserSettings.editorSetting.enable_Toc
+                    ,codeFold:$UserSettings.editorSetting.enable_CodeFold
+                    ,htmlDecode:$UserSettings.editorSetting.enable_HtmlDecode
+                    ,styleActiveLine:$UserSettings.editorSetting.enable_StyleActiveLine
+                    ,lineNumbers:$UserSettings.editorSetting.enable_LineNumbers
+                    ,readOnly:$UserSettings.editorSetting.enable_ReadOnly
+                    ,searchReplace:$UserSettings.editorSetting.enable_SearchReplace
+                    ,tocm:$UserSettings.editorSetting.enable_Tocm
+
+
+                    // 函数
                     ,onload:function(){
                         $EditorProvider.setContent(_curFileObj.content_utf8, this);
                         this['toolBar_offset'] = this.editor.offset();
@@ -813,6 +842,35 @@
 
     };
 
+    // 配置UserSettings
+    c$.configUserSettings = function(cb){
+        "use strict";
+
+        // 注册缓存数据变更的消息处理函数(来自消息中心)
+        $NoticeCenter.add(function(message){
+            if(c$.NCMessage.userSettingsChange === message){
+                // 缓存 "user-settings-cache" 类型的内容
+                // 备注: 当前，默认仅支持一个，使用default 作为key
+
+                var us_json = $UserSettings.coreDataToJSON();
+                $Cache.update("default", "user-settings-cache", us_json);
+                $Cache.save();
+            }
+        });
+
+        // 查找是否有缓存的数据文件
+        var cacheList = $Cache.findObjList("user-settings-cache");
+
+        // 恢复处理
+        if(cacheList.length > 0){
+            $.each(cacheList, function(index, cacheObj){
+                var us_json = cacheObj.value;
+                $UserSettings.coreDataFromJSON(us_json);
+                return false; // 默认使用一个，后期，升级的时候，可以加入导入settings的设计
+            });
+        }
+    };
+
     // 处理IAP
     c$.configIAP = function(cb){
         "use strict";
@@ -820,13 +878,20 @@
         var prefix = b$.App.getAppId() + ".plugin.", defaultImg = "images/linearicons.png";
         var ProductC = RomanySoftPlugins.IAP.Product;
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         // 内置的功能
         $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.importFile", quantity:1,  name:"Open File", description: "支持导入文件", imageUrl:defaultImg}));
         $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.dragFile", quantity:1,  name:"Drag File", description: "支持拖拽文件", imageUrl:defaultImg}));
         $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.fileSave", quantity:1,  name:"File Save", description: "支持保存文件功能", imageUrl:defaultImg}));
 
-        // 编辑器功能
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.dirTree", price:"3$", name:"File Directory", description: "支持目录树功能", imageUrl:defaultImg}));
+        // [商品]文档控制部分
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "append5documentCount", price:"1$", name:"文档数量+5", description: "最大文档数量增加5", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "enableAutoSave", price:"1$", name:"开启自动保存", description: "此项，可以开启自动保存功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "enableAutoRestore", price:"1$", name:"开启自动恢复", description: "此项，可以开启自动恢复功能", imageUrl:defaultImg}));
+
+
+        // [商品]编辑器功能
         $IAPProvider.addProduct(ProductC.create({id:prefix + "support.taskList", price:"2$", name:"TaskList", description: "支持Github task lists", imageUrl:defaultImg}));
         $IAPProvider.addProduct(ProductC.create({id:prefix + "support.emoji", price:"3$", name:"Emoji", description: "支持emoji表情功能", imageUrl:defaultImg}));
         $IAPProvider.addProduct(ProductC.create({id:prefix + "support.atLink", price:"1$", name:"atLink", description: "支持atLink功能", imageUrl:defaultImg}));
@@ -841,9 +906,8 @@
         $IAPProvider.addProduct(ProductC.create({id:prefix + "support.lineNumbers", price:"1$", name:"LineNumbers", description: "支持lineNumbers功能", imageUrl:defaultImg}));
         $IAPProvider.addProduct(ProductC.create({id:prefix + "support.readOnly", price:"1$", name:"ReadOnly", description: "支持readOnly功能", imageUrl:defaultImg}));
         $IAPProvider.addProduct(ProductC.create({id:prefix + "support.searchReplace", price:"1$", name:"Search Replace", description: "支持searchReplace功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.tocm", price:"1$", name:"TOCM", description: "Using [TOCM], auto create ToC dropdown menu", imageUrl:defaultImg}));
 
-        // 文档控制部分
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "append5documentCount", price:"1$", name:"文档数量+5", description: "最大文档数量增加5", imageUrl:defaultImg}));
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 开启IAP的功能
@@ -864,8 +928,9 @@
                         var pluginId = info.productIdentifier;
                         $IAPProvider.syncProductWithAppStore(pluginId, function(product){
                             //说明：product{enable, inAppStore, quantity, price}
+
                             //使用消息中心发送商品已经购买的消息
-                            $NoticeCenter.fire({MsgType:'ProductPurchased', Info: product});
+                            $NoticeCenter.fire(c$.NCMessage.productPurchased, product);
                         });
 
                         var log = $.stringFormat("{0} order plugin success!", pluginId);
@@ -904,7 +969,7 @@
                         });
 
                         //使用消息中心发送商品信息请求的消息
-                        $NoticeCenter.fire({MsgType:'ProductRequested', Info: productInfoList});
+                        $NoticeCenter.fire(c$.NCMessage.productRequested, productInfoList);
 
                     }else if(notifyType == "ProductCompletePurchased"){
                         //@"{'productIdentifier':'%@', 'transactionId':'%@', 'receipt':'%@'}"
@@ -918,10 +983,6 @@
             }, true),
             productIds: $IAPProvider.getAllEnableInAppStoreProductIds()
         });
-
-        // 配置内部的可以关联的插件
-        $UserSettings.documentSetting.pl$maxDocumentCount = prefix + "append5documentCount";
-
     };
 
     // 启动
@@ -931,10 +992,11 @@
         var deferred = $.Deferred();
         deferred.done(function(){
             c$.initTitleAndVersion();
+            c$.configCache();
             c$.configNoticeCenter();
+            c$.configUserSettings();
             c$.configIAP();
             c$.configRoute();
-            c$.setupCache();
             c$.setupUI();
         });
 

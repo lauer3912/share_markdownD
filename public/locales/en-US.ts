@@ -52,7 +52,7 @@ module I18N{
 
         static pluginMgrPage:any = {
             "Title": "Plugins Manager"
-            ,"Btn-Buy": "Buy Now"
+            ,"Btn-Buy": "Active"
         };
 
         static helpPage:any = {

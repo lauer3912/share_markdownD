@@ -49,7 +49,7 @@ var I18N;
         };
         UI.pluginMgrPage = {
             "Title": "Plugins Manager",
-            "Btn-Buy": "Buy Now"
+            "Btn-Buy": "Active"
         };
         UI.helpPage = {
             "Title": "Help"
