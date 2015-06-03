@@ -11,7 +11,7 @@ var RomanySoftPlugins;
                 this.maxDocumentCount = 2; // 默认最大的文档的数量
                 this.enableTabMode = false; // 默认不使用Tab页签模式
                 this.autoSave = false; // 是否默认自动保存
-                this.autoSaveSecs = 0; // 自动保存的间隔时间(秒数)，默认是立即保存，
+                this.autoSaveSecs = 300; // 自动保存的间隔时间(秒数)，默认是立即保存，
                 this.autoRestore = true; // 是否自动恢复之前使用的文档
             }
             return DocumentUnit;

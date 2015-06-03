@@ -11,7 +11,7 @@ module RomanySoftPlugins {
             enableTabMode:boolean = false;  // 默认不使用Tab页签模式
 
             autoSave:boolean = false;       // 是否默认自动保存
-            autoSaveSecs:number = 0;        // 自动保存的间隔时间(秒数)，默认是立即保存，
+            autoSaveSecs:number = 300;        // 自动保存的间隔时间(秒数)，默认是立即保存，
 
             autoRestore: boolean = true;    // 是否自动恢复之前使用的文档
         }

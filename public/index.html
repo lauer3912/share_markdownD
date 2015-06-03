@@ -77,13 +77,13 @@
                         </div>
 
                     </span>
-                    <li class="mui-col-md-4 mui-col-xs-4">
+                    <i class="mui-col-md-4 mui-col-xs-4">
                         <fieldset>
                             <button class="mui-btn mui-btn-default mui-btn-flat icon-edit" onclick="window.UI.c$.UIActions.loadFile('{{ obj.id  }}')">{{btnLoadTitle}}</button>
                             <button class="mui-btn mui-btn-default mui-btn-flat icon-save" onclick="window.UI.c$.UIActions.saveFile('{{ obj.id }}')">{{btnSaveTitle}}</button>
                             <button class="mui-btn mui-btn-default mui-btn-flat icon-remove-circle-outline" onclick="window.UI.c$.UIActions.removeFilesItem('{{  obj.id }}')">{{btnRemoveTitle}}</button>
                         </fieldset>
-                    </li>
+                    </i>
                 </section>
             </li>
             {{/each}}
@@ -148,6 +148,52 @@
 <script id="tpl_settings" type='text/html'>
     <!--设置-->
     <div class="mui-panel">
+        <section class="mui-panel">
+            <legend>{{ document.label }}</legend>
+            <ul>
+                {{ each document.keys as key i }}
+                <li class="mui-row">
+
+                    <i class="mui-col-lg-6 mui-col-md-6 mui-col-xs-6">
+                        <label>
+                            {{ if (typeof document.data[key] == "boolean")  }}
+                            <input data-field="{{document.dataKey}}.{{key}}" type="checkbox" {{ document.data[key]==true ? checked='checked' : null  }}/>
+                            {{ else }}
+                            <input data-field="{{document.dataKey}}.{{key}}" type="checkbox" {{ document.data[key]==true ? checked='checked' : null  }} disabled/>
+                            {{ /if }}
+                            {{ i+1 }}.{{document.key2I18NMap[key]}}
+                        </label>
+                    </i>
+
+                    <i class="mui-col-md-2 mui-col-xs-2">
+                        {{ if (typeof document.data[key] == "number")  }}
+                        <input type="text" class="mui-form-control" data-field="{{document.dataKey}}.{{key}}" value="{{ document.data[key] }}">
+                        {{ /if }}
+                    </i>
+
+                </li>
+                {{ /each }}
+            </ul>
+        </section>
+
+        <section class="mui-panel">
+            <legend>{{ editor.label }}</legend>
+            <ul>
+                {{ each editor.keys as key i }}
+                <li class="mui-row">
+                    <i class="mui-col-lg-6 mui-col-md-6 mui-col-xs-6">
+                        <label>
+                            {{ if (typeof editor.data[key] == "boolean")  }}
+                            <input data-field="{{editor.dataKey}}.{{key}}" type="checkbox" {{ editor.data[key]==true ? checked='checked' : null  }}/>
+                            {{ /if }}
+                            <span>{{ i+1 }}.{{editor.key2I18NMap[key]}}</span>
+                        </label>
+                    </i>
+
+                </li>
+                {{ /each }}
+            </ul>
+        </section>
     </div>
 </script>
 
@@ -212,7 +258,7 @@
 
 
 <!--基础库加载-->
-<script src="common/es6-shim/es6-shim.min.js"></script>
+<script src="common/underscore/1.8.3/underscore-min.js"></script>
 <script src="common/jquery/jquery-1.11.3.min.js"></script>
 <script src="common/jquery/jquery-json/2.5.1/jquery.json.min.js"></script>
 <script src="common/jquery/layer-v1.9.3/layer.js"></script>
@@ -227,6 +273,9 @@
 <script src="common/mui/mui-0.1.2/js/mui.min.js"></script>
 <script src="common/artTemplate/3.0/template.js"></script>
 <script src="common/editor.md/1.4.4/editor.md/editormd.min.js"></script>
+
+<!--引入Backbone.js-->
+<script src="common/Backbone.js/1.2.0/backbone-min.js"></script>
 
 <!--核心启动加载-->
 <script src="js/util.js"></script>

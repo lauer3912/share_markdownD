@@ -127,6 +127,26 @@ body {
   text-transform: uppercase;
   font-size: 1em;
 }
+#view-settings {
+  margin-left: auto;
+  margin-right: auto;
+}
+#view-settings ul {
+  list-style: none;
+}
+#view-settings ul input {
+  font-size: 11px;
+}
+#view-settings ul button {
+  width: 84px;
+  padding: 0 5px;
+}
+#view-settings ul button span {
+  font-size: 0.8em;
+}
+#view-settings button {
+  text-transform: capitalize;
+}
 #view-about {
   margin-left: auto;
   margin-right: auto;

@@ -23,9 +23,28 @@
     var $EditorProvider = c$.EditorProvider = new RomanySoftPlugins.EditorMdServices(); // 编辑器服务
     var $IAPProvider = c$.IAPProvider = new RomanySoftPlugins.IAP.IAP$Helper();         // IAP服务
     var $UserSettings = c$.UserSettings = new RomanySoftPlugins.Settings.UserSetting(); // 用户设置
+    var $Util = c$.Util = {};                                                           // 常用工具类
 
     // 默认的本地化语言
     c$.language = 'en-US';
+
+
+    // 配置常用的工具类函数
+    c$.configUtil = function(){
+        "use strict";
+
+        /**
+         * 统一国际化翻译处理
+         * @param ele
+         * @param parm
+         * @returns {*}
+         */
+        $Util.fn_tri18n = function(ele, parm){
+            try{
+                return (new IntlMessageFormat(ele, c$.language)).format(parm);
+            }catch(e){return ""}
+        }
+    };
 
     // 初始化标题及版本
     c$.initTitleAndVersion = function(){
@@ -155,8 +174,8 @@
                                 });
                             }
                         }, true),
-                        title : (new IntlMessageFormat(I18N.UI.filePage["SaveDialog-Title"], c$.language)).format(),
-                        prompt: (new IntlMessageFormat(I18N.UI.filePage["SaveDialog-BtnSave"], c$.language)).format(),
+                        title : $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-Title"]),
+                        prompt: $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-BtnSave"]),
                         fileName : fileObj.name,
                         types : 'md'
 
@@ -191,26 +210,19 @@
 
                     $Router.go_files();
                 }else{
-
-                    var fn = function(ele, parm){
-                        return (new IntlMessageFormat(ele, c$.language)).format(parm);
-                    };
-
-                    var btnBuy = fn(I18N.UI.filePage.createNewDocTip["btn-Buy"]);
-                    var btnCancel = fn(I18N.UI.filePage.createNewDocTip["btn-Cancel"]);
+                    var btnBuy = $Util.fn_tri18n(I18N.UI.filePage.createNewDocTip["btnBuy"]);
+                    var btnCancel = $Util.fn_tri18n(I18N.UI.filePage.createNewDocTip["btnCancel"]);
 
                     layer.open({
                         icon:0
-                        ,title: fn(I18N.UI.filePage.createNewDocTip["Title"])
-                        ,content: fn(I18N.UI.filePage.createNewDocTip["Content"],{docCount:curFilesCount})
+                        ,title: $Util.fn_tri18n(I18N.UI.filePage.createNewDocTip["Title"])
+                        ,content: $Util.fn_tri18n(I18N.UI.filePage.createNewDocTip["Content"],{docCount:curFilesCount})
                         ,btn:[btnBuy, btnCancel]
                         ,yes: function(index){
-                            if(typeof $UserSettings.documentSetting["pl$maxDocumentCount"] != undefined){
-                                var productId = $UserSettings.documentSetting["pl$maxDocumentCount"];
-                                b$.IAP.buyProduct({
-                                    productIdentifier:productId,
-                                    quantity:1
-                                })
+                            var setting_key = "documentSetting.maxDocumentCount";
+                            if(_.has(c$.Map_Settings2Product,setting_key)) {
+                                var productId = _.property(setting_key)(c$.Map_Settings2Product);
+                                c$.UIActions.buyPlugin(productId);
                             }
 
                             layer.close(index);
@@ -243,8 +255,8 @@
                             $Router.go_files();
                         }
                     }, true),
-                    title: (new IntlMessageFormat(I18N.UI.filePage["ImportDialog-Title"], c$.language)).format(),
-                    prompt: (new IntlMessageFormat(I18N.UI.filePage["ImportDialog-BtnImport"], c$.language)).format(),
+                    title: $Util.fn_tri18n(I18N.UI.filePage["ImportDialog-Title"]),
+                    prompt: $Util.fn_tri18n(I18N.UI.filePage["ImportDialog-BtnImport"]),
                     allowOtherFileTypes: true,
                     allowMulSelection: true,
                     types:["*","md"]
@@ -335,12 +347,12 @@
                 var o = {
                     appName: "MarkdownD",
                     navList: [
-                        {name: (new IntlMessageFormat(I18N.UI.navPage["Files"], c$.language)).format(), href: "#/files", class:" icon-tab"}
-                        ,{name: (new IntlMessageFormat(I18N.UI.navPage["Workspace"], c$.language)).format(), href: "#/workspace", class:" icon-dashboard"}
-                        ,{name: (new IntlMessageFormat(I18N.UI.navPage["Plugins"], c$.language)).format(), href: "#/pluginsMgr", class:" icon-extension"}
-                        ,{name: (new IntlMessageFormat(I18N.UI.navPage["Settings"], c$.language)).format(), href: "#/settings", class:" icon-settings"}
-                        ,{name: (new IntlMessageFormat(I18N.UI.navPage["Help"], c$.language)).format(), href: "#/help", class:" icon-help"}
-                        ,{name: (new IntlMessageFormat(I18N.UI.navPage["About"], c$.language)).format(), href: "#/about", class:" icon-info"}
+                        {name: $Util.fn_tri18n(I18N.UI.navPage["Files"]), href: "#/files", class:" icon-tab"}
+                        ,{name: $Util.fn_tri18n(I18N.UI.navPage["Workspace"]), href: "#/workspace", class:" icon-dashboard"}
+                        ,{name: $Util.fn_tri18n(I18N.UI.navPage["Plugins"]), href: "#/pluginsMgr", class:" icon-extension"}
+                        ,{name: $Util.fn_tri18n(I18N.UI.navPage["Settings"]), href: "#/settings", class:" icon-settings"}
+                        ,{name: $Util.fn_tri18n(I18N.UI.navPage["Help"]), href: "#/help", class:" icon-help"}
+                        ,{name: $Util.fn_tri18n(I18N.UI.navPage["About"]), href: "#/about", class:" icon-info"}
 
                     ]
                 };
@@ -368,18 +380,18 @@
 
         $Router.go_files = function(){
             console.log("files");
-            $('#nav-title').html((new IntlMessageFormat(I18N.UI.filePage["Title"], c$.language)).format());
+            $('#nav-title').html($Util.fn_tri18n(I18N.UI.filePage["Title"]));
 
             var thisPage = '#view-files';
             var o = {
                 files: window.$fc.getAllFiles(),
-                btnLoadTitle: (new IntlMessageFormat(I18N.UI.filePage["Btn-Load"], c$.language)).format(),
-                btnSaveTitle: (new IntlMessageFormat(I18N.UI.filePage["Btn-Save"], c$.language)).format(),
-                btnRemoveTitle: (new IntlMessageFormat(I18N.UI.filePage["Btn-Remove"], c$.language)).format(),
-                btnNewFileTitle: (new IntlMessageFormat(I18N.UI.filePage["Btn-New"], c$.language)).format(),
-                btnImportTitle: (new IntlMessageFormat(I18N.UI.filePage["Btn-ImportFiles"], c$.language)).format(),
-                emLabel:(new IntlMessageFormat(I18N.UI.filePage["em-label"], c$.language)).format(),
-                noteLabel:(new IntlMessageFormat(I18N.UI.filePage["note-label"], c$.language)).format()
+                btnLoadTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-Load"]),
+                btnSaveTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-Save"]),
+                btnRemoveTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-Remove"]),
+                btnNewFileTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-New"]),
+                btnImportTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-ImportFiles"]),
+                emLabel:$Util.fn_tri18n(I18N.UI.filePage["em-label"]),
+                noteLabel:$Util.fn_tri18n(I18N.UI.filePage["note-label"])
             };
 
             var ele = $(thisPage);
@@ -412,7 +424,7 @@
             // 处理标题
             var _curFileObj = fileObj || window.$fc.getLastModifyFileObj();
 
-            var wk = (new IntlMessageFormat(I18N.UI.workspacePage["Title"], c$.language)).format();
+            var wk = $Util.fn_tri18n(I18N.UI.workspacePage["Title"]);
 
             if(false == _curFileObj.changed){
                 $('#nav-title').html(wk + ' - ' + _curFileObj.name);
@@ -567,10 +579,171 @@
         $Router.go_settings = function(){
             console.log("settings");
 
-            var title = (new IntlMessageFormat(I18N.UI.settingsPage["Title"], c$.language)).format();
+            var title = $Util.fn_tri18n(I18N.UI.settingsPage["Title"]);
             $('#nav-title').html(title);
 
             var thisPage = '#view-settings';
+
+            var ele = $(thisPage);
+            if($.trim(ele.html()).length == 0){
+
+                var map_settings2Product = c$.Map_Settings2Product;
+
+                // 直接使用Backbone.js 的view视图进行处理
+                var pageView = Backbone.View.extend({
+                    el: ele,
+
+                    events:{
+                        "keypress input[type='text']" : "updateOnEnter",
+                        "blur input[type='text']" : "closeEdit",
+                        "click input[type=checkbox]" : "selectEdit"
+                    },
+
+                    initialize: function(){
+                        var t = this;
+                        $NoticeCenter.add(function(message){
+                            if(c$.NCMessage.userSettingsChange === message) {
+                                t.render();
+                            }
+                        });
+                    },
+
+                    render: function(){
+                        var m = c$.UserSettings;
+                        var o = {
+                            btnReset:$Util.fn_tri18n(I18N.UI.settingsPage["btnReset"]),
+                            btnApply:$Util.fn_tri18n(I18N.UI.settingsPage["btnApply"]),
+                            document:{
+                                label:$Util.fn_tri18n(I18N.UI.settingsPage.document["label"]),
+                                keys: Object.keys(m.documentSetting),
+                                key2I18NMap:(function(){
+                                    var map = {};
+                                    var keys = Object.keys(m.documentSetting);
+                                    $.each(keys, function(index, key){
+                                        var i18 = $Util.fn_tri18n(I18N.UI.settingsPage.document[key]);
+                                        map[key] = i18;
+                                    });
+                                    return map;
+                                })(),
+                                data:m.documentSetting,
+                                dataKey:"documentSetting"
+                            },
+
+                            editor:{
+                                label:$Util.fn_tri18n(I18N.UI.settingsPage.editor["label"]),
+                                keys:Object.keys(m.editorSetting),
+                                key2I18NMap:(function(){
+                                    var map = {};
+                                    var keys = Object.keys(m.editorSetting);
+                                    $.each(keys, function(index, key){
+                                        var i18 = $Util.fn_tri18n(I18N.UI.settingsPage.editor[key]);
+                                        map[key] = i18;
+                                    });
+                                    return map;
+                                })(),
+                                data:m.editorSetting,
+                                dataKey:"editorSetting"
+                            }
+                        };
+
+                        var html = template('tpl_settings', o);
+                        this.$el.html(html);
+                        return this;
+                    },
+
+
+                    edit:function(e){
+                        var curEle = this.$(e.currentTarget);
+
+                    },
+
+                    updateOnEnter:function(e){
+                        var curEle = this.$(e.currentTarget);
+                        if (e.keyCode == 13) this.closeEdit(e);
+                    },
+
+                    closeEdit:function(e){
+                        var curEle = this.$(e.currentTarget);
+                        var value = curEle.val();
+                        if(curEle.data('field') == "documentSetting.maxDocumentCount"){
+                            var m = c$.UserSettings;
+                            m.documentSetting.maxDocumentCount = parseInt(value);
+
+                        }
+
+                        $NoticeCenter.fire(c$.NCMessage.userSettingsChange);
+                    },
+
+
+                    selectEdit:function(e){
+                        var curEle = this.$(e.currentTarget);
+
+
+                        var field = this.$(e.currentTarget).data('field');
+
+                        /**
+                         * 统一处理
+                         * @param productId
+                         * @param settingItem
+                         * @param $ele
+                         */
+                        var fn_process = function(productId, settingItem, $ele){
+                            var checked = $ele.prop('checked');
+                            if(checked){
+                                if(false == $IAPProvider.getProductIsPurchased(productId)){
+                                    $ele.prop('checked', false);
+
+                                    var btnBuy = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnBuy"]);
+                                    var btnCancel = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnCancel"]);
+                                    //
+                                    layer.open({
+                                        icon:0
+                                        ,title: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Title"])
+                                        ,content: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Content"])
+                                        ,btn:[btnBuy, btnCancel]
+                                        ,yes: function(index){
+                                            layer.close(index);
+                                            c$.UIActions.buyPlugin(productId);
+                                        }
+                                        ,cancel:function(index){
+
+                                        }
+                                    });
+
+
+                                }else{
+                                    var str = 'UI.c$.UserSettings.' + settingItem + ' = true;';
+                                    eval(str);
+                                    $NoticeCenter.fire(c$.NCMessage.userSettingsChange);
+                                }
+                            }else{
+                                var str = 'UI.c$.UserSettings.' + settingItem + ' = false;';
+                                eval(str);
+                                $NoticeCenter.fire(c$.NCMessage.userSettingsChange);
+                            }
+                        };
+
+                        // 查找映射表中存在key
+                        if(_.has(map_settings2Product,field)){
+                            var mapProductID = _.property(field)(map_settings2Product);
+
+                            // 如果当前的状态是触发选中，需要检查是否已经购买相关插件
+                            fn_process(mapProductID, field, curEle);
+                        }else{
+                            var str = 'UI.c$.UserSettings.' + field + (curEle.prop('checked') == true ? ' = true;' : ' = false;' );
+                            eval(str);
+                            $NoticeCenter.fire(c$.NCMessage.userSettingsChange);
+                        }
+
+                    }
+
+                });
+
+                var sv = new pageView();
+                sv.render();
+            }
+
+
 
             $Router.fn_showOrHide(allPageList, false);
             $Router.fn_showOrHide([thisPage], true);
@@ -579,7 +752,7 @@
         $Router.go_pluginsMgr = function(){
             console.log("pluginsMgr");
 
-            var title = (new IntlMessageFormat(I18N.UI.pluginMgrPage["Title"], c$.language)).format();
+            var title = $Util.fn_tri18n(I18N.UI.pluginMgrPage["Title"]);
             $('#nav-title').html(title);
 
             var thisPage = '#view-plugins';
@@ -591,8 +764,8 @@
             I18N.PluginUI.pre = b$.App.getAppId() + ".plugin.";
             $.each($IAPProvider.getAllEnableProducts(), function(index, product){
                 try{
-                    product.name = (new IntlMessageFormat(I18N.PluginUI.data()[product.id].name, c$.language)).format();
-                    product.description = (new IntlMessageFormat(I18N.PluginUI.data()[product.id].description, c$.language)).format();
+                    product.name = $Util.fn_tri18n(I18N.PluginUI.data()[product.id].name);
+                    product.description = $Util.fn_tri18n(I18N.PluginUI.data()[product.id].description);
                 }catch(e){}
 
                 enablePlugins.push(product);
@@ -601,7 +774,7 @@
             // 设置传递参数
             var o = {
                 plugins:enablePlugins,
-                btnBuyTitle:(new IntlMessageFormat(I18N.UI.pluginMgrPage["Btn-Buy"], c$.language)).format()
+                btnBuyTitle:$Util.fn_tri18n(I18N.UI.pluginMgrPage["btnBuy"])
             };
 
             var html = template('tpl_pluginsMgr', o);
@@ -614,7 +787,7 @@
 
         $Router.go_help = function(){
             console.log("help");
-            var title = (new IntlMessageFormat(I18N.UI.helpPage["Title"], c$.language)).format();
+            var title = $Util.fn_tri18n(I18N.UI.helpPage["Title"]);
             $('#nav-title').html(title);
 
             var thisPage = '#view-help';
@@ -625,7 +798,7 @@
 
         $Router.go_about$license = function(){
             console.log("about$license");
-            var title = (new IntlMessageFormat(I18N.UI.aboutPage["Title"], c$.language)).format();
+            var title = $Util.fn_tri18n(I18N.UI.aboutPage["Title"]);
             $('#nav-title').html(title);
 
             var thisPage = '#view-about';
@@ -648,9 +821,12 @@
                         {id:"credit-arTemplate", title:"artTemplate, high performance js template engine.", licenseUrl:"licenses/artTemplate/LICENSE", homepageUrl:"github.com/aui/artTemplate"}
                         ,{id:"credit-director.js", title:"director.js, routing is the process of determining what code to run when a URL is requested.", licenseUrl:"licenses/director.js/LICENSE", homepageUrl:"github.com/flatiron/director"}
                         ,{id:"credit-editor.md", title:"editor.md, a simple online markdown editor", licenseUrl:"licenses/editor.md/LICENSE", homepageUrl:"github.com/pandao/editor.md"}
-                        ,{id:"credit-es6-shim", title:"es6-shim, provides compatibility shims so that legacy JavaScript engines behave as closely as possible to ECMAScript 6 (Harmony)", licenseUrl:"licenses/es6-shim/LICENSE", homepageUrl:"github.com/paulmillr/es6-shim"}
+                        //,{id:"credit-es6-shim", title:"es6-shim, provides compatibility shims so that legacy JavaScript engines behave as closely as possible to ECMAScript 6 (Harmony)", licenseUrl:"licenses/es6-shim/LICENSE", homepageUrl:"github.com/paulmillr/es6-shim"}
                         ,{id:"credit-jquery", title:"jquery, a fast, small, and feature-rich JavaScript library.", licenseUrl:"licenses/jquery/LICENSE", homepageUrl:"jquery.com"}
                         ,{id:"credit-mui", title:"mui, is a lightweight HTML, CSS and JS framework for sites that follow Google's Material Design guidelines.", licenseUrl:"licenses/mui/LICENSE", homepageUrl:"github.com/amorey/mui"}
+                        ,{id:"credit-underscore",
+                            title:"Underscore is a JavaScript library that provides a whole mess of useful functional programming helpers without extending any built-in objects. It’s the answer to the question: “If I sit down in front of a blank HTML page, and want to start being productive immediately, what do I need?” … and the tie to go along with jQuery's tux and Backbone's suspenders.",
+                            licenseUrl:"licenses/underscore/LICENSE", homepageUrl:"github.com/jashkenas/underscore"}
 
                     ]
                 };
@@ -914,6 +1090,30 @@
         // 注册数据变更的消息处理函数(来自消息中心)
         $NoticeCenter.add(function(message, info){
 
+            c$.Map_Settings2Product = {
+                // [商品]文档控制部分
+                "documentSetting.maxDocumentCount":prefix + "append5documentCount",
+                "documentSetting.autoSave":prefix + "enableAutoSave",
+                "documentSetting.autoRestore":prefix + "enableAutoRestore",
+
+                // [商品]编辑器功能
+                "editorSetting.enable_TaskList":prefix + "support.taskList",
+                "editorSetting.enable_Emoji":prefix + "support.emoji",
+                "editorSetting.enable_AtLink":prefix + "support.atLink",
+                "editorSetting.enable_EmailLink":prefix + "support.emailLink",
+                "editorSetting.enable_FlowChart":prefix + "support.flowChart",
+                "editorSetting.enable_SequenceDiagram":prefix + "support.sequenceDiagram",
+                "editorSetting.enable_Tex":prefix + "support.tex",
+                "editorSetting.enable_Toc":prefix + "support.toc",
+                "editorSetting.enable_CodeFold":prefix + "support.codeFold",
+                "editorSetting.enable_HtmlDecode":prefix + "support.htmlDecode",
+                "editorSetting.enable_StyleActiveLine":prefix + "support.styleActiveLine",
+                "editorSetting.enable_LineNumbers":prefix + "support.lineNumbers",
+                "editorSetting.enable_ReadOnly":prefix + "support.readOnly",
+                "editorSetting.enable_SearchReplace":prefix + "support.searchReplace",
+                "editorSetting.enable_Tocm":prefix + "support.tocm"
+            };
+
             // 根据插件的情况来同步用户设置的同步
             function syncAndCheckUserSettings(product) {
 
@@ -1062,6 +1262,7 @@
 
         var deferred = $.Deferred();
         deferred.done(function(){
+            c$.configUtil();
             c$.initTitleAndVersion();
             c$.configCache();
             c$.configNoticeCenter();

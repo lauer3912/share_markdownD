@@ -37,19 +37,55 @@ var I18N;
             createNewDocTip: {
                 "Title": "Message",
                 "Content": "Already have the largest number of the current document [{docCount}], you could increase the maximum number of documents to meet your requirements.Every purchase, increased 5 documents.",
-                "btn-Buy": "Buy",
-                "btn-Cancel": "Cancel"
+                "btnBuy": "Buy",
+                "btnCancel": "Cancel"
             }
         };
         UI.workspacePage = {
             "Title": "Workspace"
         };
         UI.settingsPage = {
-            "Title": "Settings"
+            "Title": "Settings",
+            btnReset: "Reset",
+            btnApply: "Apply",
+            document: {
+                label: "[Document]",
+                maxDocumentCount: "Multi-document editing count",
+                enableTabMode: "Switch Tab mode",
+                autoSave: "Auto save",
+                autoSaveSecs: "Per secs to save",
+                autoRestore: "Auto restore"
+            },
+            editor: {
+                label: "[Editor]",
+                enable_TaskList: "Show github task lists",
+                enable_Emoji: "Show Emoji",
+                enable_AtLink: "Show AtLink",
+                enable_EmailLink: "Show EmailLink",
+                enable_FlowChart: "Show FlowChart",
+                enable_SequenceDiagram: "Show SequenceDiagram",
+                enable_Tex: "Show Tex",
+                enable_Toc: "Show Toc",
+                enable_CodeFold: "Show CodeFold",
+                enable_HtmlDecode: "Show HTML Decode",
+                enable_StyleActiveLine: "Show Active line",
+                enable_LineNumbers: "Show Line numbers",
+                enable_ReadOnly: "Enable ReadOnly mode",
+                enable_SearchReplace: "Enable Search and replace",
+                enable_Tocm: "Show Tocm",
+                enable_matchWordHighlight: "Enable match word highlight"
+            },
+            // 购买信息
+            Message: {
+                Title: "Tip",
+                Content: "You need to purchase to activate",
+                btnBuy: "Buy",
+                btnCancel: "Cancel"
+            }
         };
         UI.pluginMgrPage = {
             "Title": "Plugins Manager",
-            "Btn-Buy": "Active"
+            "btnBuy": "Active"
         };
         UI.helpPage = {
             "Title": "Help"
