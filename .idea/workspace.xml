@@ -2,20 +2,395 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d66fa614-948a-43b5-9215-832307c96ac8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/common/Backbone.js/1.2.0/backbone-min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/common/underscore/1.8.3/underscore-min.js" />
-      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\es6-shim\es6-shim.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\licenses\es6-shim\LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\css\editormd.logo.min.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\css\editormd.min.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\css\editormd.preview.min.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\editormd.amd.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\editormd.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\fonts\FontAwesome.otf" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\fonts\editormd-logo.eot" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\fonts\editormd-logo.svg" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\fonts\editormd-logo.ttf" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\fonts\editormd-logo.woff" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\fonts\fontawesome-webfont.eot" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\fonts\fontawesome-webfont.svg" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\fonts\fontawesome-webfont.ttf" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\fonts\fontawesome-webfont.woff" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\fonts\fontawesome-webfont.woff2" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\loading@2x.gif" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\loading@3x.gif" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-favicon-16x16.ico" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-favicon-24x24.ico" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-favicon-32x32.ico" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-favicon-48x48.ico" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-favicon-64x64.ico" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-114x114.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-120x120.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-144x144.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-16x16.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-180x180.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-240x240.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-24x24.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-320x320.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-32x32.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-48x48.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-57x57.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-64x64.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-72x72.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\editormd-logo-96x96.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\images\logos\vi.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\languages\en.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\languages\zh-tw.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\AUTHORS" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\comment\comment.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\comment\continuecomment.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\dialog\dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\dialog\dialog.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\display\fullscreen.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\display\fullscreen.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\display\panel.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\display\placeholder.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\display\rulers.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\edit\closebrackets.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\edit\closetag.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\edit\continuelist.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\edit\matchbrackets.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\edit\matchtags.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\edit\trailingspace.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\fold\brace-fold.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\fold\comment-fold.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\fold\foldcode.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\fold\foldgutter.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\fold\foldgutter.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\fold\indent-fold.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\fold\markdown-fold.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\fold\xml-fold.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\hint\anyword-hint.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\hint\css-hint.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\hint\html-hint.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\hint\javascript-hint.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\hint\show-hint.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\hint\show-hint.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\hint\sql-hint.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\hint\xml-hint.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\lint\coffeescript-lint.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\lint\css-lint.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\lint\javascript-lint.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\lint\json-lint.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\lint\lint.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\lint\lint.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\lint\yaml-lint.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\merge\merge.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\merge\merge.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\mode\loadmode.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\mode\multiplex.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\mode\multiplex_test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\mode\overlay.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\mode\simple.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\runmode\colorize.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\runmode\runmode-standalone.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\runmode\runmode.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\runmode\runmode.node.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\scroll\annotatescrollbar.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\scroll\scrollpastend.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\scroll\simplescrollbars.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\scroll\simplescrollbars.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\search\match-highlighter.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\search\matchesonscrollbar.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\search\matchesonscrollbar.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\search\search.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\search\searchcursor.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\selection\active-line.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\selection\mark-selection.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\selection\selection-pointer.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\tern\tern.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\tern\tern.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\tern\worker.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addon\wrap\hardwrap.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\addons.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\bower.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\codemirror.min.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\codemirror.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\lib\codemirror.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\lib\codemirror.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\apl\apl.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\apl\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\asterisk\asterisk.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\asterisk\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\clike\clike.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\clike\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\clike\scala.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\clojure\clojure.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\clojure\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\cobol\cobol.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\cobol\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\coffeescript\coffeescript.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\coffeescript\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\commonlisp\commonlisp.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\commonlisp\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\css\css.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\css\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\css\less.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\css\less_test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\css\scss.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\css\scss_test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\css\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\cypher\cypher.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\cypher\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\d\d.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\d\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\dart\dart.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\dart\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\diff\diff.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\diff\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\django\django.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\django\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\dockerfile\dockerfile.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\dockerfile\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\dtd\dtd.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\dtd\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\dylan\dylan.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\dylan\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\ebnf\ebnf.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\ebnf\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\ecl\ecl.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\ecl\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\eiffel\eiffel.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\eiffel\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\erlang\erlang.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\erlang\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\forth\forth.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\forth\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\fortran\fortran.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\fortran\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\gas\gas.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\gas\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\gfm\gfm.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\gfm\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\gfm\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\gherkin\gherkin.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\gherkin\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\go\go.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\go\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\groovy\groovy.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\groovy\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\haml\haml.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\haml\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\haml\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\haskell\haskell.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\haskell\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\haxe\haxe.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\haxe\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\htmlembedded\htmlembedded.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\htmlembedded\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\htmlmixed\htmlmixed.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\htmlmixed\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\http\http.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\http\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\idl\idl.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\idl\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\jade\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\jade\jade.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\javascript\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\javascript\javascript.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\javascript\json-ld.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\javascript\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\javascript\typescript.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\jinja2\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\jinja2\jinja2.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\julia\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\julia\julia.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\kotlin\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\kotlin\kotlin.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\livescript\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\livescript\livescript.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\lua\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\lua\lua.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\markdown\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\markdown\markdown.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\markdown\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\meta.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\mirc\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\mirc\mirc.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\mllike\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\mllike\mllike.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\modelica\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\modelica\modelica.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\nginx\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\nginx\nginx.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\ntriples\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\ntriples\ntriples.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\octave\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\octave\octave.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\pascal\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\pascal\pascal.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\pegjs\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\pegjs\pegjs.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\perl\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\perl\perl.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\php\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\php\php.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\php\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\pig\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\pig\pig.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\properties\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\properties\properties.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\puppet\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\puppet\puppet.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\python\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\python\python.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\q\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\q\q.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\r\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\r\r.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\rpm\changes\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\rpm\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\rpm\rpm.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\rst\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\rst\rst.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\ruby\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\ruby\ruby.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\ruby\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\rust\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\rust\rust.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\sass\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\sass\sass.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\scheme\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\scheme\scheme.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\shell\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\shell\shell.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\shell\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\sieve\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\sieve\sieve.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\slim\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\slim\slim.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\slim\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\smalltalk\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\smalltalk\smalltalk.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\smarty\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\smarty\smarty.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\smartymixed\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\smartymixed\smartymixed.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\solr\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\solr\solr.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\soy\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\soy\soy.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\sparql\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\sparql\sparql.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\spreadsheet\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\spreadsheet\spreadsheet.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\sql\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\sql\sql.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\stex\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\stex\stex.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\stex\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\stylus\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\stylus\stylus.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\tcl\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\tcl\tcl.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\textile\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\textile\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\textile\textile.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\tiddlywiki\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\tiddlywiki\tiddlywiki.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\tiddlywiki\tiddlywiki.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\tiki\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\tiki\tiki.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\tiki\tiki.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\toml\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\toml\toml.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\tornado\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\tornado\tornado.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\turtle\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\turtle\turtle.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\vb\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\vb\vb.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\vbscript\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\vbscript\vbscript.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\velocity\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\velocity\velocity.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\verilog\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\verilog\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\verilog\verilog.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\xml\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\xml\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\xml\xml.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\xquery\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\xquery\test.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\xquery\xquery.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\yaml\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\yaml\yaml.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\z80\index.html" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\mode\z80\z80.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\modes.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\package.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\3024-day.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\3024-night.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\ambiance-mobile.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\ambiance.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\base16-dark.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\base16-light.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\blackboard.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\cobalt.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\colorforth.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\eclipse.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\elegant.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\erlang-dark.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\lesser-dark.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\mbo.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\mdn-like.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\midnight.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\monokai.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\neat.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\neo.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\night.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\paraiso-dark.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\paraiso-light.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\pastel-on-dark.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\rubyblue.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\solarized.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\the-matrix.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\tomorrow-night-bright.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\tomorrow-night-eighties.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\twilight.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\vibrant-ink.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\xq-dark.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\xq-light.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\codemirror\theme\zenburn.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\flowchart.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\jquery.flowchart.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\marked.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\prettify.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\raphael.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\sequence-diagram.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\lib\underscore.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\code-block-dialog\code-block-dialog.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\emoji-dialog\emoji-dialog.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\emoji-dialog\emoji.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\goto-line-dialog\goto-line-dialog.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\help-dialog\help-dialog.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\help-dialog\help.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\html-entities-dialog\html-entities-dialog.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\html-entities-dialog\html-entities.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\image-dialog\image-dialog.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\link-dialog\link-dialog.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\plugin-template.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\preformatted-text-dialog\preformatted-text-dialog.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\reference-link-dialog\reference-link-dialog.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\table-dialog\table-dialog.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4\editor.md\plugins\test-plugin\test-plugin.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/locales/en-US.js.map" afterPath="$PROJECT_DIR$/public/locales/en-US.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/locales/en-US.js" afterPath="$PROJECT_DIR$/public/locales/en-US.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/locales/en-US.ts" afterPath="$PROJECT_DIR$/public/locales/en-US.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.js.map" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.js" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.ts" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/styles/style.css" afterPath="$PROJECT_DIR$/public/styles/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/styles/style.less" afterPath="$PROJECT_DIR$/public/styles/style.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.js.map" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.js" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.js.map" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.js" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.ts" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MarkdownD.iws" />
@@ -39,14 +414,14 @@
     <favorites_list name="MarkdownD" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.57241744">
+    <splitter split-orientation="horizontal" split-proportion="0.57082003">
       <split-first>
         <leaf>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-12.16">
-                  <caret line="193" column="27" selection-start-line="193" selection-start-column="27" selection-end-line="193" selection-end-column="27" />
+                <state vertical-scroll-proportion="0.6530612">
+                  <caret line="273" column="58" selection-start-line="273" selection-start-column="58" selection-end-line="273" selection-end-column="58" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
@@ -62,135 +437,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/js/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.6603774">
-                  <caret line="227" column="47" selection-start-line="227" selection-start-column="47" selection-end-line="227" selection-end-column="47" />
-                  <folding>
-                    <element signature="e#0#38#0" expanded="true" />
-                    <element signature="e#53#134#0" expanded="true" />
-                    <element signature="e#1226#1556#0" expanded="true" />
-                    <element signature="e#1259#1364#0" expanded="true" />
-                    <element signature="e#1410#1550#0" expanded="true" />
-                    <element signature="e#1614#1667#0" expanded="true" />
-                    <element signature="e#1726#2174#0" expanded="true" />
-                    <element signature="e#2244#3158#0" expanded="true" />
-                    <element signature="e#2432#2976#0" expanded="true" />
-                    <element signature="e#2588#2780#0" expanded="true" />
-                    <element signature="e#2833#2951#0" expanded="true" />
-                    <element signature="e#3060#3150#0" expanded="true" />
-                    <element signature="e#3208#3355#0" expanded="true" />
-                    <element signature="e#3512#3655#0" expanded="true" />
-                    <element signature="e#3698#3792#0" expanded="true" />
-                    <element signature="e#3827#4926#0" expanded="true" />
-                    <element signature="e#3888#4910#0" expanded="true" />
-                    <element signature="e#4253#4660#0" expanded="true" />
-                    <element signature="e#4961#6396#0" expanded="true" />
-                    <element signature="e#5020#6379#0" expanded="true" />
-                    <element signature="e#5393#6066#0" expanded="true" />
-                    <element signature="e#6438#6909#0" expanded="true" />
-                    <element signature="e#6495#6893#0" expanded="true" />
-                    <element signature="e#8585#8612#0" expanded="true" />
-                    <element signature="e#8705#10058#0" expanded="true" />
-                    <element signature="e#8801#9714#0" expanded="true" />
-                    <element signature="e#8917#9615#0" expanded="true" />
-                    <element signature="e#10092#11832#0" expanded="true" />
-                    <element signature="e#10180#10639#0" expanded="true" />
-                    <element signature="e#10455#10569#0" expanded="true" />
-                    <element signature="e#11066#11415#0" expanded="true" />
-                    <element signature="e#11891#36222#0" expanded="true" />
-                    <element signature="e#12236#12663#0" expanded="true" />
-                    <element signature="e#12287#12626#0" expanded="true" />
-                    <element signature="e#12706#14371#0" expanded="true" />
-                    <element signature="e#13926#14013#0" expanded="true" />
-                    <element signature="e#14106#14343#0" expanded="true" />
-                    <element signature="e#14411#15800#0" expanded="true" />
-                    <element signature="e#15478#15788#0" expanded="true" />
-                    <element signature="e#15687#15754#0" expanded="true" />
-                    <element signature="e#15811#15909#0" expanded="true" />
-                    <element signature="e#15958#22478#0" expanded="true" />
-                    <element signature="e#17373#17521#0" expanded="true" />
-                    <element signature="e#19110#19349#0" expanded="true" />
-                    <element signature="e#19390#21096#0" expanded="true" />
-                    <element signature="e#21137#21161#0" expanded="true" />
-                    <element signature="e#21341#21964#0" expanded="true" />
-                    <element signature="e#22082#22151#0" expanded="true" />
-                    <element signature="e#22295#22465#0" expanded="true" />
-                    <element signature="e#22521#29985#0" expanded="true" />
-                    <element signature="e#23306#23608#0" expanded="true" />
-                    <element signature="e#23405#23584#0" expanded="true" />
-                    <element signature="e#23649#25872#0" expanded="true" />
-                    <element signature="e#24169#24651#0" expanded="true" />
-                    <element signature="e#24369#24567#0" expanded="true" />
-                    <element signature="e#25054#25532#0" expanded="true" />
-                    <element signature="e#25252#25448#0" expanded="true" />
-                    <element signature="e#25912#25998#0" expanded="true" />
-                    <element signature="e#26046#26195#0" expanded="true" />
-                    <element signature="e#26239#26702#0" expanded="true" />
-                    <element signature="e#26748#29758#0" expanded="true" />
-                    <element signature="e#26914#27106#0" expanded="true" />
-                    <element signature="e#27186#29105#0" expanded="true" />
-                    <element signature="e#28152#28338#0" expanded="true" />
-                    <element signature="e#28402#28446#0" expanded="true" />
-                    <element signature="e#30030#31180#0" expanded="true" />
-                    <element signature="e#30459#30765#0" expanded="true" />
-                    <element signature="e#31219#31523#0" expanded="true" />
-                    <element signature="e#31571#35783#0" expanded="true" />
-                    <element signature="e#34581#35396#0" expanded="true" />
-                    <element signature="e#35168#35297#0" expanded="true" />
-                    <element signature="e#35506#35647#0" expanded="true" />
-                    <element signature="e#36297#36572#0" expanded="true" />
-                    <element signature="e#36373#36411#0" expanded="true" />
-                    <element signature="e#36789#36801#0" expanded="true" />
-                    <element signature="e#36856#40425#0" expanded="true" />
-                    <element signature="e#36968#37370#0" expanded="true" />
-                    <element signature="e#37442#37891#0" expanded="true" />
-                    <element signature="e#37972#38787#0" expanded="true" />
-                    <element signature="e#38854#40255#0" expanded="true" />
-                    <element signature="e#40580#41441#0" expanded="true" />
-                    <element signature="e#40683#41037#0" expanded="true" />
-                    <element signature="e#41238#41423#0" expanded="true" />
-                    <element signature="e#41488#54554#0" expanded="true" />
-                    <element signature="e#45581#50601#0" expanded="true" />
-                    <element signature="e#47186#49400#0" expanded="true" />
-                    <element signature="e#49479#50126#0" expanded="false" />
-                    <element signature="e#49743#50109#0" expanded="true" />
-                    <element signature="e#50706#54456#0" expanded="true" />
-                    <element signature="e#51508#51751#0" expanded="true" />
-                    <element signature="e#53440#53818#0" expanded="true" />
-                    <element signature="e#54593#55013#0" expanded="true" />
-                    <element signature="e#54687#54953#0" expanded="true" />
-                    <marker date="1433314346535" expanded="true" signature="31931:31944" placeholder="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="en-US.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/locales/en-US.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="83" column="23" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="23" />
-                  <folding>
-                    <element signature="n#!!block;n#getId#0;n#PluginUI#0;n#I18N#0" expanded="true" />
-                    <element signature="n#!!block#1;n#data#0;n#PluginUI#0;n#I18N#0" expanded="true" />
-                    <element signature="n#!!block#1;n#buildIn#0;n#PluginUI#0;n#I18N#0" expanded="true" />
-                    <element signature="n#!!block#1;n#editor#0;n#PluginUI#0;n#I18N#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/public/js/app.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.43513957">
-                  <caret line="727" column="47" selection-start-line="727" selection-start-column="47" selection-end-line="727" selection-end-column="87" />
+                <state vertical-scroll-proportion="-37.0">
+                  <caret line="495" column="79" selection-start-line="495" selection-start-column="79" selection-end-line="495" selection-end-column="79" />
                   <folding>
                     <element signature="e#0#38#0" expanded="true" />
                     <element signature="e#53#134#0" expanded="true" />
@@ -235,57 +486,192 @@
                     <element signature="e#15478#15788#0" expanded="true" />
                     <element signature="e#15687#15754#0" expanded="true" />
                     <element signature="e#15811#15909#0" expanded="true" />
-                    <element signature="e#15958#22478#0" expanded="true" />
-                    <element signature="e#17373#17521#0" expanded="true" />
-                    <element signature="e#19110#19349#0" expanded="true" />
-                    <element signature="e#19390#21096#0" expanded="true" />
-                    <element signature="e#21137#21161#0" expanded="true" />
-                    <element signature="e#21341#21964#0" expanded="true" />
-                    <element signature="e#22082#22151#0" expanded="true" />
-                    <element signature="e#22295#22465#0" expanded="true" />
-                    <element signature="e#23306#23608#0" expanded="true" />
-                    <element signature="e#23405#23584#0" expanded="true" />
-                    <element signature="e#23649#25872#0" expanded="true" />
-                    <element signature="e#24169#24651#0" expanded="true" />
-                    <element signature="e#24369#24567#0" expanded="true" />
-                    <element signature="e#25054#25532#0" expanded="true" />
-                    <element signature="e#25252#25448#0" expanded="true" />
-                    <element signature="e#25912#25998#0" expanded="true" />
-                    <element signature="e#26046#26195#0" expanded="true" />
-                    <element signature="e#26239#26702#0" expanded="true" />
-                    <element signature="e#26914#27106#0" expanded="true" />
-                    <element signature="e#27186#29105#0" expanded="true" />
-                    <element signature="e#28152#28338#0" expanded="true" />
-                    <element signature="e#28402#28446#0" expanded="true" />
-                    <element signature="e#30030#31180#0" expanded="true" />
-                    <element signature="e#30459#30765#0" expanded="true" />
-                    <element signature="e#31219#31523#0" expanded="true" />
-                    <element signature="e#31571#35783#0" expanded="true" />
-                    <element signature="e#34581#35396#0" expanded="true" />
-                    <element signature="e#35168#35297#0" expanded="true" />
-                    <element signature="e#35506#35647#0" expanded="true" />
-                    <element signature="e#36297#36572#0" expanded="true" />
-                    <element signature="e#36373#36411#0" expanded="true" />
-                    <element signature="e#36789#36801#0" expanded="true" />
-                    <element signature="e#36856#40425#0" expanded="true" />
-                    <element signature="e#36968#37370#0" expanded="true" />
-                    <element signature="e#37442#37891#0" expanded="true" />
-                    <element signature="e#37972#38787#0" expanded="true" />
-                    <element signature="e#38854#40255#0" expanded="true" />
-                    <element signature="e#40580#41441#0" expanded="true" />
-                    <element signature="e#40683#41037#0" expanded="true" />
-                    <element signature="e#41238#41423#0" expanded="true" />
-                    <element signature="e#41488#54554#0" expanded="true" />
-                    <element signature="e#45581#50601#0" expanded="true" />
-                    <element signature="e#47186#49400#0" expanded="true" />
-                    <element signature="e#49479#50126#0" expanded="false" />
-                    <element signature="e#49743#50109#0" expanded="true" />
-                    <element signature="e#50706#54456#0" expanded="true" />
-                    <element signature="e#51508#51751#0" expanded="true" />
-                    <element signature="e#53440#53818#0" expanded="true" />
-                    <element signature="e#54593#55013#0" expanded="true" />
-                    <element signature="e#54687#54953#0" expanded="true" />
-                    <marker date="1433314346535" expanded="true" signature="31931:31944" placeholder="..." />
+                    <element signature="e#16736#18790#0" expanded="true" />
+                    <element signature="e#17048#18748#0" expanded="true" />
+                    <element signature="e#19530#19678#0" expanded="true" />
+                    <element signature="e#21267#21506#0" expanded="true" />
+                    <element signature="e#21547#23253#0" expanded="true" />
+                    <element signature="e#23294#23318#0" expanded="true" />
+                    <element signature="e#23498#24123#0" expanded="true" />
+                    <element signature="e#24241#24310#0" expanded="true" />
+                    <element signature="e#24454#24624#0" expanded="true" />
+                    <element signature="e#25465#25767#0" expanded="true" />
+                    <element signature="e#25564#25743#0" expanded="true" />
+                    <element signature="e#25808#28031#0" expanded="true" />
+                    <element signature="e#26328#26810#0" expanded="true" />
+                    <element signature="e#26528#26726#0" expanded="true" />
+                    <element signature="e#27213#27691#0" expanded="true" />
+                    <element signature="e#27411#27607#0" expanded="true" />
+                    <element signature="e#28071#28157#0" expanded="true" />
+                    <element signature="e#28205#28354#0" expanded="true" />
+                    <element signature="e#28398#28861#0" expanded="true" />
+                    <element signature="e#28907#31917#0" expanded="true" />
+                    <element signature="e#29345#31264#0" expanded="true" />
+                    <element signature="e#30311#30497#0" expanded="true" />
+                    <element signature="e#30561#30605#0" expanded="true" />
+                    <element signature="e#32189#33339#0" expanded="true" />
+                    <element signature="e#32618#32924#0" expanded="true" />
+                    <element signature="e#33378#33682#0" expanded="true" />
+                    <element signature="e#33730#37942#0" expanded="true" />
+                    <element signature="e#36740#37555#0" expanded="true" />
+                    <element signature="e#37327#37456#0" expanded="true" />
+                    <element signature="e#37665#37806#0" expanded="true" />
+                    <element signature="e#38456#38731#0" expanded="true" />
+                    <element signature="e#38532#38570#0" expanded="true" />
+                    <element signature="e#38948#38960#0" expanded="true" />
+                    <element signature="e#39015#42584#0" expanded="true" />
+                    <element signature="e#39127#39529#0" expanded="true" />
+                    <element signature="e#39601#40050#0" expanded="true" />
+                    <element signature="e#40131#40946#0" expanded="true" />
+                    <element signature="e#41013#42414#0" expanded="true" />
+                    <element signature="e#42739#43601#0" expanded="true" />
+                    <element signature="e#42842#43196#0" expanded="true" />
+                    <element signature="e#43397#43582#0" expanded="true" />
+                    <element signature="e#43648#56714#0" expanded="true" />
+                    <element signature="e#47741#52761#0" expanded="true" />
+                    <element signature="e#49346#51560#0" expanded="true" />
+                    <element signature="e#51639#52286#0" expanded="false" />
+                    <element signature="e#51903#52269#0" expanded="true" />
+                    <element signature="e#52866#56616#0" expanded="true" />
+                    <element signature="e#53668#53911#0" expanded="true" />
+                    <element signature="e#55600#55978#0" expanded="true" />
+                    <element signature="e#56753#57173#0" expanded="true" />
+                    <element signature="e#56847#57113#0" expanded="true" />
+                    <marker date="1433414591170" expanded="true" signature="34090:34103" placeholder="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="plugin.editormd.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.editormd.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="50" column="17" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="27" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="en-US.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/locales/en-US.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="83" column="23" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="23" />
+                  <folding>
+                    <element signature="n#!!block;n#getId#0;n#PluginUI#0;n#I18N#0" expanded="true" />
+                    <element signature="n#!!block#1;n#data#0;n#PluginUI#0;n#I18N#0" expanded="true" />
+                    <element signature="n#!!block#1;n#buildIn#0;n#PluginUI#0;n#I18N#0" expanded="true" />
+                    <element signature="n#!!block#1;n#editor#0;n#PluginUI#0;n#I18N#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/public/js/app.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.69486403">
+                  <caret line="1143" column="42" selection-start-line="1143" selection-start-column="31" selection-end-line="1143" selection-end-column="42" />
+                  <folding>
+                    <element signature="e#0#38#0" expanded="true" />
+                    <element signature="e#53#134#0" expanded="true" />
+                    <element signature="e#1226#1556#0" expanded="true" />
+                    <element signature="e#1259#1364#0" expanded="true" />
+                    <element signature="e#1410#1550#0" expanded="true" />
+                    <element signature="e#1614#1667#0" expanded="true" />
+                    <element signature="e#1726#2174#0" expanded="true" />
+                    <element signature="e#2244#3158#0" expanded="true" />
+                    <element signature="e#2432#2976#0" expanded="true" />
+                    <element signature="e#2588#2780#0" expanded="true" />
+                    <element signature="e#2833#2951#0" expanded="true" />
+                    <element signature="e#3060#3150#0" expanded="true" />
+                    <element signature="e#3208#3355#0" expanded="true" />
+                    <element signature="e#3512#3655#0" expanded="true" />
+                    <element signature="e#3698#3792#0" expanded="true" />
+                    <element signature="e#3827#4926#0" expanded="true" />
+                    <element signature="e#3888#4910#0" expanded="true" />
+                    <element signature="e#4253#4660#0" expanded="true" />
+                    <element signature="e#4961#6396#0" expanded="true" />
+                    <element signature="e#5020#6379#0" expanded="true" />
+                    <element signature="e#5393#6066#0" expanded="true" />
+                    <element signature="e#6438#6909#0" expanded="true" />
+                    <element signature="e#6495#6893#0" expanded="true" />
+                    <element signature="e#8585#8612#0" expanded="true" />
+                    <element signature="e#8705#10058#0" expanded="true" />
+                    <element signature="e#8801#9714#0" expanded="true" />
+                    <element signature="e#8917#9615#0" expanded="true" />
+                    <element signature="e#10092#11832#0" expanded="true" />
+                    <element signature="e#10180#10639#0" expanded="true" />
+                    <element signature="e#10455#10569#0" expanded="true" />
+                    <element signature="e#11066#11415#0" expanded="true" />
+                    <element signature="e#11891#38381#0" expanded="true" />
+                    <element signature="e#12236#12663#0" expanded="true" />
+                    <element signature="e#12287#12626#0" expanded="true" />
+                    <element signature="e#12706#14371#0" expanded="true" />
+                    <element signature="e#13926#14013#0" expanded="true" />
+                    <element signature="e#14106#14343#0" expanded="true" />
+                    <element signature="e#14411#15800#0" expanded="true" />
+                    <element signature="e#15478#15788#0" expanded="true" />
+                    <element signature="e#15687#15754#0" expanded="true" />
+                    <element signature="e#15811#15909#0" expanded="true" />
+                    <element signature="e#15958#24637#0" expanded="true" />
+                    <element signature="e#16736#18790#0" expanded="true" />
+                    <element signature="e#17048#18748#0" expanded="true" />
+                    <element signature="e#19530#19678#0" expanded="true" />
+                    <element signature="e#21267#21506#0" expanded="true" />
+                    <element signature="e#21547#23253#0" expanded="true" />
+                    <element signature="e#23294#23318#0" expanded="true" />
+                    <element signature="e#23498#24123#0" expanded="true" />
+                    <element signature="e#24241#24310#0" expanded="true" />
+                    <element signature="e#24454#24624#0" expanded="true" />
+                    <element signature="e#24680#32144#0" expanded="true" />
+                    <element signature="e#25465#25767#0" expanded="true" />
+                    <element signature="e#25564#25743#0" expanded="true" />
+                    <element signature="e#25808#28031#0" expanded="true" />
+                    <element signature="e#26328#26810#0" expanded="true" />
+                    <element signature="e#26528#26726#0" expanded="true" />
+                    <element signature="e#27213#27691#0" expanded="true" />
+                    <element signature="e#27411#27607#0" expanded="true" />
+                    <element signature="e#28071#28157#0" expanded="true" />
+                    <element signature="e#28205#28354#0" expanded="true" />
+                    <element signature="e#28398#28861#0" expanded="true" />
+                    <element signature="e#28907#31917#0" expanded="true" />
+                    <element signature="e#29073#29265#0" expanded="true" />
+                    <element signature="e#29345#31264#0" expanded="true" />
+                    <element signature="e#30311#30497#0" expanded="true" />
+                    <element signature="e#30561#30605#0" expanded="true" />
+                    <element signature="e#32189#33339#0" expanded="true" />
+                    <element signature="e#32618#32924#0" expanded="true" />
+                    <element signature="e#33378#33682#0" expanded="true" />
+                    <element signature="e#33730#37942#0" expanded="true" />
+                    <element signature="e#36740#37555#0" expanded="true" />
+                    <element signature="e#37327#37456#0" expanded="true" />
+                    <element signature="e#37665#37806#0" expanded="true" />
+                    <element signature="e#38456#38731#0" expanded="true" />
+                    <element signature="e#38532#38570#0" expanded="true" />
+                    <element signature="e#38948#38960#0" expanded="true" />
+                    <element signature="e#39015#42584#0" expanded="true" />
+                    <element signature="e#39127#39529#0" expanded="true" />
+                    <element signature="e#39601#40050#0" expanded="true" />
+                    <element signature="e#40131#40946#0" expanded="true" />
+                    <element signature="e#41013#42414#0" expanded="true" />
+                    <element signature="e#42739#43601#0" expanded="true" />
+                    <element signature="e#42842#43196#0" expanded="true" />
+                    <element signature="e#43397#43582#0" expanded="true" />
+                    <element signature="e#49346#51560#0" expanded="true" />
+                    <element signature="e#51639#52286#0" expanded="false" />
+                    <element signature="e#51903#52269#0" expanded="true" />
+                    <element signature="e#52866#56616#0" expanded="true" />
+                    <element signature="e#53668#53911#0" expanded="true" />
+                    <element signature="e#55600#55978#0" expanded="true" />
+                    <element signature="e#56753#57173#0" expanded="true" />
+                    <element signature="e#56847#57113#0" expanded="true" />
+                    <marker date="1433414591170" expanded="true" signature="34090:34103" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -331,7 +717,6 @@
         <option value="$PROJECT_DIR$/public/js/files_cache.js" />
         <option value="$PROJECT_DIR$/public/js/files_cache.ts" />
         <option value="$PROJECT_DIR$/public/js/plugins/plugin.help.ts" />
-        <option value="$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts" />
         <option value="$PROJECT_DIR$/public/js/bs.js" />
         <option value="$PROJECT_DIR$/public/js/util.js" />
         <option value="$PROJECT_DIR$/public/js/IAP/plugins_define.js" />
@@ -339,7 +724,6 @@
         <option value="$PROJECT_DIR$/public/i18n/native/en-US.json" />
         <option value="$PROJECT_DIR$/public/locales/en-US.json" />
         <option value="$PROJECT_DIR$/public/locales/zh-CN.ts" />
-        <option value="$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.ts" />
         <option value="$PROJECT_DIR$/public/js/plugins/plugin.files-cache.ts" />
         <option value="$PROJECT_DIR$/public/js/plugins/plugin.cache.ts" />
         <option value="$PROJECT_DIR$/public/js/plugins/plugin.iap.ts" />
@@ -347,7 +731,9 @@
         <option value="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.ts" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/locales/en-US.ts" />
+        <option value="$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.ts" />
         <option value="$PROJECT_DIR$/public/js/app.js" />
+        <option value="$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts" />
       </list>
     </option>
   </component>
@@ -363,8 +749,7 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="59" />
     <option name="width" value="1936" />
     <option name="height" value="1034" />
   </component>
@@ -407,6 +792,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -471,14 +858,74 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="locales" />
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarkdownD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarkdownD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarkdownD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarkdownD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarkdownD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarkdownD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor.md" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -608,11 +1055,17 @@
       <option name="project" value="LOCAL" />
       <updated>1432767721937</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="设置部分及国际化简化完成">
+      <created>1433314419760</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1433314419760</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1034" extended-state="6" />
+    <frame x="59" y="0" width="1936" height="1034" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15921193" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -683,7 +1136,8 @@
     <MESSAGE value="自动恢复功能默认是开启的。" />
     <MESSAGE value="用户设置、用户设置的缓存及编辑器的创建部分关联，创建完成" />
     <MESSAGE value="插件购买检查与更新" />
-    <option name="LAST_COMMIT_MESSAGE" value="插件购买检查与更新" />
+    <MESSAGE value="设置部分及国际化简化完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="设置部分及国际化简化完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -722,6 +1176,7 @@
             <element signature="e#2833#2951#0" expanded="true" />
             <element signature="e#3060#3150#0" expanded="true" />
             <element signature="e#3208#3355#0" expanded="true" />
+            <element signature="e#3405#11843#0" expanded="true" />
             <element signature="e#3512#3655#0" expanded="true" />
             <element signature="e#3698#3792#0" expanded="true" />
             <element signature="e#3827#4926#0" expanded="true" />
@@ -732,6 +1187,8 @@
             <element signature="e#5393#6066#0" expanded="true" />
             <element signature="e#6438#6909#0" expanded="true" />
             <element signature="e#6495#6893#0" expanded="true" />
+            <element signature="e#6943#8669#0" expanded="true" />
+            <element signature="e#8106#8536#0" expanded="true" />
             <element signature="e#8585#8612#0" expanded="true" />
             <element signature="e#8705#10058#0" expanded="true" />
             <element signature="e#8801#9714#0" expanded="true" />
@@ -740,7 +1197,6 @@
             <element signature="e#10180#10639#0" expanded="true" />
             <element signature="e#10455#10569#0" expanded="true" />
             <element signature="e#11066#11415#0" expanded="true" />
-            <element signature="e#11891#36222#0" expanded="true" />
             <element signature="e#12236#12663#0" expanded="true" />
             <element signature="e#12287#12626#0" expanded="true" />
             <element signature="e#12706#14371#0" expanded="true" />
@@ -750,59 +1206,58 @@
             <element signature="e#15478#15788#0" expanded="true" />
             <element signature="e#15687#15754#0" expanded="true" />
             <element signature="e#15811#15909#0" expanded="true" />
-            <element signature="e#15958#22478#0" expanded="true" />
-            <element signature="e#17373#17521#0" expanded="true" />
-            <element signature="e#19110#19349#0" expanded="true" />
-            <element signature="e#19390#21096#0" expanded="true" />
-            <element signature="e#21137#21161#0" expanded="true" />
-            <element signature="e#21341#21964#0" expanded="true" />
-            <element signature="e#22082#22151#0" expanded="true" />
-            <element signature="e#22295#22465#0" expanded="true" />
-            <element signature="e#22521#29985#0" expanded="true" />
-            <element signature="e#23306#23608#0" expanded="true" />
-            <element signature="e#23405#23584#0" expanded="true" />
-            <element signature="e#23649#25872#0" expanded="true" />
-            <element signature="e#24169#24651#0" expanded="true" />
-            <element signature="e#24369#24567#0" expanded="true" />
-            <element signature="e#25054#25532#0" expanded="true" />
-            <element signature="e#25252#25448#0" expanded="true" />
-            <element signature="e#25912#25998#0" expanded="true" />
-            <element signature="e#26046#26195#0" expanded="true" />
-            <element signature="e#26239#26702#0" expanded="true" />
-            <element signature="e#26748#29758#0" expanded="true" />
-            <element signature="e#26914#27106#0" expanded="true" />
-            <element signature="e#27186#29105#0" expanded="true" />
-            <element signature="e#28152#28338#0" expanded="true" />
-            <element signature="e#28402#28446#0" expanded="true" />
-            <element signature="e#30030#31180#0" expanded="true" />
-            <element signature="e#30459#30765#0" expanded="true" />
-            <element signature="e#31219#31523#0" expanded="true" />
-            <element signature="e#31571#35783#0" expanded="true" />
-            <element signature="e#34581#35396#0" expanded="true" />
-            <element signature="e#35168#35297#0" expanded="true" />
-            <element signature="e#35506#35647#0" expanded="true" />
-            <element signature="e#36297#36572#0" expanded="true" />
-            <element signature="e#36373#36411#0" expanded="true" />
-            <element signature="e#36789#36801#0" expanded="true" />
-            <element signature="e#36856#40425#0" expanded="true" />
-            <element signature="e#36968#37370#0" expanded="true" />
-            <element signature="e#37442#37891#0" expanded="true" />
-            <element signature="e#37972#38787#0" expanded="true" />
-            <element signature="e#38854#40255#0" expanded="true" />
-            <element signature="e#40580#41441#0" expanded="true" />
-            <element signature="e#40683#41037#0" expanded="true" />
-            <element signature="e#41238#41423#0" expanded="true" />
-            <element signature="e#41488#54554#0" expanded="true" />
-            <element signature="e#45581#50601#0" expanded="true" />
-            <element signature="e#47186#49400#0" expanded="true" />
-            <element signature="e#49479#50126#0" expanded="false" />
-            <element signature="e#49743#50109#0" expanded="true" />
-            <element signature="e#50706#54456#0" expanded="true" />
-            <element signature="e#51508#51751#0" expanded="true" />
-            <element signature="e#53440#53818#0" expanded="true" />
-            <element signature="e#54593#55013#0" expanded="true" />
-            <element signature="e#54687#54953#0" expanded="true" />
-            <marker date="1433314346535" expanded="true" signature="31931:31944" placeholder="..." />
+            <element signature="e#16736#18790#0" expanded="true" />
+            <element signature="e#17048#18748#0" expanded="true" />
+            <element signature="e#19530#19678#0" expanded="true" />
+            <element signature="e#21267#21506#0" expanded="true" />
+            <element signature="e#21547#23253#0" expanded="true" />
+            <element signature="e#23294#23318#0" expanded="true" />
+            <element signature="e#23498#24123#0" expanded="true" />
+            <element signature="e#24241#24310#0" expanded="true" />
+            <element signature="e#24454#24624#0" expanded="true" />
+            <element signature="e#25465#25767#0" expanded="true" />
+            <element signature="e#25564#25743#0" expanded="true" />
+            <element signature="e#25808#28031#0" expanded="true" />
+            <element signature="e#26328#26810#0" expanded="true" />
+            <element signature="e#26528#26726#0" expanded="true" />
+            <element signature="e#27213#27691#0" expanded="true" />
+            <element signature="e#27411#27607#0" expanded="true" />
+            <element signature="e#28071#28157#0" expanded="true" />
+            <element signature="e#28205#28354#0" expanded="true" />
+            <element signature="e#28398#28861#0" expanded="true" />
+            <element signature="e#28907#31917#0" expanded="true" />
+            <element signature="e#29345#31264#0" expanded="true" />
+            <element signature="e#30311#30497#0" expanded="true" />
+            <element signature="e#30561#30605#0" expanded="true" />
+            <element signature="e#32189#33339#0" expanded="true" />
+            <element signature="e#32618#32924#0" expanded="true" />
+            <element signature="e#33378#33682#0" expanded="true" />
+            <element signature="e#33730#37942#0" expanded="true" />
+            <element signature="e#36740#37555#0" expanded="true" />
+            <element signature="e#37327#37456#0" expanded="true" />
+            <element signature="e#37665#37806#0" expanded="true" />
+            <element signature="e#38456#38731#0" expanded="true" />
+            <element signature="e#38532#38570#0" expanded="true" />
+            <element signature="e#38948#38960#0" expanded="true" />
+            <element signature="e#39015#42584#0" expanded="true" />
+            <element signature="e#39127#39529#0" expanded="true" />
+            <element signature="e#39601#40050#0" expanded="true" />
+            <element signature="e#40131#40946#0" expanded="true" />
+            <element signature="e#41013#42414#0" expanded="true" />
+            <element signature="e#42739#43601#0" expanded="true" />
+            <element signature="e#42842#43196#0" expanded="true" />
+            <element signature="e#43397#43582#0" expanded="true" />
+            <element signature="e#43648#56714#0" expanded="true" />
+            <element signature="e#47741#52761#0" expanded="true" />
+            <element signature="e#49346#51560#0" expanded="true" />
+            <element signature="e#51639#52286#0" expanded="false" />
+            <element signature="e#51903#52269#0" expanded="true" />
+            <element signature="e#52866#56616#0" expanded="true" />
+            <element signature="e#53668#53911#0" expanded="true" />
+            <element signature="e#55600#55978#0" expanded="true" />
+            <element signature="e#56753#57173#0" expanded="true" />
+            <element signature="e#56847#57113#0" expanded="true" />
+            <marker date="1433414591170" expanded="true" signature="34090:34103" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -875,6 +1330,7 @@
             <element signature="e#2833#2951#0" expanded="true" />
             <element signature="e#3060#3150#0" expanded="true" />
             <element signature="e#3208#3355#0" expanded="true" />
+            <element signature="e#3405#11843#0" expanded="true" />
             <element signature="e#3512#3655#0" expanded="true" />
             <element signature="e#3698#3792#0" expanded="true" />
             <element signature="e#3827#4926#0" expanded="true" />
@@ -885,6 +1341,8 @@
             <element signature="e#5393#6066#0" expanded="true" />
             <element signature="e#6438#6909#0" expanded="true" />
             <element signature="e#6495#6893#0" expanded="true" />
+            <element signature="e#6943#8669#0" expanded="true" />
+            <element signature="e#8106#8536#0" expanded="true" />
             <element signature="e#8585#8612#0" expanded="true" />
             <element signature="e#8705#10058#0" expanded="true" />
             <element signature="e#8801#9714#0" expanded="true" />
@@ -893,7 +1351,6 @@
             <element signature="e#10180#10639#0" expanded="true" />
             <element signature="e#10455#10569#0" expanded="true" />
             <element signature="e#11066#11415#0" expanded="true" />
-            <element signature="e#11891#36222#0" expanded="true" />
             <element signature="e#12236#12663#0" expanded="true" />
             <element signature="e#12287#12626#0" expanded="true" />
             <element signature="e#12706#14371#0" expanded="true" />
@@ -903,59 +1360,58 @@
             <element signature="e#15478#15788#0" expanded="true" />
             <element signature="e#15687#15754#0" expanded="true" />
             <element signature="e#15811#15909#0" expanded="true" />
-            <element signature="e#15958#22478#0" expanded="true" />
-            <element signature="e#17373#17521#0" expanded="true" />
-            <element signature="e#19110#19349#0" expanded="true" />
-            <element signature="e#19390#21096#0" expanded="true" />
-            <element signature="e#21137#21161#0" expanded="true" />
-            <element signature="e#21341#21964#0" expanded="true" />
-            <element signature="e#22082#22151#0" expanded="true" />
-            <element signature="e#22295#22465#0" expanded="true" />
-            <element signature="e#22521#29985#0" expanded="true" />
-            <element signature="e#23306#23608#0" expanded="true" />
-            <element signature="e#23405#23584#0" expanded="true" />
-            <element signature="e#23649#25872#0" expanded="true" />
-            <element signature="e#24169#24651#0" expanded="true" />
-            <element signature="e#24369#24567#0" expanded="true" />
-            <element signature="e#25054#25532#0" expanded="true" />
-            <element signature="e#25252#25448#0" expanded="true" />
-            <element signature="e#25912#25998#0" expanded="true" />
-            <element signature="e#26046#26195#0" expanded="true" />
-            <element signature="e#26239#26702#0" expanded="true" />
-            <element signature="e#26748#29758#0" expanded="true" />
-            <element signature="e#26914#27106#0" expanded="true" />
-            <element signature="e#27186#29105#0" expanded="true" />
-            <element signature="e#28152#28338#0" expanded="true" />
-            <element signature="e#28402#28446#0" expanded="true" />
-            <element signature="e#30030#31180#0" expanded="true" />
-            <element signature="e#30459#30765#0" expanded="true" />
-            <element signature="e#31219#31523#0" expanded="true" />
-            <element signature="e#31571#35783#0" expanded="true" />
-            <element signature="e#34581#35396#0" expanded="true" />
-            <element signature="e#35168#35297#0" expanded="true" />
-            <element signature="e#35506#35647#0" expanded="true" />
-            <element signature="e#36297#36572#0" expanded="true" />
-            <element signature="e#36373#36411#0" expanded="true" />
-            <element signature="e#36789#36801#0" expanded="true" />
-            <element signature="e#36856#40425#0" expanded="true" />
-            <element signature="e#36968#37370#0" expanded="true" />
-            <element signature="e#37442#37891#0" expanded="true" />
-            <element signature="e#37972#38787#0" expanded="true" />
-            <element signature="e#38854#40255#0" expanded="true" />
-            <element signature="e#40580#41441#0" expanded="true" />
-            <element signature="e#40683#41037#0" expanded="true" />
-            <element signature="e#41238#41423#0" expanded="true" />
-            <element signature="e#41488#54554#0" expanded="true" />
-            <element signature="e#45581#50601#0" expanded="true" />
-            <element signature="e#47186#49400#0" expanded="true" />
-            <element signature="e#49479#50126#0" expanded="false" />
-            <element signature="e#49743#50109#0" expanded="true" />
-            <element signature="e#50706#54456#0" expanded="true" />
-            <element signature="e#51508#51751#0" expanded="true" />
-            <element signature="e#53440#53818#0" expanded="true" />
-            <element signature="e#54593#55013#0" expanded="true" />
-            <element signature="e#54687#54953#0" expanded="true" />
-            <marker date="1433314346535" expanded="true" signature="31931:31944" placeholder="..." />
+            <element signature="e#16736#18790#0" expanded="true" />
+            <element signature="e#17048#18748#0" expanded="true" />
+            <element signature="e#19530#19678#0" expanded="true" />
+            <element signature="e#21267#21506#0" expanded="true" />
+            <element signature="e#21547#23253#0" expanded="true" />
+            <element signature="e#23294#23318#0" expanded="true" />
+            <element signature="e#23498#24123#0" expanded="true" />
+            <element signature="e#24241#24310#0" expanded="true" />
+            <element signature="e#24454#24624#0" expanded="true" />
+            <element signature="e#25465#25767#0" expanded="true" />
+            <element signature="e#25564#25743#0" expanded="true" />
+            <element signature="e#25808#28031#0" expanded="true" />
+            <element signature="e#26328#26810#0" expanded="true" />
+            <element signature="e#26528#26726#0" expanded="true" />
+            <element signature="e#27213#27691#0" expanded="true" />
+            <element signature="e#27411#27607#0" expanded="true" />
+            <element signature="e#28071#28157#0" expanded="true" />
+            <element signature="e#28205#28354#0" expanded="true" />
+            <element signature="e#28398#28861#0" expanded="true" />
+            <element signature="e#28907#31917#0" expanded="true" />
+            <element signature="e#29345#31264#0" expanded="true" />
+            <element signature="e#30311#30497#0" expanded="true" />
+            <element signature="e#30561#30605#0" expanded="true" />
+            <element signature="e#32189#33339#0" expanded="true" />
+            <element signature="e#32618#32924#0" expanded="true" />
+            <element signature="e#33378#33682#0" expanded="true" />
+            <element signature="e#33730#37942#0" expanded="true" />
+            <element signature="e#36740#37555#0" expanded="true" />
+            <element signature="e#37327#37456#0" expanded="true" />
+            <element signature="e#37665#37806#0" expanded="true" />
+            <element signature="e#38456#38731#0" expanded="true" />
+            <element signature="e#38532#38570#0" expanded="true" />
+            <element signature="e#38948#38960#0" expanded="true" />
+            <element signature="e#39015#42584#0" expanded="true" />
+            <element signature="e#39127#39529#0" expanded="true" />
+            <element signature="e#39601#40050#0" expanded="true" />
+            <element signature="e#40131#40946#0" expanded="true" />
+            <element signature="e#41013#42414#0" expanded="true" />
+            <element signature="e#42739#43601#0" expanded="true" />
+            <element signature="e#42842#43196#0" expanded="true" />
+            <element signature="e#43397#43582#0" expanded="true" />
+            <element signature="e#43648#56714#0" expanded="true" />
+            <element signature="e#47741#52761#0" expanded="true" />
+            <element signature="e#49346#51560#0" expanded="true" />
+            <element signature="e#51639#52286#0" expanded="false" />
+            <element signature="e#51903#52269#0" expanded="true" />
+            <element signature="e#52866#56616#0" expanded="true" />
+            <element signature="e#53668#53911#0" expanded="true" />
+            <element signature="e#55600#55978#0" expanded="true" />
+            <element signature="e#56753#57173#0" expanded="true" />
+            <element signature="e#56847#57113#0" expanded="true" />
+            <marker date="1433414591170" expanded="true" signature="34090:34103" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1157,13 +1613,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37583894">
-          <caret line="44" column="43" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1186,35 +1635,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.editormd.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.2260536">
-          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
-          <folding>
-            <element signature="e#1536#3314#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="28" selection-start-line="92" selection-start-column="19" selection-end-line="92" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/common/artTemplate/3.0/template.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="69" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="69" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.cache.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="83" column="24" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1232,37 +1657,6 @@
           <folding>
             <element signature="e#10455#10664#0" expanded="false" />
             <element signature="e#50256#51088#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.iap.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.files-cache.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="40" selection-end-column="23" />
-          <folding>
-            <element signature="n#!!doc;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="n#!!block;n#coreDataToJSON#0;n#FileObj#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="n#!!block;n#getAllFiles#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="n#!!block;n#getNewFileObj#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="n#!!block;n#getLastModifyFileObj#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="e#1871#2029#0" expanded="false" />
-            <element signature="n#!!block;n#addFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="n#!!block;n#reLoadFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="e#2409#2545#0" expanded="false" />
-            <element signature="n#!!block;n#saveFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="e#2718#2854#0" expanded="false" />
-            <element signature="n#!!block;n#removeFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="e#3031#3229#0" expanded="false" />
-            <element signature="n#!!block;n#findFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="e#3441#3610#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1285,24 +1679,44 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.6042296">
           <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.files-cache.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="60" />
+          <folding>
+            <element signature="n#!!block;n#coreDataFromJSON#0;n#FileObj#0;n#RomanySoftPlugins#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.cache.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="83" column="24" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
+    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.iap.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.16">
-          <caret line="193" column="27" selection-start-line="193" selection-start-column="27" selection-end-line="193" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6963746">
+          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#script#3;n#body#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#createNewEditor#0;n#FileEditorManger#0;n#RomanySoftPlugins#0" expanded="true" />
+            <element signature="e#1055#1114#0" expanded="true" />
+            <element signature="n#!!block;n#getAllEditor#0;n#FileEditorManger#0;n#RomanySoftPlugins#0" expanded="true" />
+            <element signature="n#!!block;n#findEditorByFileId#0;n#FileEditorManger#0;n#RomanySoftPlugins#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1320,10 +1734,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.editormd.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="17" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2522658">
+          <caret line="80" column="71" selection-start-line="80" selection-start-column="71" selection-end-line="80" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6603774">
-          <caret line="227" column="47" selection-start-line="227" selection-start-column="47" selection-end-line="227" selection-end-column="47" />
+        <state vertical-scroll-proportion="-37.0">
+          <caret line="495" column="79" selection-start-line="495" selection-start-column="79" selection-end-line="495" selection-end-column="79" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
             <element signature="e#53#134#0" expanded="true" />
@@ -1338,6 +1768,7 @@
             <element signature="e#2833#2951#0" expanded="true" />
             <element signature="e#3060#3150#0" expanded="true" />
             <element signature="e#3208#3355#0" expanded="true" />
+            <element signature="e#3405#11843#0" expanded="true" />
             <element signature="e#3512#3655#0" expanded="true" />
             <element signature="e#3698#3792#0" expanded="true" />
             <element signature="e#3827#4926#0" expanded="true" />
@@ -1348,6 +1779,8 @@
             <element signature="e#5393#6066#0" expanded="true" />
             <element signature="e#6438#6909#0" expanded="true" />
             <element signature="e#6495#6893#0" expanded="true" />
+            <element signature="e#6943#8669#0" expanded="true" />
+            <element signature="e#8106#8536#0" expanded="true" />
             <element signature="e#8585#8612#0" expanded="true" />
             <element signature="e#8705#10058#0" expanded="true" />
             <element signature="e#8801#9714#0" expanded="true" />
@@ -1356,7 +1789,6 @@
             <element signature="e#10180#10639#0" expanded="true" />
             <element signature="e#10455#10569#0" expanded="true" />
             <element signature="e#11066#11415#0" expanded="true" />
-            <element signature="e#11891#36222#0" expanded="true" />
             <element signature="e#12236#12663#0" expanded="true" />
             <element signature="e#12287#12626#0" expanded="true" />
             <element signature="e#12706#14371#0" expanded="true" />
@@ -1366,59 +1798,76 @@
             <element signature="e#15478#15788#0" expanded="true" />
             <element signature="e#15687#15754#0" expanded="true" />
             <element signature="e#15811#15909#0" expanded="true" />
-            <element signature="e#15958#22478#0" expanded="true" />
-            <element signature="e#17373#17521#0" expanded="true" />
-            <element signature="e#19110#19349#0" expanded="true" />
-            <element signature="e#19390#21096#0" expanded="true" />
-            <element signature="e#21137#21161#0" expanded="true" />
-            <element signature="e#21341#21964#0" expanded="true" />
-            <element signature="e#22082#22151#0" expanded="true" />
-            <element signature="e#22295#22465#0" expanded="true" />
-            <element signature="e#22521#29985#0" expanded="true" />
-            <element signature="e#23306#23608#0" expanded="true" />
-            <element signature="e#23405#23584#0" expanded="true" />
-            <element signature="e#23649#25872#0" expanded="true" />
-            <element signature="e#24169#24651#0" expanded="true" />
-            <element signature="e#24369#24567#0" expanded="true" />
-            <element signature="e#25054#25532#0" expanded="true" />
-            <element signature="e#25252#25448#0" expanded="true" />
-            <element signature="e#25912#25998#0" expanded="true" />
-            <element signature="e#26046#26195#0" expanded="true" />
-            <element signature="e#26239#26702#0" expanded="true" />
-            <element signature="e#26748#29758#0" expanded="true" />
-            <element signature="e#26914#27106#0" expanded="true" />
-            <element signature="e#27186#29105#0" expanded="true" />
-            <element signature="e#28152#28338#0" expanded="true" />
-            <element signature="e#28402#28446#0" expanded="true" />
-            <element signature="e#30030#31180#0" expanded="true" />
-            <element signature="e#30459#30765#0" expanded="true" />
-            <element signature="e#31219#31523#0" expanded="true" />
-            <element signature="e#31571#35783#0" expanded="true" />
-            <element signature="e#34581#35396#0" expanded="true" />
-            <element signature="e#35168#35297#0" expanded="true" />
-            <element signature="e#35506#35647#0" expanded="true" />
-            <element signature="e#36297#36572#0" expanded="true" />
-            <element signature="e#36373#36411#0" expanded="true" />
-            <element signature="e#36789#36801#0" expanded="true" />
-            <element signature="e#36856#40425#0" expanded="true" />
-            <element signature="e#36968#37370#0" expanded="true" />
-            <element signature="e#37442#37891#0" expanded="true" />
-            <element signature="e#37972#38787#0" expanded="true" />
-            <element signature="e#38854#40255#0" expanded="true" />
-            <element signature="e#40580#41441#0" expanded="true" />
-            <element signature="e#40683#41037#0" expanded="true" />
-            <element signature="e#41238#41423#0" expanded="true" />
-            <element signature="e#41488#54554#0" expanded="true" />
-            <element signature="e#45581#50601#0" expanded="true" />
-            <element signature="e#47186#49400#0" expanded="true" />
-            <element signature="e#49479#50126#0" expanded="false" />
-            <element signature="e#49743#50109#0" expanded="true" />
-            <element signature="e#50706#54456#0" expanded="true" />
-            <element signature="e#51508#51751#0" expanded="true" />
-            <element signature="e#53440#53818#0" expanded="true" />
-            <element signature="e#54593#55013#0" expanded="true" />
-            <element signature="e#54687#54953#0" expanded="true" />
-            <marker date="1433314346535" expanded="true" signature="31931:31944" placeholder="..." />
+            <element signature="e#16736#18790#0" expanded="true" />
+            <element signature="e#17048#18748#0" expanded="true" />
+            <element signature="e#19530#19678#0" expanded="true" />
+            <element signature="e#21267#21506#0" expanded="true" />
+            <element signature="e#21547#23253#0" expanded="true" />
+            <element signature="e#23294#23318#0" expanded="true" />
+            <element signature="e#23498#24123#0" expanded="true" />
+            <element signature="e#24241#24310#0" expanded="true" />
+            <element signature="e#24454#24624#0" expanded="true" />
+            <element signature="e#25465#25767#0" expanded="true" />
+            <element signature="e#25564#25743#0" expanded="true" />
+            <element signature="e#25808#28031#0" expanded="true" />
+            <element signature="e#26328#26810#0" expanded="true" />
+            <element signature="e#26528#26726#0" expanded="true" />
+            <element signature="e#27213#27691#0" expanded="true" />
+            <element signature="e#27411#27607#0" expanded="true" />
+            <element signature="e#28071#28157#0" expanded="true" />
+            <element signature="e#28205#28354#0" expanded="true" />
+            <element signature="e#28398#28861#0" expanded="true" />
+            <element signature="e#28907#31917#0" expanded="true" />
+            <element signature="e#29345#31264#0" expanded="true" />
+            <element signature="e#30311#30497#0" expanded="true" />
+            <element signature="e#30561#30605#0" expanded="true" />
+            <element signature="e#32189#33339#0" expanded="true" />
+            <element signature="e#32618#32924#0" expanded="true" />
+            <element signature="e#33378#33682#0" expanded="true" />
+            <element signature="e#33730#37942#0" expanded="true" />
+            <element signature="e#36740#37555#0" expanded="true" />
+            <element signature="e#37327#37456#0" expanded="true" />
+            <element signature="e#37665#37806#0" expanded="true" />
+            <element signature="e#38456#38731#0" expanded="true" />
+            <element signature="e#38532#38570#0" expanded="true" />
+            <element signature="e#38948#38960#0" expanded="true" />
+            <element signature="e#39015#42584#0" expanded="true" />
+            <element signature="e#39127#39529#0" expanded="true" />
+            <element signature="e#39601#40050#0" expanded="true" />
+            <element signature="e#40131#40946#0" expanded="true" />
+            <element signature="e#41013#42414#0" expanded="true" />
+            <element signature="e#42739#43601#0" expanded="true" />
+            <element signature="e#42842#43196#0" expanded="true" />
+            <element signature="e#43397#43582#0" expanded="true" />
+            <element signature="e#43648#56714#0" expanded="true" />
+            <element signature="e#47741#52761#0" expanded="true" />
+            <element signature="e#49346#51560#0" expanded="true" />
+            <element signature="e#51639#52286#0" expanded="false" />
+            <element signature="e#51903#52269#0" expanded="true" />
+            <element signature="e#52866#56616#0" expanded="true" />
+            <element signature="e#53668#53911#0" expanded="true" />
+            <element signature="e#55600#55978#0" expanded="true" />
+            <element signature="e#56753#57173#0" expanded="true" />
+            <element signature="e#56847#57113#0" expanded="true" />
+            <marker date="1433414591170" expanded="true" signature="34090:34103" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6530612">
+          <caret line="273" column="58" selection-start-line="273" selection-start-column="58" selection-end-line="273" selection-end-column="58" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#script#3;n#body#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>

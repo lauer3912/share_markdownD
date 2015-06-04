@@ -51,6 +51,25 @@ module RomanySoftPlugins{
 
         }
 
+        // 获得所有的Editor对象
+        getAllEditor():any[]{
+            var t = this;
+            var key_pre = "FileObj";
+
+            var list = [];
+
+            for(var key in t){
+                if(key.indexOf(key_pre) === 0){
+                    var fileObj = t[key];
+                    if(fileObj instanceof FileObj){
+                        list.push(fileObj.assEditor);
+                    }
+                }
+            }
+
+            return list;
+        }
+
         // 查找Editor对象，通过文件ID
         findEditorByFileId(fileId: number, cb: Function){
             var key = "FileObj" + fileId;

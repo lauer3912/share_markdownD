@@ -40,6 +40,21 @@ var RomanySoftPlugins;
                 alert("no file");
             }
         };
+        // 获得所有的Editor对象
+        FileEditorManger.prototype.getAllEditor = function () {
+            var t = this;
+            var key_pre = "FileObj";
+            var list = [];
+            for (var key in t) {
+                if (key.indexOf(key_pre) === 0) {
+                    var fileObj = t[key];
+                    if (fileObj instanceof RomanySoftPlugins.FileObj) {
+                        list.push(fileObj.assEditor);
+                    }
+                }
+            }
+            return list;
+        };
         // 查找Editor对象，通过文件ID
         FileEditorManger.prototype.findEditorByFileId = function (fileId, cb) {
             var key = "FileObj" + fileId;

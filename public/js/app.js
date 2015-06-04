@@ -438,6 +438,35 @@
             if($.trim(ele.html()).length == 0){
                 var html = template('tpl_workspace', {});
                 ele.html(html);
+
+                // 注册与window.$fem 的处理变更方式
+                $NoticeCenter.add(function(message, info){
+                    if(c$.NCMessage.userSettingsChange === message){
+                        // 获取所有激活状态的下载的file 和 editor对象，然后对editor进行变化
+                        var editor_list = window.$fem.getAllEditor();
+
+                        // 循环处理配置
+                        $.each(editor_list, function(index, editor){
+                            if(typeof editor.config === "function"){
+                                editor.config("taskList", $UserSettings.editorSetting.enable_TaskList);
+                                editor.config("emoji", $UserSettings.editorSetting.enable_Emoji);
+                                editor.config("atLink", $UserSettings.editorSetting.enable_AtLink);
+                                editor.config("emailLink", $UserSettings.editorSetting.enable_EmailLink);
+                                editor.config("flowChart", $UserSettings.editorSetting.enable_FlowChart);
+                                editor.config("sequenceDiagram", $UserSettings.editorSetting.enable_SequenceDiagram);
+                                editor.config("tex", $UserSettings.editorSetting.enable_Tex);
+                                editor.config("toc", $UserSettings.editorSetting.enable_Toc);
+                                editor.config("codeFold", $UserSettings.editorSetting.enable_CodeFold);
+                                editor.config("htmlDecode", $UserSettings.editorSetting.enable_HtmlDecode);
+                                editor.config("styleActiveLine", $UserSettings.editorSetting.enable_StyleActiveLine);
+                                editor.config("lineNumbers", $UserSettings.editorSetting.enable_LineNumbers);
+                                editor.config("readOnly", $UserSettings.editorSetting.enable_ReadOnly);
+                                editor.config("searchReplace", $UserSettings.editorSetting.enable_SearchReplace);
+                                editor.config("tocm", $UserSettings.editorSetting.enable_Tocm);
+                            }
+                        });
+                    }
+                });
             }
 
             // 查找对应的Editor是否存在
@@ -539,7 +568,7 @@
 
                 var alreayFixed = false;
                 var customAutoFixedHandler = function(force){
-                    console.log('customAutoFixedHandler');
+                    //console.log('customAutoFixedHandler');
                     if(! alreayFixed && !force) return;
 
                     var toolbar = newEditorMd.toolbar;
@@ -1045,6 +1074,7 @@
                 return false; // 默认使用一个，后期，升级的时候，可以加入导入settings的设计
             });
         }
+
     };
 
     // 处理IAP

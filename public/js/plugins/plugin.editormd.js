@@ -36,7 +36,37 @@ var RomanySoftPlugins;
                 toolbarIcons: this.getDefault_toolbarIcons(),
                 appendMarkdown: _config.content || "" // 附加的md内容
                 ,
-                toolbarAutoFixed: _config.toolbarAutoFixed || true //工具栏是否自动填充位置
+                codeFold: (typeof _config.codeFold == "boolean") ? _config.codeFold : false //是否开启代码折叠功能
+                ,
+                searchReplace: (typeof _config.searchReplace == "boolean") ? _config.searchReplace : true //是否开启查找替换功能
+                ,
+                readOnly: (typeof _config.readOnly == "boolean") ? _config.readOnly : false //是否开启只读模式
+                ,
+                lineNumbers: (typeof _config.lineNumbers == "boolean") ? _config.lineNumbers : true //是否显示行号
+                ,
+                matchWordHighlight: (typeof _config.matchWordHighlight == "boolean") ? _config.matchWordHighlight : true //是否匹配文件高亮
+                ,
+                styleActiveLine: (typeof _config.styleActiveLine == "boolean") ? _config.styleActiveLine : true //是否高亮当前行
+                ,
+                toc: (typeof _config.toc == "boolean") ? _config.toc : true //是否开启Table of contents 功能
+                ,
+                tocm: (typeof _config.tocm == "boolean") ? _config.tocm : false //是否Using [TOCM] auto create Toc dropdown menu
+                ,
+                atLink: (typeof _config.atLink == "boolean") ? _config.atLink : true //是否开启@link功能
+                ,
+                emailLink: (typeof _config.emailLink == "boolean") ? _config.emailLink : true //是否开启Email地址自动link功能
+                ,
+                taskList: (typeof _config.taskList == "boolean") ? _config.taskList : false //是否开启Github Flavored Markdown task lists
+                ,
+                emoji: (typeof _config.emoji == "boolean") ? _config.emoji : false //是否开启emoji
+                ,
+                tex: (typeof _config.tex == "boolean") ? _config.tex : false //是否开启Tex(Latex)，based on KaTex功能
+                ,
+                flowChart: (typeof _config.flowChart == "boolean") ? _config.flowChart : false //是否开启FlowChart 功能
+                ,
+                sequenceDiagram: (typeof _config.sequenceDiagram == "boolean") ? _config.sequenceDiagram : false //是否开启SequenceDiagram 功能
+                ,
+                toolbarAutoFixed: (typeof _config.toolbarAutoFixed == "boolean") ? _config.toolbarAutoFixed : true //工具栏是否自动填充位置
                 ,
                 onload: _config.onload || function () {
                 } //加载成功后的处理
