@@ -81,7 +81,7 @@ module RomanySoftPlugins {
         }
 
         // 重新加载文件
-        reLoadFile(id:number, cb:Function){
+        reLoadFile(id:number, cb?:Function){
             "use strict";
             var t = this;
             $.each(t.data, function(index, obj){
@@ -93,7 +93,7 @@ module RomanySoftPlugins {
         }
 
         // 保存缓存项
-        saveFile(id: number, cb:Function){
+        saveFile(id: number, cb?:Function){
             "use strict";
             var t = this;
 
@@ -106,27 +106,58 @@ module RomanySoftPlugins {
         }
 
         // 删除文件缓存项
-        removeFile(id: number, cb:Function){
+        removeFile(id: number, cb?:Function){
             "use strict";
             var t = this;
 
             $.each(t.data, function(index, obj){
                 if(obj.id == id){
-                    cb && cb(obj);
                     t.data.splice($.inArray(obj, t.data), 1);
+                    cb && cb(obj);
                     return false;
                 }
-            })
+            });
         }
 
         // 查找文件对象
-        findFile(id: number, cb:Function):boolean{
+        findFile(id: number, cb?:Function):boolean{
             "use strict";
             var t = this;
 
             var find = false;
             $.each(t.data, function(index, obj){
                 if(obj.id == id){
+                    cb && cb(obj);
+                    find = true;
+                    return false;
+                }
+            });
+
+            return find;
+        }
+
+        // 查找文件对象，扩展方式
+        findFileEx(condition:{}, cb?:Function):boolean{
+            "use strict";
+            var t = this;
+
+            var find = false;
+
+            // 遍历key
+            var _keyFind = function(condition, obj){
+                for(var key in condition){
+                    if(obj.hasOwnProperty(key)){
+                        if(condition[key] != obj[key]){
+                            return false;
+                        }
+                    }
+                }
+
+                return true;
+            };
+
+            $.each(t.data, function(index, obj){
+                if (_keyFind(condition, obj)){
                     cb && cb(obj);
                     find = true;
                     return false;

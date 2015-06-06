@@ -40,6 +40,12 @@ module I18N{
                 "btnBuy": "Buy",
                 "btnCancel": "Cancel"
             }
+
+            // 统一消息
+            ,Message:{
+                "existOnImport_message": "The file '{path}' is already in workspace..",
+                "existOnImport_title":"Warning"
+            }
         };
 
         static workspacePage:any = {

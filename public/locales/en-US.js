@@ -39,6 +39,10 @@ var I18N;
                 "Content": "Already have the largest number of the current document [{docCount}], you could increase the maximum number of documents to meet your requirements.Every purchase, increased 5 documents.",
                 "btnBuy": "Buy",
                 "btnCancel": "Cancel"
+            },
+            Message: {
+                "existOnImport_message": "The file '{path}' is already in workspace..",
+                "existOnImport_title": "Warning"
             }
         };
         UI.workspacePage = {
