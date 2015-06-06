@@ -107,14 +107,14 @@
     <!--插件视图-->
     <div class="mui-panel">
         {{each plugins as obj i}}
-        <section class="mui-col-lg-2 mui-col-md-4 mui-col-xs-6 mui-panel">
+        <section class="mui-col-lg-4 mui-col-md-4 mui-col-xs-6  mui-z5 mui-panel">
             <header>
                 <a rel target="_blank">
                     <img class="plugin-screen" src="{{ obj.imageUrl }}">
                 </a>
             </header>
             <span class="mui-text-title">{{ obj.name }}</span>
-            <div>
+            <div class="">
                 <span class="mui-text-caption">{{ obj.description }}</span>
             </div>
 
@@ -148,7 +148,7 @@
 <script id="tpl_settings" type='text/html'>
     <!--设置-->
     <div class="mui-panel">
-        <section class="mui-panel">
+        <section class="mui-z3 mui-panel">
             <legend>{{ document.label }}</legend>
             <ul>
                 {{ each document.keys as key i }}
@@ -176,7 +176,7 @@
             </ul>
         </section>
 
-        <section class="mui-panel">
+        <section class="mui-z3 mui-panel">
             <legend>{{ editor.label }}</legend>
             <ul>
                 {{ each editor.keys as key i }}

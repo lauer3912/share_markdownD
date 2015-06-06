@@ -133,8 +133,8 @@
                                         fileObj.content_utf8 = obj.content;
                                         fileObj.mustReloadNextTime = false;
 
-                                        // TODO:发送消息通知
-
+                                        // 发送消息通知
+                                        $NoticeCenter.fire(c$.NCMessage.fileChange);
                                         $Router.go_workspace(fileObj);
                                     }
 
