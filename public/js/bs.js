@@ -1000,10 +1000,10 @@
             },
 
             ///截屏[整个屏幕]
-            captureFull: function (parms) {
+            captureFull: function (jsonObj) {
                 if (b$.pN) {
                     try {
-                        parms = parms || {};
+                        var parms = jsonObj || {};
                         //限制内部属性：
                         parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
                             }, true);
@@ -1015,6 +1015,70 @@
                         console.error(e);
                     }
                 }
+            },
+
+            /// 添加目录到变化监视器
+            addDirPathToChangeWatcher:function(jsonObj){
+                if (b$.pN){
+                    try{
+                        var parms = jsonObj || {};
+
+                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj){
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileWritten"} (app.js, line 270)
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileAttributesChanged"} (app.js, line 270)
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileSizeIncreased"} (app.js, line 270)
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"AccessWasRevoked"} (app.js, line 270)
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"LinkCountChanged"} (app.js, line 270)
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileRenamed"} (app.js, line 270)
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileDeleted"} (app.js, line 270)
+                            },true);
+                        parms['path'] = parms['path'] || (b$.pN.path.tempDir());
+
+                        b$.pN.window.createDirChangeWatcher($.toJSON(parms));
+                    }catch (e) {
+                        console.error(e);
+                    }
+                }
+            },
+
+            /// 添加文件目录到变化监视器
+            addFilePathToChangeWatcher:function(jsonObj){
+                if (b$.pN){
+                    try{
+                        var parms = jsonObj || {};
+
+                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj){
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileWritten"} (app.js, line 270)
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileAttributesChanged"} (app.js, line 270)
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileSizeIncreased"} (app.js, line 270)
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"AccessWasRevoked"} (app.js, line 270)
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"LinkCountChanged"} (app.js, line 270)
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileRenamed"} (app.js, line 270)
+                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileDeleted"} (app.js, line 270)
+                            },true);
+                        parms['path'] = parms['path'] || (b$.pN.path.tempDir());
+
+                        b$.pN.window.createFileChangeWatcher($.toJSON(parms));
+                    }catch (e) {
+                        console.error(e);
+                    }
+                }
+            },
+
+            /// 从变化监视器中移除
+            removeFromChangeWatcher:function(jsonObj){
+                if(b$.pN){
+                    try{
+                        var parms = jsonObj || {};
+                        parms['path'] = parms['path'] || (b$.pN.path.tempDir());
+
+                        return b$.pN.window.removeFromChangeWatcher($.toJSON(parms));
+                    }catch (e) {
+                        console.error(e);
+                    }
+                }
+
+                return false;
             }
 
         };

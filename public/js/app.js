@@ -42,7 +42,10 @@
         $Util.fn_tri18n = function(ele, parm){
             try{
                 return (new IntlMessageFormat(ele, c$.language)).format(parm);
-            }catch(e){return ""}
+            }catch(e){
+                console.error(e);
+                return "";
+            }
         }
     };
 
@@ -135,7 +138,26 @@
                             b$.Binary.getUTF8TextContentFromFile({
                                 callback:b$._get_callback(function(obj){
                                     if(obj.success){
-                                        fileObj.content_utf8 = obj.content;
+
+                                        // 检查内容是否一致
+                                        if(fileObj.content_utf8 != obj.content){
+
+                                            // 需要询问用户是否更新
+                                            var alertRet = b$.Notice.alert({
+                                                message:$Util.fn_tri18n(I18N.UI.filePage.Message["fileReloadConfirm_message"], {path:fileObj.path}),
+                                                title:$Util.fn_tri18n(I18N.UI.filePage.Message["fileReloadConfirm_title"]),
+                                                buttons:[
+                                                    $Util.fn_tri18n(I18N.UI.filePage.Message["fileReloadConfirm_btnOK"]),
+                                                    $Util.fn_tri18n(I18N.UI.filePage.Message["fileReloadConfirm_btnCancel"])
+                                                ]
+                                            });
+
+                                            if(alertRet == 1){
+                                                fileObj.content_utf8 = obj.content;
+                                            }
+
+                                        }
+
                                         fileObj.mustReloadNextTime = false;
 
                                         // 发送消息通知
@@ -242,6 +264,37 @@
 
 
             }
+            ,addFileToWatcher:function(in_path){
+                // 添加到系统变化监视器中
+                b$.App.addFilePathToChangeWatcher({
+                    callback:b$._get_callback(function(obj){
+                        var flag = obj.flag;
+                        window.$fc.findFileEx({path:obj.path}, function(fileObj){
+                            if(flag === "FileWritten"){
+                                fileObj.mustReloadNextTime = true;
+                                b$.Notice.dockMessage({
+                                    message:$Util.fn_tri18n(I18N.UI.filePage.Message["fileChangeByOther_message"], {path:fileObj.path}),
+                                    title:$Util.fn_tri18n(I18N.UI.filePage.Message["fileChangeByOther_title"])
+                                });
+                            }else if(flag === "FileRenamed"){
+                                b$.Notice.dockMessage({
+                                    message:$Util.fn_tri18n(I18N.UI.filePage.Message["fileRenamedByOther_message"], {path:fileObj.path}),
+                                    title:$Util.fn_tri18n(I18N.UI.filePage.Message["fileRenamedByOther_title"])
+                                });
+                            }else if(flag === "FileDeleted"){
+                                b$.Notice.dockMessage({
+                                    message:$Util.fn_tri18n(I18N.UI.filePage.Message["fileDeletedByOther_message"], {path:fileObj.path}),
+                                    title:$Util.fn_tri18n(I18N.UI.filePage.Message["fileDeletedByOther_title"])
+                                });
+                            }
+
+                        });
+
+
+                    },true),
+                    path:in_path
+                });
+            }
             ,importFiles:function(){
                 b$.importFiles({
                     callback: b$._get_callback(function(info){
@@ -263,6 +316,9 @@
                                     newFileObj.mustReloadNextTime = true;
                                     window.$fc.addFile(newFileObj, function(){});
                                     window.$fem.addNewFileObj(newFileObj);
+
+                                    // 添加到监视器中
+                                    c$.UIActions.addFileToWatcher(newFileObj.path);
 
                                     // 发送消息通知
                                     $NoticeCenter.fire(c$.NCMessage.fileChange);
@@ -306,6 +362,9 @@
                                 newFileObj.mustReloadNextTime = true;
                                 window.$fc.addFile(newFileObj, function(){});
                                 window.$fem.addNewFileObj(newFileObj);
+
+                                // 添加到监视器中
+                                c$.UIActions.addFileToWatcher(newFileObj.path);
 
                                 // 发送消息通知
                                 $NoticeCenter.fire(c$.NCMessage.fileChange);
@@ -354,6 +413,11 @@
                         newFileObj.coreDataFromJSON(cacheObj.value); // 数据还原
                         window.$fc.addFile(newFileObj, function(){});
                         window.$fem.addNewFileObj(newFileObj);
+
+                        // 添加到监视器中
+                        if(!newFileObj.is_tmp && newFileObj.path.length > 0){
+                            c$.UIActions.addFileToWatcher(newFileObj.path);
+                        }
                         mustCreateNew = false;
                     });
                 }

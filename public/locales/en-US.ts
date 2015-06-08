@@ -44,7 +44,18 @@ module I18N{
             // 统一消息
             ,Message:{
                 "existOnImport_message": "The file '{path}' is already in workspace..",
-                "existOnImport_title":"Warning"
+                "existOnImport_title":"Warning",
+                "fileChangeByOther_message":"The file '{path}' contents has changed ",
+                "fileChangeByOther_title":"Information",
+                "fileRenamedByOther_message":"The file '{path}' has renamed ",
+                "fileRenamedByOther_title":"Information",
+                "fileDeletedByOther_message":"The file '{path}' has deleted ",
+                "fileDeletedByOther_title":"Information",
+                "fileReloadConfirm_title":"Warning",
+                "fileReloadConfirm_message":"The local file '{path}' content has changed, whether to reload?",
+                "fileReloadConfirm_btnOK":"Reload",
+                "fileReloadConfirm_btnCancel":"Don't Reload"
+
             }
         };
 
