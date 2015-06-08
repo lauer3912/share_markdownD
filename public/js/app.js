@@ -154,8 +154,15 @@
 
                                             if(alertRet == 1){
                                                 fileObj.content_utf8 = obj.content;
+                                                try{
+                                                    if(fileObj.assEditor){
+                                                        // 更新内容
+                                                        $EditorProvider.setContent(fileObj.content_utf8, fileObj.assEditor);
+                                                    }
+                                                }catch(e){
+                                                    console.error(e);
+                                                }
                                             }
-
                                         }
 
                                         fileObj.mustReloadNextTime = false;
@@ -601,7 +608,6 @@
                 // 使用CSS来控制显示
                 $(thisPage + " > div").addClass("mui-hide").removeClass("mui-show");
                 $('#' + div_id).addClass("mui-show").removeClass("mui-hide");
-
             }else{
                 $(thisPage + " > div").removeClass("mui-show").addClass("mui-hide");
 
