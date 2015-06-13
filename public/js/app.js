@@ -236,18 +236,21 @@
                 });
 
             }
+            ,crateNewFileObj:function(){
+                var newFileObj = window.$fc.getNewFileObj();
+                window.$fc.addFile(newFileObj, function(){});
+                window.$fem.addNewFileObj(newFileObj);
+
+                // 发送消息通知
+                $NoticeCenter.fire(c$.NCMessage.fileChange);
+                return newFileObj;
+            }
             ,createNew:function(){
                 //检查当前的文档数量，然后，判断是否还可以继续创建文档
                 var curFilesCount = window.$fc.getAllFiles().length;
                 var macFileCount = $UserSettings.documentSetting.maxDocumentCount;
                 if(curFilesCount < macFileCount){
-                    var newFileObj = window.$fc.getNewFileObj();
-                    window.$fc.addFile(newFileObj, function(){});
-                    window.$fem.addNewFileObj(newFileObj);
-
-                    // 发送消息通知
-                    $NoticeCenter.fire(c$.NCMessage.fileChange);
-
+                    c$.UIActions.crateNewFileObj();
                     $Router.go_files();
                 }else{
                     var btnBuy = $Util.fn_tri18n(I18N.UI.filePage.createNewDocTip["btnBuy"]);
@@ -592,6 +595,9 @@
             var thisPage = '#view-workspace';
 
             // 处理标题
+            if(null == window.$fc.getLastModifyFileObj()){
+                c$.UIActions.crateNewFileObj();
+            }
             var _curFileObj = fileObj || window.$fc.getLastModifyFileObj();
 
             var wk = $Util.fn_tri18n(I18N.UI.workspacePage["Title"]);
