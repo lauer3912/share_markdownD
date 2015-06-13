@@ -16,7 +16,8 @@ body {
 .mui-appbar .mui-container {
   width: 100%;
 }
-.mui-appbar #appbar-sidenav-toggle {
+.mui-appbar #appbar-sidenav-toggle,
+.mui-appbar #appbar-help {
   width: 63px;
   height: 63px;
   line-height: 63px;
@@ -28,7 +29,8 @@ body {
   text-decoration: none !important;
   background-color: transparent;
 }
-.mui-appbar #appbar-sidenav-toggle :focus {
+.mui-appbar #appbar-sidenav-toggle :focus,
+.mui-appbar #appbar-help :focus {
   outline: none !important;
 }
 .mui-appbar #nav-title {

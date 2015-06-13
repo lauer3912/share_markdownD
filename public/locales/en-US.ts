@@ -107,6 +107,7 @@ module I18N{
         static pluginMgrPage:any = {
             "Title": "Plugins Manager"
             ,"btnBuy": "Active"
+            ,"btnBuyRestore":"Restore buy"
         };
 
         static helpPage:any = {

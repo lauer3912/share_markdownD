@@ -15,7 +15,7 @@ module RomanySoftPlugins {
         mustReloadNextTime: boolean = false;// 下次是否必须从文件中加载内容
         lastModify: number = $.now();       // 最后修改时间戳
         assEditor: any = null;              // 关联的Editor的对象的信息
-        content_utf8: string = "111wewe";   // 内容
+        content_utf8: string = "";   // 内容
 
         // 获取核心的数据的json系列化
         coreDataToJSON():string{

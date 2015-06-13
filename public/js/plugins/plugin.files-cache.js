@@ -16,7 +16,7 @@ var RomanySoftPlugins;
             this.mustReloadNextTime = false; // 下次是否必须从文件中加载内容
             this.lastModify = $.now(); // 最后修改时间戳
             this.assEditor = null; // 关联的Editor的对象的信息
-            this.content_utf8 = "111wewe"; // 内容
+            this.content_utf8 = ""; // 内容
         }
         // 获取核心的数据的json系列化
         FileObj.prototype.coreDataToJSON = function () {

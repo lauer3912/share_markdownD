@@ -4,35 +4,83 @@
 
 ///<reference path="../../tsd/typings/jquery/jquery.d.ts" />
 module RomanySoftPlugins {
-
     export class EditorMdServices{
         version:string = "1.4.4";
+        editormd:any = editormd;
         default_lib_path:string = "common/editor.md/"+ this.version +"/editor.md/lib/";  // 默认版本哭路径
+        default_lang_path:string = "locales/extend/editormd/";  // 默认版本路径
 
         getDefault_toolbarIcons(){
-            if(editormd.version >= "1.4.0"){
-                return ["undo", "redo", "|",
+            var toolList = [];
+            if(this.editormd.version >= "1.4.0"){
+
+                var allList = ["undo", "redo", "|",
                     "bold","del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
                     "h1", "h2", "h4", "h4", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
-                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
+                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime",
+                    "emoji",
+                    "html-entities", "pagebreak", "|",
                     "goto-line", "watch", "preview", "watch", "fullscreen","|",
-                    "search", "clear"]
+                    "search", "clear"];
+
+                $.each(allList, function(index, obj){
+                   if(null != obj){
+                       toolList.push(obj);
+                   }
+                });
             }
+
+            return toolList;
         }
 
-        configEmoji(){
+        configEmoji(cb:Function){
             //配置emoji的. 配置 You can custom Emoji's graphics files url path
-            editormd.emoji = {
+            this.editormd.emoji = {
                 path  : "http://www.emoji-cheat-sheet.com/graphics/emojis/",
                 ext   : ".png"
             };
 
             //配置Twemoji的. Twitter Emoji (Twemoji)  graphics files url path
-            editormd.twemoji = {
+            this.editormd.twemoji = {
                 path : "http://twemoji.maxcdn.com/72x72/",
                 ext  : ".png"
             };
+        }
+
+        /**
+         * 配置语言
+         * @param lang 语言标识
+         * @param cb   回调函数
+         */
+        configLanguage(lang:string, cb:Function){
+            this.editormd.loadScript(this.default_lang_path + lang, function(){
+                cb && cb();
+            })
+        }
+
+        /**
+         * 重新配置工具栏的函数
+         * @param handlerName
+         * @param newHandler
+         * @param append
+         */
+        resetToolbarHandler(handlerName:string,  newHandler:Function, append:boolean){
+            var toolbarHandlers = this.editormd.toolbarHandlers;
+
+            if(handlerName in toolbarHandlers){
+                var oldFunc = toolbarHandlers[handlerName];
+                toolbarHandlers[handlerName] = function(){
+                    if(append){
+                        var ret = newHandler && newHandler();
+                        if(false == ret){
+                            oldFunc && oldFunc();
+                        }
+                    }else{
+                        newHandler && newHandler();
+                    }
+                };
+            }
         }
 
 
@@ -41,7 +89,7 @@ module RomanySoftPlugins {
             var _config = in_config || {};
 
             // 插件部分
-            var ui_ele_editor = editormd(ui_ele,{
+            var ui_ele_editor = this.editormd(ui_ele,{
                 width: _config.width || "100%",
                 height: _config.height || $(document).height,
                 path: this.default_lib_path

@@ -125,6 +125,9 @@
                 })
             }
 
+            ,buyRestore:function(){ // 恢复购买
+                b$.IAP.restore();
+            }
             ,getEditorDivEle:function(id){
                 var div_id = "div_editor" + id;
                 return div_id;
@@ -348,6 +351,39 @@
 
         (function (){
 
+            // 激活内置的$EditorProvider配置
+            $EditorProvider.configEmoji();
+            $EditorProvider.configLanguage(c$.language, function(){
+            });
+            $EditorProvider.resetToolbarHandler("emoji",function(){
+                if(false == $UserSettings.editorSetting.enable_Emoji){
+                    //弹出购买对话框
+                    if(_.has(c$.Map_Settings2Product,"editorSetting.enable_Emoji")){
+                        var productId = _.property("editorSetting.enable_Emoji")(c$.Map_Settings2Product);
+                        var btnBuy = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnBuy"]);
+                        var btnCancel = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnCancel"]);
+                        //
+                        layer.open({
+                            icon:0
+                            ,title: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Title"])
+                            ,content: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Content"])
+                            ,btn:[btnBuy, btnCancel]
+                            ,yes: function(index){
+                                layer.close(index);
+                                c$.UIActions.buyPlugin(productId);
+                            }
+                            ,cancel:function(index){
+
+                            }
+                        });
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }, true);
+
             // 开启支持拖拽功能
             b$.enableDragDropFeature({
                 callback:b$._get_callback(function(info){
@@ -384,7 +420,6 @@
                 }, true),
                 fileTypes:['md']
             });
-
 
             // 注册缓存数据变更的消息处理函数(来自消息中心)
             $NoticeCenter.add(function(message, fileId){
@@ -436,7 +471,6 @@
                 window.$fem.addNewFileObj(newFileObj);
             }
 
-
             //发送消息通知
             $NoticeCenter.fire(c$.NCMessage.fileChange);
             $Router.go_workspace(window.$fc.getLastModifyFileObj());
@@ -451,7 +485,7 @@
         if (typeof Router === "undefined"){console.error('director router not config...');return;}
 
         // 所有的页面配置
-        var allPageList = ['#leftNav','#view-files','#view-workspace','#view-plugins', '#view-settings', '#view-help', "#view-about"];
+        var allPageList = ['#leftNav','#view-files','#view-workspace','#view-plugins', '#view-settings', "#view-about"];
 
         $Router.fn_showOrHide = function(eleList, show, auto, cb){
             $.each(eleList, function(index, ele) {
@@ -483,7 +517,6 @@
                         ,{name: $Util.fn_tri18n(I18N.UI.navPage["Workspace"]), href: "#/workspace", class:" icon-dashboard"}
                         ,{name: $Util.fn_tri18n(I18N.UI.navPage["Plugins"]), href: "#/pluginsMgr", class:" icon-extension"}
                         ,{name: $Util.fn_tri18n(I18N.UI.navPage["Settings"]), href: "#/settings", class:" icon-settings"}
-                        ,{name: $Util.fn_tri18n(I18N.UI.navPage["Help"]), href: "#/help", class:" icon-help"}
                         ,{name: $Util.fn_tri18n(I18N.UI.navPage["About"]), href: "#/about", class:" icon-info"}
 
                     ]
@@ -496,6 +529,11 @@
 
                 $('#appbar-sidenav-toggle').on('click', function(){
                     $Router.fn_showOrHide([thisPage], false, true);
+                });
+
+                $('#appbar-help').on('click', function(){
+                    //TODO:添加help的链接地址
+                    b$.App.open("")
                 });
 
                 // 当点击DIV以外的地方，隐藏该DIV
@@ -934,7 +972,8 @@
             // 设置传递参数
             var o = {
                 plugins:enablePlugins,
-                btnBuyTitle:$Util.fn_tri18n(I18N.UI.pluginMgrPage["btnBuy"])
+                btnBuyTitle:$Util.fn_tri18n(I18N.UI.pluginMgrPage["btnBuy"]),
+                btnBuyRestoreTitle:$Util.fn_tri18n(I18N.UI.pluginMgrPage["btnBuyRestore"])
             };
 
             var html = template('tpl_pluginsMgr', o);
@@ -945,16 +984,6 @@
             $Router.fn_showOrHide([thisPage], true);
         };
 
-        $Router.go_help = function(){
-            console.log("help");
-            var title = $Util.fn_tri18n(I18N.UI.helpPage["Title"]);
-            $('#nav-title').html(title);
-
-            var thisPage = '#view-help';
-
-            $Router.fn_showOrHide(allPageList, false);
-            $Router.fn_showOrHide([thisPage], true);
-        };
 
         $Router.go_about$license = function(){
             console.log("about$license");
@@ -1223,7 +1252,7 @@
         $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.fileSave", quantity:1,  name:"File Save", description: "支持保存文件功能", imageUrl:defaultImg}));
 
         // [商品]文档控制部分
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "append5documentCount", price:"1$", name:"文档数量+5", description: "最大文档数量增加5", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "increase5documentCount", price:"1$", name:"文档数量+5", description: "最大文档数量增加5", imageUrl:defaultImg}));
         $IAPProvider.addProduct(ProductC.create({id:prefix + "enableAutoSave", price:"1$", name:"开启自动保存", description: "此项，可以开启自动保存功能", imageUrl:defaultImg}));
         $IAPProvider.addProduct(ProductC.create({id:prefix + "enableAutoRestore", price:"1$", name:"开启自动恢复", description: "此项，可以开启自动恢复功能", imageUrl:defaultImg}));
 
@@ -1253,7 +1282,7 @@
 
             c$.Map_Settings2Product = {
                 // [商品]文档控制部分
-                "documentSetting.maxDocumentCount":prefix + "append5documentCount",
+                "documentSetting.maxDocumentCount":prefix + "increase5documentCount",
                 "documentSetting.autoSave":prefix + "enableAutoSave",
                 "documentSetting.autoRestore":prefix + "enableAutoRestore",
 
@@ -1283,7 +1312,7 @@
 
                     // [商品]文档控制部分
                     var _us_d = $UserSettings.documentSetting;
-                    if (product.id == (prefix + "append5documentCount")) _us_d.maxDocumentCount = 2 + product.quantity * 5;
+                    if (product.id == (prefix + "increase5documentCount")) _us_d.maxDocumentCount = 2 + product.quantity * 5;
                     if (product.id == (prefix + "enableAutoSave")) _us_d.autoSave = true;
                     if (product.id == (prefix + "enableAutoRestore")) _us_d.autoRestore = true;
                     // [商品]编辑器功能

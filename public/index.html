@@ -19,8 +19,11 @@
                     <div class="mui-col-md-1 mui-text-left">
                         <a id="appbar-sidenav-toggle" href="#/leftNav"><i class="icon-menu"></i></a>
                     </div>
-                    <div class="mui-col-md-8 mui-text-display2">
+                    <div class="mui-col-md-10 mui-text-display2">
                         <span id="nav-title"></span>
+                    </div>
+                    <div class="mui-col-md-1 mui-text-right">
+                        <span id="appbar-help" ><i class="icon-help"></i></span>
                     </div>
                 </div>
             </div>
@@ -32,7 +35,6 @@
         <div id="view-workspace" style="display: none"></div>
         <div id="view-plugins" style="display: none"></div>
         <div id="view-settings" style="display: none"></div>
-        <div id="view-help" style="display: none"></div>
         <div id="view-about" style="display: none"></div>
     </div>
     <div id="leftNav" style="display: none"></div>
@@ -79,17 +81,17 @@
                     </span>
                     <i class="mui-col-md-4 mui-col-xs-4">
                         <fieldset>
-                            <button class="mui-btn mui-btn-default mui-btn-flat icon-edit" onclick="window.UI.c$.UIActions.loadFile('{{ obj.id  }}')">{{btnLoadTitle}}</button>
-                            <button class="mui-btn mui-btn-default mui-btn-flat icon-save" onclick="window.UI.c$.UIActions.saveFile('{{ obj.id }}')">{{btnSaveTitle}}</button>
-                            <button class="mui-btn mui-btn-default mui-btn-flat icon-remove-circle-outline" onclick="window.UI.c$.UIActions.removeFilesItem('{{  obj.id }}')">{{btnRemoveTitle}}</button>
+                            <button class="mui-btn mui-btn-primary mui-btn-flat icon-edit" onclick="window.UI.c$.UIActions.loadFile('{{ obj.id  }}')">{{btnLoadTitle}}</button>
+                            <button class="mui-btn mui-btn-primary mui-btn-flat icon-save" onclick="window.UI.c$.UIActions.saveFile('{{ obj.id }}')">{{btnSaveTitle}}</button>
+                            <button class="mui-btn mui-btn-primary mui-btn-flat icon-remove-circle-outline" onclick="window.UI.c$.UIActions.removeFilesItem('{{  obj.id }}')">{{btnRemoveTitle}}</button>
                         </fieldset>
                     </i>
                 </section>
             </li>
             {{/each}}
         </ul>
-        <button class="mui-btn mui-btn-default mui-btn-raised" onclick="window.UI.c$.UIActions.createNew()">{{btnNewFileTitle}}</button>
-        <button class="mui-btn mui-btn-default mui-btn-raised" onclick="window.UI.c$.UIActions.importFiles()">{{btnImportTitle}}</button>
+        <button class="mui-btn mui-btn-primary mui-btn-raised" onclick="window.UI.c$.UIActions.createNew()">{{btnNewFileTitle}}</button>
+        <button class="mui-btn mui-btn-primary mui-btn-raised" onclick="window.UI.c$.UIActions.importFiles()">{{btnImportTitle}}</button>
         <p>
             <em class="icon-live-help">{{emLabel}}</em>
             <strong>
@@ -106,42 +108,50 @@
 <script id="tpl_pluginsMgr" type='text/html'>
     <!--插件视图-->
     <div class="mui-panel">
-        {{each plugins as obj i}}
-        <section class="mui-col-lg-4 mui-col-md-4 mui-col-xs-6  mui-z5 mui-panel">
-            <header>
-                <a rel target="_blank">
-                    <img class="plugin-screen" src="{{ obj.imageUrl }}">
+        <div class="mui-z5 mui-text-right">
+            <button class="mui-btn mui-btn-accent mui-btn-raised" onclick="window.UI.c$.UIActions.buyRestore()">
+                {{btnBuyRestoreTitle}}
+            </button>
+        </div>
+
+        <div class="mui-panel">
+            {{each plugins as obj i}}
+            <section class="mui-col-lg-4 mui-col-md-4 mui-col-xs-6  mui-z5 mui-panel">
+                <header>
+                    <a rel target="_blank">
+                        <img class="plugin-screen" src="{{ obj.imageUrl }}">
+                    </a>
+                </header>
+                <span class="mui-text-title">{{ obj.name }}</span>
+                <div class="">
+                    <span class="mui-text-caption">{{ obj.description }}</span>
+                </div>
+
+
+
+                <div data-id= "{{ obj.id }}" class="ribbon">
+                    {{if (obj.enable && obj.quantity > 0)}}
+                    <i class="icon-check mui-show"></i>
+                    {{else}}
+                    <i class="icon-check mui-hide"></i>
+                    {{/if }}
+                </div>
+
+                <a data-id="{{ obj.id }}">
+                    {{if (obj.quantity == 0 && obj.inAppStore == true)}}
+
+                    <button class="mui-btn mui-btn-danger mui-btn-raised"
+                            onclick="window.UI.c$.UIActions.buyPlugin('{{ obj.id }}')">{{btnBuyTitle}}
+                    </button>
+                    {{else}}
+                    <button class="mui-btn mui-btn-default mui-btn-flat" disabled>
+                    </button>
+                    {{/if}}
                 </a>
-            </header>
-            <span class="mui-text-title">{{ obj.name }}</span>
-            <div class="">
-                <span class="mui-text-caption">{{ obj.description }}</span>
-            </div>
 
-
-
-            <div data-id= "{{ obj.id }}" class="ribbon">
-                {{if (obj.enable && obj.quantity > 0)}}
-                <i class="icon-check mui-show"></i>
-                {{else}}
-                <i class="icon-check mui-hide"></i>
-                {{/if }}
-            </div>
-
-
-            <a data-id="{{ obj.id }}">
-                {{if (obj.quantity == 0 && obj.inAppStore == true)}}
-                <button class="mui-btn mui-btn-danger mui-btn-raised"
-                        onclick="window.UI.c$.UIActions.buyPlugin('{{ obj.id }}')">{{btnBuyTitle}}
-                </button>
-                {{else}}
-                <button class="mui-btn mui-btn-default mui-btn-flat" disabled>
-                </button>
-                {{/if}}
-            </a>
-        </section>
-        {{/each}}
-
+            </section>
+            {{/each}}
+        </div>
     </div>
 </script>
 
@@ -194,12 +204,6 @@
                 {{ /each }}
             </ul>
         </section>
-    </div>
-</script>
-
-<script id="tpl_help" type='text/html'>
-    <!--帮助-->
-    <div class="mui-panel">
     </div>
 </script>
 

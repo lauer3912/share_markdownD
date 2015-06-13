@@ -99,7 +99,8 @@ var I18N;
         };
         UI.pluginMgrPage = {
             "Title": "Plugins Manager",
-            "btnBuy": "Active"
+            "btnBuy": "Active",
+            "btnBuyRestore": "Restore buy"
         };
         UI.helpPage = {
             "Title": "Help"
