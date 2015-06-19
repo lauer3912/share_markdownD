@@ -13,70 +13,70 @@ module I18N{
     export class UI {
         static navPage:any = {
             "Files": "文件"
-            ,"Workspace": "工作区"
+            ,"Workspace": "工作區"
             ,"Plugins": "插件"
-            ,"Settings": "设置"
-            ,"Help": "帮助"
-            ,"About": "关于"
+            ,"Settings": "設置"
+            ,"Help": "幫助"
+            ,"About": "關於"
         };
 
         static filePage:any = {
             "Title": "文件管理"
-            ,"Btn-Load": "加载"
+            ,"Btn-Load": "加載"
             ,"Btn-Save": "保存"
             ,"Btn-Remove": "移除"
             ,"Btn-New": "新建文件"
-            ,"Btn-ImportFiles": "导入文件"
-            ,"em-label": "备注:"
-            ,"note-label": "文件的变化都存在缓存中，如果你想保存文件，需要点击保存按钮"
-            ,"SaveDialog-Title": "另存为"
+            ,"Btn-ImportFiles": "導入文件"
+            ,"em-label": "備註:"
+            ,"note-label": "文件的變化都存在緩存中，如果你想保存文件，需要點擊保存按鈕"
+            ,"SaveDialog-Title": "另存為"
             ,"SaveDialog-BtnSave": "保存"
-            ,"ImportDialog-Title": "导入 .md 文件"
-            ,"ImportDialog-BtnImport": "导入"
+            ,"ImportDialog-Title": "導入 .md 文件"
+            ,"ImportDialog-BtnImport": "導入"
 
             ,createNewDocTip:{
                 "Title":"消息",
-                "Content": "已经拥有数量最多的当前文档的 [{docCount}], 你可以增加最大文件数，以满足您的要求。每次购买，增加5个文档数量。",
-                "btnBuy": "购买",
+                "Content": "已經擁有數量最多的當前文檔的 [{docCount}], 你可以增加最大文件數，以滿足您的要求。每次購買，增加5個文檔數量。",
+                "btnBuy": "購買",
                 "btnCancel": "取消"
             }
 
             // 统一消息
             ,Message:{
-                "existOnImport_message": "文档 '{path}' 已经存在于工作空间..",
+                "existOnImport_message": "文檔 '{path}' 已經存在於工作空間..",
                 "existOnImport_title":"警告",
-                "fileChangeByOther_message":"文档 '{path}' 内容发生变化 ",
+                "fileChangeByOther_message":"文檔 '{path}' 內容髮生變化 ",
                 "fileChangeByOther_title":"信息",
-                "fileRenamedByOther_message":"文档 '{path}' 已经被重命名 ",
+                "fileRenamedByOther_message":"文檔 '{path}' 已經被重命名 ",
                 "fileRenamedByOther_title":"信息",
-                "fileDeletedByOther_message":"文档 '{path}' 被删除",
+                "fileDeletedByOther_message":"文檔 '{path}' 被删除",
                 "fileDeletedByOther_title":"信息",
                 "fileReloadConfirm_title":"警告",
-                "fileReloadConfirm_message":"本地文档 '{path}' 内容发生变化, 是否重新加载?",
-                "fileReloadConfirm_btnOK":"重新加载",
-                "fileReloadConfirm_btnCancel":"不加载"
+                "fileReloadConfirm_message":"本地文檔 '{path}' 內容髮生變化, 是否重新加載?",
+                "fileReloadConfirm_btnOK":"重新加載",
+                "fileReloadConfirm_btnCancel":"不加載"
 
             }
         };
 
         static workspacePage:any = {
-            "Title": "工作区"
+            "Title": "工作區"
         };
 
         static settingsPage:any = {
-            "Title": "设置",
+            "Title": "設置",
             btnReset:"重置",
-            btnApply:"应用",
+            btnApply:"應用",
             document:{
-                label:"[文档设置]",
-                maxDocumentCount: "最大同时编辑文档数量",
-                enableTabMode: "切换到Tab模式",
-                autoSave: "自动保存",
-                autoSaveSecs: "保存频率(sec)",
-                autoRestore: "自动恢复",
+                label:"[文檔設置]",
+                maxDocumentCount: "最大同時編輯文檔數量",
+                enableTabMode: "切換到Tab模式",
+                autoSave: "自動保存",
+                autoSaveSecs: "保存頻率(sec)",
+                autoRestore: "自動恢復",
             },
             editor:{
-                label:"[编辑器设置]",
+                label:"[編輯器設置]",
                 enable_TaskList:"激活 github task lists",
                 enable_Emoji:"激活 Emoji",
                 enable_AtLink:"激活 AtLink",
@@ -98,8 +98,8 @@ module I18N{
             // 购买信息
             Message:{
                 Title:"提示",
-                Content:"你需要购买来激活",
-                btnBuy:"购买",
+                Content:"你需要購買來激活",
+                btnBuy:"購買",
                 btnCancel:"取消"
             }
         };
@@ -107,15 +107,15 @@ module I18N{
         static pluginMgrPage:any = {
             "Title": "插件管理"
             ,"btnBuy": "激活"
-            ,"btnBuyRestore":"恢复购买"
+            ,"btnBuyRestore":"恢復購買"
         };
 
         static aboutPage:any = {
-            "Title": "关于",
+            "Title": "關於",
             App:{
-                description:"一款 markdown 编辑器，追求速度、简单及安全",
-                copyright:"版权 2015 Romanysoft LAB. 版权所有.",
-                creditsTitle:"构建离不开一些开源项目和其他开放源码软件。"
+                description:"一款markdown 編輯器，追求速度、簡單及安全",
+                copyright:"版權 2015 Romanysoft LAB. 版權所有.",
+                creditsTitle:"構建離不開一些開源項目和其他開放源碼軟件。"
             }
         };
     }
@@ -143,13 +143,13 @@ module I18N{
             var t = this;
             var o = orgObj || {};
             o[t.getId("support.importFile")] = {
-                name: "打开、导入文件",
-                description:"支持打开、导入一个或多个文件"
+                name: "打開、導入文件",
+                description:"支持打開、導入一個或多個文件"
             };
 
             o[t.getId("support.dragFile")] = {
                 name: "拖拽文件",
-                description:"支持拖拽一个或多个文件"
+                description:"支持拖拽一個或多個文件"
             };
 
             o[t.getId("support.fileSave")] = {
@@ -158,18 +158,18 @@ module I18N{
             };
 
             o[t.getId("increase5documentCount")] = {
-                name: "增加5个文档数量",
-                description:"如果你需要编辑更多的文件，那么你需要增加同步文档编辑以这种方式数的支持。每一次购买，增加编辑5个文档数量"
+                name: "增加5個文檔數量",
+                description:"如果你需要編輯更多的文件，那麼你需要增加同步文檔編輯以這種方式數的支持。每一次購買，增加編輯5個文檔數量"
             };
 
             o[t.getId("enableAutoSave")] = {
-                name: "自动保存",
+                name: "自動保存",
                 description:"支持文档自动保存特性"
             };
 
             o[t.getId("enableAutoRestore")] = {
-                name: "自动恢复",
-                description:"支持文档自动恢复特性"
+                name: "自動恢復",
+                description:"支持文檔自動恢復特性"
             };
 
             return o;
@@ -187,72 +187,72 @@ module I18N{
 
             o[t.getId("support.taskList")] = {
                 name: "TaskList",
-                description:"编辑器支持 github task lists"
+                description:"編輯器支持 github task lists"
             };
 
             o[t.getId("support.emoji")] = {
                 name: "Emoji",
-                description:"编辑器支持 Emoji"
+                description:"編輯器支持 Emoji"
             };
 
             o[t.getId("support.atLink")] = {
                 name: "atLink",
-                description:"编辑器支持 atLink"
+                description:"編輯器支持 atLink"
             };
 
             o[t.getId("support.emailLink")] = {
                 name: "emailLink",
-                description:"编辑器支持 emailLink"
+                description:"編輯器支持 emailLink"
             };
 
             o[t.getId("support.flowChart")] = {
                 name: "FlowChart",
-                description:"编辑器支持 FlowChart"
+                description:"編輯器支持 FlowChart"
             };
 
             o[t.getId("support.sequenceDiagram")] = {
                 name: "SequenceDiagram",
-                description:"编辑器支持 SequenceDiagram"
+                description:"編輯器支持 SequenceDiagram"
             };
 
             o[t.getId("support.tex")] = {
                 name: "Tex",
-                description:"编辑器支持 Tex公式"
+                description:"編輯器支持 Tex公式"
             };
 
             o[t.getId("support.toc")] = {
                 name: "Toc",
-                description:"编辑器支持 Toc"
+                description:"編輯器支持 Toc"
             };
 
             o[t.getId("support.codeFold")] = {
                 name: "CodeFold",
-                description:"编辑器支持 CodeFold"
+                description:"編輯器支持 CodeFold"
             };
 
             o[t.getId("support.htmlDecode")] = {
                 name: "HTMLDecode",
-                description:"编辑器支持 HTMLDecode"
+                description:"編輯器支持 HTMLDecode"
             };
 
             o[t.getId("support.styleActiveLine")] = {
                 name: "Style Active Line",
-                description:"编辑器支持 Style Active Line"
+                description:"編輯器支持 Style Active Line"
             };
 
             o[t.getId("support.lineNumbers")] = {
                 name: "Line Numbers",
-                description:"编辑器支持 Line Numbers"
+                description:"編輯器支持 Line Numbers"
             };
 
             o[t.getId("support.readOnly")] = {
                 name: "ReadOnly",
-                description:"编辑器支持 ReadOnly"
+                description:"編輯器支持 ReadOnly"
             };
 
             o[t.getId("support.searchReplace")] = {
                 name: "Search Replace",
-                description:"编辑器支持 Search Replace"
+                description:"編輯器支持 Search Replace"
             };
 
 

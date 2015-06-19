@@ -1,8 +1,8 @@
 {
     "AppExInfoDescription" : "set App other information",
     "AppExInfo" : {
-        "enableHttpServer" : true,
-        "onlyBuildInServer": false,
+        "#enableHttpServer" : true,
+        "#onlyBuildInServer": false,
         "enableNativeRate":true,
         "autoOffset": true,
         "minSize" : [800, 600],

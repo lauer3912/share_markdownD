@@ -107,15 +107,17 @@ module I18N{
         static pluginMgrPage:any = {
             "Title": "Plugins Manager"
             ,"btnBuy": "Active"
-            ,"btnBuyRestore":"Restore buy"
+            ,"btnBuyRestore":"Restore"
         };
 
-        static helpPage:any = {
-            "Title": "Help"
-        };
 
         static aboutPage:any = {
-            "Title": "About"
+            "Title": "About",
+            App:{
+                description:"A markdown editor built for speed,simplicity,and security.",
+                copyright:"Copyright 2015 Romanysoft LAB. All rights reserved.",
+                creditsTitle:"is mad possible by some open source project and other open source software."
+            }
         };
     }
 
@@ -154,6 +156,21 @@ module I18N{
             o[t.getId("support.fileSave")] = {
                 name: "Save File",
                 description:"Support save files"
+            };
+
+            o[t.getId("increase5documentCount")] = {
+                name: "Increase of 5 documents",
+                description:"If you need to edit more documents, then you need to increase the support for the number of simultaneous document editing in this manner. Once per purchase, while editing the document number 5"
+            };
+
+            o[t.getId("enableAutoSave")] = {
+                name: "Auto save",
+                description:"Support auto save feature"
+            };
+
+            o[t.getId("enableAutoRestore")] = {
+                name: "Auto Restore",
+                description:"Support auto restore feature"
             };
 
             return o;

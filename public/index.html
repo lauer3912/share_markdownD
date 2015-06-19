@@ -116,39 +116,33 @@
 
         <div class="mui-panel">
             {{each plugins as obj i}}
-            <section class="mui-col-lg-4 mui-col-md-4 mui-col-xs-6  mui-z5 mui-panel">
-                <header>
+            <section class="mui-row">
+                <div class="mui-col-md-1">
                     <a rel target="_blank">
                         <img class="plugin-screen" src="{{ obj.imageUrl }}">
                     </a>
-                </header>
-                <span class="mui-text-title">{{ obj.name }}</span>
-                <div class="">
-                    <span class="mui-text-caption">{{ obj.description }}</span>
                 </div>
-
-
-
-                <div data-id= "{{ obj.id }}" class="ribbon">
-                    {{if (obj.enable && obj.quantity > 0)}}
-                    <i class="icon-check mui-show"></i>
-                    {{else}}
-                    <i class="icon-check mui-hide"></i>
-                    {{/if }}
+                <div class="mui-col-md-9">
+                    <div class="mui-row">
+                        <span class="mui-text-title">{{ obj.name }}</span>
+                    </div>
+                    <div class="mui-row">
+                        <span class="mui-text-caption">{{ obj.description }}</span>
+                    </div>
                 </div>
+                <div class="mui-col-md-2 mui-text-right">
+                    <a data-id="{{ obj.id }}">
+                        {{if (obj.quantity == 0 && obj.inAppStore == true)}}
 
-                <a data-id="{{ obj.id }}">
-                    {{if (obj.quantity == 0 && obj.inAppStore == true)}}
-
-                    <button class="mui-btn mui-btn-danger mui-btn-raised"
-                            onclick="window.UI.c$.UIActions.buyPlugin('{{ obj.id }}')">{{btnBuyTitle}}
-                    </button>
-                    {{else}}
-                    <button class="mui-btn mui-btn-default mui-btn-flat" disabled>
-                    </button>
-                    {{/if}}
-                </a>
-
+                        <button class="mui-btn mui-btn-danger mui-btn-raised"
+                                onclick="window.UI.c$.UIActions.buyPlugin('{{ obj.id }}')">{{btnBuyTitle}}
+                        </button>
+                        {{else}}
+                        <button class="mui-btn mui-btn-default mui-btn-flat" disabled>
+                        </button>
+                        {{/if}}
+                    </a>
+                </div>
             </section>
             {{/each}}
         </div>

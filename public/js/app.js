@@ -469,13 +469,12 @@
             }
 
             if(mustCreateNew){
-                var newFileObj = window.$fc.getNewFileObj();
-                window.$fc.addFile(newFileObj, function(){});
-                window.$fem.addNewFileObj(newFileObj);
+                c$.UIActions.crateNewFileObj();
+            }else{
+                //发送消息通知
+                $NoticeCenter.fire(c$.NCMessage.fileChange);
             }
 
-            //发送消息通知
-            $NoticeCenter.fire(c$.NCMessage.fileChange);
             $Router.go_workspace(window.$fc.getLastModifyFileObj());
         })();
 
@@ -536,7 +535,8 @@
 
                 $('#appbar-help').on('click', function(){
                     //TODO:添加help的链接地址
-                    b$.App.open("")
+                    var url = "" + c$.language;
+                    b$.App.open(url);
                 });
 
                 // 当点击DIV以外的地方，隐藏该DIV
@@ -1009,9 +1009,9 @@
                     appName: b$.App.getAppName(),
                     version: b$.App.getAppVersion(),
                     logoUrl: 'images/logo_64.png',
-                    description: 'A markdown editor built for speed,simplicity,and security.',
-                    copyright:"Copyright 2015 Romanysoft LAB. All rights reserved.",
-                    creditsTitle:" is mad possible by some open source project and other open source software.",
+                    description: $Util.fn_tri18n(I18N.UI.aboutPage.App.description),
+                    copyright:$Util.fn_tri18n(I18N.UI.aboutPage.App.copyright),
+                    creditsTitle:$Util.fn_tri18n(I18N.UI.aboutPage.App.creditsTitle),
                     credits:[
                         {id:"credit-arTemplate", title:"artTemplate, high performance js template engine.", licenseUrl:"licenses/artTemplate/LICENSE", homepageUrl:"github.com/aui/artTemplate"}
                         ,{id:"credit-director.js", title:"director.js, routing is the process of determining what code to run when a URL is requested.", licenseUrl:"licenses/director.js/LICENSE", homepageUrl:"github.com/flatiron/director"}
@@ -1068,7 +1068,6 @@
             '/workspace':$Router.go_workspace,
             '/settings' : $Router.go_settings,
             '/pluginsMgr': $Router.go_pluginsMgr,
-            '/help':$Router.go_help,
             '/about':$Router.go_about$license
         };
 
@@ -1247,38 +1246,38 @@
     c$.configIAP = function(cb){
         "use strict";
 
-        var prefix = b$.App.getAppId() + ".plugin.", defaultImg = "images/linearicons.png";
+        var prefix = b$.App.getAppId() + ".plugin.", defaultImg = "images/logo_64.png", imgPre = "images/iap/";
         var ProductC = RomanySoftPlugins.IAP.Product;
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // 内置的功能
-        $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.importFile", quantity:1,  name:"Open File", description: "支持导入文件", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.dragFile", quantity:1,  name:"Drag File", description: "支持拖拽文件", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.fileSave", quantity:1,  name:"File Save", description: "支持保存文件功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.importFile", quantity:1,  name:"Open File", description: "支持导入文件", imageUrl:imgPre + "importFile_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.dragFile", quantity:1,  name:"Drag File", description: "支持拖拽文件", imageUrl:imgPre + "dragFile_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.fileSave", quantity:1,  name:"File Save", description: "支持保存文件功能", imageUrl:imgPre + "fileSave_64.png"}));
 
         // [商品]文档控制部分
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "increase5documentCount", price:"1$", name:"文档数量+5", description: "最大文档数量增加5", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "enableAutoSave", price:"1$", name:"开启自动保存", description: "此项，可以开启自动保存功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "enableAutoRestore", price:"1$", name:"开启自动恢复", description: "此项，可以开启自动恢复功能", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "increase5documentCount", price:"1$", name:"文档数量+5", description: "最大文档数量增加5", imageUrl:imgPre + "doc5_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "enableAutoSave", price:"1$", name:"开启自动保存", description: "此项，可以开启自动保存功能", imageUrl:imgPre + "autosave_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "enableAutoRestore", price:"1$", name:"开启自动恢复", description: "此项，可以开启自动恢复功能", imageUrl:imgPre + "autoRecover_64.png"}));
 
 
         // [商品]编辑器功能
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.taskList", price:"2$", name:"TaskList", description: "支持Github task lists", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.emoji", price:"3$", name:"Emoji", description: "支持emoji表情功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.atLink", price:"1$", name:"atLink", description: "支持atLink功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.emailLink", price:"1$", name:"emailLink", description: "支持emailLink功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.flowChart", price:"1$", name:"FlowChart", description: "支持flowChart功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.sequenceDiagram", price:"1$", name:"SequenceDiagram", description: "支持sequenceDiagram功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.tex", price:"2$", name:"Tex", description: "支持tex功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.toc", price:"2$", name:"Toc", description: "支持toc功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.codeFold",  price:"1$", name:"CodeFold", description: "支持codeFold功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.htmlDecode", price:"1$", name:"HTMLDecode", description: "支持htmlDecode功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.styleActiveLine", price:"1$", name:"StyleActiveLine", description: "支持styleActiveLine功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.lineNumbers", price:"1$", name:"LineNumbers", description: "支持lineNumbers功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.readOnly", price:"1$", name:"ReadOnly", description: "支持readOnly功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.searchReplace", price:"1$", name:"Search Replace", description: "支持searchReplace功能", imageUrl:defaultImg}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.tocm", price:"1$", name:"TOCM", description: "Using [TOCM], auto create ToC dropdown menu", imageUrl:defaultImg}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.taskList", price:"2$", name:"TaskList", description: "支持Github task lists", imageUrl:imgPre + "taskList_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.emoji", price:"3$", name:"Emoji", description: "支持emoji表情功能", imageUrl:imgPre + "emoji_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.atLink", price:"1$", name:"atLink", description: "支持atLink功能", imageUrl:imgPre + "atLink_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.emailLink", price:"1$", name:"emailLink", description: "支持emailLink功能", imageUrl:imgPre+ "emailLink_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.flowChart", price:"1$", name:"FlowChart", description: "支持flowChart功能", imageUrl:imgPre + "flowChart_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.sequenceDiagram", price:"1$", name:"SequenceDiagram", description: "支持sequenceDiagram功能", imageUrl:imgPre + "sequenceDiagram_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.tex", price:"2$", name:"Tex", description: "支持tex功能", imageUrl:imgPre + "tex_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.toc", price:"2$", name:"Toc", description: "支持toc功能", imageUrl:imgPre + "toc_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.codeFold",  price:"1$", name:"CodeFold", description: "支持codeFold功能", imageUrl:imgPre + "codeFold_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.htmlDecode", price:"1$", name:"HTMLDecode", description: "支持htmlDecode功能", imageUrl:imgPre + "htmlDecode_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.styleActiveLine", price:"1$", name:"StyleActiveLine", description: "支持styleActiveLine功能", imageUrl:imgPre + "styleActiveLine_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.lineNumbers", price:"1$", name:"LineNumbers", description: "支持lineNumbers功能", imageUrl:imgPre + "lineNumbers_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.readOnly", price:"1$", name:"ReadOnly", description: "支持readOnly功能", imageUrl:imgPre + "readOnly_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.searchReplace", price:"1$", name:"Search Replace", description: "支持searchReplace功能", imageUrl:imgPre + "searchReplace_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.tocm", price:"1$", name:"TOCM", description: "Using [TOCM], auto create ToC dropdown menu", imageUrl:imgPre + "tocm_64.png"}));
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////

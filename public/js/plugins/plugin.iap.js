@@ -174,7 +174,6 @@ var RomanySoftPlugins;
                 var product = this.getProduct(id);
                 if (product.enable && product.inAppStore) {
                     product.price = info.price;
-                    product.description = info.description;
                 }
                 cb_delegate && cb_delegate();
             };

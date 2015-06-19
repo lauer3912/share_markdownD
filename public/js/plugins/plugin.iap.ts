@@ -222,7 +222,7 @@ module RomanySoftPlugins{
                 var product = this.getProduct(id);
                 if(product.enable && product.inAppStore){
                     product.price = info.price;
-                    product.description = info.description;
+                    //product.description = info.description; //不在这里处理描述问题
                 }
 
                 cb_delegate && cb_delegate();
