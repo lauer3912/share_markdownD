@@ -489,6 +489,8 @@
         // 所有的页面配置
         var allPageList = ['#leftNav','#view-files','#view-workspace','#view-plugins', '#view-settings', "#view-about"];
 
+        c$.g_navTitle = ""; // 全局的导航标题
+
         $Router.fn_showOrHide = function(eleList, show, auto, cb){
             $.each(eleList, function(index, ele) {
                 if(auto == true){
@@ -553,7 +555,9 @@
 
         $Router.go_files = function(){
             console.log("files");
-            $('#nav-title').html($Util.fn_tri18n(I18N.UI.filePage["Title"]));
+
+            c$.g_navTitle = $Util.fn_tri18n(I18N.UI.filePage["Title"]);
+            $('#nav-title').html(c$.g_navTitle);
 
             var thisPage = '#view-files';
             var o = {
@@ -603,10 +607,12 @@
             var wk = $Util.fn_tri18n(I18N.UI.workspacePage["Title"]);
 
             if(false == _curFileObj.changed){
-                $('#nav-title').html(wk + ' - ' + _curFileObj.name);
+                c$.g_navTitle = wk + ' - ' + _curFileObj.name;
             }else{
-                $('#nav-title').html(wk + ' - ' +  _curFileObj.name + ' [*]');
+                c$.g_navTitle = wk + ' - ' +  _curFileObj.name + ' [*]';
             }
+
+            $('#nav-title').html(c$.g_navTitle);
 
 
             // 初始化内容
@@ -783,8 +789,8 @@
         $Router.go_settings = function(){
             console.log("settings");
 
-            var title = $Util.fn_tri18n(I18N.UI.settingsPage["Title"]);
-            $('#nav-title').html(title);
+            c$.g_navTitle = $Util.fn_tri18n(I18N.UI.settingsPage["Title"]);
+            $('#nav-title').html(c$.g_navTitle);
 
             var thisPage = '#view-settings';
 
@@ -852,6 +858,8 @@
 
                         var html = template('tpl_settings', o);
                         this.$el.html(html);
+
+                        $('#nav-title').html(c$.g_navTitle);
                         return this;
                     },
 
@@ -869,9 +877,38 @@
                     closeEdit:function(e){
                         var curEle = this.$(e.currentTarget);
                         var value = curEle.val();
-                        if(curEle.data('field') == "documentSetting.maxDocumentCount"){
+
+                        var dcField = "documentSetting.maxDocumentCount";
+                        if(curEle.data('field') == dcField){
                             var m = c$.UserSettings;
-                            m.documentSetting.maxDocumentCount = parseInt(value);
+
+                            try{
+                                var userCount = parseInt(value);
+                                if(userCount > m.documentSetting.maxDocumentCount){
+                                    if(_.has(map_settings2Product, dcField)){
+                                        var mapProductID = _.property(dcField)(map_settings2Product);
+                                        var btnBuy = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnBuy"]);
+                                        var btnCancel = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnCancel"]);
+                                        //
+                                        layer.open({
+                                            icon:0
+                                            ,title: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Title"])
+                                            ,content: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Content"])
+                                            ,btn:[btnBuy, btnCancel]
+                                            ,yes: function(index){
+                                                layer.close(index);
+                                                c$.UIActions.buyPlugin(mapProductID);
+                                            }
+                                            ,cancel:function(index){
+
+                                            }
+                                        });
+                                    }
+                                }else{
+                                    curEle.val(m.documentSetting.maxDocumentCount);
+                                }
+                            }catch(e){}
+
 
                         }
 
@@ -948,7 +985,6 @@
             }
 
 
-
             $Router.fn_showOrHide(allPageList, false);
             $Router.fn_showOrHide([thisPage], true);
         };
@@ -956,35 +992,60 @@
         $Router.go_pluginsMgr = function(){
             console.log("pluginsMgr");
 
-            var title = $Util.fn_tri18n(I18N.UI.pluginMgrPage["Title"]);
-            $('#nav-title').html(title);
+            c$.g_navTitle = $Util.fn_tri18n(I18N.UI.pluginMgrPage["Title"]);
+            $('#nav-title').html(c$.g_navTitle);
 
             var thisPage = '#view-plugins';
-
-            //从插件系统中，获取并整理
-            var enablePlugins =[];
-
-            //国际化整理
-            I18N.PluginUI.pre = b$.App.getAppId() + ".plugin.";
-            $.each($IAPProvider.getAllEnableProducts(), function(index, product){
-                try{
-                    product.name = $Util.fn_tri18n(I18N.PluginUI.data()[product.id].name);
-                    product.description = $Util.fn_tri18n(I18N.PluginUI.data()[product.id].description);
-                }catch(e){}
-
-                enablePlugins.push(product);
-            });
-
-            // 设置传递参数
-            var o = {
-                plugins:enablePlugins,
-                btnBuyTitle:$Util.fn_tri18n(I18N.UI.pluginMgrPage["btnBuy"]),
-                btnBuyRestoreTitle:$Util.fn_tri18n(I18N.UI.pluginMgrPage["btnBuyRestore"])
-            };
-
-            var html = template('tpl_pluginsMgr', o);
             var ele = $(thisPage);
-            ele.html(html);
+
+            if($.trim(ele.html()).length == 0){
+                var pageView = Backbone.View.extend({
+                    el: ele,
+
+                    initialize:function(){
+                        var t = this;
+                        $NoticeCenter.add(function(message){
+                            if(c$.NCMessage.userSettingsChange === message) {
+                                t.render();
+                            }
+                        });
+                    },
+
+                    render: function(){
+                        //从插件系统中，获取并整理
+                        var enablePlugins =[];
+
+                        //国际化整理
+                        I18N.PluginUI.pre = b$.App.getAppId() + ".plugin.";
+                        $.each($IAPProvider.getAllEnableProducts(), function(index, product){
+                            try{
+                                product.name = $Util.fn_tri18n(I18N.PluginUI.data()[product.id].name);
+                                product.description = $Util.fn_tri18n(I18N.PluginUI.data()[product.id].description);
+                            }catch(e){}
+
+                            enablePlugins.push(product);
+                        });
+
+                        // 设置传递参数
+                        var o = {
+                            plugins:enablePlugins,
+                            btnBuyTitle:$Util.fn_tri18n(I18N.UI.pluginMgrPage["btnBuy"]),
+                            btnBuyRestoreTitle:$Util.fn_tri18n(I18N.UI.pluginMgrPage["btnBuyRestore"])
+                        };
+
+                        var html = template('tpl_pluginsMgr', o);
+                        this.$el.html(html);
+
+                        $('#nav-title').html(c$.g_navTitle);
+
+                        return this;
+                    }
+                });
+
+                var sv = new pageView();
+                sv.render();
+            }
+
 
             $Router.fn_showOrHide(allPageList, false);
             $Router.fn_showOrHide([thisPage], true);
@@ -993,8 +1054,9 @@
 
         $Router.go_about$license = function(){
             console.log("about$license");
-            var title = $Util.fn_tri18n(I18N.UI.aboutPage["Title"]);
-            $('#nav-title').html(title);
+
+            c$.g_navTitle = $Util.fn_tri18n(I18N.UI.aboutPage["Title"]);
+            $('#nav-title').html(c$.g_navTitle);
 
             var thisPage = '#view-about';
 
@@ -1380,18 +1442,36 @@
         b$.IAP.enableIAP({
             cb_IAP_js: b$._get_callback(function(obj){
                 try{
+                    //console.log($.obj2string(obj));
                     var info = obj.info, notifyType = obj.notifyType;
 
+                    // 修正兼容键值对
+                    if(typeof info === "string") info = JSON.parse(info);
+
+                    // 获得兼容的键值, 也就说原先的IAP系统返回值有了变动
+                    var _getCompatibleKey = function(infoObj, key){
+                        //NOTE:使用标准的函数来处理
+                        if(typeof infoObj[key] !== "undefined") return infoObj[key];
+                        if(typeof infoObj["payment"] !== "undefined"){
+                            if(typeof infoObj["payment"][key] !== "undefined")
+                                return infoObj["payment"][key];
+                        }
+                        return "[ '" + key + "' no found.]" ;
+                    };
+
                     if(notifyType == "ProductBuyFailed"){
+                        console.log('[section] ProductBuyFailed');
                         //@"{'productIdentifier':'%@', 'message':'No products found in apple store'}"
-                        var pluginId = info.productIdentifier;
-                        var message = info.message;
+                        var pluginId = _getCompatibleKey(info, "productIdentifier");
+                        var message = _getCompatibleKey(info, "message");
 
                         var log = $.stringFormat("{0} order plugin failed! {1}", pluginId, message);
                         console.warn(log);
                     }else if(notifyType == "ProductPurchased"){
+                        console.log('[section] ProductPurchased');
                         //@"{'productIdentifier':'%@', 'quantity':'%@'}"
-                        var pluginId = info.productIdentifier;
+
+                        var pluginId = _getCompatibleKey(info, "productIdentifier");
                         $IAPProvider.syncProductWithAppStore(pluginId, function(product){
                             //说明：product{enable, inAppStore, quantity, price}
 
@@ -1402,19 +1482,30 @@
                         var log = $.stringFormat("{0} order plugin success!", pluginId);
                         console.log(log);
                     }else if(notifyType == "ProductPurchaseFailed"){
+                        console.log('[section] ProductPurchaseFailed');
                         //@"{‘transactionId':'%@',‘transactionDate’:'%@', 'payment':{'productIdentifier':'%@','quantity':'%@'}}"
-                        var pluginId = info.payment.productIdentifier;
-                        var orderDate = info.transactionDate;
+
+                        // 使用兼容模式
+                        var pluginId = _getCompatibleKey(info, "productIdentifier");
+                        var orderDate = _getCompatibleKey(info, "transactionDate");
 
                         var log = $.stringFormat("{0} order plugin failed! orderDate {1}", pluginId, orderDate);
                         console.log(log);
                     }else if(notifyType == "ProductPurchaseFailedDetail"){
+                        console.log('[section] ProductPurchaseFailedDetail');
                         //@"{'failBy':'cancel', 'transactionId':'%@', 'message':'%@', ‘transactionDate’:'%@', 'payment':{'productIdentifier':'%@','quantity':'%@'}}"
-                        var pluginId = info.payment.productIdentifier;
+                        //_nativeCallback.ncb0({"info":"{\"message\":\"Unknown Error.\",\"payment\":{\"quantity\":1,\"productIdentifier\":\"com.romanysoft.app.macos.MarkdownD.plugin.support.atLink\"},\"failBy\":\"error\",\"transactionDate\":\"2015-06-19 05:31:06\",\"transactionId\":\"E33C0E13-782E-4433-B080-40B416024933\"}","notifyType":"ProductPurchaseFailedDetail"});
 
-                        var log = $.stringFormat("error: {0} failed by {1} ({2}) order date: {3}", pluginId, info.failBy, info.message, info.transactionDate);
+                        // 使用兼容模式
+                        var pluginId = _getCompatibleKey(info, "productIdentifier");
+                        var failBy = _getCompatibleKey(info, "failBy");
+                        var transactionDate = _getCompatibleKey(info, "transactionDate");
+                        var message = _getCompatibleKey(info, "message");
+
+                        var log = $.stringFormat("error: {0} failed by {1} ({2}) order date: {3}", pluginId, failBy, message, transactionDate);
                         console.log(log);
                     }else if(notifyType == "ProductRequested"){
+                        console.log('[section] ProductRequested');
                         var productInfoList = info;
                         if(typeof info == "string"){
                             productInfoList = JSON.parse(info);
@@ -1438,10 +1529,18 @@
                         $NoticeCenter.fire(c$.NCMessage.productRequested, productInfoList);
 
                     }else if(notifyType == "ProductCompletePurchased"){
+                        console.log('[section] ProductCompletePurchased');
                         //@"{'productIdentifier':'%@', 'transactionId':'%@', 'receipt':'%@'}"
-                        var pluginId = info.productIdentifier;
-                        var log = $.stringFormat("pluginId: {0}, transactionId: {1}, receipt: {2}", pluginId, info.transactionId, info.receipt);
+
+                        //使用兼容模式
+                        var pluginId = _getCompatibleKey(info, "productIdentifier");
+                        var transactionId = _getCompatibleKey(info, "transactionId");
+                        var receipt = _getCompatibleKey(info, "receipt");
+
+                        var log = $.stringFormat("pluginId: {0}, transactionId: {1}, receipt: {2}", pluginId, transactionId, receipt);
                         console.log(log);
+                    }else if(notifyType == "ProductsPaymentRemovedTransactions"){
+                        //{"info":"{\"payment\":[{\"quantity\":1,\"productIdentifier\":\"com.romanysoft.app.macos.MarkdownD.plugin.support.atLink\"},{\"quantity\":1,\"productIdentifier\":\"com.romanysoft.app.macos.MarkdownD.plugin.support.atLink\"}],\"removedTransactions\":[{\"quantity\":1,\"productIdentifier\":\"com.romanysoft.app.macos.MarkdownD.plugin.support.atLink\"}]}","notifyType":"ProductsPaymentRemovedTransactions"}
                     }
 
 

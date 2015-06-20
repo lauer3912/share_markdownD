@@ -153,6 +153,27 @@ var RomanySoftPlugins;
                 console.warn(id + " no found.");
                 return false;
             };
+            IAP$Helper.prototype.getProductPurchasedCount = function (id, cb_delegate) {
+                var t = this;
+                var idList = t.getAllEnableInAppStoreProductIds();
+                if ($.inArray(id, idList) > -1) {
+                    var default_fun = function (id) {
+                        try {
+                            var b$ = window.BS.b$;
+                            var self_count = b$.IAP.getUseableProductCount(id);
+                            return self_count;
+                        }
+                        catch (e) {
+                            console.error(e);
+                        }
+                        return 0;
+                    };
+                    var fnc = cb_delegate || default_fun;
+                    return fnc(id);
+                }
+                console.warn(id + " no found.");
+                return 0;
+            };
             IAP$Helper.prototype.syncProductWithAppStore = function (id, cb_delegate) {
                 var t = this;
                 var default_func = function (id) {

@@ -200,6 +200,27 @@ module RomanySoftPlugins{
                 return false;
             }
 
+            getProductPurchasedCount(id: string, cb_delegate: Function): number{
+                var t = this;
+                var idList = t.getAllEnableInAppStoreProductIds();
+                if($.inArray(id, idList) > -1){
+                    var default_fun = function(id){
+                        try{
+                            var b$ = window.BS.b$;
+                            var self_count = b$.IAP.getUseableProductCount(id);
+                            return self_count;
+                        }catch(e){console.error(e)}
+
+                        return 0;
+                    };
+
+                    var fnc = cb_delegate || default_fun;
+                    return fnc(id);
+                }
+                console.warn(id + " no found.");
+                return 0;
+            }
+
             syncProductWithAppStore(id: string, cb_delegate: Function): void{
                 var t = this;
                 var default_func = function(id){

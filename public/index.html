@@ -163,7 +163,7 @@
                             {{ if (typeof document.data[key] == "boolean")  }}
                             <input data-field="{{document.dataKey}}.{{key}}" type="checkbox" {{ document.data[key]==true ? checked='checked' : null  }}/>
                             {{ else }}
-                            <input data-field="{{document.dataKey}}.{{key}}" type="checkbox" {{ document.data[key]==true ? checked='checked' : null  }} disabled/>
+                            <!--<input data-field="{{document.dataKey}}.{{key}}" type="checkbox" {{ document.data[key]==true ? checked='checked' : null  }} disabled/>-->
                             {{ /if }}
                             {{ i+1 }}.{{document.key2I18NMap[key]}}
                         </label>
