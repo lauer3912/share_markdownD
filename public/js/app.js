@@ -357,125 +357,126 @@
             // 激活内置的$EditorProvider配置
             $EditorProvider.configEmoji();
             $EditorProvider.configLanguage(c$.language, function(){
-            });
-            $EditorProvider.resetToolbarHandler("emoji",function(){
-                if(false == $UserSettings.editorSetting.enable_Emoji){
-                    //弹出购买对话框
-                    if(_.has(c$.Map_Settings2Product,"editorSetting.enable_Emoji")){
-                        var productId = _.property("editorSetting.enable_Emoji")(c$.Map_Settings2Product);
-                        var btnBuy = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnBuy"]);
-                        var btnCancel = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnCancel"]);
-                        //
-                        layer.open({
-                            icon:0
-                            ,title: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Title"])
-                            ,content: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Content"])
-                            ,btn:[btnBuy, btnCancel]
-                            ,yes: function(index){
-                                layer.close(index);
-                                c$.UIActions.buyPlugin(productId);
-                            }
-                            ,cancel:function(index){
+                $EditorProvider.resetToolbarHandler("emoji",function(){
+                    if(false == $UserSettings.editorSetting.enable_Emoji){
+                        //弹出购买对话框
+                        if(_.has(c$.Map_Settings2Product,"editorSetting.enable_Emoji")){
+                            var productId = _.property("editorSetting.enable_Emoji")(c$.Map_Settings2Product);
+                            var btnBuy = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnBuy"]);
+                            var btnCancel = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnCancel"]);
+                            //
+                            layer.open({
+                                icon:0
+                                ,title: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Title"])
+                                ,content: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Content"])
+                                ,btn:[btnBuy, btnCancel]
+                                ,yes: function(index){
+                                    layer.close(index);
+                                    c$.UIActions.buyPlugin(productId);
+                                }
+                                ,cancel:function(index){
 
-                            }
-                        });
+                                }
+                            });
+                        }
+
+                        return true;
                     }
 
-                    return true;
-                }
+                    return false;
+                }, true);
 
-                return false;
-            }, true);
+                // 开启支持拖拽功能
+                b$.enableDragDropFeature({
+                    callback:b$._get_callback(function(info){
+                        if(info.success){
+                            $.each(info.filesArray, function(index, obj){
 
-            // 开启支持拖拽功能
-            b$.enableDragDropFeature({
-                callback:b$._get_callback(function(info){
-                    if(info.success){
-                        $.each(info.filesArray, function(index, obj){
+                                //检测是否已经存在
+                                if(window.$fc.findFileEx({path:obj.filePath})){
+                                    b$.Notice.dockMessage({
+                                        message:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_message"], {path:obj.filePath}),
+                                        title:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_title"])
+                                    });
+                                }else{
+                                    var newFileObj = window.$fc.getNewFileObj();
+                                    newFileObj.name = obj.fileName;
+                                    newFileObj.path = obj.filePath;
+                                    newFileObj.ext = obj.extension;
+                                    newFileObj.is_tmp = false;
+                                    newFileObj.mustReloadNextTime = true;
+                                    window.$fc.addFile(newFileObj, function(){});
+                                    window.$fem.addNewFileObj(newFileObj);
 
-                            //检测是否已经存在
-                            if(window.$fc.findFileEx({path:obj.filePath})){
-                                b$.Notice.dockMessage({
-                                    message:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_message"], {path:obj.filePath}),
-                                    title:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_title"])
-                                });
-                            }else{
-                                var newFileObj = window.$fc.getNewFileObj();
-                                newFileObj.name = obj.fileName;
-                                newFileObj.path = obj.filePath;
-                                newFileObj.ext = obj.extension;
-                                newFileObj.is_tmp = false;
-                                newFileObj.mustReloadNextTime = true;
-                                window.$fc.addFile(newFileObj, function(){});
-                                window.$fem.addNewFileObj(newFileObj);
+                                    // 添加到监视器中
+                                    c$.UIActions.addFileToWatcher(newFileObj.path);
 
-                                // 添加到监视器中
+                                    // 发送消息通知
+                                    $NoticeCenter.fire(c$.NCMessage.fileChange);
+                                }
+
+                            });
+
+                            $Router.go_files();
+                        }
+                    }, true),
+                    fileTypes:['md']
+                });
+
+                // 注册缓存数据变更的消息处理函数(来自消息中心)
+                $NoticeCenter.add(function(message, fileId){
+                    if(message === c$.NCMessage.fileChange){
+
+                        // 缓存 "file-markdown-cache" 类型的内容
+                        var fileList = window.$fc.getAllFiles();
+
+                        // 检查是否有对应的fileId传送过来
+                        if(typeof fileId == "number"){
+                            if(false == window.$fc.findFile(fileId)){ // 没有找到传过来的file id, 那么需要删除对应缓存的内容
+                                $Cache.delete(fileId, c$.CacheType.FileMarkDownCache);
+                            }
+                        }
+
+                        $.each(fileList, function(index, obj){
+                            $Cache.update(obj.id, c$.CacheType.FileMarkDownCache, obj.coreDataToJSON())
+                        });
+
+                        $Cache.save();
+                    }
+                });
+
+                // 检查用户设置，是否设置了自动恢复功能
+                var mustCreateNew = true; // 是否必须创建一个新的文件对象
+                if(c$.UserSettings.documentSetting.autoRestore){
+                    // 查找是否有缓存的数据文件
+                    var cacheList = $Cache.findObjList(c$.CacheType.FileMarkDownCache); // 查找缓存 "file-markdown-cache" 类型的内容
+                    // 恢复处理
+                    if(cacheList.length > 0){
+                        $.each(cacheList, function(index, cacheObj){
+                            var newFileObj = window.$fc.getNewFileObj();
+                            newFileObj.coreDataFromJSON(cacheObj.value); // 数据还原
+                            window.$fc.addFile(newFileObj, function(){});
+                            window.$fem.addNewFileObj(newFileObj);
+
+                            // 添加到监视器中
+                            if(!newFileObj.is_tmp && newFileObj.path.length > 0){
                                 c$.UIActions.addFileToWatcher(newFileObj.path);
-
-                                // 发送消息通知
-                                $NoticeCenter.fire(c$.NCMessage.fileChange);
                             }
-
+                            mustCreateNew = false;
                         });
-
-                        $Router.go_files();
                     }
-                }, true),
-                fileTypes:['md']
+                }
+
+                if(mustCreateNew){
+                    c$.UIActions.crateNewFileObj();
+                }else{
+                    //发送消息通知
+                    $NoticeCenter.fire(c$.NCMessage.fileChange);
+                }
+
+                $Router.go_workspace(window.$fc.getLastModifyFileObj());
             });
 
-            // 注册缓存数据变更的消息处理函数(来自消息中心)
-            $NoticeCenter.add(function(message, fileId){
-                if(message === c$.NCMessage.fileChange){
-
-                    // 缓存 "file-markdown-cache" 类型的内容
-                    var fileList = window.$fc.getAllFiles();
-
-                    // 检查是否有对应的fileId传送过来
-                    if(typeof fileId == "number"){
-                        if(false == window.$fc.findFile(fileId)){ // 没有找到传过来的file id, 那么需要删除对应缓存的内容
-                            $Cache.delete(fileId, c$.CacheType.FileMarkDownCache);
-                        }
-                    }
-
-                    $.each(fileList, function(index, obj){
-                        $Cache.update(obj.id, c$.CacheType.FileMarkDownCache, obj.coreDataToJSON())
-                    });
-
-                    $Cache.save();
-                }
-            });
-
-            // 检查用户设置，是否设置了自动恢复功能
-            var mustCreateNew = true; // 是否必须创建一个新的文件对象
-            if(c$.UserSettings.documentSetting.autoRestore){
-                // 查找是否有缓存的数据文件
-                var cacheList = $Cache.findObjList(c$.CacheType.FileMarkDownCache); // 查找缓存 "file-markdown-cache" 类型的内容
-                // 恢复处理
-                if(cacheList.length > 0){
-                    $.each(cacheList, function(index, cacheObj){
-                        var newFileObj = window.$fc.getNewFileObj();
-                        newFileObj.coreDataFromJSON(cacheObj.value); // 数据还原
-                        window.$fc.addFile(newFileObj, function(){});
-                        window.$fem.addNewFileObj(newFileObj);
-
-                        // 添加到监视器中
-                        if(!newFileObj.is_tmp && newFileObj.path.length > 0){
-                            c$.UIActions.addFileToWatcher(newFileObj.path);
-                        }
-                        mustCreateNew = false;
-                    });
-                }
-            }
-
-            if(mustCreateNew){
-                c$.UIActions.crateNewFileObj();
-            }else{
-                //发送消息通知
-                $NoticeCenter.fire(c$.NCMessage.fileChange);
-            }
-
-            $Router.go_workspace(window.$fc.getLastModifyFileObj());
         })();
 
     };
