@@ -538,8 +538,8 @@
                 });
 
                 $('#appbar-help').on('click', function(){
-                    //TODO:添加help的链接地址
-                    var url = "" + c$.language;
+                    //help的链接地址
+                    var url = "https://github.com/Romanysoft/MarkdownD/wiki/" + c$.language;
                     b$.App.open(url);
                 });
 
@@ -644,7 +644,6 @@
                                 editor.config("htmlDecode", $UserSettings.editorSetting.enable_HtmlDecode);
                                 editor.config("styleActiveLine", $UserSettings.editorSetting.enable_StyleActiveLine);
                                 editor.config("lineNumbers", $UserSettings.editorSetting.enable_LineNumbers);
-                                editor.config("readOnly", $UserSettings.editorSetting.enable_ReadOnly);
                                 editor.config("searchReplace", $UserSettings.editorSetting.enable_SearchReplace);
                                 editor.config("tocm", $UserSettings.editorSetting.enable_Tocm);
                             }
@@ -696,7 +695,6 @@
                     ,htmlDecode:$UserSettings.editorSetting.enable_HtmlDecode
                     ,styleActiveLine:$UserSettings.editorSetting.enable_StyleActiveLine
                     ,lineNumbers:$UserSettings.editorSetting.enable_LineNumbers
-                    ,readOnly:$UserSettings.editorSetting.enable_ReadOnly
                     ,searchReplace:$UserSettings.editorSetting.enable_SearchReplace
                     ,tocm:$UserSettings.editorSetting.enable_Tocm
 
@@ -748,24 +746,31 @@
                 });
 
                 newEditorMd.setToolbarAutoFixed(false);
+                newEditorMd["alreayFixed"] = false;
 
-                var alreayFixed = false;
                 var customAutoFixedHandler = function(force){
-                    //console.log('customAutoFixedHandler');
-                    if(! alreayFixed && !force) return;
+                    // 获取所有激活状态的下载的file 和 editor对象，然后对editor进行变化
+                    var editor_list = window.$fem.getAllEditor();
+                    $.each(editor_list, function(index, editorObj){
+                        try{
+                            //console.log('customAutoFixedHandler');
+                            if(! editorObj["alreayFixed"] && !force){}
+                            else{
+                                var toolbar = editorObj.toolbar;
+                                var editor = editorObj.editor;
 
-                    var toolbar = newEditorMd.toolbar;
-                    var editor = newEditorMd.editor;
+                                toolbar.css({
+                                    position: "fixed",
+                                    "overflow-y": "auto",
+                                    //width: editor.width() + "px",
+                                    top: $('#app-header').height() + "px",
+                                    left: editorObj["toolBar_offset"].left + "px"
+                                });
 
-                    toolbar.css({
-                        position: "fixed",
-                        "overflow-y": "auto",
-                        //width: editor.width() + "px",
-                        top: $('#app-header').height() + "px",
-                        left: newEditorMd["toolBar_offset"].left + "px"
+                                editorObj["alreayFixed"] = true;
+                            }
+                        }catch(e){console.log(e)}
                     });
-
-                    alreayFixed = true;
                 };
 
 
@@ -1077,15 +1082,15 @@
                     copyright:$Util.fn_tri18n(I18N.UI.aboutPage.App.copyright),
                     creditsTitle:$Util.fn_tri18n(I18N.UI.aboutPage.App.creditsTitle),
                     credits:[
-                        {id:"credit-arTemplate", title:"artTemplate, high performance js template engine.", licenseUrl:"licenses/artTemplate/LICENSE", homepageUrl:"github.com/aui/artTemplate"}
-                        ,{id:"credit-director.js", title:"director.js, routing is the process of determining what code to run when a URL is requested.", licenseUrl:"licenses/director.js/LICENSE", homepageUrl:"github.com/flatiron/director"}
-                        ,{id:"credit-editor.md", title:"editor.md, a simple online markdown editor", licenseUrl:"licenses/editor.md/LICENSE", homepageUrl:"github.com/pandao/editor.md"}
+                        {id:"credit-arTemplate", title:"artTemplate, high performance js template engine.", licenseUrl:"licenses/artTemplate/LICENSE", homepageUrl:"https://github.com/aui/artTemplate"}
+                        ,{id:"credit-director.js", title:"director.js, routing is the process of determining what code to run when a URL is requested.", licenseUrl:"licenses/director.js/LICENSE", homepageUrl:"https://github.com/flatiron/director"}
+                        ,{id:"credit-editor.md", title:"editor.md, a simple online markdown editor", licenseUrl:"licenses/editor.md/LICENSE", homepageUrl:"https://github.com/pandao/editor.md"}
                         //,{id:"credit-es6-shim", title:"es6-shim, provides compatibility shims so that legacy JavaScript engines behave as closely as possible to ECMAScript 6 (Harmony)", licenseUrl:"licenses/es6-shim/LICENSE", homepageUrl:"github.com/paulmillr/es6-shim"}
-                        ,{id:"credit-jquery", title:"jquery, a fast, small, and feature-rich JavaScript library.", licenseUrl:"licenses/jquery/LICENSE", homepageUrl:"jquery.com"}
-                        ,{id:"credit-mui", title:"mui, is a lightweight HTML, CSS and JS framework for sites that follow Google's Material Design guidelines.", licenseUrl:"licenses/mui/LICENSE", homepageUrl:"github.com/amorey/mui"}
+                        ,{id:"credit-jquery", title:"jquery, a fast, small, and feature-rich JavaScript library.", licenseUrl:"licenses/jquery/LICENSE", homepageUrl:"http://jquery.com/"}
+                        ,{id:"credit-mui", title:"mui, is a lightweight HTML, CSS and JS framework for sites that follow Google's Material Design guidelines.", licenseUrl:"licenses/mui/LICENSE", homepageUrl:"https://github.com/amorey/mui"}
                         ,{id:"credit-underscore",
                             title:"Underscore is a JavaScript library that provides a whole mess of useful functional programming helpers without extending any built-in objects. It’s the answer to the question: “If I sit down in front of a blank HTML page, and want to start being productive immediately, what do I need?” … and the tie to go along with jQuery's tux and Backbone's suspenders.",
-                            licenseUrl:"licenses/underscore/LICENSE", homepageUrl:"github.com/jashkenas/underscore"}
+                            licenseUrl:"licenses/underscore/LICENSE", homepageUrl:"https://github.com/jashkenas/underscore"}
 
                     ]
                 };
@@ -1339,7 +1344,6 @@
         $IAPProvider.addProduct(ProductC.create({id:prefix + "support.htmlDecode", price:"1$", name:"HTMLDecode", description: "支持htmlDecode功能", imageUrl:imgPre + "htmlDecode_64.png"}));
         $IAPProvider.addProduct(ProductC.create({id:prefix + "support.styleActiveLine", price:"1$", name:"StyleActiveLine", description: "支持styleActiveLine功能", imageUrl:imgPre + "styleActiveLine_64.png"}));
         $IAPProvider.addProduct(ProductC.create({id:prefix + "support.lineNumbers", price:"1$", name:"LineNumbers", description: "支持lineNumbers功能", imageUrl:imgPre + "lineNumbers_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.readOnly", price:"1$", name:"ReadOnly", description: "支持readOnly功能", imageUrl:imgPre + "readOnly_64.png"}));
         $IAPProvider.addProduct(ProductC.create({id:prefix + "support.searchReplace", price:"1$", name:"Search Replace", description: "支持searchReplace功能", imageUrl:imgPre + "searchReplace_64.png"}));
         $IAPProvider.addProduct(ProductC.create({id:prefix + "support.tocm", price:"1$", name:"TOCM", description: "Using [TOCM], auto create ToC dropdown menu", imageUrl:imgPre + "tocm_64.png"}));
 
@@ -1368,7 +1372,6 @@
                 "editorSetting.enable_HtmlDecode":prefix + "support.htmlDecode",
                 "editorSetting.enable_StyleActiveLine":prefix + "support.styleActiveLine",
                 "editorSetting.enable_LineNumbers":prefix + "support.lineNumbers",
-                "editorSetting.enable_ReadOnly":prefix + "support.readOnly",
                 "editorSetting.enable_SearchReplace":prefix + "support.searchReplace",
                 "editorSetting.enable_Tocm":prefix + "support.tocm"
             };
@@ -1398,7 +1401,6 @@
                     if (product.id == (prefix + "support.htmlDecode")) _us_e.enable_HtmlDecode = true;
                     if (product.id == (prefix + "support.styleActiveLine")) _us_e.enable_StyleActiveLine = true;
                     if (product.id == (prefix + "support.lineNumbers")) _us_e.enable_LineNumbers = true;
-                    if (product.id == (prefix + "support.readOnly")) _us_e.enable_ReadOnly = true;
                     if (product.id == (prefix + "support.searchReplace")) _us_e.enable_SearchReplace = true;
                     if (product.id == (prefix + "support.tocm")) _us_e.enable_Tocm = true;
 

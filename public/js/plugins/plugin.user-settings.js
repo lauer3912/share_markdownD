@@ -32,7 +32,6 @@ var RomanySoftPlugins;
                 this.enable_HtmlDecode = false; // 是否开启HTMLDecode
                 this.enable_StyleActiveLine = false; // 是否开启StyleActiveLine
                 this.enable_LineNumbers = false; // 是否开启LineNumbers
-                this.enable_ReadOnly = false; // 是否开启ReadOnly
                 this.enable_SearchReplace = false; // 是否开启SearchReplace
                 this.enable_Tocm = false; // 是否开启Tocm
                 //[内置]
