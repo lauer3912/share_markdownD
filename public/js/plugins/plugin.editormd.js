@@ -46,6 +46,17 @@ var RomanySoftPlugins;
             });
         };
         /**
+         * 自定义KatexURL的源
+         * @param cssUrl
+         * @param jsUrl
+         * @param cb
+         */
+        EditorMdServices.prototype.configKatexURL = function (cssUrl, jsUrl, cb) {
+            this.editormd.katexURL.css = cssUrl;
+            this.editormd.katexURL.js = jsUrl;
+            cb && cb();
+        };
+        /**
          * 重新配置工具栏的函数
          * @param handlerName
          * @param newHandler
@@ -59,7 +70,7 @@ var RomanySoftPlugins;
                     if (append) {
                         var ret = newHandler && newHandler();
                         if (false == ret) {
-                            oldFunc && oldFunc();
+                            oldFunc && oldFunc.call(this);
                         }
                     }
                     else {

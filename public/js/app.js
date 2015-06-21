@@ -356,6 +356,7 @@
 
             // 激活内置的$EditorProvider配置
             $EditorProvider.configEmoji();
+            $EditorProvider.configKatexURL("common/katex/katex.min", "common/katex/katex.min", function(){});
             $EditorProvider.configLanguage(c$.language, function(){
                 $EditorProvider.resetToolbarHandler("emoji",function(){
                     if(false == $UserSettings.editorSetting.enable_Emoji){

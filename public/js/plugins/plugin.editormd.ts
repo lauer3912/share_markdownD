@@ -60,6 +60,18 @@ module RomanySoftPlugins {
         }
 
         /**
+         * 自定义KatexURL的源
+         * @param cssUrl
+         * @param jsUrl
+         * @param cb
+         */
+        configKatexURL(cssUrl:string, jsUrl:string, cb:Function){
+            this.editormd.katexURL.css = cssUrl;
+            this.editormd.katexURL.js = jsUrl;
+            cb && cb();
+        }
+
+        /**
          * 重新配置工具栏的函数
          * @param handlerName
          * @param newHandler
@@ -74,7 +86,8 @@ module RomanySoftPlugins {
                     if(append){
                         var ret = newHandler && newHandler();
                         if(false == ret){
-                            oldFunc && oldFunc();
+                            oldFunc && oldFunc.call(this);
+                            //eval('this.executePlugin("emojiDialog", "emoji-dialog/emoji-dialog")');
                         }
                     }else{
                         newHandler && newHandler();
