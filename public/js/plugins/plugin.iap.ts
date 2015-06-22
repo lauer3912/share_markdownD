@@ -45,14 +45,17 @@ module RomanySoftPlugins{
 
             getProductName(id: string, cb_delegate: Function): string;          // 获取商品的名称，通过cb_delegate来获得国际化的名称
             getProductDescription(id: string, cb_delegate: Function): string;   // 获取商品的描述信息，通过cb_delegate来获得国际化的描述
+            getProductQuantity(id: string, cb_delegate: Function):number;       // 获取商品的数量
 
             getAllEnableInAppStoreProducts():Product[];                         // 获取可用的，在应用商店注册的商品
             getAllEnableInAppStoreProductIds(): string[];                       // 获取所有内置可用插件的，在应用商店中注册的
             getAllEnableProducts():Product[];                                   // 获取所有可用的商品
+            getAllEnableProductIds(): string[];                                 // 获取所有内置的可用的插件ID，包括应用于应用商店中的
 
             getInBundleProductList(id: string): Product[];                      // 获取包含指定Product的直接或者间接产品
 
-            getProductIsPurchased(id: string, cb_delegate: Function): boolean;  // 获取商品是否已经购买，通过cb_delegate 来处理细节
+            getProductIsPurchased(id: string, cb_delegate: Function): boolean;   // 获取商品是否已经购买，通过cb_delegate 来处理细节
+            getProductPurchasedCount(id: string, cb_delegate: Function): number; // 获取商品已经购买的数量
 
             syncProductWithAppStore(id: string, cb_delegate: Function): void;   // 根据应用商店同步商品的信息
 
@@ -120,6 +123,17 @@ module RomanySoftPlugins{
                 return description;
             }
 
+            getProductQuantity(id: string, cb_delegate: Function):number{
+                var _quantity = 0;
+                var product = this.getProduct(id);
+                if (null == product) return _quantity;
+
+                _quantity = product.quantity;
+                cb_delegate && (_quantity = cb_delegate(id));
+                return _quantity;
+
+            }
+
             getAllEnableInAppStoreProducts():Product[]{
                 var list: Product[] = [];
                 $.each(this.productList, function(index, product){
@@ -152,6 +166,16 @@ module RomanySoftPlugins{
                 return list;
             }
 
+            getAllEnableProductIds(): string[]{
+                var idList: string[] = [];
+                $.each(this.productList, function(index, product){
+                    if(product.enable){
+                        idList.push(product.id);
+                    }
+                });
+                return idList;
+            }
+
             getInBundleProductList(id: string): Product[]{
                 var list: Product[] = [];
 
@@ -168,12 +192,14 @@ module RomanySoftPlugins{
 
             getProductIsPurchased(id: string, cb_delegate: Function): boolean{
                 var t = this;
-                var idList = t.getAllEnableInAppStoreProductIds();
+                var b$ = window.BS.b$;
+                var b_inAppStore = b$.App.getSandboxEnable();
+
+                var idList = b_inAppStore ? t.getAllEnableInAppStoreProductIds() : t.getAllEnableProductIds();
                 if($.inArray(id, idList) > -1){
                     var default_fun = function(id){
                         try{
-                            var b$ = window.BS.b$;
-                            var self_count = b$.IAP.getUseableProductCount(id);
+                            var self_count = b_inAppStore ? b$.IAP.getUseableProductCount(id) : t.getProductQuantity(id, null);
                             if(self_count >= 1){
                                 return true;
                             }

@@ -109,9 +109,11 @@
     <!--插件视图-->
     <div class="mui-panel">
         <div class="mui-z5 mui-text-right">
+            {{ if (enableBuyRestoreBtn) }}
             <button class="mui-btn mui-btn-accent mui-btn-raised" onclick="window.UI.c$.UIActions.buyRestore()">
                 {{btnBuyRestoreTitle}}
             </button>
+            {{ /if }}
         </div>
 
         <div class="mui-panel">
@@ -289,7 +291,6 @@
 
 <!--App-->
 <script src="js/app.js"></script>
-<script src="js/test.js"></script>
 <script type="text/javascript">
     window.UI.c$.launch()
 </script>

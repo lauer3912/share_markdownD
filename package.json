@@ -1,0 +1,18 @@
+{
+  "name": "MarkdownD",
+  "version": "1.0.0",
+  "description": "![](https://github.com/lauer3912/share_markdownD/blob/master/screen.gif)",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.5"
+  }
+}

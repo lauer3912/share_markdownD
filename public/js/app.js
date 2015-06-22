@@ -64,6 +64,7 @@
             ,userSettingsChange: pre + "userSettingsChange"       // 用户设置发生变化
             ,productPurchased: pre + "productPurchased"           // 商品已经被购买
             ,productRequested: pre + "productRequested"           // 商品发送到服务器，进行验证
+            ,productSyncNoAppStore:pre + "productSyncNoAppStore"  // 在非AppStore产品状态下，同步插件信息
         };
     };
 
@@ -72,7 +73,7 @@
         "use strict";
 
         // 获取当前浏览器的语言
-        //c$.language = window.navigator.language || window.navigator.browserLanguage;
+        c$.language = window.navigator.language || window.navigator.browserLanguage;
         function autoSetup(lang, success_cb, fail_cb) {
             $.ajax({
                 url: "locales/" + lang + ".js",
@@ -90,7 +91,9 @@
             })
         }
 
-        autoSetup(c$.language, function(data, staus){}, function(req, status, err){
+        autoSetup(c$.language, function(data, staus){
+            autoSetup(c$.language);
+        }, function(req, status, err){
             c$.language = "en-US"; // 上线删除
             autoSetup(c$.language);
         });
@@ -1037,7 +1040,8 @@
                         var o = {
                             plugins:enablePlugins,
                             btnBuyTitle:$Util.fn_tri18n(I18N.UI.pluginMgrPage["btnBuy"]),
-                            btnBuyRestoreTitle:$Util.fn_tri18n(I18N.UI.pluginMgrPage["btnBuyRestore"])
+                            btnBuyRestoreTitle:$Util.fn_tri18n(I18N.UI.pluginMgrPage["btnBuyRestore"]),
+                            enableBuyRestoreBtn:b$.App.getSandboxEnable()
                         };
 
                         var html = template('tpl_pluginsMgr', o);
@@ -1320,32 +1324,36 @@
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        var b_inAppStore = b$.App.getSandboxEnable(); // 是否在沙盒内
+        var default_quantity = b_inAppStore ? 0 : 1;  //
+
+
         // 内置的功能
         $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.importFile", quantity:1,  name:"Open File", description: "支持导入文件", imageUrl:imgPre + "importFile_64.png"}));
         $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.dragFile", quantity:1,  name:"Drag File", description: "支持拖拽文件", imageUrl:imgPre + "dragFile_64.png"}));
         $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.fileSave", quantity:1,  name:"File Save", description: "支持保存文件功能", imageUrl:imgPre + "fileSave_64.png"}));
 
         // [商品]文档控制部分
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "increase5documentCount", price:"1$", name:"文档数量+5", description: "最大文档数量增加5", imageUrl:imgPre + "doc5_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "enableAutoSave", price:"1$", name:"开启自动保存", description: "此项，可以开启自动保存功能", imageUrl:imgPre + "autosave_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "enableAutoRestore", price:"1$", name:"开启自动恢复", description: "此项，可以开启自动恢复功能", imageUrl:imgPre + "autoRecover_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity*10, id:prefix + "increase5documentCount", price:"1$", name:"文档数量+5", description: "最大文档数量增加5", imageUrl:imgPre + "doc5_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "enableAutoSave", price:"1$", name:"开启自动保存", description: "此项，可以开启自动保存功能", imageUrl:imgPre + "autosave_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "enableAutoRestore", price:"1$", name:"开启自动恢复", description: "此项，可以开启自动恢复功能", imageUrl:imgPre + "autoRecover_64.png"}));
 
 
         // [商品]编辑器功能
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.taskList", price:"2$", name:"TaskList", description: "支持Github task lists", imageUrl:imgPre + "taskList_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.emoji", price:"3$", name:"Emoji", description: "支持emoji表情功能", imageUrl:imgPre + "emoji_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.atLink", price:"1$", name:"atLink", description: "支持atLink功能", imageUrl:imgPre + "atLink_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.emailLink", price:"1$", name:"emailLink", description: "支持emailLink功能", imageUrl:imgPre+ "emailLink_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.flowChart", price:"1$", name:"FlowChart", description: "支持flowChart功能", imageUrl:imgPre + "flowChart_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.sequenceDiagram", price:"1$", name:"SequenceDiagram", description: "支持sequenceDiagram功能", imageUrl:imgPre + "sequenceDiagram_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.tex", price:"2$", name:"Tex", description: "支持tex功能", imageUrl:imgPre + "tex_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.toc", price:"2$", name:"Toc", description: "支持toc功能", imageUrl:imgPre + "toc_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.codeFold",  price:"1$", name:"CodeFold", description: "支持codeFold功能", imageUrl:imgPre + "codeFold_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.htmlDecode", price:"1$", name:"HTMLDecode", description: "支持htmlDecode功能", imageUrl:imgPre + "htmlDecode_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.styleActiveLine", price:"1$", name:"StyleActiveLine", description: "支持styleActiveLine功能", imageUrl:imgPre + "styleActiveLine_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.lineNumbers", price:"1$", name:"LineNumbers", description: "支持lineNumbers功能", imageUrl:imgPre + "lineNumbers_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.searchReplace", price:"1$", name:"Search Replace", description: "支持searchReplace功能", imageUrl:imgPre + "searchReplace_64.png"}));
-        $IAPProvider.addProduct(ProductC.create({id:prefix + "support.tocm", price:"1$", name:"TOCM", description: "Using [TOCM], auto create ToC dropdown menu", imageUrl:imgPre + "tocm_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.taskList", price:"2$", name:"TaskList", description: "支持Github task lists", imageUrl:imgPre + "taskList_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.emoji", price:"3$", name:"Emoji", description: "支持emoji表情功能", imageUrl:imgPre + "emoji_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.atLink", price:"1$", name:"atLink", description: "支持atLink功能", imageUrl:imgPre + "atLink_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.emailLink", price:"1$", name:"emailLink", description: "支持emailLink功能", imageUrl:imgPre+ "emailLink_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.flowChart", price:"1$", name:"FlowChart", description: "支持flowChart功能", imageUrl:imgPre + "flowChart_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.sequenceDiagram", price:"1$", name:"SequenceDiagram", description: "支持sequenceDiagram功能", imageUrl:imgPre + "sequenceDiagram_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.tex", price:"2$", name:"Tex", description: "支持tex功能", imageUrl:imgPre + "tex_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.toc", price:"2$", name:"Toc", description: "支持toc功能", imageUrl:imgPre + "toc_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.codeFold",  price:"1$", name:"CodeFold", description: "支持codeFold功能", imageUrl:imgPre + "codeFold_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.htmlDecode", price:"1$", name:"HTMLDecode", description: "支持htmlDecode功能", imageUrl:imgPre + "htmlDecode_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.styleActiveLine", price:"1$", name:"StyleActiveLine", description: "支持styleActiveLine功能", imageUrl:imgPre + "styleActiveLine_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.lineNumbers", price:"1$", name:"LineNumbers", description: "支持lineNumbers功能", imageUrl:imgPre + "lineNumbers_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.searchReplace", price:"1$", name:"Search Replace", description: "支持searchReplace功能", imageUrl:imgPre + "searchReplace_64.png"}));
+        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "support.tocm", price:"1$", name:"TOCM", description: "Using [TOCM], auto create ToC dropdown menu", imageUrl:imgPre + "tocm_64.png"}));
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1439,119 +1447,132 @@
                 product.quantity = product_quantity;
                 syncAndCheckUserSettings(product);
             }
+
+            // 非AppStore产品状态下，同步产品信息
+            if(c$.NCMessage.productSyncNoAppStore === message){
+                var productInfoList = $IAPProvider.getAllEnableProducts();
+                $.each(productInfoList, function(index, product){
+                    syncAndCheckUserSettings(product);
+                });
+            }
         });
 
 
-        // 开启IAP的功能
-        b$.IAP.enableIAP({
-            cb_IAP_js: b$._get_callback(function(obj){
-                try{
-                    //console.log($.obj2string(obj));
-                    var info = obj.info, notifyType = obj.notifyType;
+        if(b_inAppStore == true){
+            // 开启IAP的功能
+            b$.IAP.enableIAP({
+                cb_IAP_js: b$._get_callback(function(obj){
+                    try{
+                        //console.log($.obj2string(obj));
+                        var info = obj.info, notifyType = obj.notifyType;
 
-                    // 修正兼容键值对
-                    if(typeof info === "string") info = JSON.parse(info);
+                        // 修正兼容键值对
+                        if(typeof info === "string") info = JSON.parse(info);
 
-                    // 获得兼容的键值, 也就说原先的IAP系统返回值有了变动
-                    var _getCompatibleKey = function(infoObj, key){
-                        //NOTE:使用标准的函数来处理
-                        if(typeof infoObj[key] !== "undefined") return infoObj[key];
-                        if(typeof infoObj["payment"] !== "undefined"){
-                            if(typeof infoObj["payment"][key] !== "undefined")
-                                return infoObj["payment"][key];
+                        // 获得兼容的键值, 也就说原先的IAP系统返回值有了变动
+                        var _getCompatibleKey = function(infoObj, key){
+                            //NOTE:使用标准的函数来处理
+                            if(typeof infoObj[key] !== "undefined") return infoObj[key];
+                            if(typeof infoObj["payment"] !== "undefined"){
+                                if(typeof infoObj["payment"][key] !== "undefined")
+                                    return infoObj["payment"][key];
+                            }
+                            return "[ '" + key + "' no found.]" ;
+                        };
+
+                        if(notifyType == "ProductBuyFailed"){
+                            console.log('[section] ProductBuyFailed');
+                            //@"{'productIdentifier':'%@', 'message':'No products found in apple store'}"
+                            var pluginId = _getCompatibleKey(info, "productIdentifier");
+                            var message = _getCompatibleKey(info, "message");
+
+                            var log = $.stringFormat("{0} order plugin failed! {1}", pluginId, message);
+                            console.warn(log);
+                        }else if(notifyType == "ProductPurchased"){
+                            console.log('[section] ProductPurchased');
+                            //@"{'productIdentifier':'%@', 'quantity':'%@'}"
+
+                            var pluginId = _getCompatibleKey(info, "productIdentifier");
+                            $IAPProvider.syncProductWithAppStore(pluginId, function(product){
+                                //说明：product{enable, inAppStore, quantity, price}
+
+                                //使用消息中心发送商品已经购买的消息
+                                $NoticeCenter.fire(c$.NCMessage.productPurchased, pluginId);
+                            });
+
+                            var log = $.stringFormat("{0} order plugin success!", pluginId);
+                            console.log(log);
+                        }else if(notifyType == "ProductPurchaseFailed"){
+                            console.log('[section] ProductPurchaseFailed');
+                            //@"{‘transactionId':'%@',‘transactionDate’:'%@', 'payment':{'productIdentifier':'%@','quantity':'%@'}}"
+
+                            // 使用兼容模式
+                            var pluginId = _getCompatibleKey(info, "productIdentifier");
+                            var orderDate = _getCompatibleKey(info, "transactionDate");
+
+                            var log = $.stringFormat("{0} order plugin failed! orderDate {1}", pluginId, orderDate);
+                            console.log(log);
+                        }else if(notifyType == "ProductPurchaseFailedDetail"){
+                            console.log('[section] ProductPurchaseFailedDetail');
+                            //@"{'failBy':'cancel', 'transactionId':'%@', 'message':'%@', ‘transactionDate’:'%@', 'payment':{'productIdentifier':'%@','quantity':'%@'}}"
+                            //_nativeCallback.ncb0({"info":"{\"message\":\"Unknown Error.\",\"payment\":{\"quantity\":1,\"productIdentifier\":\"com.romanysoft.app.macos.MarkdownD.plugin.support.atLink\"},\"failBy\":\"error\",\"transactionDate\":\"2015-06-19 05:31:06\",\"transactionId\":\"E33C0E13-782E-4433-B080-40B416024933\"}","notifyType":"ProductPurchaseFailedDetail"});
+
+                            // 使用兼容模式
+                            var pluginId = _getCompatibleKey(info, "productIdentifier");
+                            var failBy = _getCompatibleKey(info, "failBy");
+                            var transactionDate = _getCompatibleKey(info, "transactionDate");
+                            var message = _getCompatibleKey(info, "message");
+
+                            var log = $.stringFormat("error: {0} failed by {1} ({2}) order date: {3}", pluginId, failBy, message, transactionDate);
+                            console.log(log);
+                        }else if(notifyType == "ProductRequested"){
+                            console.log('[section] ProductRequested');
+                            var productInfoList = info;
+                            if(typeof info == "string"){
+                                productInfoList = JSON.parse(info);
+                            }
+
+                            var log = $.stringFormat("Request product info from app store.");
+                            console.log(log);
+
+                            //说明：productInfoList = [{productIdentifier, description, price}]
+                            $.each(productInfoList, function(index, product){
+                                var info = {
+                                    id: product.productIdentifier,
+                                    price:product.price,
+                                    description:product.description
+                                };
+
+                                $IAPProvider.updateProductByIdWhitAppStore(info.id, info, undefined);
+                            });
+
+                            //使用消息中心发送商品信息请求的消息
+                            $NoticeCenter.fire(c$.NCMessage.productRequested, productInfoList);
+
+                        }else if(notifyType == "ProductCompletePurchased"){
+                            console.log('[section] ProductCompletePurchased');
+                            //@"{'productIdentifier':'%@', 'transactionId':'%@', 'receipt':'%@'}"
+
+                            //使用兼容模式
+                            var pluginId = _getCompatibleKey(info, "productIdentifier");
+                            var transactionId = _getCompatibleKey(info, "transactionId");
+                            var receipt = _getCompatibleKey(info, "receipt");
+
+                            var log = $.stringFormat("pluginId: {0}, transactionId: {1}, receipt: {2}", pluginId, transactionId, receipt);
+                            console.log(log);
+                        }else if(notifyType == "ProductsPaymentRemovedTransactions"){
+                            //{"info":"{\"payment\":[{\"quantity\":1,\"productIdentifier\":\"com.romanysoft.app.macos.MarkdownD.plugin.support.atLink\"},{\"quantity\":1,\"productIdentifier\":\"com.romanysoft.app.macos.MarkdownD.plugin.support.atLink\"}],\"removedTransactions\":[{\"quantity\":1,\"productIdentifier\":\"com.romanysoft.app.macos.MarkdownD.plugin.support.atLink\"}]}","notifyType":"ProductsPaymentRemovedTransactions"}
                         }
-                        return "[ '" + key + "' no found.]" ;
-                    };
-
-                    if(notifyType == "ProductBuyFailed"){
-                        console.log('[section] ProductBuyFailed');
-                        //@"{'productIdentifier':'%@', 'message':'No products found in apple store'}"
-                        var pluginId = _getCompatibleKey(info, "productIdentifier");
-                        var message = _getCompatibleKey(info, "message");
-
-                        var log = $.stringFormat("{0} order plugin failed! {1}", pluginId, message);
-                        console.warn(log);
-                    }else if(notifyType == "ProductPurchased"){
-                        console.log('[section] ProductPurchased');
-                        //@"{'productIdentifier':'%@', 'quantity':'%@'}"
-
-                        var pluginId = _getCompatibleKey(info, "productIdentifier");
-                        $IAPProvider.syncProductWithAppStore(pluginId, function(product){
-                            //说明：product{enable, inAppStore, quantity, price}
-
-                            //使用消息中心发送商品已经购买的消息
-                            $NoticeCenter.fire(c$.NCMessage.productPurchased, pluginId);
-                        });
-
-                        var log = $.stringFormat("{0} order plugin success!", pluginId);
-                        console.log(log);
-                    }else if(notifyType == "ProductPurchaseFailed"){
-                        console.log('[section] ProductPurchaseFailed');
-                        //@"{‘transactionId':'%@',‘transactionDate’:'%@', 'payment':{'productIdentifier':'%@','quantity':'%@'}}"
-
-                        // 使用兼容模式
-                        var pluginId = _getCompatibleKey(info, "productIdentifier");
-                        var orderDate = _getCompatibleKey(info, "transactionDate");
-
-                        var log = $.stringFormat("{0} order plugin failed! orderDate {1}", pluginId, orderDate);
-                        console.log(log);
-                    }else if(notifyType == "ProductPurchaseFailedDetail"){
-                        console.log('[section] ProductPurchaseFailedDetail');
-                        //@"{'failBy':'cancel', 'transactionId':'%@', 'message':'%@', ‘transactionDate’:'%@', 'payment':{'productIdentifier':'%@','quantity':'%@'}}"
-                        //_nativeCallback.ncb0({"info":"{\"message\":\"Unknown Error.\",\"payment\":{\"quantity\":1,\"productIdentifier\":\"com.romanysoft.app.macos.MarkdownD.plugin.support.atLink\"},\"failBy\":\"error\",\"transactionDate\":\"2015-06-19 05:31:06\",\"transactionId\":\"E33C0E13-782E-4433-B080-40B416024933\"}","notifyType":"ProductPurchaseFailedDetail"});
-
-                        // 使用兼容模式
-                        var pluginId = _getCompatibleKey(info, "productIdentifier");
-                        var failBy = _getCompatibleKey(info, "failBy");
-                        var transactionDate = _getCompatibleKey(info, "transactionDate");
-                        var message = _getCompatibleKey(info, "message");
-
-                        var log = $.stringFormat("error: {0} failed by {1} ({2}) order date: {3}", pluginId, failBy, message, transactionDate);
-                        console.log(log);
-                    }else if(notifyType == "ProductRequested"){
-                        console.log('[section] ProductRequested');
-                        var productInfoList = info;
-                        if(typeof info == "string"){
-                            productInfoList = JSON.parse(info);
-                        }
-
-                        var log = $.stringFormat("Request product info from app store.");
-                        console.log(log);
-
-                        //说明：productInfoList = [{productIdentifier, description, price}]
-                        $.each(productInfoList, function(index, product){
-                            var info = {
-                                id: product.productIdentifier,
-                                price:product.price,
-                                description:product.description
-                            };
-
-                            $IAPProvider.updateProductByIdWhitAppStore(info.id, info, undefined);
-                        });
-
-                        //使用消息中心发送商品信息请求的消息
-                        $NoticeCenter.fire(c$.NCMessage.productRequested, productInfoList);
-
-                    }else if(notifyType == "ProductCompletePurchased"){
-                        console.log('[section] ProductCompletePurchased');
-                        //@"{'productIdentifier':'%@', 'transactionId':'%@', 'receipt':'%@'}"
-
-                        //使用兼容模式
-                        var pluginId = _getCompatibleKey(info, "productIdentifier");
-                        var transactionId = _getCompatibleKey(info, "transactionId");
-                        var receipt = _getCompatibleKey(info, "receipt");
-
-                        var log = $.stringFormat("pluginId: {0}, transactionId: {1}, receipt: {2}", pluginId, transactionId, receipt);
-                        console.log(log);
-                    }else if(notifyType == "ProductsPaymentRemovedTransactions"){
-                        //{"info":"{\"payment\":[{\"quantity\":1,\"productIdentifier\":\"com.romanysoft.app.macos.MarkdownD.plugin.support.atLink\"},{\"quantity\":1,\"productIdentifier\":\"com.romanysoft.app.macos.MarkdownD.plugin.support.atLink\"}],\"removedTransactions\":[{\"quantity\":1,\"productIdentifier\":\"com.romanysoft.app.macos.MarkdownD.plugin.support.atLink\"}]}","notifyType":"ProductsPaymentRemovedTransactions"}
-                    }
 
 
-                }catch(e){console.error(e)}
-            }, true),
-            productIds: $IAPProvider.getAllEnableInAppStoreProductIds()
-        });
+                    }catch(e){console.error(e)}
+                }, true),
+                productIds: $IAPProvider.getAllEnableInAppStoreProductIds()
+            });
+        }else{
+            $NoticeCenter.fire(c$.NCMessage.productSyncNoAppStore);
+        }
+
     };
 
     // 启动

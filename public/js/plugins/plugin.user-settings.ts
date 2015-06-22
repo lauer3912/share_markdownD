@@ -8,7 +8,7 @@ module RomanySoftPlugins {
         class DocumentUnit{
             maxDocumentCount:number = 2;    // 默认最大的文档的数量
 
-            enableTabMode:boolean = false;  // 默认不使用Tab页签模式
+            //enableTabMode:boolean = false;  // 默认不使用Tab页签模式
 
             autoSave:boolean = false;       // 是否默认自动保存
             autoSaveSecs:number = 300;        // 自动保存的间隔时间(秒数)，默认是立即保存，

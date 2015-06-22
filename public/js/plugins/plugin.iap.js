@@ -84,6 +84,15 @@ var RomanySoftPlugins;
                 cb_delegate && (description = cb_delegate(id));
                 return description;
             };
+            IAP$Helper.prototype.getProductQuantity = function (id, cb_delegate) {
+                var _quantity = 0;
+                var product = this.getProduct(id);
+                if (null == product)
+                    return _quantity;
+                _quantity = product.quantity;
+                cb_delegate && (_quantity = cb_delegate(id));
+                return _quantity;
+            };
             IAP$Helper.prototype.getAllEnableInAppStoreProducts = function () {
                 var list = [];
                 $.each(this.productList, function (index, product) {
@@ -111,6 +120,15 @@ var RomanySoftPlugins;
                 });
                 return list;
             };
+            IAP$Helper.prototype.getAllEnableProductIds = function () {
+                var idList = [];
+                $.each(this.productList, function (index, product) {
+                    if (product.enable) {
+                        idList.push(product.id);
+                    }
+                });
+                return idList;
+            };
             IAP$Helper.prototype.getInBundleProductList = function (id) {
                 var list = [];
                 $.each(this.productList, function (index, product) {
@@ -124,12 +142,13 @@ var RomanySoftPlugins;
             };
             IAP$Helper.prototype.getProductIsPurchased = function (id, cb_delegate) {
                 var t = this;
-                var idList = t.getAllEnableInAppStoreProductIds();
+                var b$ = window.BS.b$;
+                var b_inAppStore = b$.App.getSandboxEnable();
+                var idList = b_inAppStore ? t.getAllEnableInAppStoreProductIds() : t.getAllEnableProductIds();
                 if ($.inArray(id, idList) > -1) {
                     var default_fun = function (id) {
                         try {
-                            var b$ = window.BS.b$;
-                            var self_count = b$.IAP.getUseableProductCount(id);
+                            var self_count = b_inAppStore ? b$.IAP.getUseableProductCount(id) : t.getProductQuantity(id, null);
                             if (self_count >= 1) {
                                 return true;
                             }

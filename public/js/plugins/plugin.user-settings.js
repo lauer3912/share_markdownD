@@ -9,7 +9,7 @@ var RomanySoftPlugins;
         var DocumentUnit = (function () {
             function DocumentUnit() {
                 this.maxDocumentCount = 2; // 默认最大的文档的数量
-                this.enableTabMode = false; // 默认不使用Tab页签模式
+                //enableTabMode:boolean = false;  // 默认不使用Tab页签模式
                 this.autoSave = false; // 是否默认自动保存
                 this.autoSaveSecs = 300; // 自动保存的间隔时间(秒数)，默认是立即保存，
                 this.autoRestore = true; // 是否自动恢复之前使用的文档
@@ -32,6 +32,7 @@ var RomanySoftPlugins;
                 this.enable_HtmlDecode = false; // 是否开启HTMLDecode
                 this.enable_StyleActiveLine = false; // 是否开启StyleActiveLine
                 this.enable_LineNumbers = false; // 是否开启LineNumbers
+                this.enable_ReadOnly = false; // 是否开启ReadOnly
                 this.enable_SearchReplace = false; // 是否开启SearchReplace
                 this.enable_Tocm = false; // 是否开启Tocm
                 //[内置]
