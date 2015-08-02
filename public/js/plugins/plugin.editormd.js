@@ -6,7 +6,7 @@ var RomanySoftPlugins;
 (function (RomanySoftPlugins) {
     var EditorMdServices = (function () {
         function EditorMdServices() {
-            this.version = "1.4.4";
+            this.version = "1.4.5";
             this.editormd = editormd;
             this.default_lib_path = "common/editor.md/" + this.version + "/editor.md/lib/"; // 默认版本哭路径
             this.default_lang_path = "locales/extend/editormd/"; // 默认版本路径

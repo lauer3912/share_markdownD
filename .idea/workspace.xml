@@ -1,28 +1,402 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d66fa614-948a-43b5-9215-832307c96ac8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gulpfile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\editormd.amd.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\mui\mui-0.1.2\css\mui.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\mui\mui-0.1.2\js\mui.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\mui\mui-0.1.2\react\mui-react.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\mui\mui-0.1.2\react\mui-react.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\mui\mui-0.1.2\webcomponents\mui-webcomponents.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\mui\mui-0.1.2\webcomponents\mui-webcomponents.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\js\test.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/MarkdownD.iml" afterPath="$PROJECT_DIR$/.idea/MarkdownD.iml" />
+    <list default="true" id="d66fa614-948a-43b5-9215-832307c96ac8" name="Default" comment="加入全部文件">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ChangeLog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/editormd.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/modes.min.js" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\editormd.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\modes.min.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Ian.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Ian.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.iap.js.map" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.iap.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.iap.js" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.iap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.iap.ts" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.iap.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/bs.js" afterPath="$PROJECT_DIR$/public/js/bs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.js" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.js.map" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.js" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.ts" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/util.js" afterPath="$PROJECT_DIR$/public/js/util.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\LICENSE" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/LICENSE" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\css\editormd.logo.min.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/css/editormd.logo.min.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\css\editormd.min.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/css/editormd.min.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\css\editormd.preview.min.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/css/editormd.preview.min.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\fonts\FontAwesome.otf" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/FontAwesome.otf" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\fonts\editormd-logo.eot" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/editormd-logo.eot" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\fonts\editormd-logo.svg" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/editormd-logo.svg" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\fonts\editormd-logo.ttf" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/editormd-logo.ttf" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\fonts\editormd-logo.woff" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/editormd-logo.woff" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\fonts\fontawesome-webfont.eot" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/fontawesome-webfont.eot" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\fonts\fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/fontawesome-webfont.svg" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\fonts\fontawesome-webfont.ttf" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/fontawesome-webfont.ttf" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\fonts\fontawesome-webfont.woff" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/fontawesome-webfont.woff" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\fonts\fontawesome-webfont.woff2" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/fontawesome-webfont.woff2" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\loading.gif" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/loading.gif" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\loading@2x.gif" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/loading@2x.gif" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\loading@3x.gif" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/loading@3x.gif" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-favicon-16x16.ico" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-favicon-16x16.ico" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-favicon-24x24.ico" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-favicon-24x24.ico" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-favicon-32x32.ico" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-favicon-32x32.ico" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-favicon-48x48.ico" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-favicon-48x48.ico" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-favicon-64x64.ico" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-favicon-64x64.ico" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-114x114.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-114x114.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-120x120.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-120x120.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-144x144.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-144x144.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-16x16.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-16x16.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-180x180.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-180x180.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-240x240.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-240x240.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-24x24.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-24x24.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-320x320.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-320x320.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-32x32.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-32x32.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-48x48.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-48x48.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-57x57.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-57x57.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-64x64.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-64x64.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-72x72.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-72x72.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\editormd-logo-96x96.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-96x96.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\images\logos\vi.png" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/vi.png" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\languages\en.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/languages/en.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\languages\zh-tw.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/languages/zh-tw.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\AUTHORS" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/AUTHORS" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\LICENSE" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/LICENSE" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\README.md" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/README.md" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\comment\comment.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/comment/comment.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\comment\continuecomment.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/comment/continuecomment.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\dialog\dialog.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/dialog/dialog.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\dialog\dialog.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/dialog/dialog.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\display\fullscreen.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/display/fullscreen.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\display\fullscreen.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/display/fullscreen.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\display\panel.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/display/panel.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\display\placeholder.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/display/placeholder.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\display\rulers.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/display/rulers.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\edit\closebrackets.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/edit/closebrackets.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\edit\closetag.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/edit/closetag.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\edit\continuelist.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/edit/continuelist.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\edit\matchbrackets.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/edit/matchbrackets.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\edit\matchtags.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/edit/matchtags.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\edit\trailingspace.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/edit/trailingspace.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\fold\brace-fold.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/brace-fold.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\fold\comment-fold.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/comment-fold.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\fold\foldcode.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/foldcode.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\fold\foldgutter.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/foldgutter.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\fold\foldgutter.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/foldgutter.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\fold\indent-fold.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/indent-fold.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\fold\markdown-fold.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/markdown-fold.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\fold\xml-fold.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/xml-fold.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\hint\anyword-hint.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/anyword-hint.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\hint\css-hint.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/css-hint.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\hint\html-hint.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/html-hint.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\hint\javascript-hint.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/javascript-hint.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\hint\show-hint.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/show-hint.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\hint\show-hint.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/show-hint.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\hint\sql-hint.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/sql-hint.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\hint\xml-hint.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/xml-hint.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\lint\coffeescript-lint.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/coffeescript-lint.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\lint\css-lint.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/css-lint.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\lint\javascript-lint.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/javascript-lint.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\lint\json-lint.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/json-lint.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\lint\lint.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/lint.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\lint\lint.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/lint.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\lint\yaml-lint.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/yaml-lint.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\merge\merge.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/merge/merge.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\merge\merge.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/merge/merge.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\mode\loadmode.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/mode/loadmode.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\mode\multiplex.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/mode/multiplex.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\mode\multiplex_test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/mode/multiplex_test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\mode\overlay.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/mode/overlay.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\mode\simple.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/mode/simple.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\runmode\colorize.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/runmode/colorize.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\runmode\runmode-standalone.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/runmode/runmode-standalone.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\runmode\runmode.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/runmode/runmode.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\runmode\runmode.node.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/runmode/runmode.node.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\scroll\annotatescrollbar.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/scroll/annotatescrollbar.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\scroll\scrollpastend.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/scroll/scrollpastend.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\scroll\simplescrollbars.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/scroll/simplescrollbars.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\scroll\simplescrollbars.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/scroll/simplescrollbars.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\search\match-highlighter.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/search/match-highlighter.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\search\matchesonscrollbar.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/search/matchesonscrollbar.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\search\matchesonscrollbar.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/search/matchesonscrollbar.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\search\search.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/search/search.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\search\searchcursor.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/search/searchcursor.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\selection\active-line.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/selection/active-line.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\selection\mark-selection.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/selection/mark-selection.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\selection\selection-pointer.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/selection/selection-pointer.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\tern\tern.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/tern/tern.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\tern\tern.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/tern/tern.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\tern\worker.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/tern/worker.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addon\wrap\hardwrap.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/wrap/hardwrap.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\addons.min.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addons.min.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\bower.json" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/bower.json" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\codemirror.min.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/codemirror.min.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\codemirror.min.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/codemirror.min.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\lib\codemirror.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/lib/codemirror.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\lib\codemirror.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/lib/codemirror.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\apl\apl.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/apl/apl.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\apl\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/apl/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\asterisk\asterisk.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/asterisk/asterisk.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\asterisk\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/asterisk/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\clike\clike.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/clike/clike.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\clike\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/clike/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\clike\scala.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/clike/scala.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\clojure\clojure.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/clojure/clojure.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\clojure\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/clojure/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\cobol\cobol.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/cobol/cobol.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\cobol\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/cobol/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\coffeescript\coffeescript.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/coffeescript/coffeescript.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\coffeescript\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/coffeescript/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\commonlisp\commonlisp.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/commonlisp/commonlisp.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\commonlisp\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/commonlisp/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\css\css.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/css.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\css\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\css\less.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/less.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\css\less_test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/less_test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\css\scss.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/scss.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\css\scss_test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/scss_test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\css\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\cypher\cypher.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/cypher/cypher.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\cypher\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/cypher/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\d\d.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/d/d.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\d\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/d/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\dart\dart.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dart/dart.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\dart\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dart/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\diff\diff.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/diff/diff.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\diff\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/diff/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\django\django.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/django/django.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\django\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/django/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\dockerfile\dockerfile.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dockerfile/dockerfile.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\dockerfile\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dockerfile/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\dtd\dtd.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dtd/dtd.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\dtd\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dtd/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\dylan\dylan.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dylan/dylan.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\dylan\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dylan/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\ebnf\ebnf.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ebnf/ebnf.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\ebnf\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ebnf/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\ecl\ecl.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ecl/ecl.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\ecl\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ecl/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\eiffel\eiffel.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/eiffel/eiffel.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\eiffel\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/eiffel/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\erlang\erlang.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/erlang/erlang.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\erlang\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/erlang/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\forth\forth.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/forth/forth.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\forth\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/forth/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\fortran\fortran.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/fortran/fortran.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\fortran\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/fortran/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\gas\gas.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gas/gas.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\gas\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gas/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\gfm\gfm.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gfm/gfm.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\gfm\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gfm/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\gfm\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gfm/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\gherkin\gherkin.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gherkin/gherkin.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\gherkin\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gherkin/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\go\go.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/go/go.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\go\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/go/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\groovy\groovy.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/groovy/groovy.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\groovy\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/groovy/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\haml\haml.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haml/haml.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\haml\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haml/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\haml\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haml/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\haskell\haskell.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haskell/haskell.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\haskell\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haskell/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\haxe\haxe.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haxe/haxe.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\haxe\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haxe/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\htmlembedded\htmlembedded.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/htmlembedded/htmlembedded.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\htmlembedded\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/htmlembedded/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\htmlmixed\htmlmixed.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/htmlmixed/htmlmixed.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\htmlmixed\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/htmlmixed/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\http\http.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/http/http.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\http\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/http/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\idl\idl.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/idl/idl.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\idl\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/idl/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\jade\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/jade/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\jade\jade.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/jade/jade.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\javascript\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/javascript/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\javascript\javascript.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/javascript/javascript.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\javascript\json-ld.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/javascript/json-ld.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\javascript\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/javascript/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\javascript\typescript.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/javascript/typescript.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\jinja2\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/jinja2/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\jinja2\jinja2.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/jinja2/jinja2.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\julia\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/julia/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\julia\julia.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/julia/julia.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\kotlin\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/kotlin/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\kotlin\kotlin.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/kotlin/kotlin.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\livescript\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/livescript/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\livescript\livescript.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/livescript/livescript.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\lua\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/lua/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\lua\lua.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/lua/lua.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\markdown\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/markdown/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\markdown\markdown.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/markdown/markdown.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\markdown\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/markdown/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\meta.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/meta.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\mirc\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/mirc/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\mirc\mirc.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/mirc/mirc.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\mllike\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/mllike/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\mllike\mllike.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/mllike/mllike.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\modelica\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/modelica/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\modelica\modelica.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/modelica/modelica.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\nginx\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/nginx/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\nginx\nginx.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/nginx/nginx.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\ntriples\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ntriples/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\ntriples\ntriples.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ntriples/ntriples.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\octave\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/octave/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\octave\octave.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/octave/octave.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\pascal\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/pascal/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\pascal\pascal.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/pascal/pascal.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\pegjs\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/pegjs/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\pegjs\pegjs.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/pegjs/pegjs.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\perl\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/perl/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\perl\perl.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/perl/perl.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\php\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/php/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\php\php.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/php/php.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\php\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/php/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\pig\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/pig/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\pig\pig.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/pig/pig.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\properties\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/properties/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\properties\properties.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/properties/properties.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\puppet\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/puppet/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\puppet\puppet.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/puppet/puppet.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\python\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/python/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\python\python.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/python/python.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\q\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/q/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\q\q.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/q/q.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\r\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/r/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\r\r.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/r/r.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\rpm\changes\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rpm/changes/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\rpm\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rpm/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\rpm\rpm.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rpm/rpm.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\rst\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rst/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\rst\rst.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rst/rst.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\ruby\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ruby/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\ruby\ruby.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ruby/ruby.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\ruby\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ruby/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\rust\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rust/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\rust\rust.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rust/rust.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\sass\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sass/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\sass\sass.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sass/sass.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\scheme\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/scheme/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\scheme\scheme.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/scheme/scheme.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\shell\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/shell/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\shell\shell.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/shell/shell.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\shell\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/shell/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\sieve\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sieve/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\sieve\sieve.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sieve/sieve.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\slim\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/slim/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\slim\slim.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/slim/slim.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\slim\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/slim/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\smalltalk\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/smalltalk/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\smalltalk\smalltalk.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/smalltalk/smalltalk.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\smarty\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/smarty/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\smarty\smarty.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/smarty/smarty.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\smartymixed\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/smartymixed/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\smartymixed\smartymixed.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/smartymixed/smartymixed.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\solr\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/solr/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\solr\solr.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/solr/solr.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\soy\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/soy/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\soy\soy.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/soy/soy.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\sparql\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sparql/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\sparql\sparql.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sparql/sparql.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\spreadsheet\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/spreadsheet/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\spreadsheet\spreadsheet.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/spreadsheet/spreadsheet.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\sql\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sql/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\sql\sql.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sql/sql.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\stex\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/stex/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\stex\stex.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/stex/stex.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\stex\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/stex/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\stylus\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/stylus/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\stylus\stylus.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/stylus/stylus.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\tcl\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tcl/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\tcl\tcl.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tcl/tcl.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\textile\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/textile/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\textile\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/textile/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\textile\textile.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/textile/textile.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\tiddlywiki\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tiddlywiki/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\tiddlywiki\tiddlywiki.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tiddlywiki/tiddlywiki.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\tiddlywiki\tiddlywiki.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tiddlywiki/tiddlywiki.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\tiki\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tiki/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\tiki\tiki.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tiki/tiki.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\tiki\tiki.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tiki/tiki.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\toml\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/toml/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\toml\toml.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/toml/toml.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\tornado\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tornado/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\tornado\tornado.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tornado/tornado.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\turtle\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/turtle/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\turtle\turtle.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/turtle/turtle.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\vb\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/vb/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\vb\vb.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/vb/vb.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\vbscript\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/vbscript/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\vbscript\vbscript.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/vbscript/vbscript.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\velocity\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/velocity/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\velocity\velocity.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/velocity/velocity.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\verilog\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/verilog/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\verilog\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/verilog/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\verilog\verilog.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/verilog/verilog.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\xml\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/xml/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\xml\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/xml/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\xml\xml.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/xml/xml.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\xquery\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/xquery/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\xquery\test.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/xquery/test.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\xquery\xquery.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/xquery/xquery.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\yaml\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/yaml/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\yaml\yaml.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/yaml/yaml.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\z80\index.html" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/z80/index.html" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\mode\z80\z80.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/z80/z80.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\package.json" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/package.json" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\3024-day.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/3024-day.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\3024-night.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/3024-night.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\ambiance-mobile.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/ambiance-mobile.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\ambiance.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/ambiance.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\base16-dark.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/base16-dark.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\base16-light.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/base16-light.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\blackboard.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/blackboard.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\cobalt.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/cobalt.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\colorforth.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/colorforth.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\eclipse.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/eclipse.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\elegant.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/elegant.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\erlang-dark.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/erlang-dark.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\lesser-dark.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/lesser-dark.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\mbo.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/mbo.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\mdn-like.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/mdn-like.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\midnight.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/midnight.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\monokai.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/monokai.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\neat.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/neat.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\neo.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/neo.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\night.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/night.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\paraiso-dark.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/paraiso-dark.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\paraiso-light.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/paraiso-light.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\pastel-on-dark.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/pastel-on-dark.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\rubyblue.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/rubyblue.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\solarized.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/solarized.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\the-matrix.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/the-matrix.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\tomorrow-night-bright.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/tomorrow-night-bright.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\tomorrow-night-eighties.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/tomorrow-night-eighties.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\twilight.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/twilight.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\vibrant-ink.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/vibrant-ink.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\xq-dark.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/xq-dark.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\xq-light.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/xq-light.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\codemirror\theme\zenburn.css" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/zenburn.css" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\flowchart.min.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/flowchart.min.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\jquery.flowchart.min.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/jquery.flowchart.min.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\marked.min.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/marked.min.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\prettify.min.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/prettify.min.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\raphael.min.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/raphael.min.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\sequence-diagram.min.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/sequence-diagram.min.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\lib\underscore.min.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/underscore.min.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\code-block-dialog\code-block-dialog.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/code-block-dialog/code-block-dialog.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\emoji-dialog\emoji-dialog.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/emoji-dialog/emoji-dialog.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\emoji-dialog\emoji.json" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/emoji-dialog/emoji.json" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\goto-line-dialog\goto-line-dialog.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/goto-line-dialog/goto-line-dialog.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\help-dialog\help-dialog.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/help-dialog/help-dialog.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\help-dialog\help.md" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/help-dialog/help.md" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\html-entities-dialog\html-entities-dialog.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/html-entities-dialog/html-entities-dialog.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\html-entities-dialog\html-entities.json" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/html-entities-dialog/html-entities.json" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\image-dialog\image-dialog.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/image-dialog/image-dialog.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\link-dialog\link-dialog.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/link-dialog/link-dialog.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\plugin-template.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/plugin-template.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\preformatted-text-dialog\preformatted-text-dialog.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/preformatted-text-dialog/preformatted-text-dialog.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\reference-link-dialog\reference-link-dialog.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/reference-link-dialog/reference-link-dialog.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\table-dialog\table-dialog.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/table-dialog/table-dialog.js" />
+      <change type="MOVED" beforePath="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.4\editor.md\plugins\test-plugin\test-plugin.js" afterPath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/test-plugin/test-plugin.js" />
     </list>
     <ignored path="MarkdownD.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,137 +419,66 @@
     <favorites_list name="MarkdownD" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.5">
+    <splitter split-orientation="vertical" split-proportion="0.57391304">
       <split-first>
         <leaf>
-          <file leaf-file-name="bs.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/js/bs.js">
+          <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/js/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="247" column="28" selection-start-line="247" selection-start-column="12" selection-end-line="247" selection-end-column="28" />
+                <state vertical-scroll-proportion="-2.0">
+                  <caret line="732" column="32" selection-start-line="732" selection-start-column="32" selection-end-line="732" selection-end-column="84" />
                   <folding>
-                    <element signature="e#897#1451#0" expanded="true" />
-                    <element signature="e#1112#1397#0" expanded="true" />
-                    <element signature="e#27232#32405#0" expanded="true" />
+                    <element signature="e#53#134#0" expanded="true" />
+                    <element signature="e#3775#19501#0" expanded="true" />
+                    <element signature="e#13498#19490#0" expanded="true" />
+                    <element signature="e#13758#19477#0" expanded="true" />
+                    <element signature="e#17240#18051#0" expanded="true" />
+                    <element signature="e#17838#17969#0" expanded="true" />
+                    <element signature="e#18519#19124#0" expanded="true" />
+                    <element signature="e#33207#40494#0" expanded="true" />
+                    <element signature="e#37258#40268#0" expanded="true" />
+                    <element signature="e#37696#39615#0" expanded="true" />
+                    <element signature="e#40539#42862#0" expanded="true" />
+                    <element signature="e#41304#42637#0" expanded="true" />
+                    <element signature="e#52811#69966#0" expanded="true" />
+                    <element signature="e#57900#62869#0" expanded="true" />
+                    <element signature="e#62961#69864#0" expanded="false" />
+                    <element signature="e#70005#70552#0" expanded="true" />
+                    <element signature="e#70099#70492#0" expanded="true" />
+                    <element signature="e#70423#70480#0" expanded="true" />
+                    <marker date="1438484717059" expanded="true" signature="43284:43297" placeholder="..." />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/js/app.js">
+          <file leaf-file-name="plugin.editormd.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-17.038462">
-                  <caret line="1043" column="47" selection-start-line="1043" selection-start-column="28" selection-end-line="1043" selection-end-column="47" />
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
                   <folding>
-                    <element signature="e#0#38#0" expanded="true" />
-                    <element signature="e#53#134#0" expanded="true" />
-                    <element signature="e#1226#1621#0" expanded="true" />
-                    <element signature="e#1259#1364#0" expanded="true" />
-                    <element signature="e#1410#1615#0" expanded="true" />
-                    <element signature="e#1679#1732#0" expanded="true" />
-                    <element signature="e#1791#2331#0" expanded="true" />
-                    <element signature="e#2401#3358#0" expanded="true" />
-                    <element signature="e#2587#3131#0" expanded="true" />
-                    <element signature="e#2743#2935#0" expanded="true" />
-                    <element signature="e#2988#3106#0" expanded="true" />
-                    <element signature="e#3185#3232#0" expanded="true" />
-                    <element signature="e#3260#3350#0" expanded="true" />
-                    <element signature="e#3408#3696#0" expanded="true" />
-                    <element signature="e#3746#20760#0" expanded="true" />
-                    <element signature="e#3853#3996#0" expanded="true" />
-                    <element signature="e#4032#4089#0" expanded="true" />
-                    <element signature="e#4321#7079#0" expanded="true" />
-                    <element signature="e#4686#6829#0" expanded="true" />
-                    <element signature="e#7189#8550#0" expanded="true" />
-                    <element signature="e#7562#8235#0" expanded="true" />
-                    <element signature="e#8666#9074#0" expanded="true" />
-                    <element signature="e#9131#9447#0" expanded="true" />
-                    <element signature="e#9481#10972#0" expanded="true" />
-                    <element signature="e#10409#10839#0" expanded="true" />
-                    <element signature="e#10888#10915#0" expanded="true" />
-                    <element signature="e#11164#12646#0" expanded="true" />
-                    <element signature="e#11291#12620#0" expanded="true" />
-                    <element signature="e#12852#14483#0" expanded="true" />
-                    <element signature="e#12968#14384#0" expanded="true" />
-                    <element signature="e#14861#20749#0" expanded="true" />
-                    <element signature="e#15121#20736#0" expanded="true" />
-                    <element signature="e#15193#16558#0" expanded="true" />
-                    <element signature="e#16133#16295#0" expanded="true" />
-                    <element signature="e#16351#16387#0" expanded="true" />
-                    <element signature="e#16637#18393#0" expanded="false" />
-                    <element signature="e#16699#18330#0" expanded="true" />
-                    <element signature="e#16815#18231#0" expanded="true" />
-                    <element signature="e#19097#19228#0" expanded="true" />
-                    <element signature="e#19475#20425#0" expanded="false" />
-                    <element signature="e#19778#20383#0" expanded="true" />
-                    <element signature="e#21179#21606#0" expanded="true" />
-                    <element signature="e#21230#21569#0" expanded="true" />
-                    <element signature="e#21649#23446#0" expanded="true" />
-                    <element signature="e#22759#22846#0" expanded="true" />
-                    <element signature="e#22906#23088#0" expanded="true" />
-                    <element signature="e#23181#23418#0" expanded="true" />
-                    <element signature="e#23486#24919#0" expanded="true" />
-                    <element signature="e#24806#24873#0" expanded="true" />
-                    <element signature="e#24930#25028#0" expanded="true" />
-                    <element signature="e#25077#34262#0" expanded="true" />
-                    <element signature="e#26014#27964#0" expanded="true" />
-                    <element signature="e#26326#27922#0" expanded="true" />
-                    <element signature="e#28703#28851#0" expanded="true" />
-                    <element signature="e#30366#30605#0" expanded="true" />
-                    <element signature="e#32393#32417#0" expanded="true" />
-                    <element signature="e#32608#33748#0" expanded="true" />
-                    <element signature="e#32807#33728#0" expanded="true" />
-                    <element signature="e#33866#33935#0" expanded="true" />
-                    <element signature="e#34079#34249#0" expanded="true" />
-                    <element signature="e#35102#35404#0" expanded="true" />
-                    <element signature="e#35201#35380#0" expanded="true" />
-                    <element signature="e#35445#37730#0" expanded="true" />
-                    <element signature="e#35965#36447#0" expanded="true" />
-                    <element signature="e#36165#36363#0" expanded="true" />
-                    <element signature="e#36850#37328#0" expanded="true" />
-                    <element signature="e#37048#37244#0" expanded="true" />
-                    <element signature="e#37770#37856#0" expanded="true" />
-                    <element signature="e#37904#38053#0" expanded="true" />
-                    <element signature="e#38097#40224#0" expanded="true" />
-                    <element signature="e#39500#39701#0" expanded="true" />
-                    <element signature="e#39769#39817#0" expanded="true" />
-                    <element signature="e#40270#43280#0" expanded="true" />
-                    <element signature="e#40708#42627#0" expanded="true" />
-                    <element signature="e#41674#41860#0" expanded="true" />
-                    <element signature="e#41924#41968#0" expanded="true" />
-                    <element signature="e#43973#44275#0" expanded="true" />
-                    <element signature="e#44072#44251#0" expanded="true" />
-                    <element signature="e#44605#44983#0" expanded="true" />
-                    <element signature="e#45908#50139#0" expanded="true" />
-                    <element signature="e#48937#49752#0" expanded="true" />
-                    <element signature="e#49524#49653#0" expanded="true" />
-                    <element signature="e#49862#50003#0" expanded="true" />
-                    <element signature="e#50616#50891#0" expanded="true" />
-                    <element signature="e#50692#50730#0" expanded="true" />
-                    <element signature="e#50953#54834#0" expanded="true" />
-                    <element signature="e#51108#51120#0" expanded="true" />
-                    <element signature="e#51175#54744#0" expanded="true" />
-                    <element signature="e#51287#51689#0" expanded="true" />
-                    <element signature="e#51761#52210#0" expanded="true" />
-                    <element signature="e#52291#53106#0" expanded="true" />
-                    <element signature="e#53173#54574#0" expanded="true" />
-                    <element signature="e#54899#55761#0" expanded="true" />
-                    <element signature="e#55002#55356#0" expanded="true" />
-                    <element signature="e#55557#55742#0" expanded="true" />
-                    <element signature="e#55808#73391#0" expanded="true" />
-                    <element signature="e#61114#66294#0" expanded="true" />
-                    <element signature="e#62644#64761#0" expanded="true" />
-                    <element signature="e#65104#65470#0" expanded="true" />
-                    <element signature="e#66194#66268#0" expanded="true" />
-                    <element signature="e#66386#73289#0" expanded="false" />
-                    <element signature="e#66445#73191#0" expanded="true" />
-                    <element signature="e#66844#67328#0" expanded="true" />
-                    <element signature="e#68288#68547#0" expanded="true" />
-                    <element signature="e#71290#71696#0" expanded="true" />
-                    <element signature="e#73430#73850#0" expanded="true" />
-                    <element signature="e#73524#73790#0" expanded="true" />
-                    <marker date="1434976341619" expanded="true" signature="46281:46294" placeholder="..." />
+                    <element signature="n#!!block;n#configEmoji#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="true" />
+                    <element signature="n#!!block;n#resetToolbarHandler#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/js/util.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="50" column="10" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
+                  <folding>
+                    <element signature="e#875#932#0" expanded="true" />
+                    <element signature="e#1056#1238#0" expanded="true" />
+                    <element signature="e#1288#1472#0" expanded="true" />
+                    <element signature="e#1541#1631#0" expanded="true" />
+                    <element signature="e#1672#1777#0" expanded="true" />
+                    <element signature="e#5853#7700#0" expanded="true" />
+                    <element signature="e#7901#8456#0" expanded="true" />
+                    <element signature="e#8074#8444#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -191,84 +494,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="en-US.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/locales/en-US.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="116" column="29" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="87" />
-                  <folding>
-                    <element signature="e#2482#2783#0" expanded="false" />
-                    <element signature="e#2804#3695#0" expanded="false" />
-                    <element signature="e#3738#3907#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="plugin.iap.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.iap.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-12.807693">
-                  <caret line="202" column="48" selection-start-line="202" selection-start-column="48" selection-end-line="202" selection-end-column="48" />
-                  <folding>
-                    <element signature="n#!!block;n#create#0;n#Product#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="n#!!block;n#addProduct#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="n#!!block;n#removeProduct#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="n#!!block;n#getProduct#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="e#3727#3861#0" expanded="true" />
-                    <element signature="n#!!block;n#getProductName#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="n#!!block;n#getProductDescription#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="n#!!block;n#getProductQuantity#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="n#!!block;n#getAllEnableInAppStoreProducts#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="e#5178#5325#0" expanded="true" />
-                    <element signature="n#!!block;n#getAllEnableInAppStoreProductIds#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="e#5539#5691#0" expanded="true" />
-                    <element signature="n#!!block;n#getAllEnableProducts#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="e#5893#6018#0" expanded="true" />
-                    <element signature="n#!!block;n#getAllEnableProductIds#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="e#6222#6352#0" expanded="true" />
-                    <element signature="n#!!block;n#getInBundleProductList#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="e#6568#6790#0" expanded="true" />
-                    <element signature="e#7762#7963#0" expanded="true" />
-                    <element signature="n#!!block;n#getProductPurchasedCount#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="e#8614#8931#0" expanded="true" />
-                    <element signature="n#!!block;n#syncProductWithAppStore#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="e#9291#9764#0" expanded="true" />
-                    <element signature="n#!!block;n#updateProductByIdWhitAppStore#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="zh-TW.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/locales/extend/editormd/zh-TW.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#50#3934#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="zh-CN.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/locales/extend/editormd/zh-CN.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="100" column="6" selection-start-line="100" selection-start-column="6" selection-end-line="100" selection-end-column="6" />
-                  <folding>
-                    <element signature="e#50#4002#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/index.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="-5.76">
-                  <caret line="115" column="21" selection-start-line="115" selection-start-column="21" selection-end-line="115" selection-end-column="21" />
+                  <caret line="260" column="37" selection-start-line="260" selection-start-column="37" selection-end-line="260" selection-end-column="47" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
@@ -283,21 +513,54 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="plugin.user-settings.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.user-settings.ts">
+          <file leaf-file-name="project.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/build/public/project.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+                <state vertical-scroll-proportion="-5.12">
+                  <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/readme.md">
+          <file leaf-file-name="ChangeLog" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/ChangeLog">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.70718235">
-                  <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="46" selection-end-column="31" />
+                <state vertical-scroll-proportion="0.104575165">
+                  <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="61" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="project.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/project.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-13.72">
+                  <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="work.txt" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/work.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="readme.md" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/readme.md">
+              <provider editor-type-id="MarkdownPreviewEditor">
+                <state />
+              </provider>
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-9.931034">
+                  <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -307,11 +570,89 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/readme.md">
+          <file leaf-file-name="bs.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/js/bs.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.2644628">
-                  <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="94" selection-end-column="31" />
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="1308" column="29" selection-start-line="1308" selection-start-column="29" selection-end-line="1308" selection-end-column="29" />
+                  <folding>
+                    <element signature="e#897#1451#0" expanded="true" />
+                    <element signature="e#1112#1397#0" expanded="true" />
+                    <element signature="e#3954#4305#0" expanded="true" />
+                    <element signature="e#4362#4520#0" expanded="true" />
+                    <element signature="e#4577#4735#0" expanded="true" />
+                    <element signature="e#4855#5350#0" expanded="true" />
+                    <element signature="e#5389#5756#0" expanded="true" />
+                    <element signature="e#5800#6166#0" expanded="true" />
+                    <element signature="e#6704#6994#0" expanded="true" />
+                    <element signature="e#7100#7422#0" expanded="true" />
+                    <element signature="e#13395#13542#0" expanded="true" />
+                    <element signature="e#13650#13789#0" expanded="true" />
+                    <element signature="e#13897#14048#0" expanded="true" />
+                    <element signature="e#14120#14262#0" expanded="true" />
+                    <element signature="e#14341#14486#0" expanded="true" />
+                    <element signature="e#27907#33080#0" expanded="true" />
+                    <element signature="e#37847#38040#0" expanded="true" />
+                    <element signature="e#38072#38174#0" expanded="true" />
+                    <element signature="e#38212#38737#0" expanded="true" />
+                    <element signature="e#38752#38853#0" expanded="true" />
+                    <element signature="e#38893#39130#0" expanded="true" />
+                    <element signature="e#39145#39272#0" expanded="true" />
+                    <element signature="e#39308#39550#0" expanded="true" />
+                    <element signature="e#39565#39637#0" expanded="true" />
+                    <element signature="e#39674#39869#0" expanded="true" />
+                    <element signature="e#39884#39956#0" expanded="true" />
+                    <element signature="e#39994#40190#0" expanded="true" />
+                    <element signature="e#40205#40278#0" expanded="true" />
+                    <element signature="e#40319#40518#0" expanded="true" />
+                    <element signature="e#40533#40669#0" expanded="true" />
+                    <element signature="e#40715#41409#0" expanded="true" />
+                    <element signature="e#41012#41153#0" expanded="true" />
+                    <element signature="e#41537#43980#0" expanded="false" />
+                    <element signature="e#41551#41636#0" expanded="true" />
+                    <element signature="e#41669#41732#0" expanded="true" />
+                    <element signature="e#41747#41831#0" expanded="true" />
+                    <element signature="e#41872#41951#0" expanded="true" />
+                    <element signature="e#41966#42113#0" expanded="true" />
+                    <element signature="e#42169#43970#0" expanded="true" />
+                    <element signature="e#43644#43800#0" expanded="true" />
+                    <element signature="e#44013#49145#0" expanded="false" />
+                    <element signature="e#44027#44112#0" expanded="true" />
+                    <element signature="e#44145#44210#0" expanded="true" />
+                    <element signature="e#44225#44309#0" expanded="true" />
+                    <element signature="e#44350#44431#0" expanded="true" />
+                    <element signature="e#44446#44586#0" expanded="true" />
+                    <element signature="e#44649#46463#0" expanded="true" />
+                    <element signature="e#46138#46294#0" expanded="true" />
+                    <element signature="e#46516#47587#0" expanded="true" />
+                    <element signature="e#47602#47737#0" expanded="true" />
+                    <element signature="e#47793#48400#0" expanded="true" />
+                    <element signature="e#48415#48563#0" expanded="true" />
+                    <element signature="e#48629#49134#0" expanded="true" />
+                    <element signature="e#49157#49190#0" expanded="true" />
+                    <element signature="e#49248#49368#0" expanded="true" />
+                    <element signature="e#49412#50257#0" expanded="true" />
+                    <element signature="e#49572#50223#0" expanded="true" />
+                    <element signature="e#49704#50203#0" expanded="true" />
+                    <element signature="e#50344#50391#0" expanded="true" />
+                    <element signature="e#50707#51017#0" expanded="true" />
+                    <element signature="e#51475#51524#0" expanded="true" />
+                    <element signature="e#51558#51812#0" expanded="true" />
+                    <element signature="e#51830#51879#0" expanded="true" />
+                    <element signature="e#51913#52167#0" expanded="true" />
+                    <element signature="e#52202#52442#0" expanded="true" />
+                    <element signature="e#56858#57741#0" expanded="true" />
+                    <element signature="e#57091#57122#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="plugin.user-settings.ts" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.user-settings.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -355,8 +696,6 @@
         <option value="$PROJECT_DIR$/public/js/files_cache.js" />
         <option value="$PROJECT_DIR$/public/js/files_cache.ts" />
         <option value="$PROJECT_DIR$/public/js/plugins/plugin.help.ts" />
-        <option value="$PROJECT_DIR$/public/js/bs.js" />
-        <option value="$PROJECT_DIR$/public/js/util.js" />
         <option value="$PROJECT_DIR$/public/js/IAP/plugins_define.js" />
         <option value="$PROJECT_DIR$/public/i18n/en-US.json" />
         <option value="$PROJECT_DIR$/public/i18n/native/en-US.json" />
@@ -374,16 +713,20 @@
         <option value="$PROJECT_DIR$/public/locales/zh-TW.ts" />
         <option value="$PROJECT_DIR$/public/locales/de-DE.ts" />
         <option value="$PROJECT_DIR$/public/locales/ja-JP.ts" />
-        <option value="$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts" />
         <option value="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.js" />
         <option value="$PROJECT_DIR$/build/public/index.html" />
         <option value="$PROJECT_DIR$/gulpfile.js" />
         <option value="$PROJECT_DIR$/public/locales/extend/editormd/zh-CN.js" />
         <option value="$PROJECT_DIR$/public/js/plugins/plugin.iap.ts" />
-        <option value="$PROJECT_DIR$/public/js/app.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.ts" />
         <option value="$PROJECT_DIR$/readme.md" />
+        <option value="$PROJECT_DIR$/public/js/util.js" />
+        <option value="$PROJECT_DIR$/public/project.json" />
+        <option value="$PROJECT_DIR$/public/js/plugins/plugin.user-settings.ts" />
+        <option value="$PROJECT_DIR$/public/js/bs.js" />
+        <option value="$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts" />
+        <option value="$PROJECT_DIR$/public/js/app.js" />
+        <option value="$PROJECT_DIR$/ChangeLog" />
       </list>
     </option>
   </component>
@@ -394,15 +737,20 @@
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
+    <gulpfiles>
+      <GulpfileState>
+        <gulpfile-path>$PROJECT_DIR$/gulpfile.js</gulpfile-path>
+      </GulpfileState>
+    </gulpfiles>
   </component>
   <component name="NamedScopeManager">
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1912" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1066" />
+    <option name="height" value="1034" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -411,10 +759,13 @@
           <State>
             <id />
           </State>
+          <State>
+            <id>Spelling</id>
+          </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>Less</id>
+            <id>SpellCheckingInspection</id>
           </State>
         </selected-state>
       </profile-state>
@@ -444,7 +795,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -473,119 +823,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MarkdownD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MarkdownD" />
+              <option name="myItemId" value="build" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="locales" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MarkdownD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MarkdownD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="locales" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="extend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editormd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MarkdownD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MarkdownD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MarkdownD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MarkdownD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MarkdownD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MarkdownD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CardHelper" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SudokuMM" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="LayoutCode.rearrangeEntriesHTML" value="false" />
     <property name="options.lastSelected" value="preferences.intentionPowerPack" />
@@ -597,16 +850,16 @@
     <property name="FullScreen" value="false" />
     <property name="LayoutCode.rearrangeEntriesECMAScript 6" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.5" />
       <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\locales\extend\editormd" />
       <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\common" />
       <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\locales" />
       <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\locales\extend\editor.md" />
-      <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\i18n" />
@@ -794,28 +1047,41 @@
       <option name="project" value="LOCAL" />
       <updated>1434893734706</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="更新&#10;">
+      <created>1434982492077</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1434982492077</updated>
+    </task>
+    <task id="LOCAL-00023" summary="加入全部文件">
+      <created>1434982527574</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1434982527574</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1034" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="TypeScript Compiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21475771" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32990867" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript Compiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21412301" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32762557" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32687926" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32689655" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13105726" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22044729" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23690204" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24494143" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Copy/Paste" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991803" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18636848" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32990867" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -886,7 +1152,9 @@
     <MESSAGE value="修复：&#10;    加载编辑器语言问题。成功后，再执行相关的任务" />
     <MESSAGE value="修复：&#10;    加载Emjoi出错的问题" />
     <MESSAGE value="修复：&#10;    （1）去除ReadOnly模式&#10;    （2）修复Eidtor工具栏的问题&#10;    （3）修复第三方软件的导航&#10;    （4）修复帮助连接&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复：&#10;    （1）去除ReadOnly模式&#10;    （2）修复Eidtor工具栏的问题&#10;    （3）修复第三方软件的导航&#10;    （4）修复帮助连接&#10;" />
+    <MESSAGE value="更新&#10;" />
+    <MESSAGE value="加入全部文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="加入全部文件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -939,13 +1207,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.234414">
           <caret line="89" column="9" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/project.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1002,10 +1263,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="95" column="14" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="14" />
-          <folding>
-            <element signature="n#!!block;n#find#0;n#Cache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="n#!!block;n#delete#0;n#Cache#0;n#RomanySoftPlugins#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1013,20 +1270,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-          <folding>
-            <element signature="n#!!block;n#coreDataFromJSON#0;n#FileObj#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="n#!!block;n#reLoadFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="e#2403#2539#0" expanded="false" />
-            <element signature="n#!!block;n#saveFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="e#2713#2849#0" expanded="false" />
-            <element signature="n#!!block;n#removeFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="e#3027#3225#0" expanded="false" />
-            <element signature="n#!!block;n#findFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="e#3439#3608#0" expanded="false" />
-            <element signature="n#!!block;n#findFileEx#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="e#3883#4184#0" expanded="false" />
-            <element signature="e#4234#4416#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1037,28 +1280,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/common/editor.md/1.4.4/editor.md/plugins/emoji-dialog/emoji.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7140496">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/common/editor.md/1.4.4/editor.md/plugins/emoji-dialog/emoji-dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/styles/fonts/demo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1066,7 +1291,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8633093">
           <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1074,7 +1298,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0935252">
           <caret line="93" column="35" selection-start-line="93" selection-start-column="35" selection-end-line="93" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1082,7 +1305,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="317" column="16" selection-start-line="317" selection-start-column="16" selection-end-line="317" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1090,9 +1312,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="99" column="13" selection-start-line="99" selection-start-column="13" selection-end-line="99" selection-end-column="13" />
-          <folding>
-            <marker date="1434590021931" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1100,7 +1319,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.28">
           <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1108,10 +1326,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.226415">
           <caret line="254" column="65" selection-start-line="254" selection-start-column="65" selection-end-line="254" selection-end-column="65" />
-          <folding>
-            <element signature="n#!!doc;n#I18N#0" expanded="false" />
-            <element signature="n#!!block#1;n#buildIn#0;n#PluginUI#0;n#I18N#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1119,10 +1333,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-68.50944">
           <caret line="259" column="21" selection-start-line="259" selection-start-column="21" selection-end-line="259" selection-end-column="21" />
-          <folding>
-            <element signature="n#!!doc;n#I18N#0" expanded="false" />
-            <element signature="n#!!block#1;n#buildIn#0;n#PluginUI#0;n#I18N#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1130,12 +1340,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.037736">
           <caret line="110" column="10" selection-start-line="110" selection-start-column="10" selection-end-line="110" selection-end-column="10" />
-          <folding>
-            <element signature="n#!!doc;n#I18N#0" expanded="false" />
-            <element signature="n#!!block#1;n#data#0;n#PluginUI#0;n#I18N#0" expanded="false" />
-            <element signature="n#!!block#1;n#buildIn#0;n#PluginUI#0;n#I18N#0" expanded="false" />
-            <element signature="n#!!block#1;n#editor#0;n#PluginUI#0;n#I18N#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1143,70 +1347,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#getId#0;n#PluginUI#0;n#I18N#0" expanded="true" />
-            <element signature="n#!!block#1;n#data#0;n#PluginUI#0;n#I18N#0" expanded="true" />
-            <element signature="n#!!block#1;n#buildIn#0;n#PluginUI#0;n#I18N#0" expanded="true" />
-            <element signature="n#!!block#1;n#editor#0;n#PluginUI#0;n#I18N#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/common/editor.md/1.4.4/editor.md/languages/zh-tw.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="32.0">
-          <caret line="50" column="22" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/common/editor.md/1.4.4/editor.md/languages/en.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35164836">
-          <caret line="114" column="30" selection-start-line="114" selection-start-column="30" selection-end-line="114" selection-end-column="30" />
-          <folding>
-            <element signature="e#71#4549#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/common/editor.md/1.4.4/editor.md/plugins/code-block-dialog/code-block-dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.2543171">
-          <caret line="192" column="0" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#7161#7202#0" expanded="true" />
-            <marker date="1431570912840" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27629513">
-          <caret line="85" column="20" selection-start-line="85" selection-start-column="10" selection-end-line="85" selection-end-column="20" />
-          <folding>
-            <element signature="e#4859#5377#0" expanded="false" />
-            <element signature="e#4892#5367#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.04709576">
-          <caret line="94" column="18" selection-start-line="94" selection-start-column="18" selection-end-line="94" selection-end-column="18" />
-          <folding>
-            <element signature="n#!!block;n#getDefault_toolbarIcons#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="n#!!block;n#getDefault_toolbarIcons#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="n#!!block;n#getDefault_toolbarIcons#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="e#2057#2100#0" expanded="false" />
-            <element signature="n#!!doc;n#configKatexURL#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="n#!!block;n#configKatexURL#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="false" />
-            <element signature="e#2877#3320#0" expanded="false" />
-            <element signature="n#!!block;n#getContent#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1214,15 +1354,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.4">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1230,11 +1361,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding>
-            <element signature="e#250#374#0" expanded="true" />
-            <element signature="e#409#685#0" expanded="true" />
-            <element signature="e#717#1299#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1242,7 +1368,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1250,16 +1375,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6376812">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1434976547272" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/work.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1268,9 +1383,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#50#3934#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1278,21 +1390,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="100" column="6" selection-start-line="100" selection-start-column="6" selection-end-line="100" selection-end-column="6" />
-          <folding>
-            <element signature="e#50#4002#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/bs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="247" column="28" selection-start-line="247" selection-start-column="12" selection-end-line="247" selection-end-column="28" />
-          <folding>
-            <element signature="e#897#1451#0" expanded="true" />
-            <element signature="e#1112#1397#0" expanded="true" />
-            <element signature="e#27232#32405#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1300,41 +1397,154 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3327616">
           <caret line="137" column="46" selection-start-line="137" selection-start-column="46" selection-end-line="137" selection-end-column="46" />
-          <folding>
-            <element signature="e#1566#1822#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.iap.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.807693">
+        <state vertical-scroll-proportion="0.0">
           <caret line="202" column="48" selection-start-line="202" selection-start-column="48" selection-end-line="202" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/locales/en-US.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/locales/extend/editormd/en-US.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3314285">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="10" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
           <folding>
-            <element signature="n#!!block;n#create#0;n#Product#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="n#!!block;n#addProduct#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="n#!!block;n#removeProduct#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="n#!!block;n#getProduct#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="e#3727#3861#0" expanded="true" />
-            <element signature="n#!!block;n#getProductName#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="n#!!block;n#getProductDescription#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="n#!!block;n#getProductQuantity#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="n#!!block;n#getAllEnableInAppStoreProducts#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="e#5178#5325#0" expanded="true" />
-            <element signature="n#!!block;n#getAllEnableInAppStoreProductIds#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="e#5539#5691#0" expanded="true" />
-            <element signature="n#!!block;n#getAllEnableProducts#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="e#5893#6018#0" expanded="true" />
-            <element signature="n#!!block;n#getAllEnableProductIds#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="e#6222#6352#0" expanded="true" />
-            <element signature="n#!!block;n#getInBundleProductList#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="e#6568#6790#0" expanded="true" />
-            <element signature="e#7762#7963#0" expanded="true" />
-            <element signature="n#!!block;n#getProductPurchasedCount#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="e#8614#8931#0" expanded="true" />
-            <element signature="n#!!block;n#syncProductWithAppStore#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="e#9291#9764#0" expanded="true" />
-            <element signature="n#!!block;n#updateProductByIdWhitAppStore#0;n#IAP$Helper#0;n#IAP#0;n#RomanySoftPlugins#0" expanded="true" />
+            <element signature="e#875#932#0" expanded="true" />
+            <element signature="e#1056#1238#0" expanded="true" />
+            <element signature="e#1288#1472#0" expanded="true" />
+            <element signature="e#1541#1631#0" expanded="true" />
+            <element signature="e#1672#1777#0" expanded="true" />
+            <element signature="e#5853#7700#0" expanded="true" />
+            <element signature="e#7901#8456#0" expanded="true" />
+            <element signature="e#8074#8444#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/bs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1308" column="29" selection-start-line="1308" selection-start-column="29" selection-end-line="1308" selection-end-column="29" />
+          <folding>
+            <element signature="e#897#1451#0" expanded="true" />
+            <element signature="e#1112#1397#0" expanded="true" />
+            <element signature="e#3954#4305#0" expanded="true" />
+            <element signature="e#4362#4520#0" expanded="true" />
+            <element signature="e#4577#4735#0" expanded="true" />
+            <element signature="e#4855#5350#0" expanded="true" />
+            <element signature="e#5389#5756#0" expanded="true" />
+            <element signature="e#5800#6166#0" expanded="true" />
+            <element signature="e#6704#6994#0" expanded="true" />
+            <element signature="e#7100#7422#0" expanded="true" />
+            <element signature="e#13395#13542#0" expanded="true" />
+            <element signature="e#13650#13789#0" expanded="true" />
+            <element signature="e#13897#14048#0" expanded="true" />
+            <element signature="e#14120#14262#0" expanded="true" />
+            <element signature="e#14341#14486#0" expanded="true" />
+            <element signature="e#27907#33080#0" expanded="true" />
+            <element signature="e#37847#38040#0" expanded="true" />
+            <element signature="e#38072#38174#0" expanded="true" />
+            <element signature="e#38212#38737#0" expanded="true" />
+            <element signature="e#38752#38853#0" expanded="true" />
+            <element signature="e#38893#39130#0" expanded="true" />
+            <element signature="e#39145#39272#0" expanded="true" />
+            <element signature="e#39308#39550#0" expanded="true" />
+            <element signature="e#39565#39637#0" expanded="true" />
+            <element signature="e#39674#39869#0" expanded="true" />
+            <element signature="e#39884#39956#0" expanded="true" />
+            <element signature="e#39994#40190#0" expanded="true" />
+            <element signature="e#40205#40278#0" expanded="true" />
+            <element signature="e#40319#40518#0" expanded="true" />
+            <element signature="e#40533#40669#0" expanded="true" />
+            <element signature="e#40715#41409#0" expanded="true" />
+            <element signature="e#41012#41153#0" expanded="true" />
+            <element signature="e#41537#43980#0" expanded="false" />
+            <element signature="e#41551#41636#0" expanded="true" />
+            <element signature="e#41669#41732#0" expanded="true" />
+            <element signature="e#41747#41831#0" expanded="true" />
+            <element signature="e#41872#41951#0" expanded="true" />
+            <element signature="e#41966#42113#0" expanded="true" />
+            <element signature="e#42169#43970#0" expanded="true" />
+            <element signature="e#43644#43800#0" expanded="true" />
+            <element signature="e#44013#49145#0" expanded="false" />
+            <element signature="e#44027#44112#0" expanded="true" />
+            <element signature="e#44145#44210#0" expanded="true" />
+            <element signature="e#44225#44309#0" expanded="true" />
+            <element signature="e#44350#44431#0" expanded="true" />
+            <element signature="e#44446#44586#0" expanded="true" />
+            <element signature="e#44649#46463#0" expanded="true" />
+            <element signature="e#46138#46294#0" expanded="true" />
+            <element signature="e#46516#47587#0" expanded="true" />
+            <element signature="e#47602#47737#0" expanded="true" />
+            <element signature="e#47793#48400#0" expanded="true" />
+            <element signature="e#48415#48563#0" expanded="true" />
+            <element signature="e#48629#49134#0" expanded="true" />
+            <element signature="e#49157#49190#0" expanded="true" />
+            <element signature="e#49248#49368#0" expanded="true" />
+            <element signature="e#49412#50257#0" expanded="true" />
+            <element signature="e#49572#50223#0" expanded="true" />
+            <element signature="e#49704#50203#0" expanded="true" />
+            <element signature="e#50344#50391#0" expanded="true" />
+            <element signature="e#50707#51017#0" expanded="true" />
+            <element signature="e#51475#51524#0" expanded="true" />
+            <element signature="e#51558#51812#0" expanded="true" />
+            <element signature="e#51830#51879#0" expanded="true" />
+            <element signature="e#51913#52167#0" expanded="true" />
+            <element signature="e#52202#52442#0" expanded="true" />
+            <element signature="e#56858#57741#0" expanded="true" />
+            <element signature="e#57091#57122#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.user-settings.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/project.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.72">
+          <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+          <folding>
+            <element signature="n#!!block;n#configEmoji#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="true" />
+            <element signature="n#!!block;n#resetToolbarHandler#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1342,7 +1552,7 @@
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.76">
-          <caret line="115" column="21" selection-start-line="115" selection-start-column="21" selection-end-line="115" selection-end-column="21" />
+          <caret line="260" column="37" selection-start-line="260" selection-start-column="37" selection-end-line="260" selection-end-column="47" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
@@ -1356,155 +1566,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.user-settings.ts">
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.931034">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/work.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/public/project.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.12">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.038462">
-          <caret line="1043" column="47" selection-start-line="1043" selection-start-column="28" selection-end-line="1043" selection-end-column="47" />
+        <state vertical-scroll-proportion="-2.0">
+          <caret line="732" column="32" selection-start-line="732" selection-start-column="32" selection-end-line="732" selection-end-column="84" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
             <element signature="e#53#134#0" expanded="true" />
-            <element signature="e#1226#1621#0" expanded="true" />
-            <element signature="e#1259#1364#0" expanded="true" />
-            <element signature="e#1410#1615#0" expanded="true" />
-            <element signature="e#1679#1732#0" expanded="true" />
-            <element signature="e#1791#2331#0" expanded="true" />
-            <element signature="e#2401#3358#0" expanded="true" />
-            <element signature="e#2587#3131#0" expanded="true" />
-            <element signature="e#2743#2935#0" expanded="true" />
-            <element signature="e#2988#3106#0" expanded="true" />
-            <element signature="e#3185#3232#0" expanded="true" />
-            <element signature="e#3260#3350#0" expanded="true" />
-            <element signature="e#3408#3696#0" expanded="true" />
-            <element signature="e#3746#20760#0" expanded="true" />
-            <element signature="e#3853#3996#0" expanded="true" />
-            <element signature="e#4032#4089#0" expanded="true" />
-            <element signature="e#4321#7079#0" expanded="true" />
-            <element signature="e#4686#6829#0" expanded="true" />
-            <element signature="e#7189#8550#0" expanded="true" />
-            <element signature="e#7562#8235#0" expanded="true" />
-            <element signature="e#8666#9074#0" expanded="true" />
-            <element signature="e#9131#9447#0" expanded="true" />
-            <element signature="e#9481#10972#0" expanded="true" />
-            <element signature="e#10409#10839#0" expanded="true" />
-            <element signature="e#10888#10915#0" expanded="true" />
-            <element signature="e#11164#12646#0" expanded="true" />
-            <element signature="e#11291#12620#0" expanded="true" />
-            <element signature="e#12852#14483#0" expanded="true" />
-            <element signature="e#12968#14384#0" expanded="true" />
-            <element signature="e#14861#20749#0" expanded="true" />
-            <element signature="e#15121#20736#0" expanded="true" />
-            <element signature="e#15193#16558#0" expanded="true" />
-            <element signature="e#16133#16295#0" expanded="true" />
-            <element signature="e#16351#16387#0" expanded="true" />
-            <element signature="e#16637#18393#0" expanded="false" />
-            <element signature="e#16699#18330#0" expanded="true" />
-            <element signature="e#16815#18231#0" expanded="true" />
-            <element signature="e#19097#19228#0" expanded="true" />
-            <element signature="e#19475#20425#0" expanded="false" />
-            <element signature="e#19778#20383#0" expanded="true" />
-            <element signature="e#21179#21606#0" expanded="true" />
-            <element signature="e#21230#21569#0" expanded="true" />
-            <element signature="e#21649#23446#0" expanded="true" />
-            <element signature="e#22759#22846#0" expanded="true" />
-            <element signature="e#22906#23088#0" expanded="true" />
-            <element signature="e#23181#23418#0" expanded="true" />
-            <element signature="e#23486#24919#0" expanded="true" />
-            <element signature="e#24806#24873#0" expanded="true" />
-            <element signature="e#24930#25028#0" expanded="true" />
-            <element signature="e#25077#34262#0" expanded="true" />
-            <element signature="e#26014#27964#0" expanded="true" />
-            <element signature="e#26326#27922#0" expanded="true" />
-            <element signature="e#28703#28851#0" expanded="true" />
-            <element signature="e#30366#30605#0" expanded="true" />
-            <element signature="e#32393#32417#0" expanded="true" />
-            <element signature="e#32608#33748#0" expanded="true" />
-            <element signature="e#32807#33728#0" expanded="true" />
-            <element signature="e#33866#33935#0" expanded="true" />
-            <element signature="e#34079#34249#0" expanded="true" />
-            <element signature="e#35102#35404#0" expanded="true" />
-            <element signature="e#35201#35380#0" expanded="true" />
-            <element signature="e#35445#37730#0" expanded="true" />
-            <element signature="e#35965#36447#0" expanded="true" />
-            <element signature="e#36165#36363#0" expanded="true" />
-            <element signature="e#36850#37328#0" expanded="true" />
-            <element signature="e#37048#37244#0" expanded="true" />
-            <element signature="e#37770#37856#0" expanded="true" />
-            <element signature="e#37904#38053#0" expanded="true" />
-            <element signature="e#38097#40224#0" expanded="true" />
-            <element signature="e#39500#39701#0" expanded="true" />
-            <element signature="e#39769#39817#0" expanded="true" />
-            <element signature="e#40270#43280#0" expanded="true" />
-            <element signature="e#40708#42627#0" expanded="true" />
-            <element signature="e#41674#41860#0" expanded="true" />
-            <element signature="e#41924#41968#0" expanded="true" />
-            <element signature="e#43973#44275#0" expanded="true" />
-            <element signature="e#44072#44251#0" expanded="true" />
-            <element signature="e#44605#44983#0" expanded="true" />
-            <element signature="e#45908#50139#0" expanded="true" />
-            <element signature="e#48937#49752#0" expanded="true" />
-            <element signature="e#49524#49653#0" expanded="true" />
-            <element signature="e#49862#50003#0" expanded="true" />
-            <element signature="e#50616#50891#0" expanded="true" />
-            <element signature="e#50692#50730#0" expanded="true" />
-            <element signature="e#50953#54834#0" expanded="true" />
-            <element signature="e#51108#51120#0" expanded="true" />
-            <element signature="e#51175#54744#0" expanded="true" />
-            <element signature="e#51287#51689#0" expanded="true" />
-            <element signature="e#51761#52210#0" expanded="true" />
-            <element signature="e#52291#53106#0" expanded="true" />
-            <element signature="e#53173#54574#0" expanded="true" />
-            <element signature="e#54899#55761#0" expanded="true" />
-            <element signature="e#55002#55356#0" expanded="true" />
-            <element signature="e#55557#55742#0" expanded="true" />
-            <element signature="e#55808#73391#0" expanded="true" />
-            <element signature="e#61114#66294#0" expanded="true" />
-            <element signature="e#62644#64761#0" expanded="true" />
-            <element signature="e#65104#65470#0" expanded="true" />
-            <element signature="e#66194#66268#0" expanded="true" />
-            <element signature="e#66386#73289#0" expanded="false" />
-            <element signature="e#66445#73191#0" expanded="true" />
-            <element signature="e#66844#67328#0" expanded="true" />
-            <element signature="e#68288#68547#0" expanded="true" />
-            <element signature="e#71290#71696#0" expanded="true" />
-            <element signature="e#73430#73850#0" expanded="true" />
-            <element signature="e#73524#73790#0" expanded="true" />
-            <marker date="1434976341619" expanded="true" signature="46281:46294" placeholder="..." />
+            <element signature="e#3775#19501#0" expanded="true" />
+            <element signature="e#13498#19490#0" expanded="true" />
+            <element signature="e#13758#19477#0" expanded="true" />
+            <element signature="e#17240#18051#0" expanded="true" />
+            <element signature="e#17838#17969#0" expanded="true" />
+            <element signature="e#18519#19124#0" expanded="true" />
+            <element signature="e#33207#40494#0" expanded="true" />
+            <element signature="e#37258#40268#0" expanded="true" />
+            <element signature="e#37696#39615#0" expanded="true" />
+            <element signature="e#40539#42862#0" expanded="true" />
+            <element signature="e#41304#42637#0" expanded="true" />
+            <element signature="e#52811#69966#0" expanded="true" />
+            <element signature="e#57900#62869#0" expanded="true" />
+            <element signature="e#62961#69864#0" expanded="false" />
+            <element signature="e#70005#70552#0" expanded="true" />
+            <element signature="e#70099#70492#0" expanded="true" />
+            <element signature="e#70423#70480#0" expanded="true" />
+            <marker date="1438484717059" expanded="true" signature="43284:43297" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/locales/extend/editormd/en-US.js">
+    <entry file="file://$PROJECT_DIR$/ChangeLog">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/locales/en-US.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="116" column="29" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="87" />
-          <folding>
-            <element signature="e#2482#2783#0" expanded="false" />
-            <element signature="e#2804#3695#0" expanded="false" />
-            <element signature="e#3738#3907#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2644628">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="94" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.104575165">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="61" />
           <folding />
         </state>
       </provider>

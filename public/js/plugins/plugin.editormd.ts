@@ -5,7 +5,7 @@
 ///<reference path="../../tsd/typings/jquery/jquery.d.ts" />
 module RomanySoftPlugins {
     export class EditorMdServices{
-        version:string = "1.4.4";
+        version:string = "1.4.5";
         editormd:any = editormd;
         default_lib_path:string = "common/editor.md/"+ this.version +"/editor.md/lib/";  // 默认版本哭路径
         default_lang_path:string = "locales/extend/editormd/";  // 默认版本路径

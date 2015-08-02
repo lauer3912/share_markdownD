@@ -232,6 +232,18 @@
                 return "4.5.6";
             },
 
+            /// 获得产品的构建包的版本
+            appBuildVersion:null,
+            getAppBuildVersion:function(){
+                if (b$.pN) {
+                    var t = this;
+                    if (t.appBuildVersion) return t.appBuildVersion;
+                    t.appBuildVersion = b$.pN.app.getAppBuildVersion();
+                    return t.appBuildVersion;
+                }
+                return "201506271454";
+            },
+
             /// 获得产品的ID
             appId: null,
             getAppId: function () {
@@ -435,6 +447,14 @@
             getAppPluginDir: b$.getAppPluginDir = function () {
                 if (b$.pN) {
                     return b$.pN.path.appPluginDirPath();
+                }
+                return "";
+            },
+
+            /// 获得Application的Resource目录
+            getAppResourceDir: b$.getAppResourceDir = function(){
+                if (b$.pN) {
+                    return b$.pN.path.resource();
                 }
                 return "";
             },
@@ -1081,6 +1101,442 @@
                 return false;
             }
 
+        };
+
+        /**
+         * XPC 内容封装
+         * @type {{install: Function, unInstall: Function, find: Function, resume: Function, suspend: Function, invalidate: Function, sendMessage: Function}}
+         */
+        b$.XPC = {
+            /**
+             * 安装新的XPC关联
+             * @param jsonObj
+             * @returns {*}
+             */
+            install:function(jsonObj){
+                if(b$.pN){
+                    try{
+                        var _jsonObj = jsonObj || {};
+                        var params = {
+                            key: jsonObj.xpc_key || "default",
+                            id: jsonObj.bundleID   || "com.romanysoft.app.mac.xpc.AgentHelper"
+                        };
+
+                        return b$.pN.app.registerNewXPCService($.toJSON(params));
+                    }catch(e){console.error(e)}
+                }
+
+                return false;
+            },
+
+            /**
+             * 解除XPC的关联
+             * @param xpc_key
+             * @returns {*}
+             */
+            unInstall:function(xpc_key){
+                if(b$.pN){
+                    try{
+                        return b$.pN.app.unRegisterXPCService(xpc_key);
+                    }catch(e){console.error(e)}
+
+                }
+
+                return false;
+            },
+
+            /**
+             * 查找XPC是否存在
+             * @param xpc_key  xpc关联的Key的唯一标识
+             * @returns {true/false}
+             */
+            find: function(xpc_key){
+                if(b$.pN){
+                    try{
+                        return b$.pN.app.hasXPCService(xpc_key || "default");
+                    }catch(e){console.error(e)}
+                }
+
+                return false;
+            },
+
+            /**
+             * 恢复XPC服务
+             * @param xpc_key
+             */
+            resume:function(xpc_key){
+                if(b$.pN){
+                    try{
+                        b$.pN.app.resumeXPCService(xpc_key);
+                    }catch(e){console.error(e)}
+
+                }
+            },
+
+            /**
+             * 挂起XPC服务
+             * @param xpc_key
+             */
+            suspend:function(xpc_key){
+                if(b$.pN){
+                    try{
+                        b$.pN.app.suspendXPCService(xpc_key);
+                    }catch(e){console.error(e)}
+
+                }
+            },
+
+            /**
+             * 使XPC服务失效
+             * @param xpc_key
+             */
+            invalidate:function(xpc_key){
+                if(b$.pN){
+                    try{
+                        b$.pN.app.invalidateXPCService(xpc_key);
+                    }catch(e){console.error(e)}
+
+                }
+            },
+
+            /**
+             * 向XPC发送消息
+             * @param jsonObj 基础信息
+             * @param cb 回调函数
+             * @returns {*}
+             */
+            sendMessage:function(jsonObj, cb){
+                if(b$.pN){
+                    try{
+                        var _json = jsonObj || {};
+                        var params = {
+                            xpc_key: _json.xpc_key || "default",
+                            callback: _json.callback || b$._get_callback(function (obj) {
+                                console.log($.obj2string(obj));
+                                cb && cb(obj)
+                            }, true),
+                            messageDic:_json.messageDic
+                        };
+
+                        return b$.pN.app.sendMessageToXPCService($.toJSON(params));
+                    }catch(e){console.error(e)}
+                }
+            }
+        };
+
+        /***
+         * XPC Node Helper
+         * @type {{exec: Function}}
+         */
+        b$.XPCNodeHelper = {
+            /**
+             * 获得默认的Node XPC Key
+             * @returns {string}
+             */
+            getXPCKey:function(){
+                return "g_romanysoft_node_xpc";
+            },
+
+            /**
+             * 获得NodeHelper的关键字
+             * @returns {string}
+             */
+            getHelperBundleID:function(){
+                return "com.romanysoft.app.mac.xpc.NodeHelper";
+            },
+
+            /**
+             * 执行Node命令
+             * @param jsonObj
+             * @param successCB 成功函数
+             * @param failedCB  失败函数
+             */
+            exec:function(jsonObj, successCB, failedCB){
+                var $t = this;
+
+                var xpc_key = $t.getXPCKey();
+                var helperID = $t.getHelperBundleID();
+
+                var canExec = false;
+
+                // 备注，这种方式，暂时没有办法通过Sandbox
+                alert('这是个弃用的方式,因为现在没有办法突破Sandbox');
+
+                // 检查是否已经安装过
+                if(false == b$.XPC.find(xpc_key)){
+                    canExec = b$.XPC.install({xpc_key:xpc_key, bundleID:helperID});
+                }else{
+                    canExec = true;
+                }
+
+                // 根据是否可以执行来处理
+                if(canExec){
+                    var pluginDir = b$.App.getAppPluginDir();
+                    var node_path = pluginDir + "/node";
+
+                    var _json = jsonObj || {};
+
+                    // 创建任务
+                    var messageDic = {
+                        "ms_type":"CALL_TASK",
+                        "ms_obj":{
+                            "taskAppPath":node_path,
+                            "command":_json.command || ['-v'],
+                            "currentDirectoryPath":_json.currentDirectoryPath || "",
+                            "environmentDic":_json.environmentDic|| {},
+                            "mainThread":_json.mainThread || false
+                        }
+                    };
+
+                    // 发送消息
+                    b$.XPC.sendMessage({
+                        "xpc_key":xpc_key,
+                        "messageDic":messageDic
+                    },function(obj){
+                        console.log("XPCNodeHelper log: " + $.obj2string(obj));
+                        successCB && successCB(obj);
+                    })
+
+                }else{
+                    console.error("XPCNodeHelper install failed.");
+                    failedCB && failedCB();
+                }
+
+            }
+        };
+
+
+        b$.XPCPythonHelper = {
+            /**
+             * 获得默认的Node XPC Key
+             * @returns {string}
+             */
+            getXPCKey:function(){
+                return "g_romanysoft_python_xpc";
+            },
+
+            /**
+             * 获得NodeHelper的关键字
+             * @returns {string}
+             */
+            getHelperBundleID:function(){
+                return "com.romanysoft.app.mac.xpc.PythonHelper";
+            },
+
+            /**
+             * 通用执行Python命令
+             * @param jsonObj
+             * @param successCB
+             * @param failedCB
+             */
+            common_exec:function(jsonObj, successCB, failedCB){
+                var $t = this;
+
+                var xpc_key = $t.getXPCKey();
+                var helperID = $t.getHelperBundleID();
+
+                var canExec = false;
+
+                // 备注，这种方式，暂时没有办法通过Sandbox
+                alert('这是个弃用的方式,因为现在没有办法突破Sandbox');
+
+                // 检查是否已经安装过
+                if(false == b$.XPC.find(xpc_key)){
+                    canExec = b$.XPC.install({xpc_key:xpc_key, bundleID:helperID});
+                }else{
+                    canExec = true;
+                }
+
+                // 根据是否可以执行来处理
+                if(canExec){
+                    var pluginDir = b$.App.getAppPluginDir();
+                    var pythonCLI_path = pluginDir + "/pythonCLI";
+
+                    var _json = jsonObj || {};
+
+                    // 创建任务
+                    var messageDic = {
+                        "ms_type":"CALL_TASK",
+                        "ms_obj":{
+                            "taskAppPath":pythonCLI_path,
+                            "command":_json.command || ['-v'],
+                            "currentDirectoryPath":_json.currentDirectoryPath || "",
+                            "environmentDic":_json.environmentDic|| {},
+                            "mainThread":_json.mainThread || true
+                        }
+                    };
+
+                    // 发送消息
+                    b$.XPC.sendMessage({
+                        "xpc_key":xpc_key,
+                        "messageDic":messageDic
+                    },function(obj){
+                        console.log("XPCNodeHelper log: " + $.obj2string(obj));
+                        successCB && successCB(obj);
+                    })
+
+                }else{
+                    console.error("XPCNodeHelper install failed.");
+                    failedCB && failedCB();
+                }
+            },
+
+            _formatCommand:function(pythonCommand){
+                if(typeof pythonCommand != "string"){
+                    console.error('command must be string'); alert('command must be string');
+                    return null;
+                }
+
+                // 构造基本的命令
+                var workDir = b$.App.getAppResourceDir() + "/data/python";
+                var resourceDir = b$.App.getAppDataHomeDir();
+                var configFile = "Resources/config.plist";
+
+                // 格式化
+                var regCommand = '["-i","id.pythonCLI","-c","%config%","-r","%resourceDir%","-w","%workDir%","-m","%command%"]';
+                var formatCommonStr = regCommand.replace(/%config%/g, configFile);
+                formatCommonStr = formatCommonStr.replace(/%resourceDir%/g, resourceDir);
+                formatCommonStr = formatCommonStr.replace(/%workDir%/g, workDir);
+                formatCommonStr = formatCommonStr.replace(/%command%/g, pythonCommand);
+
+                // 转换成标准的Command 数组
+                var command = eval(formatCommonStr); // 转换成command
+
+                return command;
+            },
+
+            /**
+             * 内置的执行方式
+             * @param jsonObj
+             * @param successCB
+             * @param failedCB
+             */
+            exec:function(jsonObj, successCB, failedCB){
+                var $t = this;
+                var _json = jsonObj || {};
+
+                var pythonCommand = _json.command || ""; //{string}
+                var command = $t._formatCommand(pythonCommand);
+
+                // 传递参数
+                var newJson = {
+                    command: command || ['-v'],
+                    currentDirectoryPath: _json.currentDirectoryPath || "",
+                    "environmentDic":_json.environmentDic|| {},
+                    "mainThread":_json.mainThread || true
+                };
+
+                $t.common_exec(newJson, successCB, failedCB);
+            },
+
+            /**
+             * 启动Python假设的WebServer
+             * @param jsonObj
+             * @param successCB
+             * @param failedCB
+             */
+            startWebServer:function(jsonObj, successCB, failedCB){
+                var $t = this;
+
+                var _json = jsonObj || {};
+
+                // 传递参数
+                var newJson = {
+                    "command": " --port=" + b$.App.getServerPort(), // {要求string}
+                    "currentDirectoryPath": _json.currentDirectoryPath || "",
+                    "environmentDic":_json.environmentDic|| {},
+                    "mainThread":_json.mainThread || true
+                };
+
+                $t.exec(newJson, successCB, failedCB);
+
+            }
+
+        };
+
+
+        /**
+         * 集成广告平台
+         */
+        b$.AD = {
+
+            // AutoConfig
+            /**
+             * 自动配置
+             * @param millisec setTimeout的毫秒
+             * @param cb       回调函数
+             */
+            autoInit:function(millisec, cb){
+                var $t = this;
+                if(typeof $.getp == "undefined"){return alert("util.js init failed...")}
+
+                setTimeout(function(){
+                    // 自动发送请求
+                    $.getp($.ConfigServer.getDomain()+'/services/get_ads_config',{},true,function(o){
+                        console.log("get_ads_config:" + $.obj2string(o));
+                        try{
+                            var isEnableAds = o.isEnableAds;
+                            if(isEnableAds == true){
+                                //设置配置
+                                var jsonObj = JSON.parse(o.configInfo);
+                                $t.DesktopAD.config(jsonObj, cb);
+                            }
+                        }catch(e){console.error(e)}
+                    });
+                }, millisec || 5000);
+            },
+
+            // 参照：http://www.desktopad.com/
+            DesktopAD:{
+                /**
+                 * 配置
+                 * */
+                enable:false, // 是否可用
+                config:function(jsonObj, cb){
+                    var t = this;
+                    if(b$.pN){
+                        try{
+                            var params = {
+                                callback: jsonObj.callback || b$._get_callback(function (obj) {
+                                    console.log(obj);
+                                    try{
+                                        t.enable = obj.success;
+                                        cb && cb();
+                                    }catch(e){console.error(e)}
+                                }, true),
+                                DesktopAD:jsonObj.desktoADInfo || {
+                                    appKey:jsonObj.appKey || "",
+                                    appSecret:jsonObj.appSecret
+                                }
+                            };
+
+                            b$.pN.app.configDesktopADInfo($.toJSON(params));
+                        }catch(e){console.error(e)}
+                    }
+                },
+                /**
+                 * 显示所有广告
+                 */
+                showAD:function(){
+                    var t = this;
+                    if(b$.pN){
+                        try{
+                            t.enable && b$.pN.app.showDesktopAD();
+                        }catch(e){console.error(e)}
+                    }
+                },
+                /**
+                 * 隐藏所有广告
+                 */
+                hideAD:function(){
+                    var t = this;
+                    if(b$.pN){
+                        try{
+                            t.enable && b$.pN.app.hideDesktopAD();
+                        }catch(e){console.error(e)}
+                    }
+                }
+            }
         };
 
         /**

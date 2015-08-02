@@ -24,6 +24,7 @@
     var $IAPProvider = c$.IAPProvider = new RomanySoftPlugins.IAP.IAP$Helper();         // IAP服务
     var $UserSettings = c$.UserSettings = new RomanySoftPlugins.Settings.UserSetting(); // 用户设置
     var $Util = c$.Util = {};                                                           // 常用工具类
+    var g_enableIAP = false;
 
     // 默认的本地化语言
     c$.language = 'en-US';
@@ -249,36 +250,8 @@
                 return newFileObj;
             }
             ,createNew:function(){
-                //检查当前的文档数量，然后，判断是否还可以继续创建文档
-                var curFilesCount = window.$fc.getAllFiles().length;
-                var macFileCount = $UserSettings.documentSetting.maxDocumentCount;
-                if(curFilesCount < macFileCount){
-                    c$.UIActions.crateNewFileObj();
-                    $Router.go_files();
-                }else{
-                    var btnBuy = $Util.fn_tri18n(I18N.UI.filePage.createNewDocTip["btnBuy"]);
-                    var btnCancel = $Util.fn_tri18n(I18N.UI.filePage.createNewDocTip["btnCancel"]);
-
-                    layer.open({
-                        icon:0
-                        ,title: $Util.fn_tri18n(I18N.UI.filePage.createNewDocTip["Title"])
-                        ,content: $Util.fn_tri18n(I18N.UI.filePage.createNewDocTip["Content"],{docCount:curFilesCount})
-                        ,btn:[btnBuy, btnCancel]
-                        ,yes: function(index){
-                            var setting_key = "documentSetting.maxDocumentCount";
-                            if(_.has(c$.Map_Settings2Product,setting_key)) {
-                                var productId = _.property(setting_key)(c$.Map_Settings2Product);
-                                c$.UIActions.buyPlugin(productId);
-                            }
-
-                            layer.close(index);
-                        }
-                        ,cancel: function(index){
-                        }
-                    })
-                }
-
-
+                c$.UIActions.crateNewFileObj();
+                $Router.go_files();
             }
             ,addFileToWatcher:function(in_path){
                 // 添加到系统变化监视器中
@@ -361,34 +334,34 @@
             $EditorProvider.configEmoji();
             $EditorProvider.configKatexURL("common/katex/katex.min", "common/katex/katex.min", function(){});
             $EditorProvider.configLanguage(c$.language, function(){
-                $EditorProvider.resetToolbarHandler("emoji",function(){
-                    if(false == $UserSettings.editorSetting.enable_Emoji){
-                        //弹出购买对话框
-                        if(_.has(c$.Map_Settings2Product,"editorSetting.enable_Emoji")){
-                            var productId = _.property("editorSetting.enable_Emoji")(c$.Map_Settings2Product);
-                            var btnBuy = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnBuy"]);
-                            var btnCancel = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnCancel"]);
-                            //
-                            layer.open({
-                                icon:0
-                                ,title: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Title"])
-                                ,content: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Content"])
-                                ,btn:[btnBuy, btnCancel]
-                                ,yes: function(index){
-                                    layer.close(index);
-                                    c$.UIActions.buyPlugin(productId);
-                                }
-                                ,cancel:function(index){
-
-                                }
-                            });
-                        }
-
-                        return true;
-                    }
-
-                    return false;
-                }, true);
+                //$EditorProvider.resetToolbarHandler("emoji",function(){
+                //    if(false == $UserSettings.editorSetting.enable_Emoji){
+                //        //弹出购买对话框
+                //        if(_.has(c$.Map_Settings2Product,"editorSetting.enable_Emoji")){
+                //            var productId = _.property("editorSetting.enable_Emoji")(c$.Map_Settings2Product);
+                //            var btnBuy = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnBuy"]);
+                //            var btnCancel = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnCancel"]);
+                //            //
+                //            layer.open({
+                //                icon:0
+                //                ,title: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Title"])
+                //                ,content: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Content"])
+                //                ,btn:[btnBuy, btnCancel]
+                //                ,yes: function(index){
+                //                    layer.close(index);
+                //                    c$.UIActions.buyPlugin(productId);
+                //                }
+                //                ,cancel:function(index){
+                //
+                //                }
+                //            });
+                //        }
+                //
+                //        return true;
+                //    }
+                //
+                //    return false;
+                //}, true);
 
                 // 开启支持拖拽功能
                 b$.enableDragDropFeature({
@@ -749,29 +722,32 @@
                 });
 
                 newEditorMd.setToolbarAutoFixed(false);
-                newEditorMd["alreayFixed"] = false;
+                newEditorMd["alreadyFixed"] = false;
 
                 var customAutoFixedHandler = function(force){
                     // 获取所有激活状态的下载的file 和 editor对象，然后对editor进行变化
                     var editor_list = window.$fem.getAllEditor();
                     $.each(editor_list, function(index, editorObj){
                         try{
-                            //console.log('customAutoFixedHandler');
-                            if(! editorObj["alreayFixed"] && !force){}
-                            else{
-                                var toolbar = editorObj.toolbar;
-                                var editor = editorObj.editor;
+                            if(_.has(editorObj, "alreadyFixed")){
+                                if((editorObj["alreadyFixed"] == false) && !force){}
+                                else{
+                                    var toolbar = editorObj.toolbar;
+                                    var editor = editorObj.editor;
 
-                                toolbar.css({
-                                    position: "fixed",
-                                    "overflow-y": "auto",
-                                    //width: editor.width() + "px",
-                                    top: $('#app-header').height() + "px",
-                                    left: editorObj["toolBar_offset"].left + "px"
-                                });
+                                    toolbar.css({
+                                        position: "fixed",
+                                        "overflow-y": "auto",
+                                        //width: editor.width() + "px",
+                                        top: $('#app-header').height() + "px",
+                                        left: editorObj["toolBar_offset"].left + "px"
+                                    });
 
-                                editorObj["alreayFixed"] = true;
+                                    editorObj["alreadyFixed"] = true;
+                                }
                             }
+                            //console.log('customAutoFixedHandler');
+
                         }catch(e){console.log(e)}
                     });
                 };
@@ -887,40 +863,6 @@
                     closeEdit:function(e){
                         var curEle = this.$(e.currentTarget);
                         var value = curEle.val();
-
-                        var dcField = "documentSetting.maxDocumentCount";
-                        if(curEle.data('field') == dcField){
-                            var m = c$.UserSettings;
-
-                            try{
-                                var userCount = parseInt(value);
-                                if(userCount > m.documentSetting.maxDocumentCount){
-                                    if(_.has(map_settings2Product, dcField)){
-                                        var mapProductID = _.property(dcField)(map_settings2Product);
-                                        var btnBuy = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnBuy"]);
-                                        var btnCancel = $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["btnCancel"]);
-                                        //
-                                        layer.open({
-                                            icon:0
-                                            ,title: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Title"])
-                                            ,content: $Util.fn_tri18n(I18N.UI.settingsPage["Message"]["Content"])
-                                            ,btn:[btnBuy, btnCancel]
-                                            ,yes: function(index){
-                                                layer.close(index);
-                                                c$.UIActions.buyPlugin(mapProductID);
-                                            }
-                                            ,cancel:function(index){
-
-                                            }
-                                        });
-                                    }
-                                }else{
-                                    curEle.val(m.documentSetting.maxDocumentCount);
-                                }
-                            }catch(e){}
-
-
-                        }
 
                         $NoticeCenter.fire(c$.NCMessage.userSettingsChange);
                     },
@@ -1041,7 +983,7 @@
                             plugins:enablePlugins,
                             btnBuyTitle:$Util.fn_tri18n(I18N.UI.pluginMgrPage["btnBuy"]),
                             btnBuyRestoreTitle:$Util.fn_tri18n(I18N.UI.pluginMgrPage["btnBuyRestore"]),
-                            enableBuyRestoreBtn:b$.App.getSandboxEnable()
+                            enableBuyRestoreBtn:b$.App.getSandboxEnable() && g_enableIAP
                         };
 
                         var html = template('tpl_pluginsMgr', o);
@@ -1324,7 +1266,7 @@
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        var b_inAppStore = b$.App.getSandboxEnable(); // 是否在沙盒内
+        var b_inAppStore = b$.App.getSandboxEnable() && g_enableIAP; // 是否在沙盒内
         var default_quantity = b_inAppStore ? 0 : 1;  //
 
 
@@ -1334,7 +1276,6 @@
         $IAPProvider.addProduct(ProductC.create({inAppStore: false, id:prefix + "support.fileSave", quantity:1,  name:"File Save", description: "支持保存文件功能", imageUrl:imgPre + "fileSave_64.png"}));
 
         // [商品]文档控制部分
-        $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity*10, id:prefix + "increase5documentCount", price:"1$", name:"文档数量+5", description: "最大文档数量增加5", imageUrl:imgPre + "doc5_64.png"}));
         $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "enableAutoSave", price:"1$", name:"开启自动保存", description: "此项，可以开启自动保存功能", imageUrl:imgPre + "autosave_64.png"}));
         $IAPProvider.addProduct(ProductC.create({inAppStore: b_inAppStore, quantity:default_quantity, id:prefix + "enableAutoRestore", price:"1$", name:"开启自动恢复", description: "此项，可以开启自动恢复功能", imageUrl:imgPre + "autoRecover_64.png"}));
 
@@ -1363,7 +1304,6 @@
 
             c$.Map_Settings2Product = {
                 // [商品]文档控制部分
-                "documentSetting.maxDocumentCount":prefix + "increase5documentCount",
                 "documentSetting.autoSave":prefix + "enableAutoSave",
                 "documentSetting.autoRestore":prefix + "enableAutoRestore",
 
@@ -1392,7 +1332,7 @@
 
                     // [商品]文档控制部分
                     var _us_d = $UserSettings.documentSetting;
-                    if (product.id == (prefix + "increase5documentCount")) _us_d.maxDocumentCount = 2 + product.quantity * 5;
+
                     if (product.id == (prefix + "enableAutoSave")) _us_d.autoSave = true;
                     if (product.id == (prefix + "enableAutoRestore")) _us_d.autoRestore = true;
                     // [商品]编辑器功能
@@ -1589,6 +1529,11 @@
             c$.configIAP();
             c$.configRoute();
             c$.setupUI();
+
+            // 配置广告来处理
+            b$.AD.autoInit(6000, function(){
+                b$.AD.DesktopAD.showAD();
+            });
         });
 
         c$.configInternationalization(deferred);

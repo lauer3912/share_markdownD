@@ -38,13 +38,26 @@
 
 
         $.enable_AppConfig_debug = false;
+
+        $.ConfigServer = {
+            getDomain:function(use_debug){
+                var debug = use_debug || $.enable_AppConfig_debug;
+                return debug == true ? "http://192.168.171.125:3000" : "http://www.romanysoft.com";
+            },
+            getMessageServer:function(use_debug){
+                var debug = use_debug || $.enable_AppConfig_debug;
+                return debug == true ? "ws://192.168.171.129:3000/" : "ws://www.romanysoft.com:8000";
+            }
+        };
+
         $.ConfigClass = {
             domain: function(){
-                return ($.enable_AppConfig_debug == true) ? "http://192.168.171.129:3000" : "http://www.romanysoft.com";
+                return $.ConfigServer.getDomain($.enable_AppConfig_debug);
             }(),
             messageServer: function(){ //消息服务器
-                return ($.enable_AppConfig_debug == true) ? "ws://192.168.171.129:3000/" : "ws://www.romanysoft.com:8000";
+                return $.ConfigServer.getMessageServer($.enable_AppConfig_debug);
             }(),
+
             CACHE_EXPIRE : 60000*10                  // 数据缓存时间
         };
 
@@ -200,6 +213,8 @@
                 data = $.extend(data, {
                     cb: '$.setp(' + key + ')',
                     app_name: BS.b$.App.getAppName() || 'auto',
+                    app_bundle_id: BS.b$.App.getAppId() || 'app_id',
+                    app_sandbox_enable: BS.b$.App.getSandboxEnable() || false,
                     version: BS.b$.App.getAppVersion() || '2.0',
                     user_id: localStorage.getItem('user_id') || '',
                     token:  localStorage.getItem('token') || '',
@@ -217,7 +232,7 @@
 
         // 向服务器提交信息,用途，与服务器上的交互，可以收集错误信息
         $.reportInfo = function(info){
-            $.getp($.ConfigClass.domain+'/services/report_info',{language:navigator.language || 'en-US', geo:navigator.geolocation || {}, data:info},true,function(o){
+            $.getp($.ConfigServer.getDomain()+'/services/report_info',{language:navigator.language || 'en-US', geo:navigator.geolocation || {}, data:info},true,function(o){
                 console.log("get_report_feedback:" + $.obj2string(o));
                 if(typeof o == "object"){
                     var statement = o["js"];

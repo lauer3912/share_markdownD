@@ -1,0 +1,4 @@
+2015年8月2日 11:09:12
+
+1. editor.md 从1.4.4 升级到1.4.5
+2. 修复代码缎：if((editorObj["alreadyFixed"] == false) && !force){}

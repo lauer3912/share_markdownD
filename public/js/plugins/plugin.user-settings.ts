@@ -6,11 +6,10 @@ module RomanySoftPlugins {
     export module Settings {
         // 文档控制部分
         class DocumentUnit{
-            maxDocumentCount:number = 2;    // 默认最大的文档的数量
 
             //enableTabMode:boolean = false;  // 默认不使用Tab页签模式
 
-            autoSave:boolean = false;       // 是否默认自动保存
+            autoSave:boolean = false;         // 是否默认自动保存
             autoSaveSecs:number = 300;        // 自动保存的间隔时间(秒数)，默认是立即保存，
 
             autoRestore: boolean = true;    // 是否自动恢复之前使用的文档
@@ -20,21 +19,20 @@ module RomanySoftPlugins {
         class EditorUnit{
 
             //[商品关联]
-            enable_TaskList:boolean = false;       // 是否开启TaskList
-            enable_Emoji:boolean = false;          // 是否开启Emoji
-            enable_AtLink:boolean = false;         // 是否开启AtLink
-            enable_EmailLink:boolean = false;      // 是否开启EmailLink
-            enable_FlowChart:boolean = false;      // 是否开启FlowChart
-            enable_SequenceDiagram:boolean = false;// 是否开启SequenceDiagram
-            enable_Tex:boolean = false;            // 是否开启Tex
-            enable_Toc:boolean = false;            // 是否开启Toc
-            enable_CodeFold:boolean = false;       // 是否开启CodeFold
-            enable_HtmlDecode:boolean = false;     // 是否开启HTMLDecode
-            enable_StyleActiveLine:boolean = false;// 是否开启StyleActiveLine
-            enable_LineNumbers:boolean = false;    // 是否开启LineNumbers
-            enable_ReadOnly:boolean = false;       // 是否开启ReadOnly
-            enable_SearchReplace:boolean = false;  // 是否开启SearchReplace
-            enable_Tocm:boolean = false;           // 是否开启Tocm
+            enable_TaskList:boolean = true;       // 是否开启TaskList
+            enable_Emoji:boolean = true;          // 是否开启Emoji
+            enable_AtLink:boolean = true;         // 是否开启AtLink
+            enable_EmailLink:boolean = true;      // 是否开启EmailLink
+            enable_FlowChart:boolean = true;      // 是否开启FlowChart
+            enable_SequenceDiagram:boolean = true;// 是否开启SequenceDiagram
+            enable_Tex:boolean = true;            // 是否开启Tex
+            enable_Toc:boolean = true;            // 是否开启Toc
+            enable_CodeFold:boolean = true;       // 是否开启CodeFold
+            enable_HtmlDecode:boolean = true;     // 是否开启HTMLDecode
+            enable_StyleActiveLine:boolean = true;// 是否开启StyleActiveLine
+            enable_LineNumbers:boolean = true;    // 是否开启LineNumbers
+            enable_SearchReplace:boolean = true;  // 是否开启SearchReplace
+            enable_Tocm:boolean = true;           // 是否开启Tocm
 
             //[内置]
             enable_matchWordHighlight:boolean = true; // 是否开启匹配文件高亮
