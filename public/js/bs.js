@@ -1,6 +1,10 @@
 /**
  * Created by Ian on 2014/8/10.
  * 优化
+ *
+ *
+ * 日志：
+ * 2015年10月29日 星期四 开始加入Electron引擎兼容处理工作
  */
 
 ;
@@ -30,7 +34,12 @@
         $.toJSON = $.toJSON || JSON.stringify;
         var b$ = {};
         b$ = $.extend(window.BS.b$, {});
-        b$.pN = b$.pNative = (typeof maccocojs !== 'undefined') && (maccocojs); // 本地引擎
+        b$.pN = b$.pNative = null;
+        if((typeof maccocojs !== 'undefined') && (typeof maccocojs == 'object') && maccocojs.hasOwnProperty("app")){
+            b$.pN = b$.pNative = maccocojs; // 原MacOSX本地引擎
+        }else if((typeof process === 'object') && (typeof require === 'function') && (process.hasOwnProperty("pid"))){
+            b$.pN = b$.pNative = require("remote").require("./romanysoft/maccocojs"); // Electron引擎
+        }
 
         // 定义临时回调处理函数定义接口
         b$._ncb_idx = 0;
@@ -447,11 +456,12 @@
 
             ///{获取开通的服务器端口}
             getServerPort: function () {
+                var default_port = 8888;
                 if (b$.pN) {
-                    return b$.pN.app.getHttpServerPort();
+                    return b$.pN.app.getHttpServerPort() || default_port;
                 }
 
-                return 8888;
+                return default_port;
             },
 
             /// 获得App的插件目录
@@ -1921,17 +1931,18 @@
          * @param cbFuncName callback 回调函数的名称
          */
         b$.createTask = function (callMethod, taskId, args, cbFuncName) {
-            if (b$.pN) {
-                try {
-                    var extendObj = $.objClone(b$.pCorePlugin);
-                    extendObj["passBack"] = cbFuncName || extendObj["passBack"];
-                    extendObj["callMethod"] = callMethod;
-                    extendObj["arguments"] = [taskId, args];
+            try {
+                var extendObj = $.objClone(b$.pCorePlugin);
+                extendObj["passBack"] = cbFuncName || extendObj["passBack"];
+                extendObj["callMethod"] = callMethod;
+                extendObj["arguments"] = [taskId, args];
 
-                    b$.pN.window.execTask($.toJSON(extendObj));
-                } catch (e) {
-                    console.error(e);
+                var argumentJSONString = $.toJSON(extendObj);
+                if(b$.pN){
+                    b$.pN.window.execTask(argumentJSONString);
                 }
+            } catch (e) {
+                console.error(e);
             }
         };
 
