@@ -515,7 +515,7 @@
 
                 $('#appbar-help').on('click', function(){
                     //help的链接地址
-                    var url = "https://github.com/Romanysoft/MarkdownD/wiki/" + c$.language;
+                    var url = "http://romanysoft.github.io/MarkdownD";
                     b$.App.open(url);
                 });
 
@@ -1529,11 +1529,6 @@
             c$.configIAP();
             c$.configRoute();
             c$.setupUI();
-
-            // 配置广告来处理
-            b$.AD.autoInit(6000, function(){
-                b$.AD.DesktopAD.showAD();
-            });
         });
 
         c$.configInternationalization(deferred);

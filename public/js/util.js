@@ -24,6 +24,27 @@
     (function($){
         window['$'] = $ || {};
 
+        $.RTYWebHelper = {
+            isOpera:function(){
+                var ua = navigator.userAgent.toLowerCase();
+                return ua.indexOf("opera") > -1;
+            },
+            isChrome:function(){
+                var ua = navigator.userAgent.toLowerCase();
+                return ua.indexOf("chrome") > -1;
+            },
+            isSafari:function(){
+                var ua = navigator.userAgent.toLowerCase();
+                var isChrome = $.RTYWebHelper.isChrome();
+                return !isChrome && (/webkit|khtml/).test(ua);
+            },
+            isSafari3:function(){
+                var ua = navigator.userAgent.toLowerCase();
+                var isSafari = $.RTYWebHelper.isSafari();
+                return isSafari && ua.indexOf('webkit/5') != -1;
+            }
+        };
+
         if(typeof window.console === "undefined") {
             window.console = {
                 log:function(){}
@@ -93,6 +114,33 @@
             }
 
             return "";
+        };
+
+        // 简易格式化Date
+        $.getFormatDateStr = function(dateObj, fmt){
+            // 对Date的扩展，将 Date 转化为指定格式的String
+            // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
+            // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+            // 例子：
+            // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
+            // (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18
+            var that = dateObj;
+
+            var o = {
+                "M+" : that.getMonth()+1,                 //月份
+                "d+" : that.getDate(),                    //日
+                "h+" : that.getHours(),                   //小时
+                "m+" : that.getMinutes(),                 //分
+                "s+" : that.getSeconds(),                 //秒
+                "q+" : Math.floor((that.getMonth()+3)/3), //季度
+                "S"  : that.getMilliseconds()             //毫秒
+            };
+            if(/(y+)/.test(fmt))
+                fmt=fmt.replace(RegExp.$1, (that.getFullYear()+"").substr(4 - RegExp.$1.length));
+            for(var k in o)
+                if(new RegExp("("+ k +")").test(fmt))
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+            return fmt;
         };
 
         // obj输出为String
@@ -246,6 +294,30 @@
         };
 
         //////////////////////////////////////////////////////////////////////////////////////////
+        //Creates a gloabl object called templateLoader with a single method "loadExtTemplate"
+        $.templateLoader = (function($,host){
+            //Loads external templates from path and injects in to page DOM
+            return{
+                //Method: loadExtTemplate
+                //Params: (string) path: the relative path to a file that contains template definition(s)
+                loadExtTemplate: function(path){
+                    //Use jQuery Ajax to fetch the template file
+                    var tmplLoader = $.get(path)
+                        .success(function(result){
+                            //On success, Add templates to DOM (assumes file only has template definitions)
+                            $("body").append(result);
+                        })
+                        .error(function(result){
+                            alert("Error Loading Templates -- TODO: Better Error Handling");
+                        });
+
+                    tmplLoader.complete(function(){
+                        //Publish an event that indicates when a template is done loading
+                        $(host).trigger("TEMPLATE_LOADED", [path]);
+                    });
+                }
+            };
+        })(jQuery, document);
 
     }($));
 

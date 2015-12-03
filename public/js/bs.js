@@ -67,6 +67,17 @@
         // IAP 功能封装
         b$.cb_handleIAPCallback = null; // IAP的回调函数
         b$.IAP = {
+
+            /// 获取本地配置是否可以使用IAP。参见：project.json
+            getEnable:function(){
+                if (b$.pN) {
+                    try{
+                        return b$.pN.app.getIAPEnable();
+                    }catch(e){console.error(e)}
+                }
+                return false;
+            },
+
             enableIAP: function (parms) {
                 if (b$.pN) {
                     try {
@@ -1456,90 +1467,6 @@
 
 
         /**
-         * 集成广告平台
-         */
-        b$.AD = {
-
-            // AutoConfig
-            /**
-             * 自动配置
-             * @param millisec setTimeout的毫秒
-             * @param cb       回调函数
-             */
-            autoInit:function(millisec, cb){
-                var $t = this;
-                if(typeof $.getp == "undefined"){return alert("util.js init failed...")}
-
-                setTimeout(function(){
-                    // 自动发送请求
-                    $.getp($.ConfigServer.getDomain()+'/services/get_ads_config',{},true,function(o){
-                        console.log("get_ads_config:" + $.obj2string(o));
-                        try{
-                            var isEnableAds = o.isEnableAds;
-                            if(isEnableAds == true){
-                                //设置配置
-                                var jsonObj = JSON.parse(o.configInfo);
-                                $t.DesktopAD.config(jsonObj, cb);
-                            }
-                        }catch(e){console.error(e)}
-                    });
-                }, millisec || 5000);
-            },
-
-            // 参照：http://www.desktopad.com/
-            DesktopAD:{
-                /**
-                 * 配置
-                 * */
-                enable:false, // 是否可用
-                config:function(jsonObj, cb){
-                    var t = this;
-                    if(b$.pN){
-                        try{
-                            var params = {
-                                callback: jsonObj.callback || b$._get_callback(function (obj) {
-                                    console.log(obj);
-                                    try{
-                                        t.enable = obj.success;
-                                        cb && cb();
-                                    }catch(e){console.error(e)}
-                                }, true),
-                                DesktopAD:jsonObj.desktoADInfo || {
-                                    appKey:jsonObj.appKey || "",
-                                    appSecret:jsonObj.appSecret
-                                }
-                            };
-
-                            b$.pN.app.configDesktopADInfo($.toJSON(params));
-                        }catch(e){console.error(e)}
-                    }
-                },
-                /**
-                 * 显示所有广告
-                 */
-                showAD:function(){
-                    var t = this;
-                    if(b$.pN){
-                        try{
-                            t.enable && b$.pN.app.showDesktopAD();
-                        }catch(e){console.error(e)}
-                    }
-                },
-                /**
-                 * 隐藏所有广告
-                 */
-                hideAD:function(){
-                    var t = this;
-                    if(b$.pN){
-                        try{
-                            t.enable && b$.pN.app.hideDesktopAD();
-                        }catch(e){console.error(e)}
-                    }
-                }
-            }
-        };
-
-        /**
          * 窗体的设置
          * @type {{minimize: Function, maximize: Function, toggleFullScreen: Function, restore: Function, isMaximized: Function, move: Function, resize: Function, setMinSize: Function, setMaxSize: Function}}
          */
@@ -1701,7 +1628,7 @@
                             }, true);
                         parms['menuTag'] = parms['menuTag'] || 999;
                         parms['hideMenu'] = parms['hideMenu'] || false;
-                        parms['title'] = parms['title'] || "MenuTitle";
+                        parms['title'] = parms['title'] || "##**";//"MenuTitle";
                         parms['action'] = parms['action'] || b$._get_callback(function (obj) {
                             }, true);
 
@@ -2237,6 +2164,17 @@
 
 
         window.BS.b$ = $.extend(window.BS.b$, b$);
+
+        // 内核加入自启动部分代码
+        (function(){
+            try{
+                $(document).ready(function(){
+                    var b$ = window.BS.b$;
+                })
+            }catch(e){
+                console.error(e)
+            }
+        })();
 
     }($));
 
