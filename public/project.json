@@ -18,7 +18,7 @@
 
         "autoOffset": true,
         "minSize" : [800, 600],
-        "size" : [1024, 768],
+        "size" : [1440, 900],
         "#maxSize" : [1024, 500],
         "hasTitleBar" : true,
         "hasShadow" : true,
