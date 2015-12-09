@@ -2,6 +2,7 @@
 var gulp    = require('gulp'),
     del     = require('del'),
     shell = require('gulp-shell'),
+    gulpGit = require('gulp-git'),
     gulpSequence = require('gulp-sequence'),
     vinylPaths = require('vinyl-paths'),
     gulpFooter = require('gulp-footer'),
@@ -135,11 +136,14 @@ gulp.task('extend_task', function(){
 // 测试包处理
 gulp.task('default', ['public_main', 'public_lessCSS', 'public_copy', 'extend_task', 'node-server']);
 
+var g_AppInfoPlist = nm_plist.parse(sysFS.readFileSync(__dirname + "/electron/bundle.app/Contents/info.plist", 'utf8'));;
 
+
+
+var forElectronDir = "D:/workspace/testprj/0git_html/MyDicTool/for_electron";
 // Windows准备打包
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var forElectronDir = "D:/workspace/testprj/0git_html/MyDicTool/for_electron";
 
 
 
@@ -172,14 +176,14 @@ gulp.task('package_win_copy_bundle.app',function(){
         .pipe(gulp.dest(tmp_destDir + '/resources/app/bundle.app'));
 });
 
+
 gulp.task('package_win_copy_publish', function(){
      var tmp_destDir = g_cur_task_win_isX64 ? tmp64Dir : tmp32Dir;
      gulp.src(destDir + "/**") 
         .pipe(gulp.dest(tmp_destDir + '/resources/app/bundle.app/Contents/Resources/public'));
 });
 
-gulp.task('package_win_copy_romanysoft', function(){  
-    var tmp_destDir = g_cur_task_win_isX64 ? tmp64Dir : tmp32Dir; 
+var g_copy_romanysoft_func = function(tmp_destDir){
     
     gulp.src(forElectronDir + '/main.js') 
         .pipe(uglify().on('error', gutil.log))
@@ -202,8 +206,26 @@ gulp.task('package_win_copy_romanysoft', function(){
         
     gulp.src(forElectronDir + '/romanysoft/maccocojs.js') 
         .pipe(uglify().on('error', gutil.log))
-        .pipe(gulp.dest(tmp_destDir + '/resources/app/romanysoft'));   
+        .pipe(gulp.dest(tmp_destDir + '/resources/app/romanysoft'));
+        
+
+};
+
+gulp.task('package_win_copy_romanysoft', function(cb){  
+    var tmp_destDir = g_cur_task_win_isX64 ? tmp64Dir : tmp32Dir; 
+    g_copy_romanysoft_func(tmp_destDir);
 });
+
+var g_getInfoFromInfoPlist_func = function(tmp_destDir){
+    var info = g_AppInfoPlist;
+             
+    return {
+         appName:info.CFBundleDisplayName, 
+         appVersion:info.CFBundleShortVersionString,
+         copyright :info.NSHumanReadableCopyright,
+         company :"Romanysoft, LAB."
+    };  
+}
 
 gulp.task('package_win_npm', function(cb){
     var tmp_destDir = g_cur_task_win_isX64 ? tmp64Dir : tmp32Dir; 
@@ -211,8 +233,10 @@ gulp.task('package_win_npm', function(cb){
     var install = require("gulp-install");
     var replace = require('gulp-replace');
     
+    var info = g_getInfoFromInfoPlist_func(tmp_destDir);
+    
    return gulp.src(forElectronDir + '/package.json') 
-        .pipe(replace(/for_electronSDK/g, 'MarkdownD'))  //修改app目录下面的resources\app\package.json 修改name
+        .pipe(replace(/for_electronSDK/g, info.appName))  //修改app目录下面的resources\app\package.json 修改name
         .pipe(gulp.dest(tmp_destDir + '/resources/app'))
         .pipe(install());        
            
@@ -253,7 +277,7 @@ gulp.task('package_win_getInstaller', function(cb){
         title:appName + " " + appVersion,
         overwrite: true,
         exe: appName + ".exe",
-        setup_filename: appName + "_" + platform + "_Setup.exe",
+        setup_filename: appName + "-v" + appVersion +  "-win32" + "-"+ platform + "-setup.exe",
         setup_icon: __dirname + '/electron/setup.ico',
         iconUrl: __dirname + "/electron/bundle.app/Contents/Resources/app.ico"
     };
@@ -275,6 +299,89 @@ gulp.task('set_win64', function(){
 gulp.task('release_win_32', gulpSequence('set_win32','package_win_copy_exe', 'package_win_copy_bundle.app', 'package_win_copy_publish',  'package_win_copy_romanysoft', 'package_win_npm', 'package_win_getInstaller'));
 gulp.task('release_win_64', gulpSequence('set_win64','package_win_copy_exe', 'package_win_copy_bundle.app', 'package_win_copy_publish',  'package_win_copy_romanysoft', 'package_win_npm', 'package_win_getInstaller'));
 gulp.task('release_win', gulpSequence('default', 'package_win_del', 'release_win_64', 'release_win_32'));
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Linux 处理
+g_cur_task_linux_isX64 = true;
+var release_linux_dir = releaseDir + "/linux";
+var tmp_linux64Dir = release_linux_dir + "/tmp64";
+var tmp_linux32Dir = release_linux_dir + "/tmp32";
+
+gulp.task('set_linux32', function(){
+    g_cur_task_linux_isX64 = false;
+});
+
+gulp.task('set_linux64', function(){
+    g_cur_task_linux_isX64 = true;
+});
+
+gulp.task('package_linux_del', function(){
+     return del([release_linux_dir]);
+});
+
+gulp.task('package_linux_copy_bin', function(){
+     var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
+     
+     if(g_cur_task_win_isX64){
+         gulp.src('./electron/linux/x64/**/*')
+            .pipe(gulp.dest(tmp_destDir));         
+     }else{
+         gulp.src('./electron/linux/ia32/**/*')
+            .pipe(gulp.dest(tmp_destDir));         
+     }
+});
+
+gulp.task('package_linux_copy_bundle.app',function(){
+     var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
+     gulp.src('./electron/bundle.app/**')
+        .pipe(gulp.dest(tmp_destDir + '/resources/app/bundle.app'));
+});
+
+gulp.task('package_linux_copy_publish', function(){
+     var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
+     gulp.src(destDir + "/**") 
+        .pipe(gulp.dest(tmp_destDir + '/resources/app/bundle.app/Contents/Resources/public'));
+});
+
+gulp.task('package_linux_copy_romanysoft', function(){  
+    var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
+    g_copy_romanysoft_func(tmp_destDir);
+});
+
+gulp.task('package_linux_no_npm', function(cb){
+    var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
+    
+    var install = require("gulp-install");
+    var replace = require('gulp-replace');
+    
+    var info = g_getInfoFromInfoPlist_func(tmp_destDir);
+    
+   return gulp.src(forElectronDir + '/package.json') 
+        .pipe(replace(/for_electronSDK/g, info.appName))  //修改app目录下面的resources\app\package.json 修改name
+        .pipe(gulp.dest(tmp_destDir + '/resources/app'));   
+           
+});
+
+gulp.task('package-linux-git-version', function(cb){
+    var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
+    
+    gulpGit.revParse({args:'--short HEAD', cwd: forElectronDir, quiet: true}, function (err, hash) {
+            console.log('current git hash: '+hash);
+            var filePath = tmp_destDir + '/resources/app/version';
+            var sysFS = require('fs');
+            
+            var saveErr = sysFS.writeFile(filePath, hash, 'utf8', function(err){
+                 cb && cb(err);
+            });  
+    });
+});
+
+gulp.task('release_linux_32', gulpSequence('set_linux32','package_linux_copy_bin', 'package_linux_copy_bundle.app', 'package_linux_copy_publish',  'package_linux_copy_romanysoft', 'package_linux_no_npm', 'package-linux-git-version'));
+gulp.task('release_linux_64', gulpSequence('set_linux64','package_linux_copy_bin', 'package_linux_copy_bundle.app', 'package_linux_copy_publish',  'package_linux_copy_romanysoft', 'package_linux_no_npm', 'package-linux-git-version'));
+gulp.task('release_linux', gulpSequence('default', 'package_linux_del', 'release_linux_64', 'release_linux_32'));
+
+
 
 
 // 全局发布
