@@ -5,8 +5,8 @@
         "#onlyBuildInServer": false,
         "enableNativeRate":true,
 
-        "BuyURL":"https://shopper.mycommerce.com/checkout/cart/add/55399-37",
-        "FAQURL":"https://github.com/Romanysoft/LET/issues",
+        "BuyURL":"http://romanysoft.github.io/MarkdownD/buy",
+        "FAQURL":"https://github.com/Romanysoft/MarkdownD/issues",
 
         "HomePageURL":"http://romanysoft.github.io/MarkdownD/",
         "DocumentPageURL":"http://romanysoft.github.io/MarkdownD/documents",

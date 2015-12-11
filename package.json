@@ -12,6 +12,7 @@
     "del": "^2.1.0",
     "electron-installer-squirrel-windows": "^1.2.2",
     "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.5.2",
     "gulp-filter": "^3.0.1",
     "gulp-footer": "^1.0.5",
@@ -28,6 +29,8 @@
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.5",
     "plist": "^1.2.0",
+    "q": "^1.4.1",
+    "run-sequence": "^1.1.5",
     "vinyl-paths": "^2.1.0"
   }
 }
