@@ -293,7 +293,7 @@ gulp.task('package_win_npm', function (cb) {
     var replace = require('gulp-replace');
 
     var info = g_getInfoFromInfoPlist_func();
-    var validAppName = info.appName.replace(/\s/g, "");
+    var validAppName = info.appName.replace(/\s/g, "-");
     console.log("validAppName = ", validAppName);
 
     return gulp.src(forElectronDir + '/package.json')
@@ -340,23 +340,23 @@ gulp.task('package_win_getInstaller', function (cb) {
         appDescription = info.RomanysoftAppDescription || "",
         company = "Romanysoft, LAB.";
 
-    var validAppName = appName.replace(/\s/g, "");
-    console.log("validAppName = ", validAppName);
+    var validAppNameForSetup = appName.replace(/\s/g, "");
+    console.log("validAppName = ", validAppNameForSetup);
 
     var opts = {
         path: tmp_destDir,
         out: tmp_destDir + "/../installer/" + platform,
-        name: validAppName,
+        name: validAppNameForSetup,
         version: appVersion,
         description: appDescription,
         copyright: copyright,
-        product_name: validAppName,
+        product_name: validAppNameForSetup,
         authors: company,
         owners: company,
         title: appName + " " + appVersion,
         overwrite: true,
-        exe: validAppName + ".exe",
-        setup_filename: validAppName + "-v" + appVersion + "-win32" + "-" + platform + "-setup.exe",
+        exe: validAppNameForSetup + ".exe",
+        setup_filename: validAppNameForSetup + "-v" + appVersion + "-win32" + "-" + platform + "-setup.exe",
         setup_icon: __dirname + '/electron/setup.ico',
         loading_gif: __dirname + '/electron/loading.gif',
         iconUrl: __dirname + "/electron/bundle.app/Contents/Resources/app.ico"
@@ -428,26 +428,30 @@ g_cur_task_linux_isX64 = true;
 var release_linux_dir = releaseDir + "/linux";
 var tmp_linux64Dir = release_linux_dir + "/tmp64";
 var tmp_linux32Dir = release_linux_dir + "/tmp32";
+var tmp_linux64DirName = "";
+var tmp_linux32DirName = "";
 
 gulp.task('set_linux32', function () {
     g_cur_task_linux_isX64 = false;
     var info = g_getInfoFromInfoPlist_func();
-    var validAppName = info.appName.replace(/\s/g, "");
-    console.log("validAppName = ", validAppName);
+    var validAppNameForSetup = info.appName.replace(/\s/g, "");
+    console.log("validAppName = ", validAppNameForSetup);
 
     var platform = g_cur_task_linux_isX64 ? 'x64' : 'ia32';
-    tmp_linux32Dir = release_linux_dir + "/" + validAppName + "-v" + info.appVersion + "-linux" + "-" + platform + "-install";
+    tmp_linux32DirName = validAppNameForSetup + "-v" + info.appVersion + "-linux" + "-" + platform + "-install";
+    tmp_linux32Dir = release_linux_dir + "/" + tmp_linux32DirName;
 });
 
 gulp.task('set_linux64', function () {
     g_cur_task_linux_isX64 = true;
 
     var info = g_getInfoFromInfoPlist_func();
-    var validAppName = info.appName.replace(/\s/g, "");
-    console.log("validAppName = ", validAppName);
+    var validAppNameForSetup = info.appName.replace(/\s/g, "");
+    console.log("validAppName = ", validAppNameForSetup);
 
     var platform = g_cur_task_linux_isX64 ? 'x64' : 'ia32';
-    tmp_linux64Dir = release_linux_dir + "/" + validAppName + "-v" + info.appVersion + "-linux" + "-" + platform + "-install";
+    tmp_linux64DirName = validAppNameForSetup + "-v" + info.appVersion + "-linux" + "-" + platform + "-install";
+    tmp_linux64Dir = release_linux_dir + "/" + tmp_linux64DirName;
 });
 
 gulp.task('package_linux_del', function () {
@@ -487,24 +491,25 @@ gulp.task('package_linux_copy_romanysoft', function () {
     // do async stuff
     setTimeout(function() {
         deferred.resolve();
-    }, 3000);
+    }, 10000);
     
     return deferred.promise;
 });
 
-gulp.task('package_linux_no_npm', function () {
+gulp.task('package_linux_npm', function () {
     var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
 
     var install = require("gulp-install");
     var replace = require('gulp-replace');
 
     var info = g_getInfoFromInfoPlist_func();
-    var validAppName = info.appName.replace(/\s/g, "");
+    var validAppName = info.appName.replace(/\s/g, "-");
     console.log("validAppName = ", validAppName);
 
     return gulp.src(forElectronDir + '/package.json')
         .pipe(replace(/for_electronSDK/g, validAppName))  //修改app目录下面的resources\app\package.json 修改name
-        .pipe(gulp.dest(tmp_destDir + '/resources/app/'));
+        .pipe(gulp.dest(tmp_destDir + '/resources/app/'))
+        .pipe(install());
 
 });
 
@@ -522,6 +527,27 @@ gulp.task('package-linux-git-version', function (cb) {
     });
 });
 
+gulp.task('package-linux-zip', function(){
+    var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
+    var tmp_zipName = g_cur_task_linux_isX64 ? tmp_linux64DirName : tmp_linux32DirName;
+    
+    
+    
+    var zip = require("gulp-zip");
+    
+    gulp.src(tmp_destDir + "/**")
+        .pipe(zip(tmp_zipName + ".zip"))
+        .pipe(gulp.dest(release_linux_dir));
+        
+    var deferred = Q.defer();
+    // do async stuff
+    setTimeout(function() {
+        deferred.resolve();
+    }, 10000);
+    
+    return deferred.promise;        
+});
+
 
 gulp.task('release_linux_32', gulpSequence(
     'set_linux32', 
@@ -529,8 +555,10 @@ gulp.task('release_linux_32', gulpSequence(
     'package_linux_copy_bundle.app', 
     'package_linux_copy_publish', 
     'package_linux_copy_romanysoft', 
-    'package_linux_no_npm', 
-    'package-linux-git-version'));
+    'package_linux_npm', 
+    'package-linux-git-version',
+    'package-linux-zip'
+    ));
     
 gulp.task('release_linux_64', gulpSequence(
     'set_linux64', 
@@ -538,8 +566,10 @@ gulp.task('release_linux_64', gulpSequence(
     'package_linux_copy_bundle.app', 
     'package_linux_copy_publish', 
     'package_linux_copy_romanysoft', 
-    'package_linux_no_npm', 
-    'package-linux-git-version'));
+    'package_linux_npm', 
+    'package-linux-git-version',
+    'package-linux-zip'
+    ));
     
 gulp.task('release_linux', gulpSequence(
     'package_linux_del', 
