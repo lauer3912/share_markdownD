@@ -24,6 +24,7 @@
 
 }(function ($) {
     "use strict";
+    
 
     (function () {
         window['BS'] = window['BS'] || {};
@@ -37,8 +38,13 @@
         b$.pN = b$.pNative = null;
         if((typeof maccocojs !== 'undefined') && (typeof maccocojs == 'object') && maccocojs.hasOwnProperty("app")){
             b$.pN = b$.pNative = maccocojs; // 原MacOSX本地引擎
-        }else if((typeof process === 'object') && (typeof require === 'function') && (process.hasOwnProperty("pid"))){
-            b$.pN = b$.pNative = require("remote").require("./romanysoft/maccocojs"); // Electron引擎
+        }else if((typeof process === 'object') && (typeof require === 'function') && (process.hasOwnProperty("pid"))){   
+            try{
+                console.log("============= must first load =================");
+                b$.pN = b$.pNative = require("remote").require("./romanysoft/maccocojs"); // Electron引擎
+            }catch(e){
+                console.log(e);  
+            }
         }
 
         // 定义临时回调处理函数定义接口

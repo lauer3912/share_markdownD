@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     vinylPaths = require('vinyl-paths'),
     gulpFooter = require('gulp-footer'),
     gutil = require('gulp-util'),
+    rename = require('gulp-rename'),        // 重命名
     uglify = require('gulp-uglify'),
     gulpMinify = require('gulp-minify'),
     concat = require('gulp-concat'),
@@ -527,11 +528,57 @@ gulp.task('package-linux-git-version', function (cb) {
     });
 });
 
+
+gulp.task('package-linux-makeDEBDir', function(){
+    var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
+    var tmp_debName = g_cur_task_linux_isX64 ? tmp_linux64DirName : tmp_linux32DirName;
+    
+    var info = g_getInfoFromInfoPlist_func();
+    var validAppName = info.appName.replace(/\s/g, "-");
+    var replace = require('gulp-replace');
+    
+    // 存放执行文件
+    var app_run_path = release_linux_dir + '/' + tmp_debName + '_deb/usr/lib/';
+    gulp.src(tmp_destDir + "/**")
+        .pipe(gulp.dest(app_run_path));
+    
+    // 存放图标  
+    var app_run_icon_path = release_linux_dir + '/' + tmp_debName + '_deb/usr/share/icons/' + validAppName + "-romanysoft.png";
+    gulp.src('./electron/bundle.app/Contents/Resources/app.png')
+        .pipe(rename(validAppName + "-romanysoft.png"))
+        .pipe(gulp.dest(release_linux_dir + '/' + tmp_debName + '_deb/usr/share/icons/'));
+        
+    // 修改.desktop文件特性，然后保存
+    var app_run_desktop_path = release_linux_dir + '/' + tmp_debName + '_deb/usr/share/applications/' + validAppName + "-romanysoft.desktop";
+    gulp.src('./electron/deb.desktop')
+        .pipe(replace(/AAppNameA/g, info.appName))  
+        .pipe(replace(/AAppDescriptionA/g, info.appDescription))
+        .pipe(replace(/AAppExecPathA/g, '/usr/lib/' + info.appName.replace(/\s/g, "")))
+        .pipe(replace(/AAppIconA/g, '/usr/share/icons/' + validAppName + "-romanysoft.png"))
+        .pipe(rename(validAppName + "-romanysoft.desktop"))
+        .pipe(gulp.dest(release_linux_dir + '/' + tmp_debName + '_deb/usr/share/applications/'));
+        
+    // 修改control文件，然后保存
+    var app_run_control_path = release_linux_dir + '/' + tmp_debName + '_deb/DEBIAN/';
+    gulp.src('./electron/control')
+        .pipe(replace(/AAppNameA/g, info.appName.replace(/\s/g, "")))  
+        .pipe(replace(/AAppDescriptionA/g, info.appDescription))
+        .pipe(replace(/AAppVersionA/g, info.appVersion))
+        .pipe(replace(/AArchitectureA/g, g_cur_task_linux_isX64 ? 'amd64' : 'i386'))
+        .pipe(gulp.dest(app_run_control_path));  
+        
+    var deferred = Q.defer();
+    // do async stuff
+    setTimeout(function() {
+        deferred.resolve();
+    }, 15000);      
+    return deferred.promise;   
+});
+
 gulp.task('package-linux-zip', function(){
     var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
     var tmp_zipName = g_cur_task_linux_isX64 ? tmp_linux64DirName : tmp_linux32DirName;
-    
-    
+    var tmp_debName = g_cur_task_linux_isX64 ? tmp_linux64DirName : tmp_linux32DirName;
     
     var zip = require("gulp-zip");
     
@@ -539,11 +586,21 @@ gulp.task('package-linux-zip', function(){
         .pipe(zip(tmp_zipName + ".zip"))
         .pipe(gulp.dest(release_linux_dir));
         
+       
+    /**    
+    var app_run_deb_path = release_linux_dir + '/' + tmp_debName + '_deb/**';
+    var debZipFile = tmp_debName + "_deb.zip";
+    console.log('deb_path =' + app_run_deb_path + "; tmp_debName = " + debZipFile);
+    gulp.src(app_run_deb_path)
+        .pipe(zip(debZipFile))
+        .pipe(gulp.dest(release_linux_dir));
+    **/    
+        
     var deferred = Q.defer();
     // do async stuff
     setTimeout(function() {
         deferred.resolve();
-    }, 10000);
+    }, 15000);
     
     return deferred.promise;        
 });
@@ -557,6 +614,7 @@ gulp.task('release_linux_32', gulpSequence(
     'package_linux_copy_romanysoft', 
     'package_linux_npm', 
     'package-linux-git-version',
+    //'package-linux-makeDEBDir',
     'package-linux-zip'
     ));
     
@@ -568,6 +626,7 @@ gulp.task('release_linux_64', gulpSequence(
     'package_linux_copy_romanysoft', 
     'package_linux_npm', 
     'package-linux-git-version',
+    //'package-linux-makeDEBDir',
     'package-linux-zip'
     ));
     
