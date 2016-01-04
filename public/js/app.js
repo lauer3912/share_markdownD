@@ -176,8 +176,20 @@
                                 callback:b$._get_callback(function(obj){
                                     if(obj.success){
 
+                                        var setEditorContent = function (){
+                                            fileObj.content_utf8 = obj.content;
+                                            try{
+                                                if(fileObj.assEditor){
+                                                    // 更新内容
+                                                    $EditorProvider.setContent(fileObj.content_utf8, fileObj.assEditor);
+                                                }
+                                            }catch(e){
+                                                console.error(e);
+                                            }
+                                        };
+
                                         // 检查内容是否一致
-                                        if(fileObj.content_utf8 != obj.content){
+                                        if(fileObj.content_utf8 != obj.content && !fileObj.mustReloadNextTime){
 
                                             // 需要询问用户是否更新
                                             var alertRet = b$.Notice.alert({
@@ -190,16 +202,10 @@
                                             });
 
                                             if(alertRet == 0){
-                                                fileObj.content_utf8 = obj.content;
-                                                try{
-                                                    if(fileObj.assEditor){
-                                                        // 更新内容
-                                                        $EditorProvider.setContent(fileObj.content_utf8, fileObj.assEditor);
-                                                    }
-                                                }catch(e){
-                                                    console.error(e);
-                                                }
+                                                setEditorContent();
                                             }
+                                        }else if(fileObj.content_utf8 != obj.content){
+                                            setEditorContent();
                                         }
 
                                         fileObj.mustReloadNextTime = false;
@@ -610,8 +616,6 @@
                 promptRenameFileTag: $Util.fn_tri18n(I18N.UI.filePage["PromptRenameFileTag"]),
                 btnLoadTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-Load"]),
                 btnSaveTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-Save"]),
-                btnSaveAsTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-SaveAs"]),
-                btnExportTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-Export"]),
                 btnRemoveTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-Remove"]),
                 btnNewFileTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-New"]),
                 btnImportTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-ImportFiles"]),
