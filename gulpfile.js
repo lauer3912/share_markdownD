@@ -13,6 +13,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     less = require('gulp-less'),
     cssmin = require('gulp-minify-css'),
+    rcedit = require('rcedit'),
     htmlmin = require('gulp-htmlmin'),
     gulpFilter = require('gulp-filter'),    //过滤文件
     revappend = require('gulp-rev-append'), //使用gulp-rev-append给页面的引用添加版本号，清除页面引用缓存。
@@ -51,9 +52,26 @@ var destDir = "./build/public"; // 构建临时目录
 var releaseDir = "./release";   // 产品发布目录
 
 
-gulp.task('build_public_del', function () {        
+gulp.task('build_public_del', function (cb) {        
     return gulp.src(destDir, {read: false})
 		.pipe(clean({force: true}));  
+        
+        
+    var deferred = Q.defer();
+    
+    var cleanor = clean({force: true});
+    cleanor.on('finish', function(){
+        console.log('### always delete dir... ####');
+        deferred.resolve();
+    })
+    
+    // 刪除原先文件 
+    gulp.src(destDir, {read: false})
+        .pipe(cleanor);         
+
+    Q.when(deferred.promise).then(function(){
+        cb && cb();
+    });        
 });
 
 gulp.task('public_main', function () {
@@ -139,7 +157,7 @@ gulp.task('public_copy', function () {
 
 gulp.task('node-server', function () {
 
-    gulp.src(['./server/*', '!./server/*.js', '!./server/node_modules'])
+    gulp.src(['./server/**/*', '!./server/node_modules/**/*', '!./server/node_modules/'])
         .pipe(gulp.dest(destDir + '/server'));
 
     gulp.src(['./server/*.js'])
@@ -186,55 +204,143 @@ gulp.task('default', gulpSequence(
     'delayWait'
     ));
 
-var g_AppInfoPlist = nm_plist.parse(sysFS.readFileSync(__dirname + "/electron/bundle.app/Contents/info.plist", 'utf8'));;
 
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var forElectronDir = "D:/workspace/testprj/0git_html/MyDicTool/for_electron";
-// Windows准备打包
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var assReleasePackage = "D:/workspace/nACommonJS/common/electron/ass-release";
+var assBundlePackage = __dirname + "/electron/bundle.app";
+
+/// {}
+var g_cur_task_for_os = 1; // 1. windows, 2.linux, 3. MacOS
 
 
-
+/// {windows 变量}
 var release_win_dir = releaseDir + "/win";
 var tmp64Dir = release_win_dir + "/tmp64";
 var tmp32Dir = release_win_dir + "/tmp32";
-
 var g_cur_task_win_isX64 = true;  // 当前执行
 
-gulp.task('package_win_del', function (cb) {
-    return gulp.src(release_win_dir, {read: false})
-		.pipe(clean({force: true}));
-});
+/// {linux变量}
+var g_cur_task_linux_isX64 = true;
+var release_linux_dir = releaseDir + "/linux";
+var tmp_linux64Dir = release_linux_dir + "/tmp64";
+var tmp_linux32Dir = release_linux_dir + "/tmp32";
+var tmp_linux64DirName = "";
+var tmp_linux32DirName = "";
 
-gulp.task('package_win_copy_exe', function () {
-    var tmp_destDir = g_cur_task_win_isX64 ? tmp64Dir : tmp32Dir;
+/// {MacOS 变量}
 
-    if (g_cur_task_win_isX64) {
-       return gulp.src('./electron/exe/win64/**/*')
-            .pipe(gulp.dest(tmp64Dir));
-    } else {
-       return gulp.src('./electron/exe/win32/**/*')
-            .pipe(gulp.dest(tmp32Dir));
+
+/**
+ * 获得当前临时目标目录，根据当前任务属性
+ */
+function g_getOSTempDestDir(){
+    if(1 === g_cur_task_for_os){
+        return g_cur_task_win_isX64 ? tmp64Dir : tmp32Dir;
+    }else if(2 === g_cur_task_for_os){
+        return g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
+    }else if(3 === g_cur_task_for_os){
+        
     }
-
-});
-
-gulp.task('package_win_copy_bundle.app', function () {
-    var tmp_destDir = g_cur_task_win_isX64 ? tmp64Dir : tmp32Dir;
-   return gulp.src('./electron/bundle.app/**')
-        .pipe(gulp.dest(tmp_destDir + '/resources/app/bundle.app/'));
-});
+}
 
 
-gulp.task('package_win_copy_publish', function () {
-    var tmp_destDir = g_cur_task_win_isX64 ? tmp64Dir : tmp32Dir;
-   return gulp.src(destDir + "/**")
-        .pipe(gulp.dest(tmp_destDir + '/resources/app/bundle.app/Contents/Resources/public/'));
-});
+////
+var g_AppInfoPlist = "";
+try{
+    g_AppInfoPlist = nm_plist.parse(sysFS.readFileSync(assBundlePackage + "/Contents/info.plist", 'utf8'));;
+}catch(e){
+    console.log(e);
+}
 
-var g_copy_romanysoft_func = function (tmp_destDir) {
+var g_getInfoFromInfoPlist_func = function () {
+    var info = g_AppInfoPlist;
+
+    return {
+        appName: info.CFBundleDisplayName,
+        appVersion: info.CFBundleShortVersionString,
+        copyright: info.NSHumanReadableCopyright,
+        appDescription: info.RomanysoftAppDescription || "",
+        useNodePlugin: info.RomanysoftUseNodePlugin || false,      /// 是否使用node插件
+        usePythonPlugin: info.RomanysoftUsePythonPlugin || false,  /// 是否使用python插件
+        company: "Romanysoft, LAB."
+    };
+}
+
+/**
+ * 公共处理Copy publish目录
+ */
+function g_package_copy_publish(tmp_destDir){
+    var deferred = Q.defer();
+    
+    var dest = gulp.dest(tmp_destDir + '/resources/app/bundle.app/Contents/Resources/public/');
+    dest.on('finish', function(){
+        deferred.resolve();
+    });
+    gulp.src(destDir + "/**")
+        .pipe(dest);    
+        
+    return deferred.promise;    
+}
+
+/**
+ * 公共的处理npm public下面的server
+ */
+function g_npm_public_server(tmp_destDir){
+    /// 检查是否使用Node插件
+    var info = g_getInfoFromInfoPlist_func();
+    if(info.useNodePlugin){
+        var install = require("gulp-install");
+        return gulp.src(tmp_destDir + '/resources/app/bundle.app/Contents/Resources/public/server/package.json')
+                   .pipe(install());        
+    }
+    
+    return gulp.src('./');
+}
+
+/**
+ * 公共的压缩zip，public下面的server
+ */
+function g_common_zip_public_server(tmp_destDir, cb){
+    var deferred = Q.defer();
+
+    /// 检查是否使用Node插件
+    var info = g_getInfoFromInfoPlist_func();
+    if(info.useNodePlugin){
+        var zip = require("gulp-zip");        
+        function deleServerDir(){            
+            var cleanor = clean({force: true});
+            cleanor.on('finish', function(){
+                console.log('### always delete server dir for zip ####');
+                deferred.resolve();
+            })
+            
+            // 刪除原先文件 
+            gulp.src(tmp_destDir + '/resources/app/bundle.app/Contents/Resources/public/server/', {read: false})
+                .pipe(cleanor);
+        }
+        
+        console.log('### start zip file ####');            
+        gulp.src(tmp_destDir + '/resources/app/bundle.app/Contents/Resources/public/server/**/**')
+            .pipe(zip("server.zip"))
+            .pipe(gulp.dest(tmp_destDir + '/resources/app/bundle.app/Contents/Resources/public/'))
+            .on('finish', function(){deleServerDir();});   
+                  
+    }else{
+        deferred.resolve();
+    }
+    
+    Q.when(deferred.promise).then(function(){
+        cb && cb();
+    });
+}
+
+/**
+ * 公共处理copy Romanysoft部分
+ */
+function g_copy_romanysoft_func (tmp_destDir) {
+    var deferred = Q.defer();
 
     gulp.src(forElectronDir + '/main.js')
         .pipe(uglify().on('error', gutil.log))
@@ -258,38 +364,19 @@ var g_copy_romanysoft_func = function (tmp_destDir) {
     gulp.src(forElectronDir + '/romanysoft/maccocojs.js')
         .pipe(uglify().on('error', gutil.log))
         .pipe(gulp.dest(tmp_destDir + '/resources/app/romanysoft/'));
-
-
-};
-
-gulp.task('package_win_copy_romanysoft', function () {
-    var tmp_destDir = g_cur_task_win_isX64 ? tmp64Dir : tmp32Dir;
-    g_copy_romanysoft_func(tmp_destDir);
-    
-    var deferred = Q.defer();
+        
     // do async stuff
     setTimeout(function() {
         deferred.resolve();
-    }, 3000);
-    
-    return deferred.promise;
-});
-
-var g_getInfoFromInfoPlist_func = function () {
-    var info = g_AppInfoPlist;
-
-    return {
-        appName: info.CFBundleDisplayName,
-        appVersion: info.CFBundleShortVersionString,
-        copyright: info.NSHumanReadableCopyright,
-        appDescription: info.RomanysoftAppDescription || "",
-        company: "Romanysoft, LAB."
-    };
+    }, 5000);    
+        
+    return deferred.promise;    
 }
 
-gulp.task('package_win_npm', function (cb) {
-    var tmp_destDir = g_cur_task_win_isX64 ? tmp64Dir : tmp32Dir;
-
+/**
+ * 公共函数： 处理RomanysoftSDK的 npm
+ */
+function g_npm_romanysoftSDK(tmp_destDir){
     var install = require("gulp-install");
     var replace = require('gulp-replace');
 
@@ -300,13 +387,13 @@ gulp.task('package_win_npm', function (cb) {
     return gulp.src(forElectronDir + '/package.json')
         .pipe(replace(/for_electronSDK/g, validAppName))  //修改app目录下面的resources\app\package.json 修改name
         .pipe(gulp.dest(tmp_destDir + '/resources/app/'))
-        .pipe(install());
+        .pipe(install());    
+}
 
-});
-
-gulp.task('package-win-git-version', function (cb) {
-    var tmp_destDir = g_cur_task_win_isX64 ? tmp64Dir : tmp32Dir;
-
+/**
+ * 公共 写入Romanysoft SDK 的版本号
+ */
+function g_write_git_version(tmp_destDir, cb){
     gulpGit.revParse({ args: '--short HEAD', cwd: forElectronDir, quiet: true }, function (err, hash) {
         console.log('current git hash: ' + hash);
         var filePath = tmp_destDir + '/resources/app/version';
@@ -315,12 +402,131 @@ gulp.task('package-win-git-version', function (cb) {
         sysFS.writeFile(filePath, hash, 'utf8', function (err) {
             cb && cb(err);
         });
-    });
+    });    
+}
+
+
+// Windows准备打包
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+gulp.task('package_win_del', function (cb) {
+    return gulp.src(release_win_dir, {read: false})
+		.pipe(clean({force: true}));
 });
 
+gulp.task('package_win_copy_exe', function () {
+    var tmp_destDir = g_getOSTempDestDir();
+
+    if (g_cur_task_win_isX64) {
+       return gulp.src( assReleasePackage + '/win/win64/**/*')
+            .pipe(gulp.dest(tmp64Dir));
+    } else {
+       return gulp.src(assReleasePackage + '/win/win32/**/*')
+            .pipe(gulp.dest(tmp32Dir));
+    }
+});
+
+gulp.task('package_win_rcedit', function(cb){
+    var tmp_destDir = g_getOSTempDestDir();
+    
+    
+    var info = g_getInfoFromInfoPlist_func();
+    var companyName = info.company;
+    
+    console.log('info =', info);
+    
+    var options = {
+        "icon": assBundlePackage + "/Contents/Resources/app.ico",
+        "file-version": info.appVersion,
+        "product-version": info.appVersion,
+        "version-string":{
+            "ProductName":info.appName,
+            "InternalName":info.appName,
+            "OriginalFilename":info.appName,
+            "Comments":info.appDescription,
+            "FileDescription":info.appDescription,
+            "CompanyName": companyName,
+            "LegalCopyright": "Copyright " + (new Date()).getFullYear() + " " + companyName
+        }
+    }
+    
+    var destFilePath = tmp_destDir + "/electron.exe";
+    var validAppNameForSetup = info.appName.replace(/\s/g, "");
+        
+    rcedit(destFilePath, options, function(err){
+        if(!err){
+            
+            function delElectronFile(){
+                   console.log('2############');
+                    // 刪除原先文件 
+                    gulp.src(destFilePath, {read: false})
+                    .on('end', function(){
+                        console.log('3############');
+                        cb && cb(); 
+                    })
+                    .pipe(clean({force: true}));
+            }
+            
+            // 重命名，并刪除原先的文件
+            gulp.src(destFilePath)
+                .pipe(rename(validAppNameForSetup + ".exe"))
+                .pipe(gulp.dest(tmp_destDir).on('finish', function(){
+                    console.log('1############');
+                    delElectronFile();
+                }));
+                    
+        }else{
+            cb &&　cb(err);  
+        }
+    });
+    
+});
+
+gulp.task('package_win_copy_bundle.app', function () {
+    var tmp_destDir = g_getOSTempDestDir();
+    
+    gulp.src('./electron/bundle.app/**')
+        .pipe(gulp.dest(tmp_destDir + '/resources/app/bundle.app/'));
+        
+    /// 检查是否使用Node插件
+    var info = g_getInfoFromInfoPlist_func();
+    if(info.useNodePlugin){
+        console.log('use node plugin....');
+        var nodePluginPath = g_cur_task_win_isX64 
+        ? assReleasePackage + '/plugins/node/win/win64/node.exe'
+        : assReleasePackage + '/plugins/node/win/win32/node.exe';
+         
+        gulp.src(nodePluginPath)
+            .pipe(gulp.dest(tmp_destDir + '/resources/app/bundle.app/Contents/PlugIns/'));
+    }
+});
+
+gulp.task('package_win_copy_publish', function () {
+    return g_package_copy_publish(g_getOSTempDestDir()); 
+});
+
+gulp.task('package_win_npm_public_server', function(){
+    return g_npm_public_server(g_getOSTempDestDir());
+});
+
+gulp.task('package_win_zip_public_server', function(cb){
+    g_common_zip_public_server(g_getOSTempDestDir(), cb);
+});
+
+gulp.task('package_win_copy_romanysoft', function () {
+    return g_copy_romanysoft_func(g_getOSTempDestDir());
+});
+
+gulp.task('package_win_npm', function () {
+    return g_npm_romanysoftSDK(g_getOSTempDestDir());
+});
+
+gulp.task('package-win-git-version', function (cb) {
+    g_write_git_version(g_getOSTempDestDir(), cb);
+});
 
 gulp.task('package_win_getInstaller', function (cb) {
-    var tmp_destDir = g_cur_task_win_isX64 ? tmp64Dir : tmp32Dir;
+    var tmp_destDir = g_getOSTempDestDir();
     var platform = g_cur_task_win_isX64 ? 'x64' : 'x86'
 
     console.log("创建安装包" + platform);
@@ -351,11 +557,12 @@ gulp.task('package_win_getInstaller', function (cb) {
         version: appVersion,
         description: appDescription,
         copyright: copyright,
-        product_name: validAppNameForSetup,
+        product_name: appName,
         authors: company,
         owners: company,
         title: appName + " " + appVersion,
         overwrite: true,
+        debug: true,
         exe: validAppNameForSetup + ".exe",
         setup_filename: validAppNameForSetup + "-v" + appVersion + "-win32" + "-" + platform + "-setup.exe",
         setup_icon: __dirname + '/electron/setup.ico',
@@ -370,18 +577,23 @@ gulp.task('package_win_getInstaller', function (cb) {
 
 gulp.task('set_win32', function () {
     g_cur_task_win_isX64 = false;
+    g_cur_task_for_os = 1;
 });
 
 gulp.task('set_win64', function () {
     g_cur_task_win_isX64 = true;
+    g_cur_task_for_os = 1;
 });
 
 
 gulp.task('release_win_32', gulpSequence(
     'set_win32', 
     'package_win_copy_exe', 
+    'package_win_rcedit', 
     'package_win_copy_bundle.app', 
     'package_win_copy_publish', 
+    'package_win_npm_public_server',
+    'package_win_zip_public_server',
     'package_win_copy_romanysoft', 
     'package_win_npm', 
     'package-win-git-version', 
@@ -390,8 +602,11 @@ gulp.task('release_win_32', gulpSequence(
 gulp.task('release_win_64', gulpSequence(
     'set_win64', 
     'package_win_copy_exe', 
+    'package_win_rcedit', 
     'package_win_copy_bundle.app', 
     'package_win_copy_publish', 
+    'package_win_npm_public_server',
+    'package_win_zip_public_server',
     'package_win_copy_romanysoft', 
     'package_win_npm', 
     'package-win-git-version', 
@@ -401,8 +616,11 @@ gulp.task('release_win_32_noInstaller', gulpSequence(
     'package_win_del',     
     'set_win32', 
     'package_win_copy_exe', 
+    'package_win_rcedit', 
     'package_win_copy_bundle.app', 
     'package_win_copy_publish', 
+    'package_win_npm_public_server',
+    'package_win_zip_public_server',
     'package_win_copy_romanysoft', 
     'package_win_npm', 
     'package-win-git-version'));
@@ -410,9 +628,13 @@ gulp.task('release_win_32_noInstaller', gulpSequence(
 gulp.task('release_win_64_noInstaller', gulpSequence(
     'package_win_del',     
     'set_win64', 
-    'package_win_copy_exe', 
+    'package_win_copy_exe',
+    
+    'package_win_rcedit', 
     'package_win_copy_bundle.app', 
     'package_win_copy_publish', 
+    'package_win_npm_public_server',
+    'package_win_zip_public_server',
     'package_win_copy_romanysoft', 
     'package_win_npm', 
     'package-win-git-version'));
@@ -424,16 +646,12 @@ gulp.task('release_win', gulpSequence(
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Linux 处理
-g_cur_task_linux_isX64 = true;
-var release_linux_dir = releaseDir + "/linux";
-var tmp_linux64Dir = release_linux_dir + "/tmp64";
-var tmp_linux32Dir = release_linux_dir + "/tmp32";
-var tmp_linux64DirName = "";
-var tmp_linux32DirName = "";
-
 gulp.task('set_linux32', function () {
     g_cur_task_linux_isX64 = false;
+    g_cur_task_for_os = 2;
+    
     var info = g_getInfoFromInfoPlist_func();
     var validAppNameForSetup = info.appName.replace(/\s/g, "");
     console.log("validAppName = ", validAppNameForSetup);
@@ -445,6 +663,7 @@ gulp.task('set_linux32', function () {
 
 gulp.task('set_linux64', function () {
     g_cur_task_linux_isX64 = true;
+    g_cur_task_for_os = 2;
 
     var info = g_getInfoFromInfoPlist_func();
     var validAppNameForSetup = info.appName.replace(/\s/g, "");
@@ -455,79 +674,106 @@ gulp.task('set_linux64', function () {
     tmp_linux64Dir = release_linux_dir + "/" + tmp_linux64DirName;
 });
 
-gulp.task('package_linux_del', function () {
+gulp.task('package_linux_del', function (cb) {
+    var deferred = Q.defer();
+    
+    var cleanor = clean({force: true});
+    cleanor.on('finish', function(){
+        deferred.resolve();
+    });   
     return gulp.src(release_linux_dir, {read: false})
-		.pipe(clean({force: true}));      
+		.pipe(cleanor);  
+        
+    Q.when(deferred.promise).then(function(){
+        cb && cb();
+    });            
 });
 
 gulp.task('package_linux_copy_bin', function () {
-    var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
+    var tmp_destDir = g_getOSTempDestDir();
 
     if (g_cur_task_win_isX64) {
-        return gulp.src('./electron/linux/x64/**/*')
+        return gulp.src(assReleasePackage +'/linux/x64/**/*')
             .pipe(gulp.dest(tmp_destDir));
     } else {
-        return gulp.src('./electron/linux/ia32/**/*')
+        return gulp.src(assReleasePackage +'/linux/ia32/**/*')
             .pipe(gulp.dest(tmp_destDir));
     }
 });
 
+gulp.task('package_linux_rename_bin', function(cb){
+    var tmp_destDir = g_getOSTempDestDir();
+    
+    var info = g_getInfoFromInfoPlist_func();
+    var companyName = info.company;
+    
+    console.log('info =', info);
+        
+    var destFilePath = tmp_destDir + "/electron";
+    var validAppNameForSetup = info.appName.replace(/\s/g, "");
+    
+    // 重命名，并刪除原先的文件
+    gulp.src(destFilePath)
+        .pipe(rename(validAppNameForSetup))
+        .pipe(gulp.dest(tmp_destDir))
+        ; 
+        
+    // 刪除原先文件     
+    gulp.src(destFilePath, {read: false})
+        .pipe(clean({force: true}))
+        .on('finish', function(){
+            cb && cb();
+        });
+});
+
 gulp.task('package_linux_copy_bundle.app', function () {
-    var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
-    return gulp.src('./electron/bundle.app/**')
-        .pipe(gulp.dest(tmp_destDir + '/resources/app/bundle.app/'));
+    var tmp_destDir = g_getOSTempDestDir();
+    var deferred = Q.defer();
+        
+    gulp.src('./electron/bundle.app/**')
+        .pipe(gulp.dest(tmp_destDir + '/resources/app/bundle.app/'))
+        .on('finish', function(){
+            /// 检查是否使用Node插件
+            var info = g_getInfoFromInfoPlist_func();
+            if(info.useNodePlugin){
+                console.log('use node plugin....');
+                var nodePluginPath = g_cur_task_linux_isX64 
+                ? assReleasePackage + '/plugins/node/linux/x64/node'
+                : assReleasePackage + '/plugins/node/linux/ia32/node';
+                
+                gulp.src(nodePluginPath)
+                    .pipe(gulp.dest(tmp_destDir + '/resources/app/bundle.app/Contents/PlugIns/'));
+            } 
+            
+            deferred.resolve();
+        });
+        
+    return deferred.promise;           
 });
 
 gulp.task('package_linux_copy_publish', function () {
-    var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
-    return gulp.src(destDir + "/**")
-        .pipe(gulp.dest(tmp_destDir + '/resources/app/bundle.app/Contents/Resources/public/'));
+    return g_package_copy_publish(g_getOSTempDestDir());
+});
+
+gulp.task('package_linux_npm_public_server', function(){
+    return g_npm_public_server(g_getOSTempDestDir());
+});
+
+gulp.task('package_linux_zip_public_server', function(cb){
+    g_common_zip_public_server(g_getOSTempDestDir(), cb);
 });
 
 gulp.task('package_linux_copy_romanysoft', function () {
-    var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
-    g_copy_romanysoft_func(tmp_destDir);
-    
-    var deferred = Q.defer();
-    // do async stuff
-    setTimeout(function() {
-        deferred.resolve();
-    }, 10000);
-    
-    return deferred.promise;
+    return g_copy_romanysoft_func(g_getOSTempDestDir());
 });
 
 gulp.task('package_linux_npm', function () {
-    var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
-
-    var install = require("gulp-install");
-    var replace = require('gulp-replace');
-
-    var info = g_getInfoFromInfoPlist_func();
-    var validAppName = info.appName.replace(/\s/g, "-");
-    console.log("validAppName = ", validAppName);
-
-    return gulp.src(forElectronDir + '/package.json')
-        .pipe(replace(/for_electronSDK/g, validAppName))  //修改app目录下面的resources\app\package.json 修改name
-        .pipe(gulp.dest(tmp_destDir + '/resources/app/'))
-        .pipe(install());
-
+    return g_npm_romanysoftSDK(g_getOSTempDestDir());
 });
 
 gulp.task('package-linux-git-version', function (cb) {
-    var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
-
-    gulpGit.revParse({ args: '--short HEAD', cwd: forElectronDir, quiet: true }, function (err, hash) {
-        console.log('current git hash: ' + hash);
-        var filePath = tmp_destDir + '/resources/app/version';
-        var sysFS = require('fs');
-
-        sysFS.writeFile(filePath, hash, 'utf8', function (err) {
-            cb && cb(err);
-        });
-    });
+    g_write_git_version(g_getOSTempDestDir(), cb);
 });
-
 
 gulp.task('package-linux-makeDEBDir', function(){
     var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
@@ -580,11 +826,16 @@ gulp.task('package-linux-zip', function(){
     var tmp_zipName = g_cur_task_linux_isX64 ? tmp_linux64DirName : tmp_linux32DirName;
     var tmp_debName = g_cur_task_linux_isX64 ? tmp_linux64DirName : tmp_linux32DirName;
     
-    var zip = require("gulp-zip");
-    
+    var deferred = Q.defer();   
+     
+    var zip = require("gulp-zip");    
     gulp.src(tmp_destDir + "/**")
         .pipe(zip(tmp_zipName + ".zip"))
-        .pipe(gulp.dest(release_linux_dir));
+        .pipe(gulp.dest(release_linux_dir))
+        .on('finish', function(){
+            console.log('zip over...');
+            deferred.resolve();
+        })
         
        
     /**    
@@ -595,13 +846,7 @@ gulp.task('package-linux-zip', function(){
         .pipe(zip(debZipFile))
         .pipe(gulp.dest(release_linux_dir));
     **/    
-        
-    var deferred = Q.defer();
-    // do async stuff
-    setTimeout(function() {
-        deferred.resolve();
-    }, 15000);
-    
+
     return deferred.promise;        
 });
 
@@ -609,8 +854,11 @@ gulp.task('package-linux-zip', function(){
 gulp.task('release_linux_32', gulpSequence(
     'set_linux32', 
     'package_linux_copy_bin', 
+    'package_linux_rename_bin',
     'package_linux_copy_bundle.app', 
     'package_linux_copy_publish', 
+    //'package_linux_npm_public_server', // linux 包需要在linux平台上执行npm install
+    //'package_linux_zip_public_server',    
     'package_linux_copy_romanysoft', 
     'package_linux_npm', 
     'package-linux-git-version',
@@ -621,8 +869,11 @@ gulp.task('release_linux_32', gulpSequence(
 gulp.task('release_linux_64', gulpSequence(
     'set_linux64', 
     'package_linux_copy_bin', 
+    'package_linux_rename_bin',
     'package_linux_copy_bundle.app', 
     'package_linux_copy_publish', 
+    //'package_linux_npm_public_server', // linux 包需要在linux平台上执行npm install
+    //'package_linux_zip_public_server',       
     'package_linux_copy_romanysoft', 
     'package_linux_npm', 
     'package-linux-git-version',

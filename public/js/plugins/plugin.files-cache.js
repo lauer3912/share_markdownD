@@ -38,8 +38,7 @@ var RomanySoftPlugins;
                     }
                 }
             }
-            catch (e) {
-            }
+            catch (e) { }
         };
         return FileObj;
     })();
@@ -52,7 +51,16 @@ var RomanySoftPlugins;
         // 获取所有文件对象
         FilesCache.prototype.getAllFiles = function () {
             "use strict";
-            return this.data;
+            if (this.data.length <= 1)
+                return this.data;
+            var sortDataList = this.data.sort(function (a, b) {
+                if (a.lastModify < b.lastModify)
+                    return 1;
+                if (a.lastModify > b.lastModify)
+                    return -1;
+                return 0;
+            });
+            return sortDataList;
         };
         // 获取一个新的文件对象
         FilesCache.prototype.getNewFileObj = function () {
@@ -66,9 +74,9 @@ var RomanySoftPlugins;
                 return null;
             var sortDataList = this.data.sort(function (a, b) {
                 if (a.lastModify < b.lastModify)
-                    return -1;
-                if (a.lastModify > b.lastModify)
                     return 1;
+                if (a.lastModify > b.lastModify)
+                    return -1;
                 return 0;
             });
             return sortDataList[0];

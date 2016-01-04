@@ -22,9 +22,12 @@ module I18N{
 
         static filePage:any = {
             "Title": "Files"
+            ,"PromptRenameFileTag":"You can rename file tag name"
             ,"Btn-Load": "Load"
             ,"Btn-Save": "Save"
+            ,"Btn-SaveAs": "Save as"
             ,"Btn-Remove": "Remove"
+            ,"Btn-Export": "Export"
             ,"Btn-New": "New File"
             ,"Btn-ImportFiles": "Import Files"
             ,"em-label": "Note:"

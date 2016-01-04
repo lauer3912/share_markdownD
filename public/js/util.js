@@ -188,6 +188,52 @@
             return str;
         };
 
+        // 比较两个版本号
+        $.compareVersion = function(version1, version2){
+            try{
+                var version1Array = version1.split('.');
+                var version2Array = version2.split('.');
+
+                var ver1IntList = [], ver2IntList = [];
+
+                $.each(version1Array, function(idx, value){
+                    ver1IntList.push(parseInt(value));
+                });
+                $.each(version2Array, function(idx, value){
+                    ver2IntList.push(parseInt(value));
+                });
+
+                var i = 0;
+                // format
+                if(ver1IntList.length < ver2IntList.length){
+                    i = 0;
+                    for(; i < (ver2IntList.length - ver1IntList.length); ++i){
+                        ver1IntList.push(0);
+                    }
+                }
+
+                if(ver1IntList.length > ver2IntList.length){
+                    i = 0;
+                    for(; i < (ver1IntList.length - ver2IntList.length); ++i){
+                        ver2IntList.push(0);
+                    }
+                }
+
+                i = 0;
+                for(; i < ver1IntList.length; ++i){
+                    var cVer1 = ver1IntList[i];
+                    var cVer2 = ver2IntList[i];
+
+                    if(cVer1 > cVer2) return 1;
+                    if(cVer1 < cVer2) return -1;
+                }
+
+                return 0;
+            }catch(e){
+                return -1;
+            }
+        };
+
 
         // 模板引擎
         var cache = {};

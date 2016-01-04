@@ -42,6 +42,16 @@
             try{
                 console.log("============= must first load =================");
                 b$.pN = b$.pNative = require("remote").require("./romanysoft/maccocojs"); // Electron引擎
+
+                // 一定要干掉Electron的内置指定
+                window.eletron_require = window.require;
+                window.eletron_module = window.module;
+
+                window.require = undefined;
+                window.module.exports = undefined;
+                window.module = undefined;
+                // end
+
             }catch(e){
                 console.log(e);  
             }
@@ -280,6 +290,18 @@
                     return t.appId;
                 }
                 return "AppID";
+            },
+
+            /// 获得产品的运行的操作系统及平台
+            sysOS:null,
+            getAppRunOnOS:function(){
+                if (b$.pN) {
+                    var t = this;
+                    if (t.sysOS) return t.sysOS;
+                    t.sysOS = b$.pN.app.getAppRunOnOS();
+                    return t.sysOS;
+                }
+                return "MacOSX"; // 原生返回MacOSX，其他的参照Electron
             },
 
             /// 获得App是否在沙盒内
@@ -1126,6 +1148,41 @@
                 }
 
                 return false;
+            },
+
+
+            /// 打印 (一般情况下，不建议使用)
+            print:function(jsonObj){
+                if(b$.pN){
+                    try{
+                        var parms = jsonObj || {};
+                        parms['silent'] = parms['silent'] || false;
+                        parms['printBackground'] = parms['printBackground'] || false;
+
+                        return b$.pN.window.print($.toJSON(parms));
+                    }catch (e) {
+                        console.error(e);
+                    }
+                }
+            },
+
+            /// 打印到PDF  (一般情况下，不建议使用)
+            printToPDF:function(jsonObj){
+                if(b$.pN){
+                    try{
+                        var parms = jsonObj || {};
+                        parms['marginsType'] = parms['marginsType'] || 0;
+                        parms['pageSize'] = parms['pageSize'] || 'A4';
+                        parms['printBackground'] = parms['printBackground'] || false;
+                        parms['printSelectionOnly'] = parms['printSelectionOnly'] || false;
+                        parms['landscape'] = parms['landscape'] || false;
+                        parms['filePath'] = parms['filePath'] || (b$.pN.path.tempDir() + "/" + Date.now() + ".pdf");
+
+                        return b$.pN.window.printToPDF($.toJSON(parms));
+                    }catch (e) {
+                        console.error(e);
+                    }
+                }
             }
 
         };
@@ -1635,17 +1692,17 @@
          * @type {{setMenuProperty: Function, maxRecentDocumentCount: Function, addRecentDocument: Function, clearAllRecentDocuments: Function}}
          */
         b$.SystemMenus = {
-            setMenuProperty: function (parms) {
+            setMenuProperty: function (in_parms) {
                 if (b$.pN) {
                     try {
-                        parms = parms || {};
+                        var parms = {};
                         //限制内部属性：
-                        parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
+                        parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
                             }, true);
-                        parms['menuTag'] = parms['menuTag'] || 999;
-                        parms['hideMenu'] = parms['hideMenu'] || false;
-                        parms['title'] = parms['title'] || "##**";//"MenuTitle";
-                        parms['action'] = parms['action'] || b$._get_callback(function (obj) {
+                        parms['menuTag'] = in_parms['menuTag'] || 999;
+                        parms['hideMenu'] = in_parms['hideMenu'] || false;
+                        parms['title'] = in_parms['title'] || "##**";//"MenuTitle";
+                        parms['action'] = in_parms['action'] || b$._get_callback(function (obj) {
                             }, true);
 
                         b$.pN.window.setMenuProperty($.toJSON(parms));
@@ -1759,7 +1816,7 @@
                         parms['filePath'] = parms['filePath'] || "";
                         parms['text'] = parms['text'] || "";
                         parms['offset'] = parms['offset'] || 0;
-                        parms['dataAppend'] = parms['dataAppend'] || true;
+                        parms['dataAppend'] = parms['dataAppend'] || false;
 
                         b$.pN.binaryFileWriter.writeTextToFile($.toJSON(parms));
                     } catch (e) {

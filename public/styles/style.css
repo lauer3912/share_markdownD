@@ -84,7 +84,7 @@ body {
   font-size: 11px;
 }
 #view-files ul button {
-  width: 84px;
+  font-size: 32px;
   padding: 0 5px;
 }
 #view-files ul button span {

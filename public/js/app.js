@@ -25,6 +25,7 @@
     var $UserSettings = c$.UserSettings = new RomanySoftPlugins.Settings.UserSetting(); // 用户设置
     var $Util = c$.Util = {};                                                           // 常用工具类
     var g_enableIAP = false;
+    c$.g_curWorkFileObj = null;                                                         // 全局当前工作的文件对象
 
     // 默认的本地化语言
     c$.language = 'en-US';
@@ -115,6 +116,35 @@
         $Cache.restore();
     };
 
+    c$.checkUpdate = function(){
+        "use strict";
+
+        function checkUpdate(data){
+            try{
+                var lastVersion = data.checkUpdate.lastVersion || "";
+                var updateURL = data.checkUpdate.updateURL || "";
+
+                // 比较
+                if(1 === $.compareVersion(lastVersion, ntv.getAppVersion())) {
+                    var foundNewVersion = jet.tr('text.checkUpdate_foundNewVersion');
+                    alert(foundNewVersion);
+                    updateURL !== "" && ntv.openUrl(updateURL);
+                }
+
+            }catch(e){
+                console.error(e);
+            }
+        }
+
+        // 尝试读取服务器配置
+        var serverUrl = "http://romanysoft.github.io/assert-config/configs/com.romanysoft.app.macos.MarkdownD.json";
+        $.getJSON(serverUrl, function(data){
+            data = typeof data === "object" ? data : {};
+            data = data instanceof Array ? {"data": data} : data;
+
+            checkUpdate(data);
+        });
+    };
 
     // 设置UI部分与逻辑交互
     c$.setupUI = function(){
@@ -137,7 +167,7 @@
                 return div_id;
             }
             ,loadFile:function(id){
-                window.$fc.reLoadFile(id, function(fileObj){
+                window.$fc.reLoadFile(id || window.$fc.getLastModifyFileObj().id, function(fileObj){
                     if(fileObj.is_tmp && $.trim(fileObj.path) === ""){ // 临时文件
                         $Router.go_workspace(fileObj);
                     }else{ // 本地文件
@@ -159,7 +189,7 @@
                                                 ]
                                             });
 
-                                            if(alertRet == 1){
+                                            if(alertRet == 0){
                                                 fileObj.content_utf8 = obj.content;
                                                 try{
                                                     if(fileObj.assEditor){
@@ -188,41 +218,74 @@
                     }
                 });
             }
-            ,saveFile:function(id){
-                window.$fc.saveFile(id, function(fileObj){
+            ,common_save_file:function(fileObj){
+                b$.Binary.createTextFile({
+                    filePath:fileObj.path,
+                    text:fileObj.content_utf8
+                });
+
+                fileObj.changed = false;
+
+                // 发送消息通知
+                $NoticeCenter.fire(c$.NCMessage.fileChange, fileObj.id);
+            }
+            ,saveFile:function(id, wantSaveAs){
+                var t$ = this;
+                wantSaveAs = wantSaveAs || false;
+                window.$fc.saveFile(id || window.$fc.getLastModifyFileObj().id, function(fileObj){
                     if(fileObj.assEditor){
                         fileObj.content_utf8 = $EditorProvider.getContent(fileObj.assEditor);
                     }else{
                         fileObj.content_utf8 = "";
                     }
 
-                    // 保存到本地
-                    b$.selectOutFile({
-                        callback: b$._get_callback(function(info){
-                            if(info.success){
-                                fileObj.name = info.fileName;
-                                fileObj.is_tmp = false;
-                                fileObj.path = info.filePath;
+                    var checkCanWritable = b$.App.checkPathIsExist(fileObj.path) && b$.App.checkPathIsWritable(fileObj.path);
+                    if(checkCanWritable && !wantSaveAs){
+                        t$.common_save_file(fileObj);
+                    }else{
+                        // 保存到本地
+                        b$.selectOutFile({
+                            callback: b$._get_callback(function(info){
+                                if(info.success){
+                                    fileObj.name = info.fileName;
+                                    fileObj.is_tmp = false;
+                                    fileObj.path = info.filePath;
 
-                                // 发送消息通知
-                                $NoticeCenter.fire(c$.NCMessage.fileChange);
+                                    t$.common_save_file(fileObj);
+                                }
+                            }, true),
+                            title : $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-Title"]),
+                            prompt: $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-BtnSave"]),
+                            fileName : fileObj.name,
+                            types : ['md']
 
-                                $Router.go_files();
+                        });
+                    }
 
-                                b$.Binary.createTextFile({
-                                    filePath:fileObj.path,
-                                    text:fileObj.content_utf8
-                                });
-                            }
-                        }, true),
-                        title : $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-Title"]),
-                        prompt: $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-BtnSave"]),
-                        fileName : fileObj.name,
-                        types : ['md']
-
-                    });
                 });
+            }
+            ,saveAsFile:function(id){
+                var t$ = this;
+                t$.saveFile(id, true);
+            }
+            ,exportFile:function(id){
 
+            }
+            ,exportAsPDF:function(id){
+                // 保存到本地
+                b$.selectOutFile({
+                    callback: b$._get_callback(function(info){
+                        if(info.success){
+                            var pdfPath = info.filePath;
+                            b$.App.printToPDF({filePath:pdfPath});
+                        }
+                    }, true),
+                    title : $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-Title"]),
+                    prompt: $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-BtnSave"]),
+                    fileName : "export",
+                    types : ['pdf']
+
+                });
             }
             ,removeFilesItem:function(id){
                 window.$fc.removeFile(id, function(obj){
@@ -292,6 +355,7 @@
 
                                 //检测是否已经存在
                                 if(window.$fc.findFileEx({path:obj.filePath})){
+                                    console.log('import file exist....');
                                     b$.Notice.dockMessage({
                                         message:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_message"], {path:obj.filePath}),
                                         title:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_title"])
@@ -367,34 +431,36 @@
                 b$.enableDragDropFeature({
                     callback:b$._get_callback(function(info){
                         if(info.success){
-                            $.each(info.filesArray, function(index, obj){
+                            try{
+                                $.type(info.filesArray) === "array" && $.each(info.filesArray, function(index, obj){
 
-                                //检测是否已经存在
-                                if(window.$fc.findFileEx({path:obj.filePath})){
-                                    b$.Notice.dockMessage({
-                                        message:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_message"], {path:obj.filePath}),
-                                        title:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_title"])
-                                    });
-                                }else{
-                                    var newFileObj = window.$fc.getNewFileObj();
-                                    newFileObj.name = obj.fileName;
-                                    newFileObj.path = obj.filePath;
-                                    newFileObj.ext = obj.extension;
-                                    newFileObj.is_tmp = false;
-                                    newFileObj.mustReloadNextTime = true;
-                                    window.$fc.addFile(newFileObj, function(){});
-                                    window.$fem.addNewFileObj(newFileObj);
+                                    //检测是否已经存在
+                                    if(window.$fc.findFileEx({path:obj.filePath})){
+                                        b$.Notice.dockMessage({
+                                            message:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_message"], {path:obj.filePath}),
+                                            title:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_title"])
+                                        });
+                                    }else{
+                                        var newFileObj = window.$fc.getNewFileObj();
+                                        newFileObj.name = obj.fileName;
+                                        newFileObj.path = obj.filePath;
+                                        newFileObj.ext = obj.extension;
+                                        newFileObj.is_tmp = false;
+                                        newFileObj.mustReloadNextTime = true;
+                                        window.$fc.addFile(newFileObj, function(){});
+                                        window.$fem.addNewFileObj(newFileObj);
 
-                                    // 添加到监视器中
-                                    c$.UIActions.addFileToWatcher(newFileObj.path);
+                                        // 添加到监视器中
+                                        c$.UIActions.addFileToWatcher(newFileObj.path);
 
-                                    // 发送消息通知
-                                    $NoticeCenter.fire(c$.NCMessage.fileChange);
-                                }
+                                        // 发送消息通知
+                                        $NoticeCenter.fire(c$.NCMessage.fileChange);
+                                    }
 
-                            });
+                                });
+                            }catch(e){
 
-                            $Router.go_files();
+                            }
                         }
                     }, true),
                     fileTypes:['md']
@@ -451,7 +517,8 @@
                     $NoticeCenter.fire(c$.NCMessage.fileChange);
                 }
 
-                $Router.go_workspace(window.$fc.getLastModifyFileObj());
+                // 默认启动，开启新的编辑对象
+                $Router.go_workspace(c$.UIActions.crateNewFileObj());
             });
 
         })();
@@ -540,8 +607,11 @@
             var thisPage = '#view-files';
             var o = {
                 files: window.$fc.getAllFiles(),
+                promptRenameFileTag: $Util.fn_tri18n(I18N.UI.filePage["PromptRenameFileTag"]),
                 btnLoadTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-Load"]),
                 btnSaveTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-Save"]),
+                btnSaveAsTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-SaveAs"]),
+                btnExportTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-Export"]),
                 btnRemoveTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-Remove"]),
                 btnNewFileTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-New"]),
                 btnImportTitle: $Util.fn_tri18n(I18N.UI.filePage["Btn-ImportFiles"]),
@@ -577,20 +647,29 @@
             var thisPage = '#view-workspace';
 
             // 处理标题
-            if(null == window.$fc.getLastModifyFileObj()){
-                c$.UIActions.crateNewFileObj();
-            }
-            var _curFileObj = fileObj || window.$fc.getLastModifyFileObj();
-
-            var wk = $Util.fn_tri18n(I18N.UI.workspacePage["Title"]);
-
-            if(false == _curFileObj.changed){
-                c$.g_navTitle = wk + ' - ' + _curFileObj.name;
-            }else{
-                c$.g_navTitle = wk + ' - ' +  _curFileObj.name + ' [*]';
+            if(null === window.$fc.getLastModifyFileObj()){
+                fileObj = c$.UIActions.crateNewFileObj();
             }
 
-            $('#nav-title').html(c$.g_navTitle);
+            c$.g_curWorkFileObj = fileObj || window.$fc.getLastModifyFileObj();
+            c$.g_curWorkFileObj.lastModify = $.now(); // 修改最后编辑的时间
+
+
+            // 注册缓存数据变更的消息处理函数(来自消息中心)
+            $NoticeCenter.add(function(message, fileId){
+                if(message === c$.NCMessage.fileChange){
+                    if(fileId === c$.g_curWorkFileObj.id){
+                        var wk = $Util.fn_tri18n(I18N.UI.workspacePage["Title"]);
+
+                        var baseName = wk + ' - ' + c$.g_curWorkFileObj.name;
+                        c$.g_navTitle = (true === c$.g_curWorkFileObj.changed) ?  baseName + ' [*]' : baseName;
+                        $('#nav-title').html(c$.g_navTitle);
+                    }
+                }
+            });
+
+            //发送消息通知
+            $NoticeCenter.fire(c$.NCMessage.fileChange, c$.g_curWorkFileObj.id);
 
 
             // 初始化内容
@@ -629,9 +708,9 @@
             }
 
             // 查找对应的Editor是否存在
-            var div_id = c$.UIActions.getEditorDivEle(_curFileObj.id);
+            var div_id = c$.UIActions.getEditorDivEle(c$.g_curWorkFileObj.id);
 
-            if(window.$fem.findEditorByFileId(_curFileObj.id)){
+            if(window.$fem.findEditorByFileId(c$.g_curWorkFileObj.id)){
                 // 使用CSS来控制显示
                 $(thisPage + " > div").addClass("mui-hide").removeClass("mui-show");
                 $('#' + div_id).addClass("mui-show").removeClass("mui-hide");
@@ -651,7 +730,7 @@
 
 
                 // 然后创建编辑器, 并做关联
-                var newEditorMd = _curFileObj.assEditor = $EditorProvider.createEditor(div_id, {
+                var newEditorMd = c$.g_curWorkFileObj.assEditor = $EditorProvider.createEditor(div_id, {
                     height:$(window).height()
                     ,toolbarAutoFixed: false
 
@@ -677,44 +756,41 @@
 
                     // 函数
                     ,onload:function(){
-                        $EditorProvider.setContent(_curFileObj.content_utf8, this);
+                        $EditorProvider.setContent(c$.g_curWorkFileObj.content_utf8, this);
                         this['toolBar_offset'] = this.editor.offset();
-
-                        _curFileObj.lastModified = $.now();
+                        c$.g_curWorkFileObj.lastModify = $.now(); // 修改最后编辑的时间
+                        c$.g_curWorkFileObj.changed = false;
                     }
                     ,onchange:function(){
-                        var oldContent = _curFileObj.content_utf8;
+                        var oldContent = c$.g_curWorkFileObj.content_utf8;
                         var curContent = $EditorProvider.getContent(this);
-                        _curFileObj.changed = (oldContent != curContent);
+                        c$.g_curWorkFileObj.changed = (oldContent !== curContent);
+                        c$.g_curWorkFileObj.lastModify = $.now(); // 修改最后编辑的时间
 
-                        if(false == _curFileObj.changed){
+                        if(c$.g_curWorkFileObj.changed){
                             //自动保存时间，是否立即保存
                             var settings = c$.UserSettings.documentSetting;
                             if(settings.autoSave){
                                 // 检查间隔
-                                if(($.now() - _curFileObj.lastModified) >= settings.autoSaveSecs*1000){
-                                    _curFileObj.content_utf8 = curContent;
-                                    _curFileObj.changed = false;
+                                if(($.now() - c$.g_curWorkFileObj.lastModify) >= settings.autoSaveSecs*1000){
+                                    c$.g_curWorkFileObj.content_utf8 = curContent;
+                                    c$.g_curWorkFileObj.changed = false;
 
-                                    if(false == _curFileObj.is_tmp){ // 非临时文件
+                                    if(false == c$.g_curWorkFileObj.is_tmp){ // 非临时文件
                                         try{
                                             b$.Binary.createTextFile({
-                                                filePath:_curFileObj.path,
-                                                text:_curFileObj.content_utf8
+                                                filePath:c$.g_curWorkFileObj.path,
+                                                text:c$.g_curWorkFileObj.content_utf8
                                             });
                                         }catch(e){}
                                     }
-                                    $NoticeCenter.fire(c$.NCMessage.fileChange);
                                 }
                             }
                         }
 
+                        //发送消息通知
+                        $NoticeCenter.fire(c$.NCMessage.fileChange, c$.g_curWorkFileObj.id);
 
-                        if(false == _curFileObj.changed){
-                            $('#nav-title').html('Workspace - ' + _curFileObj.name);
-                        }else{
-                            $('#nav-title').html('Workspace - ' + _curFileObj.name + ' [*]');
-                        }
                     }
                     ,onscroll:function(){
 
@@ -1100,9 +1176,59 @@
         }, true);
 
         if(b$.pN){
-            var obj = JSON.stringify({menuTag:903, action:cbName});
+            var obj = {menuTag:903, action:cbName};
             b$.SystemMenus.setMenuProperty(obj);
         }
+    };
+
+    // 配置系统菜单
+    c$.configSystemMenu = function(cb){
+        "use strict";
+
+         // File部分
+        if(b$.pN){
+
+            //New
+            b$.SystemMenus.setMenuProperty({menuTag:101, action:b$._get_callback(function(info){
+                window.UI.c$.UIActions.createNew();
+            }, true)});
+
+            //Open
+            b$.SystemMenus.setMenuProperty({menuTag:102, action:b$._get_callback(function(info){
+                window.UI.c$.UIActions.importFiles();
+            }, true)});
+
+            //Save
+            b$.SystemMenus.setMenuProperty({menuTag:106, action:b$._get_callback(function(info){
+                window.UI.c$.UIActions.saveFile();
+            }, true)});
+
+            //Save As
+            b$.SystemMenus.setMenuProperty({menuTag:107, action:b$._get_callback(function(info){
+                window.UI.c$.UIActions.saveAsFile();
+            }, true)});
+
+            //ExportAsPdF
+            b$.SystemMenus.setMenuProperty({menuTag:194, action:b$._get_callback(function(info){
+                //TODO: 创建选择对话框
+                window.UI.c$.UIActions.exportAsPDF();
+            }, true)});
+
+
+            //Print
+            b$.SystemMenus.setMenuProperty({menuTag:111, action:b$._get_callback(function(info){
+                //TODO: 创建选择对话框
+                b$.App.print();
+            }, true)});
+
+            //Exit
+            b$.SystemMenus.setMenuProperty({menuTag:999, action:b$._get_callback(function(info){
+                b$.App.terminate();
+            }, true)});
+
+        }
+
+
     };
 
     // 绑定插件引导及相关的插件
@@ -1528,7 +1654,10 @@
             c$.configUserSettings();
             c$.configIAP();
             c$.configRoute();
+            c$.configSystemMenu();
             c$.setupUI();
+            c$.checkUpdate();
+
         });
 
         c$.configInternationalization(deferred);

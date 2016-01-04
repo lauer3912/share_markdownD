@@ -17,7 +17,7 @@
         "CheckForUpdatePageURL":"http://romanysoft.github.io/MarkdownD/versions",
 
         "autoOffset": true,
-        "minSize" : [800, 600],
+        "minSize" : [720, 500],
         "size" : [1440, 900],
         "#maxSize" : [1024, 500],
         "hasTitleBar" : true,
@@ -36,7 +36,18 @@
         "hideDocumentVersionsButton" : false,
         "hideFullScreenButton" : true,
         "menuHideList" : [
-            {"tag":100,"hide":true},
+            {"tag":100,"hide":false},
+            {"tag":103,"hide":true},
+            {"tag":108,"hide":true},
+            {"tag":190,"hide":true},
+            {"tag":191,"hide":true},
+            {"tag":192,"hide":true},
+            {"tag":193,"hide":true},
+            {"tag":195,"hide":true},
+            {"tag":196,"hide":true},
+
+            {"tag":110,"hide":true},
+
             {"tag":200,"hide":false}
         ],
         "menuTitleList" : [

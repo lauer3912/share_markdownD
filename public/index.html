@@ -6,8 +6,11 @@
     <title>MarkdownD</title>
 
     <link rel="stylesheet" type="text/css" media="screen" href="styles/fonts/style.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="common/editor.md/1.4.5/editor.md/css/editormd.min.css"/>
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="common/editor.md/1.4.5/editor.md/css/editormd.min.css"/>-->
+    <link rel="stylesheet" type="text/css" media="screen" href="common/editor.md/1.5.0/editor.md/css/editormd.min.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="common/mui/mui-0.1.2/css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="common/jquery/PrintArea/css/jquery.printarea.css"/>
+
     <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css"/>
 </head>
 <body>
@@ -36,6 +39,7 @@
         <div id="view-plugins" style="display: none"></div>
         <div id="view-settings" style="display: none"></div>
         <div id="view-about" style="display: none"></div>
+        <div id="view-print" style="display: none"></div>
     </div>
     <div id="leftNav" style="display: none"></div>
     <input id="g-input-file" type="file" class="mui-form-control" style="display: none">
@@ -71,19 +75,20 @@
                                 <label>{{ i+1 }}</label>
                             </i>
                             <i class="mui-col-md-3 mui-col-xs-3">
-                                <input type="text" class="mui-form-control" data-id="{{ obj.id }}" data-field="name" value="{{ obj.name }}">
+                                <input type="text" class="mui-form-control" data-id="{{ obj.id }}" data-field="name" value="{{ obj.name }}" title="{{promptRenameFileTag}}">
                             </i>
                             <i class="mui-col-md-8 mui-col-xs-8">
-                                <input type="text" class="mui-form-control mui-text-center" data-id="{{ obj.id }}" data-field="path" value="{{ obj.path }}" readonly>
+                                <input type="text" class="mui-form-control mui-text-center" data-id="{{ obj.id }}" data-field="path" value="{{ obj.path }}" title="{{ obj.path }}" readonly>
                             </i>
                         </div>
 
                     </span>
                     <i class="mui-col-md-4 mui-col-xs-4">
                         <fieldset>
-                            <button class="mui-btn mui-btn-primary mui-btn-flat icon-edit" onclick="window.UI.c$.UIActions.loadFile('{{ obj.id  }}')">{{btnLoadTitle}}</button>
-                            <button class="mui-btn mui-btn-primary mui-btn-flat icon-save" onclick="window.UI.c$.UIActions.saveFile('{{ obj.id }}')">{{btnSaveTitle}}</button>
-                            <button class="mui-btn mui-btn-primary mui-btn-flat icon-remove-circle-outline" onclick="window.UI.c$.UIActions.removeFilesItem('{{  obj.id }}')">{{btnRemoveTitle}}</button>
+                            <button class="mui-btn mui-btn-primary mui-btn-flat icon-edit" title="{{btnLoadTitle}}" onclick="window.UI.c$.UIActions.loadFile('{{ obj.id  }}')"></button>
+                            <button class="mui-btn mui-btn-primary mui-btn-flat icon-save" title="{{btnSaveTitle}}" onclick="window.UI.c$.UIActions.saveFile('{{ obj.id }}')"></button>
+                            <button class="mui-btn mui-btn-primary mui-btn-flat icon-assignment-returned" title="{{btnSaveAsTitle}}" onclick="window.UI.c$.UIActions.saveAsFile('{{ obj.id }}')"></button>
+                            <button class="mui-btn mui-btn-primary mui-btn-flat icon-delete" title="{{btnRemoveTitle}}" onclick="window.UI.c$.UIActions.removeFilesItem('{{  obj.id }}')"></button>
                         </fieldset>
                     </i>
                 </section>
@@ -262,24 +267,26 @@
 <script src="common/jquery/jquery-1.11.3.min.js" onload="(function(){ try{window.$ = window.jQuery = module.exports;}catch(e){}})();"></script>
 <script src="common/jquery/jquery-json/2.5.1/jquery.json.min.js"></script>
 <script src="common/jquery/layer-v1.9.3/layer.js"></script>
+<script src="common/jquery/PrintArea/js/jquery.printarea.js"></script>
+
+<!--核心启动加载-->
+<script src="js/util.js"></script>
+<script src="js/bs.js"></script>
 
 <!--加载国际化-->
-<script src="common/format.js/intl/0.1.4/Intl.min.js"></script>
-<script src="common/format.js/intl/0.1.4/locale-data/jsonp/en-US.js"></script>
+<script src="common/format.js/intl/1.0.0/Intl.min.js"></script>
 <script src="common/format.js/intl-messageformat/1.1.0/intl-messageformat-with-locales.min.js"></script>
 
 <!--加载路由设置-->
 <script src="common/director.js/director.min.js"></script>
 <script src="common/mui/mui-0.1.2/js/mui.min.js"></script>
 <script src="common/artTemplate/3.0/template.js"></script>
-<script src="common/editor.md/1.4.5/editor.md/editormd.min.js"></script>
+<script src="common/editor.md/1.5.0/editor.md/editormd.min.js"></script>
 
 <!--引入Backbone.js-->
-<script src="common/Backbone.js/1.2.0/backbone-min.js"></script>
+<script src="common/Backbone.js/1.2.3/backbone-min.js"></script>
 
-<!--核心启动加载-->
-<script src="js/util.js"></script>
-<script src="js/bs.js"></script>
+
 
 <!--插件部分加载-->
 <script src="js/plugins/plugin.iap.js"></script>
@@ -292,7 +299,7 @@
 <!--App-->
 <script src="js/app.js"></script>
 <script type="text/javascript">
-    window.UI.c$.launch()
+    window.UI.c$.launch();
 </script>
 </body>
 </html>

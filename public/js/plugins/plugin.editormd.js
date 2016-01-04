@@ -6,15 +6,24 @@ var RomanySoftPlugins;
 (function (RomanySoftPlugins) {
     var EditorMdServices = (function () {
         function EditorMdServices() {
-            this.version = "1.4.5";
-            this.editormd = editormd;
+            this.version = "1.5.0";
+            this.editormd = window["editormd"] || {};
             this.default_lib_path = "common/editor.md/" + this.version + "/editor.md/lib/"; // 默认版本哭路径
             this.default_lang_path = "locales/extend/editormd/"; // 默认版本路径
         }
         EditorMdServices.prototype.getDefault_toolbarIcons = function () {
             var toolList = [];
             if (this.editormd.version >= "1.4.0") {
-                var allList = ["undo", "redo", "|", "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|", "h1", "h2", "h4", "h4", "h5", "h6", "|", "list-ul", "list-ol", "hr", "|", "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|", "goto-line", "watch", "preview", "watch", "fullscreen", "|", "search", "clear"];
+                var allList = [
+                    "undo", "redo", "|",
+                    "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
+                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
+                    "list-ul", "list-ol", "hr", "|",
+                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime",
+                    "emoji",
+                    "html-entities", "pagebreak", "|",
+                    "goto-line", "watch", "preview", "|",
+                    "search", "clear"];
                 $.each(allList, function (index, obj) {
                     if (null != obj) {
                         toolList.push(obj);
@@ -91,6 +100,8 @@ var RomanySoftPlugins;
                 ,
                 codeFold: (typeof _config.codeFold == "boolean") ? _config.codeFold : false //是否开启代码折叠功能
                 ,
+                autoCloseTags: true //是否自动补全标签
+                ,
                 searchReplace: (typeof _config.searchReplace == "boolean") ? _config.searchReplace : true //是否开启查找替换功能
                 ,
                 readOnly: (typeof _config.readOnly == "boolean") ? _config.readOnly : false //是否开启只读模式
@@ -121,38 +132,27 @@ var RomanySoftPlugins;
                 ,
                 toolbarAutoFixed: (typeof _config.toolbarAutoFixed == "boolean") ? _config.toolbarAutoFixed : true //工具栏是否自动填充位置
                 ,
-                onload: _config.onload || function () {
-                } //加载成功后的处理
+                onload: _config.onload || function () { } //加载成功后的处理
                 ,
-                onresize: _config.onresize || function () {
-                } //大小发生变化的时候
+                onresize: _config.onresize || function () { } //大小发生变化的时候
                 ,
-                onchange: _config.onchange || function () {
-                } //内容发生变化的时候
+                onchange: _config.onchange || function () { } //内容发生变化的时候
                 ,
-                onwatch: _config.onwatch || function () {
-                } //实时预览的时候
+                onwatch: _config.onwatch || function () { } //实时预览的时候
                 ,
-                onunwatch: _config.onunwatch || function () {
-                } //实时预览关闭的时候
+                onunwatch: _config.onunwatch || function () { } //实时预览关闭的时候
                 ,
-                onpreviewing: _config.onpreviewing || function () {
-                } //当预览的时候
+                onpreviewing: _config.onpreviewing || function () { } //当预览的时候
                 ,
-                onpreviewed: _config.onpreviewed || function () {
-                } //当已经预览过的时候
+                onpreviewed: _config.onpreviewed || function () { } //当已经预览过的时候
                 ,
-                onfullscreen: _config.onfullscreen || function () {
-                } //当全屏的时候
+                onfullscreen: _config.onfullscreen || function () { } //当全屏的时候
                 ,
-                onfullscreenExit: _config.onfullscreenExit || function () {
-                } //当全屏退出的时候
+                onfullscreenExit: _config.onfullscreenExit || function () { } //当全屏退出的时候
                 ,
-                onscroll: _config.onscroll || function () {
-                } //当滚动的时候
+                onscroll: _config.onscroll || function () { } //当滚动的时候
                 ,
-                onpreviewscroll: _config.onpreviewscroll || function () {
-                } //当预览滚动的时候
+                onpreviewscroll: _config.onpreviewscroll || function () { } //当预览滚动的时候
             });
             return ui_ele_editor;
         };

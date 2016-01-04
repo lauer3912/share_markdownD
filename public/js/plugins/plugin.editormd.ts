@@ -5,8 +5,8 @@
 ///<reference path="../../tsd/typings/jquery/jquery.d.ts" />
 module RomanySoftPlugins {
     export class EditorMdServices{
-        version:string = "1.4.5";
-        editormd:any = editormd;
+        version:string = "1.5.0";
+        editormd:any = window["editormd"] ||{};
         default_lib_path:string = "common/editor.md/"+ this.version +"/editor.md/lib/";  // 默认版本哭路径
         default_lang_path:string = "locales/extend/editormd/";  // 默认版本路径
 
@@ -14,14 +14,15 @@ module RomanySoftPlugins {
             var toolList = [];
             if(this.editormd.version >= "1.4.0"){
 
-                var allList = ["undo", "redo", "|",
-                    "bold","del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
-                    "h1", "h2", "h4", "h4", "h5", "h6", "|",
+                var allList = [
+                    "undo", "redo", "|",
+                    "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
+                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
                     "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime",
                     "emoji",
                     "html-entities", "pagebreak", "|",
-                    "goto-line", "watch", "preview", "watch", "fullscreen","|",
+                    "goto-line", "watch", "preview", "|",
                     "search", "clear"];
 
                 $.each(allList, function(index, obj){
@@ -104,8 +105,8 @@ module RomanySoftPlugins {
             // 插件部分
             var ui_ele_editor = this.editormd(ui_ele,{
                 width: _config.width || "100%",
-                height: _config.height || $(document).height,
-                path: this.default_lib_path
+                height: _config.height || $(document).height
+                ,path: this.default_lib_path
                 ,toolbarIcons: this.getDefault_toolbarIcons()
                 ,appendMarkdown: _config.content || ""   // 附加的md内容
 
@@ -118,7 +119,7 @@ module RomanySoftPlugins {
                 //,gotoLine: true           //是否开启gotoLine的功能
                 ,codeFold: (typeof _config.codeFold == "boolean") ? _config.codeFold : false          //是否开启代码折叠功能
                 //,autoHeight: false        //是否开启自动高度
-                //,autoCloseTags: true      //是否自动补全标签
+                ,autoCloseTags: true      //是否自动补全标签
                 ,searchReplace: (typeof _config.searchReplace == "boolean") ?  _config.searchReplace : true      //是否开启查找替换功能
                 ,readOnly: (typeof _config.readOnly == "boolean") ? _config.readOnly : false          //是否开启只读模式
                 ,lineNumbers: (typeof _config.lineNumbers == "boolean") ? _config.lineNumbers : true        //是否显示行号

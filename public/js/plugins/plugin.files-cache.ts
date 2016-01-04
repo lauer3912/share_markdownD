@@ -50,7 +50,16 @@ module RomanySoftPlugins {
         // 获取所有文件对象
         getAllFiles(){
             "use strict";
-            return this.data;
+            if(this.data.length <= 1)
+                return this.data;
+
+            var sortDataList =  this.data.sort(function(a, b){
+                if(a.lastModify < b.lastModify) return 1;
+                if(a.lastModify > b.lastModify) return -1;
+                return 0;
+            });
+
+            return sortDataList;
         }
 
         // 获取一个新的文件对象
@@ -65,8 +74,8 @@ module RomanySoftPlugins {
             if(this.data.length == 0) return null;
 
             var sortDataList =  this.data.sort(function(a, b){
-                if(a.lastModify < b.lastModify) return -1;
-                if(a.lastModify > b.lastModify) return 1;
+                if(a.lastModify < b.lastModify) return 1;
+                if(a.lastModify > b.lastModify) return -1;
                 return 0;
             });
 
