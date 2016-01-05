@@ -1701,6 +1701,7 @@
                             }, true);
                         parms['menuTag'] = in_parms['menuTag'] || 999;
                         parms['hideMenu'] = in_parms['hideMenu'] || false;
+                        parms['isSeparatorItem'] = in_parms['isSeparatorItem'] || false; // 是否为分割线，用来创建新的Item
                         parms['title'] = in_parms['title'] || "##**";//"MenuTitle";
                         parms['action'] = in_parms['action'] || b$._get_callback(function (obj) {
                             }, true);

@@ -504,6 +504,7 @@
                         $.each(cacheList, function(index, cacheObj){
                             var newFileObj = window.$fc.getNewFileObj();
                             newFileObj.coreDataFromJSON(cacheObj.value); // 数据还原
+                            newFileObj.assEditor = null;                 // 去掉编辑器的对象关联
                             window.$fc.addFile(newFileObj, function(){});
                             window.$fem.addNewFileObj(newFileObj);
 
@@ -524,7 +525,7 @@
                 }
 
                 // 默认启动，开启新的编辑对象
-                $Router.go_workspace(c$.UIActions.crateNewFileObj());
+                $Router.go_workspace();
             });
 
         })();
@@ -1226,7 +1227,7 @@
             }, true)});
 
             //Exit
-            b$.SystemMenus.setMenuProperty({menuTag:999, action:b$._get_callback(function(info){
+            b$.SystemMenus.setMenuProperty({menuTag:911, action:b$._get_callback(function(info){
                 b$.App.terminate();
             }, true)});
 
