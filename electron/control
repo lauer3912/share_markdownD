@@ -1,0 +1,6 @@
+Package: AAppNameA
+Version: AAppVersionA
+Section: utils
+Maintainer: app.romanysoft@gmail.com
+Architecture: AArchitectureA
+Description: AAppDescriptionA

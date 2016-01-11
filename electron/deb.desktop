@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=AAppNameA
+Comment=AAppDescriptionA
+GenericName=Utility;TextEditor;Development;
+Exec=AAppExecPathA
+Icon=AAppIconA
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Utility;TextEditor;Development;
+MimeType=text/plain;
