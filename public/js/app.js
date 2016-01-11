@@ -1214,7 +1214,7 @@
             }, true)});
 
             //ExportAsPdF
-            b$.SystemMenus.setMenuProperty({menuTag:194, action:b$._get_callback(function(info){
+            b$.SystemMenus.setMenuProperty({menuTag:194, title:"ExportAsPDF", action:b$._get_callback(function(info){
                 //TODO: 创建选择对话框
                 window.UI.c$.UIActions.exportAsPDF();
             }, true)});

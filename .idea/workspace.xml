@@ -2,461 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d66fa614-948a-43b5-9215-832307c96ac8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/common/jquery/PrintArea/css/jquery.printarea.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/common/jquery/PrintArea/js/jquery.printarea.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/Backbone.js/1.2.0/backbone-min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/css/editormd.logo.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/css/editormd.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/css/editormd.preview.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/editormd.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/FontAwesome.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/editormd-logo.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/editormd-logo.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/editormd-logo.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/editormd-logo.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/fontawesome-webfont.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/fontawesome-webfont.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/fontawesome-webfont.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/fontawesome-webfont.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/fonts/fontawesome-webfont.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/loading@2x.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/loading@3x.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-favicon-16x16.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-favicon-24x24.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-favicon-32x32.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-favicon-48x48.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-favicon-64x64.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-114x114.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-120x120.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-144x144.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-16x16.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-180x180.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-240x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-24x24.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-320x320.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-32x32.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-48x48.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-57x57.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-64x64.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-72x72.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/editormd-logo-96x96.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/images/logos/vi.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/languages/en.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/languages/zh-tw.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/AUTHORS" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/comment/comment.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/comment/continuecomment.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/dialog/dialog.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/dialog/dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/display/fullscreen.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/display/fullscreen.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/display/panel.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/display/placeholder.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/display/rulers.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/edit/closebrackets.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/edit/closetag.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/edit/continuelist.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/edit/matchbrackets.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/edit/matchtags.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/edit/trailingspace.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/brace-fold.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/comment-fold.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/foldcode.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/foldgutter.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/foldgutter.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/indent-fold.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/markdown-fold.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/fold/xml-fold.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/anyword-hint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/css-hint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/html-hint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/javascript-hint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/show-hint.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/show-hint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/sql-hint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/hint/xml-hint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/coffeescript-lint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/css-lint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/javascript-lint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/json-lint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/lint.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/lint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/lint/yaml-lint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/merge/merge.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/merge/merge.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/mode/loadmode.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/mode/multiplex.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/mode/multiplex_test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/mode/overlay.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/mode/simple.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/runmode/colorize.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/runmode/runmode-standalone.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/runmode/runmode.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/runmode/runmode.node.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/scroll/annotatescrollbar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/scroll/scrollpastend.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/scroll/simplescrollbars.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/scroll/simplescrollbars.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/search/match-highlighter.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/search/matchesonscrollbar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/search/matchesonscrollbar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/search/search.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/search/searchcursor.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/selection/active-line.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/selection/mark-selection.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/selection/selection-pointer.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/tern/tern.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/tern/tern.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/tern/worker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addon/wrap/hardwrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/addons.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/codemirror.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/codemirror.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/lib/codemirror.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/lib/codemirror.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/apl/apl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/apl/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/asterisk/asterisk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/asterisk/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/clike/clike.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/clike/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/clike/scala.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/clojure/clojure.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/clojure/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/cobol/cobol.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/cobol/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/coffeescript/coffeescript.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/coffeescript/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/commonlisp/commonlisp.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/commonlisp/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/css.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/less.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/less_test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/scss.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/scss_test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/css/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/cypher/cypher.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/cypher/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/d/d.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/d/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dart/dart.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dart/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/diff/diff.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/diff/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/django/django.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/django/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dockerfile/dockerfile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dockerfile/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dtd/dtd.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dtd/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dylan/dylan.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/dylan/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ebnf/ebnf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ebnf/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ecl/ecl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ecl/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/eiffel/eiffel.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/eiffel/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/erlang/erlang.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/erlang/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/forth/forth.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/forth/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/fortran/fortran.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/fortran/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gas/gas.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gas/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gfm/gfm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gfm/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gfm/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gherkin/gherkin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/gherkin/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/go/go.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/go/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/groovy/groovy.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/groovy/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haml/haml.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haml/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haml/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haskell/haskell.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haskell/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haxe/haxe.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/haxe/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/htmlembedded/htmlembedded.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/htmlembedded/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/htmlmixed/htmlmixed.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/htmlmixed/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/http/http.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/http/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/idl/idl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/idl/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/jade/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/jade/jade.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/javascript/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/javascript/javascript.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/javascript/json-ld.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/javascript/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/javascript/typescript.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/jinja2/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/jinja2/jinja2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/julia/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/julia/julia.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/kotlin/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/kotlin/kotlin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/livescript/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/livescript/livescript.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/lua/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/lua/lua.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/markdown/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/markdown/markdown.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/markdown/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/meta.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/mirc/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/mirc/mirc.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/mllike/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/mllike/mllike.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/modelica/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/modelica/modelica.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/nginx/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/nginx/nginx.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ntriples/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ntriples/ntriples.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/octave/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/octave/octave.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/pascal/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/pascal/pascal.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/pegjs/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/pegjs/pegjs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/perl/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/perl/perl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/php/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/php/php.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/php/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/pig/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/pig/pig.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/properties/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/properties/properties.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/puppet/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/puppet/puppet.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/python/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/python/python.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/q/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/q/q.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/r/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/r/r.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rpm/changes/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rpm/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rpm/rpm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rst/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rst/rst.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ruby/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ruby/ruby.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/ruby/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rust/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/rust/rust.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sass/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sass/sass.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/scheme/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/scheme/scheme.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/shell/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/shell/shell.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/shell/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sieve/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sieve/sieve.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/slim/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/slim/slim.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/slim/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/smalltalk/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/smalltalk/smalltalk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/smarty/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/smarty/smarty.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/smartymixed/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/smartymixed/smartymixed.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/solr/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/solr/solr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/soy/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/soy/soy.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sparql/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sparql/sparql.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/spreadsheet/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/spreadsheet/spreadsheet.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sql/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/sql/sql.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/stex/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/stex/stex.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/stex/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/stylus/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/stylus/stylus.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tcl/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tcl/tcl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/textile/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/textile/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/textile/textile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tiddlywiki/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tiddlywiki/tiddlywiki.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tiddlywiki/tiddlywiki.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tiki/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tiki/tiki.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tiki/tiki.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/toml/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/toml/toml.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tornado/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/tornado/tornado.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/turtle/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/turtle/turtle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/vb/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/vb/vb.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/vbscript/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/vbscript/vbscript.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/velocity/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/velocity/velocity.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/verilog/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/verilog/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/verilog/verilog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/xml/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/xml/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/xml/xml.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/xquery/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/xquery/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/xquery/xquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/yaml/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/yaml/yaml.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/z80/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/mode/z80/z80.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/modes.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/3024-day.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/3024-night.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/ambiance-mobile.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/ambiance.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/base16-dark.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/base16-light.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/blackboard.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/cobalt.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/colorforth.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/eclipse.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/elegant.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/erlang-dark.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/lesser-dark.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/mbo.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/mdn-like.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/midnight.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/monokai.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/neat.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/neo.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/night.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/paraiso-dark.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/paraiso-light.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/pastel-on-dark.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/rubyblue.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/solarized.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/the-matrix.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/tomorrow-night-bright.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/tomorrow-night-eighties.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/twilight.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/vibrant-ink.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/xq-dark.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/xq-light.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/codemirror/theme/zenburn.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/flowchart.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/jquery.flowchart.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/marked.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/prettify.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/raphael.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/sequence-diagram.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/lib/underscore.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/code-block-dialog/code-block-dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/emoji-dialog/emoji-dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/emoji-dialog/emoji.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/goto-line-dialog/goto-line-dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/help-dialog/help-dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/help-dialog/help.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/html-entities-dialog/html-entities-dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/html-entities-dialog/html-entities.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/image-dialog/image-dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/link-dialog/link-dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/plugin-template.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/preformatted-text-dialog/preformatted-text-dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/reference-link-dialog/reference-link-dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/table-dialog/table-dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/editor.md/1.4.5/editor.md/plugins/test-plugin/test-plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/format.js/intl/0.1.4/Intl.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/format.js/intl/0.1.4/locale-data/jsonp/en-US.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_AMS-Regular.eot" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_AMS-Regular.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_AMS-Regular.ttf" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_AMS-Regular.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_AMS-Regular.woff" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_AMS-Regular.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_AMS-Regular.woff2" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_AMS-Regular.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Bold.eot" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Bold.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Bold.ttf" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Bold.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Bold.woff" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Bold.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Bold.woff2" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Bold.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Italic.eot" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Italic.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Italic.ttf" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Italic.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Italic.woff" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Italic.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Italic.woff2" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Italic.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Regular.eot" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Regular.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Regular.ttf" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Regular.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Regular.woff" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Regular.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Regular.woff2" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Main-Regular.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-BoldItalic.eot" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-BoldItalic.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-BoldItalic.ttf" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-BoldItalic.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-BoldItalic.woff" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-BoldItalic.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-BoldItalic.woff2" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-BoldItalic.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Italic.eot" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Italic.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Italic.ttf" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Italic.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Italic.woff" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Italic.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Italic.woff2" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Italic.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Regular.eot" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Regular.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Regular.ttf" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Regular.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Regular.woff" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Regular.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Regular.woff2" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Math-Regular.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size1-Regular.eot" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size1-Regular.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size1-Regular.ttf" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size1-Regular.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size1-Regular.woff" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size1-Regular.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size1-Regular.woff2" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size1-Regular.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size2-Regular.eot" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size2-Regular.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size2-Regular.ttf" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size2-Regular.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size2-Regular.woff" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size2-Regular.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size2-Regular.woff2" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size2-Regular.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size3-Regular.eot" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size3-Regular.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size3-Regular.ttf" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size3-Regular.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size3-Regular.woff" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size3-Regular.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size3-Regular.woff2" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size3-Regular.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size4-Regular.eot" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size4-Regular.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size4-Regular.ttf" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size4-Regular.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size4-Regular.woff" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size4-Regular.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size4-Regular.woff2" afterPath="$PROJECT_DIR$/public/common/katex/fonts/KaTeX_Size4-Regular.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/common/jquery/jquery-1.11.3.min.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChangeLog" afterPath="$PROJECT_DIR$/ChangeLog" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gulpfile.js" afterPath="$PROJECT_DIR$/gulpfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/README.md" afterPath="$PROJECT_DIR$/public/common/katex/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/contrib/auto-render.min.js" afterPath="$PROJECT_DIR$/public/common/katex/contrib/auto-render.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/katex.min.css" afterPath="$PROJECT_DIR$/public/common/katex/katex.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common/katex/katex.min.js" afterPath="$PROJECT_DIR$/public/common/katex/katex.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/bs.js" afterPath="$PROJECT_DIR$/public/js/bs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.js" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.js.map" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.files-cache.js" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.files-cache.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.files-cache.js.map" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.files-cache.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins/plugin.files-cache.ts" afterPath="$PROJECT_DIR$/public/js/plugins/plugin.files-cache.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/util.js" afterPath="$PROJECT_DIR$/public/js/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/locales/en-US.js" afterPath="$PROJECT_DIR$/public/locales/en-US.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/locales/en-US.js.map" afterPath="$PROJECT_DIR$/public/locales/en-US.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/locales/en-US.ts" afterPath="$PROJECT_DIR$/public/locales/en-US.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project.json" afterPath="$PROJECT_DIR$/public/project.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/styles/style.css" afterPath="$PROJECT_DIR$/public/styles/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/styles/style.less" afterPath="$PROJECT_DIR$/public/styles/style.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/locales/de-DE.js.map" afterPath="$PROJECT_DIR$/public/locales/de-DE.js.map" />
     </list>
     <ignored path="MarkdownD.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -479,108 +30,137 @@
     <favorites_list name="MarkdownD" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.29714286">
+    <splitter split-orientation="vertical" split-proportion="0.7395412">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/js/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-30.758621">
-                  <caret line="519" column="32" selection-start-line="519" selection-start-column="32" selection-end-line="519" selection-end-column="32" />
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="1233" column="9" selection-start-line="1233" selection-start-column="9" selection-end-line="1233" selection-end-column="9" />
                   <folding>
                     <element signature="e#1358#1753#0" expanded="true" />
                     <element signature="e#3317#3364#0" expanded="true" />
                     <element signature="e#3862#4828#0" expanded="true" />
                     <element signature="e#3921#4471#0" expanded="true" />
                     <element signature="e#4654#4820#0" expanded="true" />
-                    <element signature="e#4948#16039#0" expanded="true" />
-                    <element signature="e#5492#8250#0" expanded="true" />
-                    <element signature="e#5784#8092#0" expanded="true" />
-                    <element signature="e#5857#8000#0" expanded="true" />
-                    <element signature="e#8314#8623#0" expanded="true" />
-                    <element signature="e#8357#8465#0" expanded="true" />
-                    <element signature="e#8670#10247#0" expanded="true" />
-                    <element signature="e#8850#10231#0" expanded="true" />
-                    <element signature="e#9428#10188#0" expanded="true" />
-                    <element signature="e#9499#9873#0" expanded="true" />
-                    <element signature="e#10284#10369#0" expanded="true" />
-                    <element signature="e#10406#10422#0" expanded="true" />
-                    <element signature="e#10460#11086#0" expanded="true" />
-                    <element signature="e#10520#11070#0" expanded="true" />
-                    <element signature="e#10583#10798#0" expanded="true" />
-                    <element signature="e#11128#11610#0" expanded="true" />
-                    <element signature="e#11185#11593#0" expanded="true" />
-                    <element signature="e#11650#11966#0" expanded="true" />
-                    <element signature="e#12000#12099#0" expanded="true" />
-                    <element signature="e#13916#16012#0" expanded="true" />
-                    <element signature="e#13979#15684#0" expanded="true" />
-                    <element signature="e#14095#15585#0" expanded="true" />
-                    <element signature="e#17942#19879#0" expanded="true" />
-                    <element signature="e#18004#19816#0" expanded="true" />
-                    <element signature="e#18196#19696#0" expanded="true" />
-                    <element signature="e#20583#20714#0" expanded="true" />
-                    <element signature="e#20961#21911#0" expanded="false" />
-                    <element signature="e#21264#21869#0" expanded="true" />
-                    <element signature="e#22324#51010#0" expanded="true" />
-                    <element signature="e#24980#26670#0" expanded="true" />
-                    <element signature="e#25201#26067#0" expanded="true" />
-                    <element signature="e#26828#36630#0" expanded="true" />
-                    <element signature="e#27311#27816#0" expanded="true" />
-                    <element signature="e#28218#30168#0" expanded="true" />
-                    <element signature="e#28530#30126#0" expanded="true" />
-                    <element signature="e#30923#31071#0" expanded="true" />
-                    <element signature="e#31212#34642#0" expanded="true" />
-                    <element signature="e#32594#32920#0" expanded="true" />
-                    <element signature="e#32961#34559#0" expanded="true" />
-                    <element signature="e#34011#34227#0" expanded="true" />
-                    <element signature="e#34600#34624#0" expanded="true" />
-                    <element signature="e#34816#36116#0" expanded="true" />
-                    <element signature="e#35015#36096#0" expanded="true" />
-                    <element signature="e#36234#36303#0" expanded="true" />
-                    <element signature="e#36673#43960#0" expanded="true" />
-                    <element signature="e#37137#43753#0" expanded="true" />
-                    <element signature="e#37813#40098#0" expanded="true" />
-                    <element signature="e#44005#46328#0" expanded="true" />
-                    <element signature="e#44354#46121#0" expanded="true" />
-                    <element signature="e#44770#46103#0" expanded="true" />
-                    <element signature="e#46377#50608#0" expanded="true" />
-                    <element signature="e#50634#50917#0" expanded="true" />
-                    <element signature="e#51085#51344#0" expanded="true" />
-                    <element signature="e#51161#51199#0" expanded="true" />
-                    <element signature="e#51399#52874#0" expanded="true" />
-                    <element signature="e#51524#51651#0" expanded="true" />
-                    <element signature="e#51576#51643#0" expanded="true" />
-                    <element signature="e#51717#51846#0" expanded="true" />
-                    <element signature="e#51769#51838#0" expanded="true" />
-                    <element signature="e#51912#52038#0" expanded="true" />
-                    <element signature="e#51964#52030#0" expanded="true" />
-                    <element signature="e#52107#52235#0" expanded="true" />
-                    <element signature="e#52159#52227#0" expanded="true" />
-                    <element signature="e#52308#52469#0" expanded="true" />
-                    <element signature="e#52360#52461#0" expanded="true" />
-                    <element signature="e#52537#52676#0" expanded="true" />
-                    <element signature="e#52589#52668#0" expanded="true" />
-                    <element signature="e#52742#52853#0" expanded="true" />
-                    <element signature="e#52794#52845#0" expanded="true" />
-                    <element signature="e#74985#75471#0" expanded="true" />
-                    <element signature="e#75079#75411#0" expanded="true" />
-                    <marker date="1451885342756" expanded="true" signature="46750:46763" placeholder="..." />
+                    <element signature="e#4877#22667#0" expanded="true" />
+                    <element signature="e#4948#16373#0" expanded="true" />
+                    <element signature="e#5492#8584#0" expanded="true" />
+                    <element signature="e#5784#8426#0" expanded="true" />
+                    <element signature="e#5857#8334#0" expanded="true" />
+                    <element signature="e#5987#6628#0" expanded="true" />
+                    <element signature="e#6929#7604#0" expanded="true" />
+                    <element signature="e#8648#8957#0" expanded="true" />
+                    <element signature="e#8691#8799#0" expanded="true" />
+                    <element signature="e#9004#10581#0" expanded="true" />
+                    <element signature="e#9184#10565#0" expanded="true" />
+                    <element signature="e#9762#10522#0" expanded="true" />
+                    <element signature="e#9833#10207#0" expanded="true" />
+                    <element signature="e#10618#10703#0" expanded="true" />
+                    <element signature="e#10740#10756#0" expanded="true" />
+                    <element signature="e#10794#11420#0" expanded="true" />
+                    <element signature="e#10854#11404#0" expanded="true" />
+                    <element signature="e#10917#11132#0" expanded="true" />
+                    <element signature="e#11462#11944#0" expanded="true" />
+                    <element signature="e#11519#11927#0" expanded="true" />
+                    <element signature="e#11984#12300#0" expanded="true" />
+                    <element signature="e#12334#12433#0" expanded="true" />
+                    <element signature="e#14217#16362#0" expanded="true" />
+                    <element signature="e#14250#16346#0" expanded="true" />
+                    <element signature="e#14313#16018#0" expanded="true" />
+                    <element signature="e#14429#15919#0" expanded="true" />
+                    <element signature="e#16396#22656#0" expanded="true" />
+                    <element signature="e#16656#22643#0" expanded="true" />
+                    <element signature="e#18276#20213#0" expanded="true" />
+                    <element signature="e#18338#20150#0" expanded="true" />
+                    <element signature="e#18530#20030#0" expanded="true" />
+                    <element signature="e#20917#21048#0" expanded="true" />
+                    <element signature="e#21598#22290#0" expanded="true" />
+                    <element signature="e#22715#51239#0" expanded="true" />
+                    <element signature="e#25371#26899#0" expanded="true" />
+                    <element signature="e#25592#26296#0" expanded="true" />
+                    <element signature="e#27057#36859#0" expanded="true" />
+                    <element signature="e#27540#28045#0" expanded="true" />
+                    <element signature="e#28447#30397#0" expanded="true" />
+                    <element signature="e#28759#30355#0" expanded="true" />
+                    <element signature="e#31152#31300#0" expanded="true" />
+                    <element signature="e#31441#34871#0" expanded="true" />
+                    <element signature="e#32823#33149#0" expanded="true" />
+                    <element signature="e#33190#34788#0" expanded="true" />
+                    <element signature="e#34240#34456#0" expanded="true" />
+                    <element signature="e#34829#34853#0" expanded="true" />
+                    <element signature="e#35045#36345#0" expanded="true" />
+                    <element signature="e#35244#36325#0" expanded="true" />
+                    <element signature="e#36463#36532#0" expanded="true" />
+                    <element signature="e#36902#44189#0" expanded="true" />
+                    <element signature="e#37366#43982#0" expanded="true" />
+                    <element signature="e#38042#40327#0" expanded="true" />
+                    <element signature="e#44234#46557#0" expanded="true" />
+                    <element signature="e#44583#46350#0" expanded="true" />
+                    <element signature="e#44999#46332#0" expanded="true" />
+                    <element signature="e#46606#50837#0" expanded="true" />
+                    <element signature="e#50863#51146#0" expanded="true" />
+                    <element signature="e#51314#51573#0" expanded="true" />
+                    <element signature="e#51390#51428#0" expanded="true" />
+                    <element signature="e#51753#51880#0" expanded="true" />
+                    <element signature="e#51805#51872#0" expanded="true" />
+                    <element signature="e#51946#52075#0" expanded="true" />
+                    <element signature="e#51998#52067#0" expanded="true" />
+                    <element signature="e#52141#52267#0" expanded="true" />
+                    <element signature="e#52193#52259#0" expanded="true" />
+                    <element signature="e#52336#52464#0" expanded="true" />
+                    <element signature="e#52388#52456#0" expanded="true" />
+                    <element signature="e#52537#52719#0" expanded="true" />
+                    <element signature="e#52610#52711#0" expanded="true" />
+                    <element signature="e#52787#52926#0" expanded="true" />
+                    <element signature="e#52839#52918#0" expanded="true" />
+                    <element signature="e#52992#53103#0" expanded="true" />
+                    <element signature="e#53044#53095#0" expanded="true" />
+                    <element signature="e#75235#75721#0" expanded="true" />
+                    <element signature="e#75329#75661#0" expanded="true" />
+                    <marker date="1451996576593" expanded="true" signature="46979:46992" placeholder="..." />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="plugin.editormd.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts">
+          <file leaf-file-name="project.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/project.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-16.833334">
+                  <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="de-DE.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/locales/de-DE.ts">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="121" column="16" selection-start-line="121" selection-start-column="16" selection-end-line="121" selection-end-column="16" />
-                  <folding>
-                    <element signature="n#!!block;n#getContent#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="n#!!block;n#setContent#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="n#!!block;n#focusCursorPosition#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="n#!!block;n#resize#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="true" />
-                  </folding>
+                  <caret line="259" column="21" selection-start-line="259" selection-start-column="21" selection-end-line="259" selection-end-column="21" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="en-US.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/locales/en-US.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="plugin.file-editor-mgr.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="62" column="40" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="40" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -588,7 +168,7 @@
           <file leaf-file-name="jquery.printarea.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/common/jquery/PrintArea/js/jquery.printarea.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-12.321428">
+                <state vertical-scroll-proportion="0.0">
                   <caret line="79" column="37" selection-start-line="79" selection-start-column="37" selection-end-line="79" selection-end-column="37" />
                   <folding>
                     <element signature="e#0#1921#0" expanded="true" />
@@ -605,96 +185,34 @@
             <entry file="file://$PROJECT_DIR$/public/js/bs.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="1822" column="41" selection-start-line="1822" selection-start-column="41" selection-end-line="1822" selection-end-column="41" />
+                  <caret line="303" column="30" selection-start-line="303" selection-start-column="24" selection-end-line="303" selection-end-column="30" />
                   <folding>
-                    <element signature="e#7445#40930#0" expanded="true" />
                     <element signature="e#39057#39489#0" expanded="true" />
                     <element signature="e#39561#40017#0" expanded="true" />
                     <element signature="e#40098#40919#0" expanded="true" />
-                    <element signature="e#59973#60790#0" expanded="true" />
+                    <element signature="e#56859#58867#0" expanded="true" />
+                    <element signature="e#56910#57922#0" expanded="true" />
+                    <element signature="e#60034#66015#0" expanded="true" />
+                    <element signature="e#60083#60900#0" expanded="true" />
+                    <element signature="e#60948#61763#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="plugin.files-cache.ts" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.files-cache.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.9956522">
-                  <caret line="61" column="31" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
-                  <folding>
-                    <element signature="e#1626#1784#0" expanded="true" />
-                    <element signature="n#!!block;n#getLastModifyFileObj#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="e#2163#2321#0" expanded="true" />
-                    <element signature="n#!!block;n#addFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="n#!!block;n#reLoadFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="true" />
-                    <element signature="e#2702#2838#0" expanded="true" />
-                    <element signature="n#!!block;n#saveFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="project.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/project.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="269" column="59" selection-start-line="269" selection-start-column="59" selection-end-line="269" selection-end-column="59" />
+                <state vertical-scroll-proportion="2.4898787">
+                  <caret line="268" column="70" selection-start-line="268" selection-start-column="70" selection-end-line="268" selection-end-column="70" />
                   <folding>
                     <element signature="n#head#0;n#!!top" expanded="true" />
                     <element signature="n#div#0;n#body#0;n#!!top" expanded="true" />
                     <element signature="n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#5;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
+                    <element signature="n#script#1;n#body#0;n#!!top" expanded="true" />
                     <element signature="n#script#2;n#body#0;n#!!top" expanded="true" />
                     <element signature="n#script#27;n#body#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="codemirror.min.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/build/public/common/editor.md/1.5.0/editor.md/lib/codemirror/codemirror.min.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="19" column="225" selection-start-line="19" selection-start-column="225" selection-end-line="19" selection-end-column="225" />
-                  <folding>
-                    <element signature="e#45130#45263#0" expanded="true" />
-                    <element signature="e#50233#50269#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/release/win/tmp64/resources/app/romanysoft/Classes/app/app.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="0" column="4533" selection-start-line="0" selection-start-column="4533" selection-end-line="0" selection-end-column="4533" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="jquery-2.1.4.min.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/release/win/tmp64/resources/app/romanysoft/UI/common/jquery-2.1.4.min.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="3" column="4989" selection-start-line="3" selection-start-column="4989" selection-end-line="3" selection-end-column="4989" />
-                  <folding>
-                    <element signature="e#32015#32244#0" expanded="true" />
-                    <element signature="e#32091#32116#0" expanded="true" />
-                    <element signature="e#63907#64631#0" expanded="true" />
-                    <element signature="e#63928#64308#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -703,89 +221,104 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/js/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.49103943">
-                  <caret line="671" column="80" selection-start-line="671" selection-start-column="80" selection-end-line="671" selection-end-column="80" />
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="139" column="109" selection-start-line="139" selection-start-column="75" selection-end-line="139" selection-end-column="109" />
                   <folding>
-                    <element signature="e#53#134#0" expanded="true" />
                     <element signature="e#1358#1753#0" expanded="true" />
                     <element signature="e#3317#3364#0" expanded="true" />
-                    <element signature="e#3862#4828#0" expanded="true" />
                     <element signature="e#3921#4471#0" expanded="true" />
                     <element signature="e#4654#4820#0" expanded="true" />
-                    <element signature="e#4877#22276#0" expanded="true" />
-                    <element signature="e#4948#16039#0" expanded="true" />
-                    <element signature="e#5391#8266#0" expanded="true" />
-                    <element signature="e#5492#8250#0" expanded="true" />
-                    <element signature="e#5784#8092#0" expanded="true" />
-                    <element signature="e#5857#8000#0" expanded="true" />
-                    <element signature="e#6180#6855#0" expanded="true" />
-                    <element signature="e#8314#8623#0" expanded="true" />
-                    <element signature="e#8357#8465#0" expanded="true" />
-                    <element signature="e#8670#10247#0" expanded="true" />
-                    <element signature="e#8850#10231#0" expanded="true" />
-                    <element signature="e#9428#10188#0" expanded="true" />
-                    <element signature="e#9499#9873#0" expanded="true" />
-                    <element signature="e#10284#10369#0" expanded="true" />
-                    <element signature="e#10406#10422#0" expanded="true" />
-                    <element signature="e#10460#11086#0" expanded="true" />
-                    <element signature="e#10520#11070#0" expanded="true" />
-                    <element signature="e#10583#10798#0" expanded="true" />
-                    <element signature="e#11128#11610#0" expanded="true" />
-                    <element signature="e#11185#11593#0" expanded="true" />
-                    <element signature="e#11650#11966#0" expanded="true" />
-                    <element signature="e#12000#12099#0" expanded="true" />
-                    <element signature="e#13883#16028#0" expanded="true" />
-                    <element signature="e#13916#16012#0" expanded="true" />
-                    <element signature="e#13979#15684#0" expanded="true" />
-                    <element signature="e#14095#15585#0" expanded="true" />
-                    <element signature="e#14353#14640#0" expanded="true" />
-                    <element signature="e#16062#22265#0" expanded="true" />
-                    <element signature="e#16322#22252#0" expanded="true" />
-                    <element signature="e#17942#19879#0" expanded="true" />
-                    <element signature="e#18004#19816#0" expanded="true" />
-                    <element signature="e#18196#19696#0" expanded="true" />
-                    <element signature="e#20583#20714#0" expanded="true" />
-                    <element signature="e#21264#21869#0" expanded="true" />
-                    <element signature="e#24980#26670#0" expanded="true" />
-                    <element signature="e#25201#26067#0" expanded="true" />
-                    <element signature="e#27311#27816#0" expanded="true" />
-                    <element signature="e#28218#30168#0" expanded="true" />
-                    <element signature="e#31212#34642#0" expanded="true" />
-                    <element signature="e#32594#32920#0" expanded="true" />
-                    <element signature="e#32961#34559#0" expanded="true" />
-                    <element signature="e#34011#34227#0" expanded="true" />
-                    <element signature="e#36673#43960#0" expanded="true" />
-                    <element signature="e#37137#43753#0" expanded="true" />
-                    <element signature="e#37813#40098#0" expanded="true" />
-                    <element signature="e#44005#46328#0" expanded="true" />
-                    <element signature="e#44354#46121#0" expanded="true" />
-                    <element signature="e#44770#46103#0" expanded="true" />
-                    <element signature="e#46377#50608#0" expanded="true" />
-                    <element signature="e#51085#51344#0" expanded="true" />
-                    <element signature="e#51161#51199#0" expanded="true" />
-                    <element signature="e#51399#52874#0" expanded="true" />
-                    <element signature="e#51524#51651#0" expanded="true" />
-                    <element signature="e#51576#51643#0" expanded="true" />
-                    <element signature="e#51717#51846#0" expanded="true" />
-                    <element signature="e#51769#51838#0" expanded="true" />
-                    <element signature="e#51912#52038#0" expanded="true" />
-                    <element signature="e#51964#52030#0" expanded="true" />
-                    <element signature="e#52107#52235#0" expanded="true" />
-                    <element signature="e#52159#52227#0" expanded="true" />
-                    <element signature="e#52308#52469#0" expanded="true" />
-                    <element signature="e#52360#52461#0" expanded="true" />
-                    <element signature="e#52537#52676#0" expanded="true" />
-                    <element signature="e#52589#52668#0" expanded="true" />
-                    <element signature="e#52742#52853#0" expanded="true" />
-                    <element signature="e#52794#52845#0" expanded="true" />
-                    <element signature="e#74985#75471#0" expanded="true" />
-                    <element signature="e#75079#75411#0" expanded="true" />
-                    <marker date="1451885342756" expanded="true" signature="46750:46763" placeholder="..." />
+                    <element signature="e#4877#22667#0" expanded="true" />
+                    <element signature="e#4948#16373#0" expanded="true" />
+                    <element signature="e#5492#8584#0" expanded="true" />
+                    <element signature="e#5784#8426#0" expanded="true" />
+                    <element signature="e#5857#8334#0" expanded="true" />
+                    <element signature="e#5987#6628#0" expanded="true" />
+                    <element signature="e#6929#7604#0" expanded="true" />
+                    <element signature="e#8648#8957#0" expanded="true" />
+                    <element signature="e#8691#8799#0" expanded="true" />
+                    <element signature="e#9004#10581#0" expanded="true" />
+                    <element signature="e#9184#10565#0" expanded="true" />
+                    <element signature="e#9762#10522#0" expanded="true" />
+                    <element signature="e#9833#10207#0" expanded="true" />
+                    <element signature="e#10618#10703#0" expanded="true" />
+                    <element signature="e#10740#10756#0" expanded="true" />
+                    <element signature="e#10794#11420#0" expanded="true" />
+                    <element signature="e#10854#11404#0" expanded="true" />
+                    <element signature="e#10917#11132#0" expanded="true" />
+                    <element signature="e#11462#11944#0" expanded="true" />
+                    <element signature="e#11519#11927#0" expanded="true" />
+                    <element signature="e#11984#12300#0" expanded="true" />
+                    <element signature="e#12334#12433#0" expanded="true" />
+                    <element signature="e#14217#16362#0" expanded="true" />
+                    <element signature="e#14250#16346#0" expanded="true" />
+                    <element signature="e#14313#16018#0" expanded="true" />
+                    <element signature="e#14429#15919#0" expanded="true" />
+                    <element signature="e#16396#22656#0" expanded="true" />
+                    <element signature="e#16656#22643#0" expanded="true" />
+                    <element signature="e#18276#20213#0" expanded="true" />
+                    <element signature="e#18338#20150#0" expanded="true" />
+                    <element signature="e#18530#20030#0" expanded="true" />
+                    <element signature="e#20917#21048#0" expanded="true" />
+                    <element signature="e#21598#22290#0" expanded="true" />
+                    <element signature="e#22715#51239#0" expanded="true" />
+                    <element signature="e#25371#26899#0" expanded="true" />
+                    <element signature="e#25592#26296#0" expanded="true" />
+                    <element signature="e#27057#36859#0" expanded="true" />
+                    <element signature="e#27540#28045#0" expanded="true" />
+                    <element signature="e#28447#30397#0" expanded="true" />
+                    <element signature="e#28759#30355#0" expanded="true" />
+                    <element signature="e#31152#31300#0" expanded="true" />
+                    <element signature="e#31441#34871#0" expanded="true" />
+                    <element signature="e#32823#33149#0" expanded="true" />
+                    <element signature="e#33190#34788#0" expanded="true" />
+                    <element signature="e#34240#34456#0" expanded="true" />
+                    <element signature="e#34829#34853#0" expanded="true" />
+                    <element signature="e#35045#36345#0" expanded="true" />
+                    <element signature="e#35244#36325#0" expanded="true" />
+                    <element signature="e#36463#36532#0" expanded="true" />
+                    <element signature="e#36902#44189#0" expanded="true" />
+                    <element signature="e#37366#43982#0" expanded="true" />
+                    <element signature="e#38042#40327#0" expanded="true" />
+                    <element signature="e#44234#46557#0" expanded="true" />
+                    <element signature="e#44583#46350#0" expanded="true" />
+                    <element signature="e#44999#46332#0" expanded="true" />
+                    <element signature="e#46606#50837#0" expanded="true" />
+                    <element signature="e#50863#51146#0" expanded="true" />
+                    <element signature="e#51314#51573#0" expanded="true" />
+                    <element signature="e#51390#51428#0" expanded="true" />
+                    <element signature="e#51753#51880#0" expanded="true" />
+                    <element signature="e#51805#51872#0" expanded="true" />
+                    <element signature="e#51946#52075#0" expanded="true" />
+                    <element signature="e#51998#52067#0" expanded="true" />
+                    <element signature="e#52141#52267#0" expanded="true" />
+                    <element signature="e#52193#52259#0" expanded="true" />
+                    <element signature="e#52336#52464#0" expanded="true" />
+                    <element signature="e#52388#52456#0" expanded="true" />
+                    <element signature="e#52537#52719#0" expanded="true" />
+                    <element signature="e#52610#52711#0" expanded="true" />
+                    <element signature="e#52787#52926#0" expanded="true" />
+                    <element signature="e#52839#52918#0" expanded="true" />
+                    <element signature="e#52992#53103#0" expanded="true" />
+                    <element signature="e#53044#53095#0" expanded="true" />
+                    <element signature="e#75235#75721#0" expanded="true" />
+                    <element signature="e#75329#75661#0" expanded="true" />
+                    <marker date="1451996576593" expanded="true" signature="46979:46992" placeholder="..." />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ChangeLog" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/ChangeLog">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.91463417">
+                  <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -853,12 +386,12 @@
         <option value="$PROJECT_DIR$/public/styles/style.less" />
         <option value="$PROJECT_DIR$/public/js/plugins/plugin.editormd.js" />
         <option value="$PROJECT_DIR$/public/project.json" />
-        <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/common/jquery/PrintArea/js/jquery.printarea.js" />
         <option value="$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts" />
-        <option value="$PROJECT_DIR$/public/js/bs.js" />
         <option value="$PROJECT_DIR$/public/js/plugins/plugin.files-cache.ts" />
+        <option value="$PROJECT_DIR$/public/js/bs.js" />
         <option value="$PROJECT_DIR$/public/js/app.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
       </list>
     </option>
   </component>
@@ -929,6 +462,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -975,7 +509,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="locales" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1015,13 +549,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="editor.md" />
+              <option name="myItemId" value="jquery" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1043,17 +576,17 @@
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\common\jquery\PrintArea" />
-      <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\common" />
-      <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\common\jspdf" />
-      <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\js" />
-      <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\common\editor.md\1.4.5" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\i18n" />
       <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\i18n\native" />
       <recent name="D:\workspace\testprj\0git_html\MarkdownD\public" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\common\jquery" />
+      <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\common\jquery\PrintArea" />
+      <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\common" />
+      <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\common\jspdf" />
+      <recent name="D:\workspace\testprj\0git_html\MarkdownD\public\js" />
     </key>
   </component>
   <component name="RunManager">
@@ -1269,21 +802,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1035" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1035" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20758693" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20758693" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="TypeScript Compiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15491453" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript Compiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15410958" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32687926" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32689655" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18598525" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23917995" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4462935" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990867" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1291,11 +822,13 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32689655" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37065053" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Copy/Paste" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991803" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4462935" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1383,13 +916,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.help.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/common/artTemplate/3.0/template.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1401,13 +927,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.30141288">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7919255">
-          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1537,13 +1056,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChangeLog">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/public/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37179488">
@@ -1579,13 +1091,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/locales/de-DE.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="220" column="14" selection-start-line="220" selection-start-column="14" selection-end-line="220" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/locales/ja-JP.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1618,7 +1123,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1640,7 +1144,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.93424034">
           <caret line="89" column="9" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1655,33 +1158,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13761468">
           <caret line="72" column="11" selection-start-line="72" selection-start-column="11" selection-end-line="72" selection-end-column="11" />
-          <folding>
-            <element signature="e#7395#7447#0" expanded="false" />
-            <element signature="e#7546#7598#0" expanded="false" />
-            <element signature="e#7678#7733#0" expanded="false" />
-            <element signature="e#7964#8014#0" expanded="false" />
-            <element signature="e#8245#8256#0" expanded="false" />
-            <element signature="e#8350#8389#0" expanded="false" />
-            <element signature="e#8560#8614#0" expanded="false" />
-            <element signature="e#8807#8860#0" expanded="false" />
-            <element signature="e#9082#9135#0" expanded="false" />
-            <element signature="e#9325#9377#0" expanded="false" />
-            <element signature="e#9538#9587#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/locales/en-US.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3440367">
-          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
-          <folding>
-            <element signature="e#170#376#0" expanded="false" />
-            <element signature="e#1148#1485#0" expanded="false" />
-            <element signature="e#1528#2376#0" expanded="false" />
-            <element signature="n#!!block;n#getId#0;n#PluginUI#0;n#I18N#0" expanded="false" />
-            <element signature="n#!!block#1;n#data#0;n#PluginUI#0;n#I18N#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1689,15 +1165,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="110" column="28" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/project.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1705,9 +1172,214 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="225" selection-start-line="19" selection-start-column="225" selection-end-line="19" selection-end-column="225" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/common/jquery/PrintArea/js/jquery.printarea.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="37" selection-start-line="79" selection-start-column="37" selection-end-line="79" selection-end-column="37" />
           <folding>
-            <element signature="e#45130#45263#0" expanded="true" />
-            <element signature="e#50233#50269#0" expanded="true" />
+            <element signature="e#0#1921#0" expanded="true" />
+            <element signature="e#2110#2641#0" expanded="true" />
+            <element signature="e#2730#3175#0" expanded="true" />
+            <element signature="e#7712#8087#0" expanded="true" />
+            <element signature="e#8954#9442#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/bs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="303" column="30" selection-start-line="303" selection-start-column="24" selection-end-line="303" selection-end-column="30" />
+          <folding>
+            <element signature="e#39057#39489#0" expanded="true" />
+            <element signature="e#39561#40017#0" expanded="true" />
+            <element signature="e#40098#40919#0" expanded="true" />
+            <element signature="e#56859#58867#0" expanded="true" />
+            <element signature="e#56910#57922#0" expanded="true" />
+            <element signature="e#60034#66015#0" expanded="true" />
+            <element signature="e#60083#60900#0" expanded="true" />
+            <element signature="e#60948#61763#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6911111">
+          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
+          <folding>
+            <element signature="n#!!block;n#constructor#0;n#FileEditorManger#0;n#RomanySoftPlugins#0" expanded="true" />
+            <element signature="n#!!block;n#addNewFileObj#0;n#FileEditorManger#0;n#RomanySoftPlugins#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.033333335">
+          <caret line="121" column="16" selection-start-line="121" selection-start-column="16" selection-end-line="121" selection-end-column="16" />
+          <folding>
+            <element signature="n#!!block;n#getContent#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="false" />
+            <element signature="n#!!block;n#setContent#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="false" />
+            <element signature="n#!!block;n#focusCursorPosition#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="false" />
+            <element signature="n#!!block;n#resize#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.files-cache.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+          <folding>
+            <element signature="n#!!block;n#coreDataFromJSON#0;n#FileObj#0;n#RomanySoftPlugins#0" expanded="true" />
+            <element signature="n#!!block;n#getAllFiles#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.file-editor-mgr.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="40" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/locales/de-DE.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="259" column="21" selection-start-line="259" selection-start-column="21" selection-end-line="259" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/locales/en-US.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChangeLog">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.91463417">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/project.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.833334">
+          <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1233" column="9" selection-start-line="1233" selection-start-column="9" selection-end-line="1233" selection-end-column="9" />
+          <folding>
+            <element signature="e#1358#1753#0" expanded="true" />
+            <element signature="e#3317#3364#0" expanded="true" />
+            <element signature="e#3862#4828#0" expanded="true" />
+            <element signature="e#3921#4471#0" expanded="true" />
+            <element signature="e#4654#4820#0" expanded="true" />
+            <element signature="e#4877#22667#0" expanded="true" />
+            <element signature="e#4948#16373#0" expanded="true" />
+            <element signature="e#5492#8584#0" expanded="true" />
+            <element signature="e#5784#8426#0" expanded="true" />
+            <element signature="e#5857#8334#0" expanded="true" />
+            <element signature="e#5987#6628#0" expanded="true" />
+            <element signature="e#6929#7604#0" expanded="true" />
+            <element signature="e#8648#8957#0" expanded="true" />
+            <element signature="e#8691#8799#0" expanded="true" />
+            <element signature="e#9004#10581#0" expanded="true" />
+            <element signature="e#9184#10565#0" expanded="true" />
+            <element signature="e#9762#10522#0" expanded="true" />
+            <element signature="e#9833#10207#0" expanded="true" />
+            <element signature="e#10618#10703#0" expanded="true" />
+            <element signature="e#10740#10756#0" expanded="true" />
+            <element signature="e#10794#11420#0" expanded="true" />
+            <element signature="e#10854#11404#0" expanded="true" />
+            <element signature="e#10917#11132#0" expanded="true" />
+            <element signature="e#11462#11944#0" expanded="true" />
+            <element signature="e#11519#11927#0" expanded="true" />
+            <element signature="e#11984#12300#0" expanded="true" />
+            <element signature="e#12334#12433#0" expanded="true" />
+            <element signature="e#14217#16362#0" expanded="true" />
+            <element signature="e#14250#16346#0" expanded="true" />
+            <element signature="e#14313#16018#0" expanded="true" />
+            <element signature="e#14429#15919#0" expanded="true" />
+            <element signature="e#16396#22656#0" expanded="true" />
+            <element signature="e#16656#22643#0" expanded="true" />
+            <element signature="e#18276#20213#0" expanded="true" />
+            <element signature="e#18338#20150#0" expanded="true" />
+            <element signature="e#18530#20030#0" expanded="true" />
+            <element signature="e#20917#21048#0" expanded="true" />
+            <element signature="e#21598#22290#0" expanded="true" />
+            <element signature="e#22715#51239#0" expanded="true" />
+            <element signature="e#25371#26899#0" expanded="true" />
+            <element signature="e#25592#26296#0" expanded="true" />
+            <element signature="e#27057#36859#0" expanded="true" />
+            <element signature="e#27540#28045#0" expanded="true" />
+            <element signature="e#28447#30397#0" expanded="true" />
+            <element signature="e#28759#30355#0" expanded="true" />
+            <element signature="e#31152#31300#0" expanded="true" />
+            <element signature="e#31441#34871#0" expanded="true" />
+            <element signature="e#32823#33149#0" expanded="true" />
+            <element signature="e#33190#34788#0" expanded="true" />
+            <element signature="e#34240#34456#0" expanded="true" />
+            <element signature="e#34829#34853#0" expanded="true" />
+            <element signature="e#35045#36345#0" expanded="true" />
+            <element signature="e#35244#36325#0" expanded="true" />
+            <element signature="e#36463#36532#0" expanded="true" />
+            <element signature="e#36902#44189#0" expanded="true" />
+            <element signature="e#37366#43982#0" expanded="true" />
+            <element signature="e#38042#40327#0" expanded="true" />
+            <element signature="e#44234#46557#0" expanded="true" />
+            <element signature="e#44583#46350#0" expanded="true" />
+            <element signature="e#44999#46332#0" expanded="true" />
+            <element signature="e#46606#50837#0" expanded="true" />
+            <element signature="e#50863#51146#0" expanded="true" />
+            <element signature="e#51314#51573#0" expanded="true" />
+            <element signature="e#51390#51428#0" expanded="true" />
+            <element signature="e#51753#51880#0" expanded="true" />
+            <element signature="e#51805#51872#0" expanded="true" />
+            <element signature="e#51946#52075#0" expanded="true" />
+            <element signature="e#51998#52067#0" expanded="true" />
+            <element signature="e#52141#52267#0" expanded="true" />
+            <element signature="e#52193#52259#0" expanded="true" />
+            <element signature="e#52336#52464#0" expanded="true" />
+            <element signature="e#52388#52456#0" expanded="true" />
+            <element signature="e#52537#52719#0" expanded="true" />
+            <element signature="e#52610#52711#0" expanded="true" />
+            <element signature="e#52787#52926#0" expanded="true" />
+            <element signature="e#52839#52918#0" expanded="true" />
+            <element signature="e#52992#53103#0" expanded="true" />
+            <element signature="e#53044#53095#0" expanded="true" />
+            <element signature="e#75235#75721#0" expanded="true" />
+            <element signature="e#75329#75661#0" expanded="true" />
+            <marker date="1451996576593" expanded="true" signature="46979:46992" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/release/win/tmp64/resources/app/romanysoft/UI/common/jquery-2.1.4.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.030612245">
+          <caret line="3" column="4989" selection-start-line="3" selection-start-column="4989" selection-end-line="3" selection-end-column="4989" />
+          <folding>
+            <element signature="e#32015#32244#0" expanded="true" />
+            <element signature="e#32091#32116#0" expanded="true" />
+            <element signature="e#63907#64631#0" expanded="true" />
+            <element signature="e#63928#64308#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1720,171 +1392,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/release/win/tmp64/resources/app/romanysoft/UI/common/jquery-2.1.4.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="4989" selection-start-line="3" selection-start-column="4989" selection-end-line="3" selection-end-column="4989" />
-          <folding>
-            <element signature="e#32015#32244#0" expanded="true" />
-            <element signature="e#32091#32116#0" expanded="true" />
-            <element signature="e#63907#64631#0" expanded="true" />
-            <element signature="e#63928#64308#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="269" column="59" selection-start-line="269" selection-start-column="59" selection-end-line="269" selection-end-column="59" />
+        <state vertical-scroll-proportion="2.4898787">
+          <caret line="268" column="70" selection-start-line="268" selection-start-column="70" selection-end-line="268" selection-end-column="70" />
           <folding>
             <element signature="n#head#0;n#!!top" expanded="true" />
             <element signature="n#div#0;n#body#0;n#!!top" expanded="true" />
             <element signature="n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#5;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#script#1;n#body#0;n#!!top" expanded="true" />
             <element signature="n#script#2;n#body#0;n#!!top" expanded="true" />
             <element signature="n#script#27;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/common/jquery/PrintArea/js/jquery.printarea.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.321428">
-          <caret line="79" column="37" selection-start-line="79" selection-start-column="37" selection-end-line="79" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#1921#0" expanded="true" />
-            <element signature="e#2110#2641#0" expanded="true" />
-            <element signature="e#2730#3175#0" expanded="true" />
-            <element signature="e#7712#8087#0" expanded="true" />
-            <element signature="e#8954#9442#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.editormd.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="121" column="16" selection-start-line="121" selection-start-column="16" selection-end-line="121" selection-end-column="16" />
-          <folding>
-            <element signature="n#!!block;n#getContent#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="n#!!block;n#setContent#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="n#!!block;n#focusCursorPosition#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="n#!!block;n#resize#0;n#EditorMdServices#0;n#RomanySoftPlugins#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/bs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1822" column="41" selection-start-line="1822" selection-start-column="41" selection-end-line="1822" selection-end-column="41" />
-          <folding>
-            <element signature="e#7445#40930#0" expanded="true" />
-            <element signature="e#39057#39489#0" expanded="true" />
-            <element signature="e#39561#40017#0" expanded="true" />
-            <element signature="e#40098#40919#0" expanded="true" />
-            <element signature="e#59973#60790#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/plugins/plugin.files-cache.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9956522">
-          <caret line="61" column="31" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
-          <folding>
-            <element signature="e#1626#1784#0" expanded="true" />
-            <element signature="n#!!block;n#getLastModifyFileObj#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="e#2163#2321#0" expanded="true" />
-            <element signature="n#!!block;n#addFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="n#!!block;n#reLoadFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="true" />
-            <element signature="e#2702#2838#0" expanded="true" />
-            <element signature="n#!!block;n#saveFile#0;n#FilesCache#0;n#RomanySoftPlugins#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49103943">
-          <caret line="671" column="80" selection-start-line="671" selection-start-column="80" selection-end-line="671" selection-end-column="80" />
-          <folding>
-            <element signature="e#53#134#0" expanded="true" />
-            <element signature="e#1358#1753#0" expanded="true" />
-            <element signature="e#3317#3364#0" expanded="true" />
-            <element signature="e#3862#4828#0" expanded="true" />
-            <element signature="e#3921#4471#0" expanded="true" />
-            <element signature="e#4654#4820#0" expanded="true" />
-            <element signature="e#4877#22276#0" expanded="true" />
-            <element signature="e#4948#16039#0" expanded="true" />
-            <element signature="e#5391#8266#0" expanded="true" />
-            <element signature="e#5492#8250#0" expanded="true" />
-            <element signature="e#5784#8092#0" expanded="true" />
-            <element signature="e#5857#8000#0" expanded="true" />
-            <element signature="e#6180#6855#0" expanded="true" />
-            <element signature="e#8314#8623#0" expanded="true" />
-            <element signature="e#8357#8465#0" expanded="true" />
-            <element signature="e#8670#10247#0" expanded="true" />
-            <element signature="e#8850#10231#0" expanded="true" />
-            <element signature="e#9428#10188#0" expanded="true" />
-            <element signature="e#9499#9873#0" expanded="true" />
-            <element signature="e#10284#10369#0" expanded="true" />
-            <element signature="e#10406#10422#0" expanded="true" />
-            <element signature="e#10460#11086#0" expanded="true" />
-            <element signature="e#10520#11070#0" expanded="true" />
-            <element signature="e#10583#10798#0" expanded="true" />
-            <element signature="e#11128#11610#0" expanded="true" />
-            <element signature="e#11185#11593#0" expanded="true" />
-            <element signature="e#11650#11966#0" expanded="true" />
-            <element signature="e#12000#12099#0" expanded="true" />
-            <element signature="e#13883#16028#0" expanded="true" />
-            <element signature="e#13916#16012#0" expanded="true" />
-            <element signature="e#13979#15684#0" expanded="true" />
-            <element signature="e#14095#15585#0" expanded="true" />
-            <element signature="e#14353#14640#0" expanded="true" />
-            <element signature="e#16062#22265#0" expanded="true" />
-            <element signature="e#16322#22252#0" expanded="true" />
-            <element signature="e#17942#19879#0" expanded="true" />
-            <element signature="e#18004#19816#0" expanded="true" />
-            <element signature="e#18196#19696#0" expanded="true" />
-            <element signature="e#20583#20714#0" expanded="true" />
-            <element signature="e#21264#21869#0" expanded="true" />
-            <element signature="e#24980#26670#0" expanded="true" />
-            <element signature="e#25201#26067#0" expanded="true" />
-            <element signature="e#27311#27816#0" expanded="true" />
-            <element signature="e#28218#30168#0" expanded="true" />
-            <element signature="e#31212#34642#0" expanded="true" />
-            <element signature="e#32594#32920#0" expanded="true" />
-            <element signature="e#32961#34559#0" expanded="true" />
-            <element signature="e#34011#34227#0" expanded="true" />
-            <element signature="e#36673#43960#0" expanded="true" />
-            <element signature="e#37137#43753#0" expanded="true" />
-            <element signature="e#37813#40098#0" expanded="true" />
-            <element signature="e#44005#46328#0" expanded="true" />
-            <element signature="e#44354#46121#0" expanded="true" />
-            <element signature="e#44770#46103#0" expanded="true" />
-            <element signature="e#46377#50608#0" expanded="true" />
-            <element signature="e#51085#51344#0" expanded="true" />
-            <element signature="e#51161#51199#0" expanded="true" />
-            <element signature="e#51399#52874#0" expanded="true" />
-            <element signature="e#51524#51651#0" expanded="true" />
-            <element signature="e#51576#51643#0" expanded="true" />
-            <element signature="e#51717#51846#0" expanded="true" />
-            <element signature="e#51769#51838#0" expanded="true" />
-            <element signature="e#51912#52038#0" expanded="true" />
-            <element signature="e#51964#52030#0" expanded="true" />
-            <element signature="e#52107#52235#0" expanded="true" />
-            <element signature="e#52159#52227#0" expanded="true" />
-            <element signature="e#52308#52469#0" expanded="true" />
-            <element signature="e#52360#52461#0" expanded="true" />
-            <element signature="e#52537#52676#0" expanded="true" />
-            <element signature="e#52589#52668#0" expanded="true" />
-            <element signature="e#52742#52853#0" expanded="true" />
-            <element signature="e#52794#52845#0" expanded="true" />
-            <element signature="e#74985#75471#0" expanded="true" />
-            <element signature="e#75079#75411#0" expanded="true" />
-            <marker date="1451885342756" expanded="true" signature="46750:46763" placeholder="..." />
           </folding>
         </state>
       </provider>

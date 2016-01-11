@@ -230,6 +230,12 @@ var tmp_linux64DirName = "";
 var tmp_linux32DirName = "";
 
 /// {MacOS 变量}
+var g_cur_task_macos_isNOMAS = true;
+var release_macos_dir = releaseDir + "/mac";
+var tmp_macosNoMASDir = release_macos_dir + "/nomas";
+var tmp_macosMASDir = release_macos_dir + "/mas";
+var tmp_macosNOMASDirName = "";
+var tmp_macosMASDirName = "";
 
 
 /**
@@ -241,7 +247,7 @@ function g_getOSTempDestDir(){
     }else if(2 === g_cur_task_for_os){
         return g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
     }else if(3 === g_cur_task_for_os){
-        
+        return g_cur_task_macos_isNOMAS ? tmp_macosNoMASDir : tmp_macosMASDir;
     }
 }
 
@@ -259,6 +265,7 @@ var g_getInfoFromInfoPlist_func = function () {
 
     return {
         appName: info.CFBundleDisplayName,
+        executeName: info.CFBundleExecutable,
         appVersion: info.CFBundleShortVersionString,
         copyright: info.NSHumanReadableCopyright,
         appDescription: info.RomanysoftAppDescription || "",
@@ -885,6 +892,220 @@ gulp.task('release_linux', gulpSequence(
     'package_linux_del', 
     'release_linux_64', 
     'release_linux_32'));
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MacOS 处理
+gulp.task('set_macos_noMAS', function(){
+    g_cur_task_macos_isNOMAS = true;
+    g_cur_task_for_os = 3;
+    
+        var info = g_getInfoFromInfoPlist_func();
+    var validAppNameForSetup = info.appName.replace(/\s/g, "");
+    console.log("validAppName = ", validAppNameForSetup);
+
+    var platform = g_cur_task_macos_isNOMAS ? 'darwin-x64' : 'mas-x64';
+    tmp_macosNOMASDirName = validAppNameForSetup + "-v" + info.appVersion + "-" + platform;
+    tmp_macosNoMASDir = release_macos_dir + "/" + tmp_macosNOMASDirName;
+});
+
+gulp.task('set_macos_MAS', function(){
+    g_cur_task_macos_isNOMAS = false;
+    g_cur_task_for_os = 3;
+    
+    var info = g_getInfoFromInfoPlist_func();
+    var validAppNameForSetup = info.appName.replace(/\s/g, "");
+    console.log("validAppName = ", validAppNameForSetup);
+
+    var platform = g_cur_task_macos_isNOMAS ? 'darwin-x64' : 'mas-x64';
+    tmp_macosMASDirName = validAppNameForSetup + "-v" + info.appVersion + "-" + platform;
+    tmp_macosMASDir = release_macos_dir + "/" + tmp_macosMASDirName;
+});
+
+gulp.task('package_macos_del', function (cb) {
+    var deferred = Q.defer();
+    
+    var cleanor = clean({force: true});
+    cleanor.on('finish', function(){
+        deferred.resolve();
+    });   
+    return gulp.src(release_macos_dir, {read: false})
+		.pipe(cleanor);  
+        
+    Q.when(deferred.promise).then(function(){
+        cb && cb();
+    });            
+});
+
+gulp.task('package_macos_copy_bin', function () {
+    var tmp_destDir = g_getOSTempDestDir();
+
+    if (g_cur_task_macos_isNOMAS) {
+        return gulp.src(assReleasePackage +'/mac/nomas/**/*')
+            .pipe(gulp.dest(tmp_destDir));
+    } else {
+        return gulp.src(assReleasePackage +'/mac/mas/**/*')
+            .pipe(gulp.dest(tmp_destDir));
+    }
+});
+
+gulp.task('package_macos_copy_bundle.app', function () {
+    var tmp_destDir = g_getOSTempDestDir();
+    var deferred = Q.defer();
+    
+    var destResouceDir = tmp_destDir + "/Electron.app/Contents/Resources";
+    
+    function copyInfoFile(){
+        gulp.src('./electron/bundle.app/Contents/Info.plist')
+            .pipe(gulp.dest(tmp_destDir + "/Electron.app/Contents/"))
+            .on('finish', function(){
+                deferred.resolve();
+            });
+    }
+        
+    gulp.src('./electron/bundle.app/**')
+        .pipe(gulp.dest(destResouceDir + '/app/bundle.app/'))
+        .on('finish', function(){
+            /// 检查是否使用Node插件
+            var info = g_getInfoFromInfoPlist_func();
+            if(info.useNodePlugin){
+                console.log('use node plugin....');
+                var nodePluginPath = assReleasePackage + '/plugins/node/mac/node';
+                
+                gulp.src(nodePluginPath)
+                    .pipe(gulp.dest(destResouceDir + '/app/bundle.app/Contents/PlugIns/'));
+            } 
+            
+            copyInfoFile();
+        });
+        
+    return deferred.promise;           
+});
+
+gulp.task('package_macos_rename_bin', function(){
+    var tmp_destDir = g_getOSTempDestDir();
+    var deferred = Q.defer();
+    
+    var info = g_getInfoFromInfoPlist_func();
+    
+    console.log('info =', info);
+        
+    var destFilePath = tmp_destDir + "/Electron.app/Contents/MacOS/Electron";
+    var validAppNameForSetup = info.executeName; //info.executeName.replace(/\s/g, "");
+    
+    
+    function renameDir(){
+        var srcDir = tmp_destDir + "/Electron.app";
+        var cleanor = clean({force: true});
+        cleanor.on('finish', function(){
+            deferred.resolve();
+        });         
+        
+        gulp.src(srcDir + "/**/*")
+            .pipe(gulp.dest(tmp_destDir + "/" + info.appName + ".app").on('finish', function(){
+                gulp.src(srcDir, {read: false})
+                    .pipe(cleanor);
+            }));
+    }
+    
+    // 重命名，并刪除原先的文件
+    gulp.src(destFilePath)
+        .pipe(rename(validAppNameForSetup))
+        .pipe(gulp.dest(tmp_destDir + "/Electron.app/Contents/MacOS/").on('finish', function(){
+            // 刪除原先文件     
+            var cleanor = clean({force: true});
+            cleanor.on('finish', function(){
+                renameDir();
+            });      
+                   
+            gulp.src(destFilePath, {read: false})
+                .pipe(cleanor);
+        }))
+        ; 
+        
+    return deferred.promise;
+});
+
+gulp.task('package_macos_copy_publish', function () {
+    return g_package_copy_publish(g_getOSTempDestDir() + "/Electron.app/Contents");
+});
+
+gulp.task('package_macos_npm_public_server', function(){
+    return g_npm_public_server(g_getOSTempDestDir() + "/Electron.app/Contents");
+});
+
+gulp.task('package_macos_zip_public_server', function(cb){
+    g_common_zip_public_server(g_getOSTempDestDir() + "/Electron.app/Contents", cb);
+});
+
+gulp.task('package_macos_copy_romanysoft', function () {
+    return g_copy_romanysoft_func(g_getOSTempDestDir() + "/Electron.app/Contents");
+});
+
+gulp.task('package_macos_npm', function () {
+    return g_npm_romanysoftSDK(g_getOSTempDestDir() + "/Electron.app/Contents");
+});
+
+gulp.task('package-macos-git-version', function (cb) {
+    g_write_git_version(g_getOSTempDestDir() + "/Electron.app/Contents", cb);
+});
+
+gulp.task('package-macos-zip', function(){
+    var tmp_destDir = g_cur_task_macos_isNOMAS ? tmp_macosNoMASDir : tmp_macosMASDir;
+    var tmp_zipName = g_cur_task_macos_isNOMAS ? tmp_macosNOMASDirName : tmp_macosMASDirName;
+
+    
+    var deferred = Q.defer();   
+     
+    var zip = require("gulp-zip");    
+    gulp.src(tmp_destDir + "/**")
+        .pipe(zip(tmp_zipName + ".zip"))
+        .pipe(gulp.dest(release_macos_dir))
+        .on('finish', function(){
+            console.log('zip over...');
+            deferred.resolve();
+        });
+ 
+    return deferred.promise;        
+});
+
+
+gulp.task('release_macos_nomas',gulpSequence(
+    'set_macos_noMAS', 
+    'package_macos_copy_bin', 
+    'package_macos_copy_bundle.app', 
+    'package_macos_copy_publish', 
+    //'package_macos_npm_public_server', // macos 包需要在macos平台上执行npm install
+    'package_macos_copy_romanysoft', 
+    'package_macos_npm', 
+    'package-macos-git-version',
+    'package_macos_rename_bin',
+    'package-macos-zip'
+    ));
+    
+gulp.task('release_macos_mas',gulpSequence(
+    'set_macos_MAS', 
+    'package_macos_copy_bin', 
+    'package_macos_copy_bundle.app', 
+    'package_macos_copy_publish', 
+    //'package_macos_npm_public_server', // macos 包需要在macos平台上执行npm install
+    'package_macos_copy_romanysoft', 
+    'package_macos_npm', 
+    'package-macos-git-version',
+    'package_macos_rename_bin',
+    'package-macos-zip'
+    ));
+    
+gulp.task('release_macos', gulpSequence(
+    'package_macos_del', 
+    'release_macos_nomas', 
+    'release_macos_mas'));    
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+     
 
 
 gulp.task('release', gulpSequence('default','release_win', 'release_linux'));
