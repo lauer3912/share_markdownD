@@ -659,6 +659,8 @@ gulp.task('set_linux32', function () {
     g_cur_task_linux_isX64 = false;
     g_cur_task_for_os = 2;
     
+    console.log("===========g_cur_task_linux_isX64 = " + g_cur_task_linux_isX64);
+    
     var info = g_getInfoFromInfoPlist_func();
     var validAppNameForSetup = info.appName.replace(/\s/g, "");
     console.log("validAppName = ", validAppNameForSetup);
@@ -671,6 +673,8 @@ gulp.task('set_linux32', function () {
 gulp.task('set_linux64', function () {
     g_cur_task_linux_isX64 = true;
     g_cur_task_for_os = 2;
+    
+    console.log("===========g_cur_task_linux_isX64 = " + g_cur_task_linux_isX64);
 
     var info = g_getInfoFromInfoPlist_func();
     var validAppNameForSetup = info.appName.replace(/\s/g, "");
@@ -698,14 +702,27 @@ gulp.task('package_linux_del', function (cb) {
 
 gulp.task('package_linux_copy_bin', function () {
     var tmp_destDir = g_getOSTempDestDir();
+    
+    var deferred = Q.defer();
+    
+    var dest = gulp.dest(tmp_destDir);
+    dest.on('finish', function(){
+        deferred.resolve();
+    });
+  
 
-    if (g_cur_task_win_isX64) {
-        return gulp.src(assReleasePackage +'/linux/x64/**/*')
-            .pipe(gulp.dest(tmp_destDir));
+    console.log("===========g_cur_task_linux_isX64 = " + g_cur_task_linux_isX64);
+    if (g_cur_task_linux_isX64) {
+        console.log("=========== copy linux64");
+        gulp.src(assReleasePackage +'/linux/x64/**/*')
+            .pipe(dest);
     } else {
-        return gulp.src(assReleasePackage +'/linux/ia32/**/*')
-            .pipe(gulp.dest(tmp_destDir));
+        console.log("=========== copy linux32");
+        gulp.src(assReleasePackage +'/linux/ia32/**/*')
+            .pipe(dest);
     }
+    
+    return deferred.promise;
 });
 
 gulp.task('package_linux_rename_bin', function(cb){
@@ -831,7 +848,7 @@ gulp.task('package-linux-makeDEBDir', function(){
 gulp.task('package-linux-zip', function(){
     var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
     var tmp_zipName = g_cur_task_linux_isX64 ? tmp_linux64DirName : tmp_linux32DirName;
-    var tmp_debName = g_cur_task_linux_isX64 ? tmp_linux64DirName : tmp_linux32DirName;
+
     
     var deferred = Q.defer();   
      
