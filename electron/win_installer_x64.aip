@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="11.0" version="11.0" Modules="enterprise" RootPath="." Language="en" Id="{4017646D-CBB0-462F-922E-30F4AA6D5275}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="11.0" version="12.7.2" Modules="enterprise" RootPath="." Language="en" Id="{4017646D-CBB0-462F-922E-30F4AA6D5275}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_FINDEXE_TITLE" Value="Select the installation package for [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
@@ -8,13 +8,13 @@
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName][|ProductVersion]." ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="app.romanysoft@gmail.com"/>
     <ROW Property="ARPHELPLINK" Value="http://romanysoft.github.io/MarkdownD"/>
-    <ROW Property="ARPPRODUCTICON" Value="app.exe" Type="8"/>
+    <ROW Property="ARPPRODUCTICON" Value="MarkdownDelectronbundle.appContentsResourcesapp.exe" Type="8"/>
     <ROW Property="ARPURLINFOABOUT" Value="http://romanysoft.github.io/MarkdownD"/>
     <ROW Property="ARPURLUPDATEINFO" Value="http://romanysoft.github.io/MarkdownD"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="Romanysoft"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:v"/>
-    <ROW Property="ProductCode" Value="1033:{3FD87426-1AB1-432A-9592-86BAAB28DC19} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{0BD18E22-048F-4095-B726-0BA4081F1DE5} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="MarkdownD"/>
     <ROW Property="ProductVersion" Value="2.6.0" Type="32"/>
@@ -23,11 +23,13 @@
     <ROW Property="UpgradeCode" Value="{A937E6B2-9C0F-45F2-A22E-7B5A636B3598}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT" MultiBuildValue="DefaultBuild:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT" MultiBuildValue="DefaultBuild:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT64Display" MultiBuildValue="DefaultBuild:Windows XP x64" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
@@ -3839,19 +3841,19 @@
     <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
-    <ROW Dialog_="AdminBrowseDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="300" TextLocId="Control.Text.AdminBrowseDlg#Logo" MsiKey="AdminBrowseDlg#Logo"/>
-    <ROW Dialog_="AdminInstallPointDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="500" TextLocId="Control.Text.AdminInstallPointDlg#Logo" MsiKey="AdminInstallPointDlg#Logo"/>
+    <ROW Dialog_="AdminBrowseDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Romanysoft Installer" Order="300" TextLocId="Control.Text.AdminBrowseDlg#Logo" MsiKey="AdminBrowseDlg#Logo"/>
+    <ROW Dialog_="AdminInstallPointDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Romanysoft Installer" Order="500" TextLocId="Control.Text.AdminInstallPointDlg#Logo" MsiKey="AdminInstallPointDlg#Logo"/>
     <ROW Dialog_="BrowseDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="300" TextLocId="Control.Text.BrowseDlg#Logo" MsiKey="BrowseDlg#Logo"/>
-    <ROW Dialog_="CustomizeDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="600" TextLocId="Control.Text.CustomizeDlg#Logo" MsiKey="CustomizeDlg#Logo"/>
+    <ROW Dialog_="CustomizeDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Romanysoft Installer" Order="600" TextLocId="Control.Text.CustomizeDlg#Logo" MsiKey="CustomizeDlg#Logo"/>
     <ROW Dialog_="DiskCostDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="400" TextLocId="Control.Text.DiskCostDlg#Logo" MsiKey="DiskCostDlg#Logo"/>
     <ROW Dialog_="FilesInUse" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="600" TextLocId="Control.Text.FilesInUse#Logo" MsiKey="FilesInUse#Logo"/>
-    <ROW Dialog_="FolderDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="600" TextLocId="Control.Text.FolderDlg#Logo" MsiKey="FolderDlg#Logo"/>
-    <ROW Dialog_="MaintenanceTypeDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="1200" TextLocId="Control.Text.MaintenanceTypeDlg#Logo" MsiKey="MaintenanceTypeDlg#Logo"/>
+    <ROW Dialog_="FolderDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Romanysoft Installer" Order="600" TextLocId="Control.Text.FolderDlg#Logo" MsiKey="FolderDlg#Logo"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Romanysoft Installer" Order="1200" TextLocId="Control.Text.MaintenanceTypeDlg#Logo" MsiKey="MaintenanceTypeDlg#Logo"/>
     <ROW Dialog_="MsiRMFilesInUse" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="1100" TextLocId="Control.Text.MsiRMFilesInUse#Logo" MsiKey="MsiRMFilesInUse#Logo"/>
     <ROW Dialog_="OutOfDiskDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="400" TextLocId="Control.Text.OutOfDiskDlg#Logo" MsiKey="OutOfDiskDlg#Logo"/>
     <ROW Dialog_="OutOfRbDiskDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="500" TextLocId="Control.Text.OutOfRbDiskDlg#Logo" MsiKey="OutOfRbDiskDlg#Logo"/>
     <ROW Dialog_="ProgressDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Romanysoft Installer" Order="400" TextLocId="Control.Text.ProgressDlg#Logo" MsiKey="ProgressDlg#Logo"/>
-    <ROW Dialog_="VerifyReadyDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="500" TextLocId="Control.Text.VerifyReadyDlg#Logo" MsiKey="VerifyReadyDlg#Logo"/>
+    <ROW Dialog_="VerifyReadyDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Romanysoft Installer" Order="500" TextLocId="Control.Text.VerifyReadyDlg#Logo" MsiKey="VerifyReadyDlg#Logo"/>
     <ROW Dialog_="VerifyRemoveDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="600" TextLocId="Control.Text.VerifyRemoveDlg#Logo" MsiKey="VerifyRemoveDlg#Logo"/>
     <ROW Dialog_="VerifyRepairDlg" Control="Logo" Type="Text" X="4" Y="228" Width="76" Height="12" Attributes="1" Text="Advanced Installer" Order="500" TextLocId="Control.Text.VerifyRepairDlg#Logo" MsiKey="VerifyRepairDlg#Logo"/>
   </COMPONENT>
@@ -3880,7 +3882,7 @@
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
-    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR"/>
+    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
@@ -3909,7 +3911,7 @@
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="app.exe" SourcePath="bundle.app\Contents\Resources\app.ico" Index="0"/>
+    <ROW Name="MarkdownDelectronbundle.appContentsResourcesapp.exe" SourcePath="..\..\MarkdownD/electron/bundle.app/Contents/Resources/app.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -3940,7 +3942,8 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]" DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT40Display]" DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
-    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]" DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
     <ROW Signature_="AI_EXE_PATH_CU" Root="1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
