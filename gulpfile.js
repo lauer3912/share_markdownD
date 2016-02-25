@@ -603,8 +603,9 @@ gulp.task('release_win_32', gulpSequence(
     'package_win_zip_public_server',
     'package_win_copy_romanysoft', 
     'package_win_npm', 
-    'package-win-git-version', 
-    'package_win_getInstaller'));
+    'package-win-git-version'
+    //,'package_win_getInstaller'
+    ));
 
 gulp.task('release_win_64', gulpSequence(
     'set_win64', 
@@ -616,8 +617,9 @@ gulp.task('release_win_64', gulpSequence(
     'package_win_zip_public_server',
     'package_win_copy_romanysoft', 
     'package_win_npm', 
-    'package-win-git-version', 
-    'package_win_getInstaller'));
+    'package-win-git-version' 
+    //,'package_win_getInstaller'
+    ));
 
 gulp.task('release_win_32_noInstaller', gulpSequence(
     'package_win_del',     
