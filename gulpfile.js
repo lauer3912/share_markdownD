@@ -48,6 +48,41 @@ var sysUtil = require('util'),
 
 var nm_plist = require('plist');
 
+
+var RTYUtils = {
+    // 参照大鹏，DataStorm服务器utils.js 源码
+    queue: function (_done) {
+    var _next = [];
+
+    function callback(err) {
+        if (!err) {
+        var next = _next.shift();
+        if (next) {
+            var args = arguments;
+            args.length ? (args[0] = callback) : (args = [callback]);
+            return next.apply(null, args);
+        }
+        }
+        return _done.apply(null, arguments);
+    }
+
+    var r = {
+        next: function (func) {
+        _next.push(func);
+        return r;
+        },
+        done: function (func) {
+        _done = func;
+        r.start();
+        },
+        start: function () {
+        callback(null, callback);
+        }
+    };
+    return r;
+    }
+};
+
 var destDir = "./build/public"; // 构建临时目录
 var releaseDir = "./release";   // 产品发布目录
 
@@ -532,7 +567,69 @@ gulp.task('package-win-git-version', function (cb) {
     g_write_git_version(g_getOSTempDestDir(), cb);
 });
 
-gulp.task('package_win_getInstaller', function (cb) {
+/**
+ * 暂时不能使用，部分参数，没有办法执行
+ */
+gulp.task('package_win_installer_AdvancedInstaller', function(cb){
+    var tmp_destDir = g_getOSTempDestDir();
+    var platform = g_cur_task_win_isX64 ? 'x64' : 'x86'
+    console.log("AdvancedInstaller安装包" + platform);
+    
+    var aipFileName = 'win_installer_x86.aip';
+    if(platform === 'x64') 
+        aipFileName = 'win_installer_x64.aip';
+    
+    console.log("打开" + aipFileName);
+    cb && cb();
+    return;
+    
+    var info = {};
+    info = nm_plist.parse(sysFS.readFileSync(__dirname + '/' + tmp_destDir + "/resources/app/bundle.app/Contents/info.plist", 'utf8'));
+
+    var appName = info.CFBundleDisplayName,
+        appVersion = info.CFBundleShortVersionString,
+        copyright = info.NSHumanReadableCopyright,
+        appDescription = info.RomanysoftAppDescription || "",
+        company = "Romanysoft, LAB.";
+
+    var validAppNameForSetup = appName.replace(/\s/g, "");
+    console.log("validAppName = ", validAppNameForSetup);
+    
+    
+    // 指定AdvancedInstaller 的CLI路径
+    var taskAppPath = "C:\\Program Files (x86)\\Caphyon\\Advanced Installer 12.7.2\\bin\\x86\\AdvancedInstaller.com";
+        
+    var destAIPFilePath = __dirname + "/electron/" + aipFileName;  
+    // Step2: 修改工程的相关信息
+    var taskCommandList = [], options = {}, errorBuf = null;
+    options.env = process.env;
+    
+    
+    RTYUtils.queue()
+        .next(function(next){
+            taskCommandList = ["/edit", destAIPFilePath, 
+                "/SetVersion", appVersion
+            ];
+            console.log(taskCommandList);
+            errorBuf = sysChildProcess.execFileSync(taskAppPath, taskCommandList, options);
+            
+            next && next(errorBuf.length > 0 ? errorBuf : null);
+        })
+        .done(function(errBuf) {
+            if(errBuf){
+                cb && cb(errBuf);
+            }else{
+                cb(); 
+            }
+        });
+    
+});
+
+/***
+ * Note:
+ * 2016年2月24日23:09:55, 原先的处理生成Windows安装包。但发现，安装包在用户客户端上进行安装的时候，需要.net环境，同时在Windows7 非SP1环境，安装不了
+ */
+gulp.task('package_win_getInstaller_squirrel', function (cb) {
     var tmp_destDir = g_getOSTempDestDir();
     var platform = g_cur_task_win_isX64 ? 'x64' : 'x86'
 
@@ -604,6 +701,7 @@ gulp.task('release_win_32', gulpSequence(
     'package_win_copy_romanysoft', 
     'package_win_npm', 
     'package-win-git-version'
+    ,'package_win_installer_AdvancedInstaller'
     //,'package_win_getInstaller'
     ));
 
@@ -617,7 +715,8 @@ gulp.task('release_win_64', gulpSequence(
     'package_win_zip_public_server',
     'package_win_copy_romanysoft', 
     'package_win_npm', 
-    'package-win-git-version' 
+    'package-win-git-version'
+    ,'package_win_installer_AdvancedInstaller' 
     //,'package_win_getInstaller'
     ));
 
