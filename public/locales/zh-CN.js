@@ -106,7 +106,7 @@ var I18N;
             "Title": "关于",
             App: {
                 description: "一款 markdown 编辑器，追求速度、简单及安全",
-                copyright: "版权 2015 Romanysoft LAB. 版权所有.",
+                copyright: "版权 2016 Romanysoft LAB. 版权所有.",
                 creditsTitle: "构建离不开一些开源项目和其他开放源码软件。"
             }
         };

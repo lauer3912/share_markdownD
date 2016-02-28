@@ -106,7 +106,7 @@ var I18N;
             "Title": "約",
             App: {
                 description: "マークダウンエディタ、スピード、シンプルさとセキュリティの追求",
-                copyright: "著作権2015 Romanysoft LAB。すべての権利を保有。",
+                copyright: "著作権2016 Romanysoft LAB。すべての権利を保有。",
                 creditsTitle: "建設は、いくつかのオープンソースプロジェクトやその他のオープンソースソフトウェアと不可分である。"
             }
         };

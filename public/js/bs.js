@@ -5,6 +5,7 @@
  *
  * 日志：
  * 2015年10月29日 星期四 开始加入Electron引擎兼容处理工作
+ * 2016年2月18日 星期四 统一升级
  */
 
 ;
@@ -673,6 +674,8 @@
 
       /// 检测路径是否存在
       checkPathIsExist: b$.pathIsExist = function (path) {
+        if($.trim(path) === "") return false;
+
         if (b$.pN) {
           var _path = path || b$.pN.path.tempDir();
           return b$.pN.path.pathIsExist(_path);
@@ -683,6 +686,8 @@
 
       ///文件是否为0Byte
       checkFileIsZero: b$.checkFileIsZeroSize = function (file_path) {
+        if($.trim(file_path) === "") return false;
+
         if (b$.pN) {
           var _path = file_path || b$.pN.path.tempDir();
           return b$.pN.path.fileIsZeroSize(_path);
@@ -693,6 +698,8 @@
 
       ///路径是否可以写
       checkPathIsWritable: b$.checkPathIsWritable = function (path) {
+        if($.trim(path) === "") return false;
+
         if (b$.pN) {
           var _path = path || b$.pN.path.tempDir();
           return b$.pN.path.checkPathIsWritable(_path);
@@ -2138,6 +2145,7 @@
         parms['canChooseFiles'] = true;
         parms['canChooseDir'] = false;
         parms['canAddToRecent'] = true; // 是否添加到最近目录中
+        parms['directory'] = parms['directory'] || ""; // 默认指定的目录
         parms['types'] = parms['types'] || []; //eg. ['png','svg'] 或 ['*']
 
         //下拉文件类型选择处理
@@ -2195,6 +2203,8 @@
         parms['canCreateDir'] = parms['canCreateDir'] || true;
         parms['canChooseDir'] = true;
         parms['canChooseFiles'] = false; //不可以选择文件
+        parms['canAddToRecent'] = true; // 是否添加到最近目录中
+        parms['directory'] = parms['directory'] || ""; // 默认指定的目录
         parms['types'] = [];
 
         if (b$.pN) {
@@ -2233,6 +2243,7 @@
           parms['canCreateDir'] = parms['canCreateDir'] || true;
           parms['canAddToRecent'] = true; // 是否添加到最近目录中
           parms['fileName'] = parms['fileName'] || "untitled";
+          parms['directory'] = parms['directory'] || ""; // 默认指定的目录
           parms['types'] = parms['types'] || ['*']; // 要求的数组
 
           b$.pN.window.saveFile($.toJSON(parms));
@@ -2247,11 +2258,15 @@
 
     // 定位文件/目录
     b$.cb_revealInFinder = null; // 选择定位文件的回调
-    b$.revealInFinder = function (path) {
-      if (b$.pN) {
+    b$.revealInFinder = function (path, cb) {
+      path = path || "";
+      path = $.trim(path);
+      if (b$.pN && path !== "") {
         try {
           b$.pN.window.revealInFinder($.toJSON({
-            callback: "BS.b$.cb_revealInFinder",
+            callback: b$._get_callback(function(){
+              cb && cb();
+            },false),
             filePath: path
           }));
         } catch (e) {

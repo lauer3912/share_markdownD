@@ -109,7 +109,7 @@ var I18N;
             "Title": "About",
             App: {
                 description: "A markdown editor built for speed,simplicity,and security.",
-                copyright: "Copyright 2015 Romanysoft LAB. All rights reserved.",
+                copyright: "Copyright 2016 Romanysoft LAB. All rights reserved.",
                 creditsTitle: "is mad possible by some open source project and other open source software."
             }
         };

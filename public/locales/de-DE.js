@@ -106,7 +106,7 @@ var I18N;
             "Title": "über",
             App: {
                 description: "Ein Markdown-Editor, das Streben nach Schnelligkeit, Einfachheit und Sicherheit",
-                copyright: "Copyright 2015 Romanysoft LAB. Alle Rechte vorbehalten.",
+                copyright: "Copyright 2016 Romanysoft LAB. Alle Rechte vorbehalten.",
                 creditsTitle: "Construction ist untrennbar mit einigen Open-Source-Projekte und andere Open-Source-Software."
             }
         };
