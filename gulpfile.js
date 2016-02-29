@@ -447,6 +447,41 @@ function g_write_git_version(tmp_destDir, cb){
     });    
 }
 
+/**
+ * 公共 制作zip包
+ */
+
+function g_genrate_zip(tmp_destDir, tmp_zipName, cb){
+    var deferred = Q.defer();
+    var exe_7zip = 'C:\\Program Files\\7-Zip\\7z.exe',
+        commandList = [],
+        options = {},
+        errorBuf = null;
+        
+    options.env = process.env;
+    options.cwd = __dirname + "/" + tmp_destDir + "/../";
+    RTYUtils.queue()
+        .next(function(next){
+            commandList = ["a", "-tzip", 
+                tmp_zipName + ".zip", 
+                __dirname + "/" + tmp_destDir + "/*",
+                "-r"
+            ];
+            console.log(commandList);
+            errorBuf = sysChildProcess.execFileSync(exe_7zip, commandList, options);
+            
+            next && next(errorBuf.length > 0 ? errorBuf : null);
+        })
+        .done(function(errBuf) {
+            if(errBuf){
+                console.log(errBuf.toString("utf8"));
+            }
+            deferred.resolve();
+        });
+      
+
+    return deferred.promise;  
+}
 
 // Windows准备打包
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -949,30 +984,7 @@ gulp.task('package-linux-makeDEBDir', function(){
 gulp.task('package-linux-zip', function(){
     var tmp_destDir = g_cur_task_linux_isX64 ? tmp_linux64Dir : tmp_linux32Dir;
     var tmp_zipName = g_cur_task_linux_isX64 ? tmp_linux64DirName : tmp_linux32DirName;
-
-    
-    var deferred = Q.defer();   
-     
-    var zip = require("gulp-zip");    
-    gulp.src(tmp_destDir + "/**")
-        .pipe(zip(tmp_zipName + ".zip"))
-        .pipe(gulp.dest(release_linux_dir))
-        .on('finish', function(){
-            console.log('zip over...');
-            deferred.resolve();
-        })
-        
-       
-    /**    
-    var app_run_deb_path = release_linux_dir + '/' + tmp_debName + '_deb/**';
-    var debZipFile = tmp_debName + "_deb.zip";
-    console.log('deb_path =' + app_run_deb_path + "; tmp_debName = " + debZipFile);
-    gulp.src(app_run_deb_path)
-        .pipe(zip(debZipFile))
-        .pipe(gulp.dest(release_linux_dir));
-    **/    
-
-    return deferred.promise;        
+    return g_genrate_zip(tmp_destDir, tmp_zipName);       
 });
 
 
@@ -1171,20 +1183,7 @@ gulp.task('package-macos-git-version', function (cb) {
 gulp.task('package-macos-zip', function(){
     var tmp_destDir = g_cur_task_macos_isNOMAS ? tmp_macosNoMASDir : tmp_macosMASDir;
     var tmp_zipName = g_cur_task_macos_isNOMAS ? tmp_macosNOMASDirName : tmp_macosMASDirName;
-
-    
-    var deferred = Q.defer();   
-     
-    var zip = require("gulp-zip");    
-    gulp.src(tmp_destDir + "/**")
-        .pipe(zip(tmp_zipName + ".zip"))
-        .pipe(gulp.dest(release_macos_dir))
-        .on('finish', function(){
-            console.log('zip over...');
-            deferred.resolve();
-        });
- 
-    return deferred.promise;        
+    return g_genrate_zip(tmp_destDir, tmp_zipName);         
 });
 
 
