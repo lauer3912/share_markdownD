@@ -120,20 +120,6 @@
         "use strict";
 
         function checkUpdate(data){
-            try{
-                var lastVersion = data.checkUpdate.lastVersion || "";
-                var updateURL = data.checkUpdate.updateURL || "";
-
-                // 比较
-                if(1 === $.compareVersion(lastVersion, ntv.getAppVersion())) {
-                    var foundNewVersion = jet.tr('text.checkUpdate_foundNewVersion');
-                    alert(foundNewVersion);
-                    updateURL !== "" && ntv.openUrl(updateURL);
-                }
-
-            }catch(e){
-                console.error(e);
-            }
         }
 
         // 尝试读取服务器配置
