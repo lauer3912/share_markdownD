@@ -118,18 +118,7 @@
 
     c$.checkUpdate = function(){
         "use strict";
-
-        function checkUpdate(data){
-        }
-
-        // 尝试读取服务器配置
-        var serverUrl = "http://romanysoft.github.io/assert-config/configs/com.romanysoft.app.macos.MarkdownD.json";
-        $.getJSON(serverUrl, function(data){
-            data = typeof data === "object" ? data : {};
-            data = data instanceof Array ? {"data": data} : data;
-
-            checkUpdate(data);
-        });
+        b$.checkUpdate();
     };
 
     // 设置UI部分与逻辑交互
