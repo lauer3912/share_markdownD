@@ -65,7 +65,7 @@ var RomanySoftPlugins;
             return null;
         };
         return FileEditorManger;
-    })();
+    }());
     RomanySoftPlugins.FileEditorManger = FileEditorManger;
 })(RomanySoftPlugins || (RomanySoftPlugins = {}));
 //# sourceMappingURL=plugin.file-editor-mgr.js.map

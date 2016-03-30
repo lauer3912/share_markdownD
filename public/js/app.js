@@ -278,20 +278,40 @@
 
             }
             ,exportAsPDF:function(id){
-                // 保存到本地
-                b$.selectOutFile({
-                    callback: b$._get_callback(function(info){
-                        if(info.success){
-                            var pdfPath = info.filePath;
-                            b$.App.printToPDF({filePath:pdfPath});
-                        }
-                    }, true),
-                    title : $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-Title"]),
-                    prompt: $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-BtnSave"]),
-                    fileName : "export",
-                    types : ['pdf']
+                // 共用方式
+                function callExportToPdf(pdfFileName) {
+                    // 保存到本地
+                    b$.selectOutFile({
+                        callback: b$._get_callback(function(info){
+                            if(info.success){
+                                var pdfPath = info.filePath;
+                                b$.App.printToPDF({filePath:pdfPath}, function(obj){
+                                    if(obj.success){
+                                        b$.revealInFinder(pdfPath);
+                                    }else{
+                                        alert(obj.error);
+                                    }
+                                });
+                            }
+                        }, true),
+                        title : $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-Title"]),
+                        prompt: $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-BtnSave"]),
+                        fileName : pdfFileName || "export_MarkdownD",
+                        types : ['pdf']
 
+                    });
+                }
+
+
+                // 获取文件的名称
+                var fileId = id || window.$fc.getLastModifyFileObj().id;
+                var find = window.$fc.findFile(fileId, function (fileObj) {
+                    callExportToPdf(fileObj.name);
                 });
+
+                if(!find){
+                    callExportToPdf();
+                }
             }
             ,removeFilesItem:function(id){
                 window.$fc.removeFile(id, function(obj){

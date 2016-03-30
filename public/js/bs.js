@@ -6,6 +6,7 @@
  * 日志：
  * 2015年10月29日 星期四 开始加入Electron引擎兼容处理工作
  * 2016年2月18日 星期四 统一升级
+ * 2016年3月29日 星期二 printToPDF 添加遗忘的callback参数
  */
 
 ;
@@ -106,11 +107,23 @@
         return false;
       },
 
-      enableIAP: function (parms) {
-        if (b$.pN) {
-          try {
+      enableIAP: function (in_parms, cb) {
+        try {
+          $.testObjectType(in_parms, 'object');
+
+          var parms = {};
+          parms["cb_IAP_js"] = in_parms["cb_IAP_js"] || b$._get_callback(function(obj){
+                if($.isFunction(b$.cb_handleIAPCallback)){
+                  b$.cb_handleIAPCallback && b$.cb_handleIAPCallback(obj);
+                }else{
+                  cb && cb(obj);
+                }
+              }, true);
+          parms["productIds"] = in_parms["productIds"] || [];
+
+          if (b$.pN) {
             //注册IAP回调
-            b$.pN.iap.regeditIAPCallbackJs(parms.cb_IAP_js || "BS.b$.cb_handleIAPCallback");
+            b$.pN.iap.regeditIAPCallbackJs(parms.cb_IAP_js);
 
             //注册IAPBundle
             b$.pN.iap.regeditIAPCore($.toJSON({
@@ -127,11 +140,12 @@
                 productIdentifiers: parms.productIds || []
               }));
             }
-          } catch (e) {
-            console.error(e);
           }
 
+        } catch (e) {
+          console.error(e);
         }
+
       },
 
       restore: function () {
@@ -717,12 +731,13 @@
       },
 
       ///创建目录
-      createDir: b$.createDir = function (dir_path, atts) {
+      createDir: b$.createDir = function (dir_path, atts, cb) {
         if (b$.pN) {
           try {
             var parms = {};
             //限制内部属性：
             parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
+                  cb && cb(obj);
                 }, true);
             parms['path'] = dir_path || (b$.pN.path.tempDir() + "tmp_dir001");
             if (atts)  parms['atts'] = atts || {};
@@ -743,12 +758,13 @@
       },
 
       ///删除目录
-      removeDir: b$.removeDir = function (dir_path) {
+      removeDir: b$.removeDir = function (dir_path, cb) {
         if (b$.pN) {
           try {
             var parms = {};
             //限制内部属性：
             parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
+                  cb && cb(obj);
                 }, true);
             parms['path'] = dir_path || (b$.pN.path.tempDir() + "/tmp_dir001");
 
@@ -761,12 +777,13 @@
       },
 
       ///拷贝文件
-      copyFile: b$.copyFile = function (parms) {
+      copyFile: b$.copyFile = function (parms, cb) {
         if (b$.pN) {
           try {
             parms = parms || {};
             //限制内部属性：
             parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
+                  cb && cb(obj);
                 }, true);
             parms['src'] = parms['src'] || "";
             parms['dest'] = parms['dest'] || "";
@@ -779,12 +796,13 @@
       },
 
       ///拷贝目录
-      copyDir: b$.copyDir = function (parms) {
+      copyDir: b$.copyDir = function (parms, cb) {
         if (b$.pN) {
           try {
             parms = parms || {};
             //限制内部属性：
             parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
+                  cb && cb(obj);
                 }, true);
             parms['src'] = parms['src'] || "";
             parms['dest'] = parms['dest'] || "";
@@ -797,12 +815,13 @@
       },
 
       ///移动文件
-      moveFile: b$.moveFile = function (parms) {
+      moveFile: b$.moveFile = function (parms, cb) {
         if (b$.pN) {
           try {
             parms = parms || {};
             //限制内部属性：
             parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
+                  cb && cb(obj);
                 }, true);
             parms['src'] = parms['src'] || "";
             parms['dest'] = parms['dest'] || "";
@@ -815,12 +834,13 @@
       },
 
       ///移动目录
-      moveDir: b$.moveDir = function (parms) {
+      moveDir: b$.moveDir = function (parms, cb) {
         if (b$.pN) {
           try {
             parms = parms || {};
             //限制内部属性：
             parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
+                  cb && cb(obj);
                 }, true);
             parms['src'] = parms['src'] || "";
             parms['dest'] = parms['dest'] || "";
@@ -833,17 +853,18 @@
       },
 
       ///查找文件是否在此目录中存在
-      findFile: b$.findFile = function (dir, fileName, cb) {
+      findFile: b$.findFile = function (dir, fileName, cbName, cb) {
         if (b$.pN) {
           var _dir = dir || b$.pN.path.tempDir();
           var _fileName = fileName || 'tmp.txt';
 
           var parms = {
-            callback: cb || b$._get_callback(function (obj) {
+            callback: cbName || b$._get_callback(function (obj) {
+              cb && cb(obj);
             }, true),
             dir: _dir,
             fileName: _fileName
-          }
+          };
 
           return b$.pN.window.findFile($.toJSON(parms));
         }
@@ -1078,12 +1099,13 @@
       },
 
       ///截屏[整个屏幕]
-      captureFull: function (jsonObj) {
+      captureFull: function (jsonObj, cb) {
         if (b$.pN) {
           try {
             var parms = jsonObj || {};
             //限制内部属性：
             parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
+                  cb && cb(obj);
                 }, true);
             parms['filePath'] = parms['filePath'] || (b$.pN.path.tempDir() + "cap_screen.png");// 保存文件
 
@@ -1096,7 +1118,7 @@
       },
 
       /// 添加目录到变化监视器
-      addDirPathToChangeWatcher: function (jsonObj) {
+      addDirPathToChangeWatcher: function (jsonObj, cb) {
         if (b$.pN) {
           try {
             var parms = jsonObj || {};
@@ -1109,6 +1131,7 @@
                   //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"LinkCountChanged"} (app.js, line 270)
                   //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileRenamed"} (app.js, line 270)
                   //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileDeleted"} (app.js, line 270)
+                  cb && cb(obj);
                 }, true);
             parms['path'] = parms['path'] || (b$.pN.path.tempDir());
 
@@ -1120,7 +1143,7 @@
       },
 
       /// 添加文件目录到变化监视器
-      addFilePathToChangeWatcher: function (jsonObj) {
+      addFilePathToChangeWatcher: function (jsonObj, cb) {
         if (b$.pN) {
           try {
             var parms = jsonObj || {};
@@ -1133,6 +1156,7 @@
                   //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"LinkCountChanged"} (app.js, line 270)
                   //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileRenamed"} (app.js, line 270)
                   //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileDeleted"} (app.js, line 270)
+                  cb && cb(obj);
                 }, true);
             parms['path'] = parms['path'] || (b$.pN.path.tempDir());
 
@@ -1176,10 +1200,15 @@
       },
 
       /// 打印到PDF  (一般情况下，不建议使用)
-      printToPDF: function (jsonObj) {
+      printToPDF: function (jsonObj, cb) {
         if (b$.pN) {
           try {
+            $.testObjectType(jsonObj, 'object');
+
             var parms = jsonObj || {};
+            parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
+                  cb && cb(obj);
+                }, true);
             parms['marginsType'] = parms['marginsType'] || 0;
             parms['pageSize'] = parms['pageSize'] || 'A4';
             parms['printBackground'] = parms['printBackground'] || false;
@@ -1716,27 +1745,33 @@
      * @type {{setMenuProperty: Function, maxRecentDocumentCount: Function, addRecentDocument: Function, clearAllRecentDocuments: Function}}
      */
     b$.SystemMenus = {
-      setMenuProperty: function (in_parms) {
-        if (b$.pN) {
-          try {
-            var parms = {};
-            //限制内部属性：
-            parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
-                }, true);
-            parms['menuTag'] = in_parms['menuTag'] || 999;
-            parms['hideMenu'] = in_parms['hideMenu'] || false;
-            parms['isSeparatorItem'] = in_parms['isSeparatorItem'] || false; // 是否为分割线，用来创建新的Item
-            parms['title'] = in_parms['title'] || "##**";//"MenuTitle";
-            parms['action'] = in_parms['action'] || b$._get_callback(function (obj) {
-                }, true);
+      setMenuProperty: function (in_parms, cb, actionCB) {
+        try {
+          $.testObjectType(in_parms, 'object');
 
+          var parms = {};
+          //限制内部属性：
+          parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
+                cb && cb(obj);
+              }, true);
+          parms['menuTag'] = in_parms['menuTag'] || 999;
+          parms['hideMenu'] = in_parms['hideMenu'] || false;
+          parms['isSeparatorItem'] = in_parms['isSeparatorItem'] || false; // 是否为分割线，用来创建新的Item
+          parms['title'] = in_parms['title'] || "##**";//"MenuTitle";
+          parms['action'] = in_parms['action'] || b$._get_callback(function (obj) {
+                actionCB && actionCB(obj);
+              }, true);
+
+
+          if (b$.pN) {
             b$.pN.window.setMenuProperty($.toJSON(parms));
-          } catch (e) {
-            console.error(e);
+          } else {
+            alert('启动系统菜单控制!')
           }
-        } else {
-          alert('启动系统菜单控制!')
+        } catch (e) {
+          console.error(e);
         }
+
       },
       maxRecentDocumentCount: function () {
         if (b$.pN) {
@@ -1810,139 +1845,169 @@
      * @type {{createBinaryFile: Function, createTextFile: Function, getUTF8TextContentFromFile: Function, base64ToFile: Function, base64ToImageFile: Function, imageFileConvertToOthers: Function}}
      */
     b$.Binary = {
-      createBinaryFile: function (parms) {
-        if (b$.pN) {
+      createBinaryFile: function (in_parms, cb) {
           try {
-            parms = parms || {};
-            //限制内部属性：
-            parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                }, true);
-            parms['filePath'] = parms['filePath'] || "";
-            parms['data'] = parms['data'] || "";
-            parms['offset'] = parms['offset'] || 0;
-            parms['dataAppend'] = parms['dataAppend'] || false;
+            $.testObjectType(in_parms, 'object');
 
-            b$.pN.binaryFileWriter.writeBinaryArray($.toJSON(parms));
+            var parms =  {};
+            //限制内部属性：
+            parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
+                  cb && cb(obj);
+                }, true);
+            parms['filePath'] = in_parms['filePath'] || "";
+            parms['data'] = in_parms['data'] || "";
+            parms['offset'] = in_parms['offset'] || 0;
+            parms['dataAppend'] = in_parms['dataAppend'] || false;
+
+            if (b$.pN) {
+              b$.pN.binaryFileWriter.writeBinaryArray($.toJSON(parms));
+            }else {
+              alert('创建二进制文件')
+            }
+
           } catch (e) {
             console.error(e);
           }
-        } else {
-          alert('创建二进制文件')
-        }
       },
 
-      createTextFile: function (parms) {
-        if (b$.pN) {
+      createTextFile: function (in_parms, cb) {
           try {
-            parms = parms || {};
-            //限制内部属性：
-            parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                }, true);
-            parms['filePath'] = parms['filePath'] || "";
-            parms['text'] = parms['text'] || "";
-            parms['offset'] = parms['offset'] || 0;
-            parms['dataAppend'] = parms['dataAppend'] || false;
+            $.testObjectType(in_parms, 'object');
 
-            b$.pN.binaryFileWriter.writeTextToFile($.toJSON(parms));
+            var parms = {};
+            //限制内部属性：
+            parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
+                  cb && cb(obj);
+                }, true);
+            parms['filePath'] = in_parms['filePath'] || "";
+            parms['text'] = in_parms['text'] || "";
+            parms['offset'] = in_parms['offset'] || 0;
+            parms['dataAppend'] = in_parms['dataAppend'] || false;
+
+            if (b$.pN) {
+              b$.pN.binaryFileWriter.writeTextToFile($.toJSON(parms));
+            }else {
+              alert('创建文本文件')
+            }
+
           } catch (e) {
             console.error(e);
           }
-        } else {
-          alert('创建文本文件')
-        }
       },
 
-      getUTF8TextContentFromFile: function (parms) {
-        if (b$.pN) {
-          try {
-            parms = parms || {};
-            //限制内部属性：
-            parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                  /**
-                   obj.success = true || false
-                   obj.content =  //内容
-                   obj.error =    //出错信息
-                   **/
-                }, true);
-            parms['filePath'] = parms['filePath'] || "";
-            parms['encode'] = parms['encode'] || 'utf8';
-            parms['async'] = parms['async'] || true;  // 异步的时候，回调函数有效，否则无效，直接返回内容值
+      getUTF8TextContentFromFile: function (in_parms, cb) {
+        try {
+          $.testObjectType(in_parms, 'object');
 
-            /**
-             encode: 说明，不区分大小写
-             ASCII,NEXTSTEP,JapaneseEUC,UTF8,ISOLatin1,Symbol,NonLossyASCII,ShiftJIS,ISOLatin2,Unicode
-             WindowsCP1251,WindowsCP1252,WindowsCP1253,WindowsCP1254,WindowsCP1250,ISO2022JP,MacOSRoman
-             UTF16,UTF16BigEndian,UTF16LittleEndian
-             **/
+          var parms = {};
+          //限制内部属性：
+          parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
+                console.log($.obj2string(obj));
+                /**
+                 obj.success = true || false
+                 obj.content =  //内容
+                 obj.error =    //出错信息
+                 **/
+                cb && cb(obj);
+              }, true);
+          parms['filePath'] = in_parms['filePath'] || "";
+          parms['encode'] = in_parms['encode'] || 'utf8';
+          parms['async'] = in_parms['async'] || true;  // 异步的时候，回调函数有效，否则无效，直接返回内容值
 
-            b$.pN.binaryFileWriter.getTextFromFile($.toJSON(parms));  //使用非异步模式(async == false)，直接返回content内容
-          } catch (e) {
-            console.error(e);
+          /**
+           encode: 说明，不区分大小写
+           ASCII,NEXTSTEP,JapaneseEUC,UTF8,ISOLatin1,Symbol,NonLossyASCII,ShiftJIS,ISOLatin2,Unicode
+           WindowsCP1251,WindowsCP1252,WindowsCP1253,WindowsCP1254,WindowsCP1250,ISO2022JP,MacOSRoman
+           UTF16,UTF16BigEndian,UTF16LittleEndian
+           **/
+
+          if (b$.pN) {
+            return b$.pN.binaryFileWriter.getTextFromFile($.toJSON(parms));  //使用非异步模式(async == false)，直接返回content内容
+          } else {
+            alert('获取文本文件中的内容（UTF8编码）')
           }
-        } else {
-          alert('获取文本文件中的内容（UTF8编码）')
+
+        } catch (e) {
+          console.error(e);
         }
       },
 
 
-      base64ToFile: function (parms) {
-        if (b$.pN) {
-          try {
-            parms = parms || {};
-            //限制内部属性：
-            parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                }, true);
-            parms['filePath'] = parms['filePath'] || "";
-            parms['base64String'] = parms['base64String'] || "";
-            parms['dataAppend'] = parms['dataAppend'] || false;
+      base64ToFile: function (in_parms, cb) {
+        try {
+          $.testObjectType(in_parms, 'object');
 
+          var parms =  {};
+          //限制内部属性：
+          parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
+                cb && cb(obj);
+              }, true);
+          parms['filePath'] = in_parms['filePath'] || "";
+          parms['base64String'] = in_parms['base64String'] || "";
+          parms['dataAppend'] = in_parms['dataAppend'] || false;
+
+
+          if (b$.pN) {
             b$.pN.binaryFileWriter.base64ToFile($.toJSON(parms));
-          } catch (e) {
-            console.error(e);
+          } else {
+            alert('base64编码保存到文件中')
           }
-        } else {
-          alert('base64编码保存到文件中')
+        } catch (e) {
+          console.error(e);
         }
+
       },
 
-      base64ToImageFile: function (parms) {
-        if (b$.pN) {
-          try {
-            parms = parms || {};
-            //限制内部属性：
-            parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                }, true);
-            parms['filePath'] = parms['filePath'] || "";
-            parms['base64String'] = parms['base64String'] || "";
-            parms['imageType'] = parms['imageType'] || 'jpeg'; //png,bmp
+      base64ToImageFile: function (in_parms, cb) {
+        try {
+          $.testObjectType(in_parms, 'object');
 
+          var parms = {};
+          //限制内部属性：
+          parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
+                cb && cb(obj);
+              }, true);
+          parms['filePath'] = in_parms['filePath'] || "";
+          parms['base64String'] = in_parms['base64String'] || "";
+          parms['imageType'] = in_parms['imageType'] || 'jpeg'; //png,bmp
+
+
+          if (b$.pN) {
             b$.pN.binaryFileWriter.base64ToImageFile($.toJSON(parms));
-          } catch (e) {
-            console.error(e);
+          } else {
+            alert('base64编码保存到图片文件中')
           }
-        } else {
-          alert('base64编码保存到图片文件中')
+        } catch (e) {
+          console.error(e);
         }
+
+
       },
 
-      imageFileConvertToOthers: function (parms) {
-        if (b$.pN) {
-          try {
-            parms = parms || {};
-            //限制内部属性：
-            parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                }, true);
-            parms['filePath'] = parms['filePath'] || ""; // 目标文件
-            parms['orgFilePath'] = parms['orgFilePath'] || ""; // 源文件
-            parms['imageType'] = parms['imageType'] || 'jpeg'; //png,bmp
+      imageFileConvertToOthers: function (in_parms, cb) {
+        try {
+          $.testObjectType(in_parms, 'object');
 
+          var parms = {};
+          //限制内部属性：
+          parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
+                cb && cb(obj);
+              }, true);
+          parms['filePath'] = in_parms['filePath'] || ""; // 目标文件
+          parms['orgFilePath'] = in_parms['orgFilePath'] || ""; // 源文件
+          parms['imageType'] = in_parms['imageType'] || 'jpeg'; //png,bmp
+
+
+          if (b$.pN) {
             b$.pN.binaryFileWriter.imageFileConvertToOthers($.toJSON(parms));
-          } catch (e) {
-            console.error(e);
+          } else {
+            alert('图片格式转换')
           }
-        } else {
-          alert('图片格式转换')
+        } catch (e) {
+          console.error(e);
         }
+
+
       },
 
 
@@ -1994,11 +2059,18 @@
      *
      * @param parms 参数处理
      */
-    b$.enableDragDropFeature = function (jsonObj) {
+    b$.enableDragDropFeature = function (jsonObj, cb) {
       if (b$.pN) {
         try {
           var parms = jsonObj || {};
-          parms["callback"] = jsonObj["callback"] || "BS.b$.cb_dragdrop";
+          parms["callback"] = jsonObj["callback"] || b$._get_callback(function(obj){
+                if($.isFunction(b$.cb_dragdrop)){
+                  b$.cb_dragdrop && b$.cb_dragdrop(obj);
+                }else{
+                  cb && cb(obj);
+                }
+
+              }, true);
           parms["enableDir"] = jsonObj["enableDir"] || false;
           parms["enableFile"] = jsonObj["enableFile"] || true;
           parms["fileTypes"] = jsonObj["fileTypes"] || ["*"];
@@ -2131,39 +2203,47 @@
      });
      **/
     b$.cb_importFiles = null; // 导入文件的回调
-    b$.importFiles = function (parms, noNcb) {
+    /**
+     * 导入文件
+     * @param parms 参数的json对象
+     * @param noNcb 非Native的状态下，执行的回调函数
+     * @param cb    Native状态下，执行的回调函数是，默认是优化外部传入函数
+     */
+    b$.importFiles = function (in_parms, noNcb, cb) {
+      var _this = this;
       try {
-        parms = parms || {};
-        //限制内部属性：
-        parms['callback'] = parms['callback'] || "BS.b$.cb_importFiles";
-        parms['title'] = parms['title'] || "Select a file";
-        parms['prompt'] = parms['prompt'] || "Open";
+        var parms = {};
 
-        parms['allowOtherFileTypes'] = parms['allowOtherFileTypes'] || false;
-        parms['allowMulSelection'] = parms['allowMulSelection'] || false;
-        parms['canCreateDir'] = parms['canCreateDir'] || false;
+        $.testObjectType(in_parms, 'object');
+
+        //限制内部属性：
+        parms['callback'] = in_parms['callback'] || b$._get_callback(function(obj){
+              if(_this.cb_importFiles){
+                _this.cb_importFiles && _this.cb_importFiles(obj);
+              }else{
+                cb && cb(obj);
+              }
+
+            }, true);
+        parms['title'] = in_parms['title'] || "Select a file";
+        parms['prompt'] = in_parms['prompt'] || "Open";
+
+        parms['allowOtherFileTypes'] = in_parms['allowOtherFileTypes'] || false;
+        parms['allowMulSelection'] = in_parms['allowMulSelection'] || false;
+        parms['canCreateDir'] = in_parms['canCreateDir'] || false;
         parms['canChooseFiles'] = true;
         parms['canChooseDir'] = false;
         parms['canAddToRecent'] = true; // 是否添加到最近目录中
-        parms['directory'] = parms['directory'] || ""; // 默认指定的目录
-        parms['types'] = parms['types'] || []; //eg. ['png','svg'] 或 ['*']
+        parms['directory'] = in_parms['directory'] || ""; // 默认指定的目录
+        parms['types'] = in_parms['types'] || []; //eg. ['png','svg'] 或 ['*']
 
         //下拉文件类型选择处理
-        if ("enableFileFormatCombox" in parms) {
-          parms["enableFileFormatCombox"] = parms["enableFileFormatCombox"] || false;
-        }
-        if ("typesDescript" in parms) {
-          parms["typesDescript"] = parms["typesDescript"] || [];
-        }
-
-        if ("lable" in parms) {
-          parms["lable"] = parms["lable"] || "File Format:";
-        }
-        if ("label" in parms) {
-          parms["label"] = parms["label"] || "File Format:";
-        }
-
+        parms["enableFileFormatCombox"] = in_parms["enableFileFormatCombox"] || false;
+        parms["typesDescript"] = in_parms["typesDescript"] || [];
+        parms["lable"] = in_parms["lable"] || "File Format:";
+        parms["label"] = in_parms["label"] || "File Format:";
         //[end]下拉文件类型选择处理
+
         if (b$.pN) {
           b$.pN.window.openFile($.toJSON(parms));
         } else {
@@ -2191,20 +2271,36 @@
      * @type {null}
      */
     b$.cb_selectOutDir = null; // 选择输出目录的回调
-    b$.selectOutDir = function (parms, noNcb) {
+    /**
+     * 选择输出目录
+     * @param parms 传递的json对象
+     * @param noNcb 非Native状态下，执行
+     * @param cb 在Native下，可以通过传递cb来执行
+     */
+    b$.selectOutDir = function (in_parms, noNcb, cb) {
       try {
-        parms = parms || {};
+        var parms = {};
+
+        $.testObjectType(in_parms, 'object');
+
         //限制内部属性：
-        parms['callback'] = parms['callback'] || "BS.b$.cb_selectOutDir";
-        parms['title'] = parms['title'] || "Select Directory";
-        parms['prompt'] = parms['prompt'] || "Select";
+        parms['callback'] = in_parms['callback'] || b$._get_callback(function(obj){
+              if($.isFunction(b$.cb_selectOutDir)){
+                b$.cb_selectOutDir && b$.cb_selectOutDir(obj);
+              }else{
+                cb && cb(obj);
+              }
+
+            }, true);
+        parms['title'] = in_parms['title'] || "Select Directory";
+        parms['prompt'] = in_parms['prompt'] || "Select";
 
         parms['allowOtherFileTypes'] = false;
-        parms['canCreateDir'] = parms['canCreateDir'] || true;
+        parms['canCreateDir'] = in_parms['canCreateDir'] || true;
         parms['canChooseDir'] = true;
         parms['canChooseFiles'] = false; //不可以选择文件
         parms['canAddToRecent'] = true; // 是否添加到最近目录中
-        parms['directory'] = parms['directory'] || ""; // 默认指定的目录
+        parms['directory'] = in_parms['directory'] || ""; // 默认指定的目录
         parms['types'] = [];
 
         if (b$.pN) {
@@ -2230,21 +2326,37 @@
      });
      */
     b$.cb_selectOutFile = null; // 选择输出文件的回调
-    b$.selectOutFile = function (parms, noNcb) {
+    /**
+     * 选择输出文件
+     * @param parms 传递的json对象
+     * @param noNcb 非Native状态下，执行
+     * @param cb 在Native下，可以通过传递cb来执行
+     */
+    b$.selectOutFile = function (in_parms, noNcb, cb) {
       if (b$.pN) {
         try {
-          parms = parms || {};
+          var parms = {};
+
+          $.testObjectType(in_parms, 'object');
+
           //限制内部属性：
-          parms['callback'] = parms['callback'] || "BS.b$.cb_selectOutFile";
-          parms['title'] = parms['title'] || "Save as";
-          parms['prompt'] = parms['prompt'] || "Save";
+          parms['callback'] = in_parms['callback'] || b$._get_callback(function(obj){
+                if($.isFunction(b$.cb_selectOutFile)){
+                  b$.cb_selectOutFile && b$.cb_selectOutFile(obj);
+                }else{
+                  cb && cb(obj);
+                }
+
+              }, true);
+          parms['title'] = in_parms['title'] || "Save as";
+          parms['prompt'] = in_parms['prompt'] || "Save";
 
           parms['allowOtherFileTypes'] = false;
-          parms['canCreateDir'] = parms['canCreateDir'] || true;
+          parms['canCreateDir'] = in_parms['canCreateDir'] || true;
           parms['canAddToRecent'] = true; // 是否添加到最近目录中
-          parms['fileName'] = parms['fileName'] || "untitled";
-          parms['directory'] = parms['directory'] || ""; // 默认指定的目录
-          parms['types'] = parms['types'] || ['*']; // 要求的数组
+          parms['fileName'] = in_parms['fileName'] || "untitled";
+          parms['directory'] = in_parms['directory'] || ""; // 默认指定的目录
+          parms['types'] = in_parms['types'] || ['*']; // 要求的数组
 
           b$.pN.window.saveFile($.toJSON(parms));
         } catch (e) {
@@ -2264,8 +2376,8 @@
       if (b$.pN && path !== "") {
         try {
           b$.pN.window.revealInFinder($.toJSON({
-            callback: b$._get_callback(function(){
-              cb && cb();
+            callback: b$._get_callback(function(obj){
+              cb && cb(obj);
             },false),
             filePath: path
           }));
@@ -2278,12 +2390,13 @@
     };
 
     // 预览文件
-    b$.previewFile = function (parms) {
+    b$.previewFile = function (parms, cb) {
       if (b$.pN) {
         try {
           parms = parms || {};
           //限制内部属性：
           parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
+                cb && cb(obj);
               }, true);
           parms['filePath'] = parms['filePath'] || "";
 

@@ -42,7 +42,35 @@
         var ua = navigator.userAgent.toLowerCase();
         var isSafari = $.RTYWebHelper.isSafari();
         return isSafari && ua.indexOf('webkit/5') != -1;
-      }
+      },
+      isMacOS: function(){
+          var nav = navigator;
+          try{
+              var oscpu = nav["oscpu"]; // for firefox developer editon version
+              if(oscpu){
+                  var low_oscpu = oscpu.toLowerCase();
+                  return low_oscpu.indexOf('mac') != -1;
+              }
+          }catch(e){
+              console.error(e);
+          }
+          
+          return false;
+      },
+      isWinOS: function(){
+          var nav = navigator;
+          try{
+              var oscpu = nav["oscpu"]; // for firefox developer editon version
+              if(oscpu){
+                  var low_oscpu = oscpu.toLowerCase();
+                  return low_oscpu.indexOf('windows') != -1;
+              }
+          }catch(e){
+              console.error(e);
+          }
+          
+          return false;
+      },
     };
 
     if (typeof window.console === "undefined") {
@@ -231,6 +259,16 @@
         return 0;
       } catch (e) {
         return -1;
+      }
+    };
+
+    // 类型检查,类型不符合,弹出警告
+    $.testObjectType = function(obj, type){
+      var actualType = $.type(obj);
+      if(actualType !== type){
+        var errMsg = "TestType:[" + type + "], actual:[" + actualType + "].";
+        $.error(errMsg);
+        alert(errMsg);
       }
     };
 

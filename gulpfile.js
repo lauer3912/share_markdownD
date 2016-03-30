@@ -137,13 +137,13 @@ gulp.task('public_copy', function () {
     gulp.src('./public/licenses/**')
         .pipe(gulp.dest(destDir + '/licenses'));
 
-    gulp.src('./public/styles/fonts/**')
-        .pipe(gulp.dest(destDir + '/styles/fonts'));
-
-    gulp.src('./public/styles/*.css')
-        .pipe(cssmin())
+    gulp.src('./public/styles/**')
         .pipe(gulp.dest(destDir + '/styles'));
 
+    gulp.src('./public/styles/**/*.css')
+        .pipe(cssmin())
+        .pipe(gulp.dest(destDir + '/styles'));
+    
     gulp.src('./public/css/*.css')
         .pipe(cssmin())
         .pipe(gulp.dest(destDir + '/css'));
@@ -165,10 +165,16 @@ gulp.task('public_copy', function () {
 
     gulp.src('./public/app/**')
         .pipe(gulp.dest(destDir + '/app'));
+        
+    gulp.src('./public/3rdparty/**')
+        .pipe(gulp.dest(destDir + '/3rdparty'));
 
     gulp.src('./public/assets/**')
         .pipe(gulp.dest(destDir + '/assets'));
-
+        
+    gulp.src(['./public/server/**/*'])
+        .pipe(gulp.dest(destDir + '/server'));
+        
     var htmlOptions = {
         removeComments: true,//清除HTML注释
         collapseWhitespace: true,//压缩HTML
@@ -230,13 +236,13 @@ gulp.task('delayWait', function(){
 
 // 测试包处理
 gulp.task('default', gulpSequence(
-    'build_public_del', 
-    'public_main', 
-    'public_lessCSS', 
-    'public_copy', 
-    'extend_task', 
-    'node-server',
-    'delayWait'
+    'build_public_del' 
+    ,'public_main' 
+    ,'public_lessCSS' 
+    ,'public_copy' 
+    ,'extend_task'
+    ,'node-server'
+    ,'delayWait'
     ));
 
 

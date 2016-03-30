@@ -41,7 +41,7 @@ var RomanySoftPlugins;
             catch (e) { }
         };
         return FileObj;
-    })();
+    }());
     RomanySoftPlugins.FileObj = FileObj;
     // 文件缓存对象
     var FilesCache = (function () {
@@ -161,7 +161,7 @@ var RomanySoftPlugins;
             return find;
         };
         return FilesCache;
-    })();
+    }());
     RomanySoftPlugins.FilesCache = FilesCache;
 })(RomanySoftPlugins || (RomanySoftPlugins = {}));
 //# sourceMappingURL=plugin.files-cache.js.map
