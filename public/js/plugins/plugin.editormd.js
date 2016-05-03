@@ -6,7 +6,7 @@ var RomanySoftPlugins;
 (function (RomanySoftPlugins) {
     var EditorMdServices = (function () {
         function EditorMdServices() {
-            this.version = "1.5.0";
+            this.version = "1.6.0";
             this.editormd = window["editormd"] || {};
             this.default_lib_path = "common/editor.md/" + this.version + "/editor.md/lib/"; // 默认版本哭路径
             this.default_lang_path = "locales/extend/editormd/"; // 默认版本路径
@@ -112,9 +112,17 @@ var RomanySoftPlugins;
                 ,
                 styleActiveLine: (typeof _config.styleActiveLine == "boolean") ? _config.styleActiveLine : true //是否高亮当前行
                 ,
+                dialogShowMask: true     //是否对话框显示Mask
+                ,
+                imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"] //至此的图片格式
+                ,
                 toc: (typeof _config.toc == "boolean") ? _config.toc : true //是否开启Table of contents 功能
                 ,
                 tocm: (typeof _config.tocm == "boolean") ? _config.tocm : false //是否Using [TOCM] auto create Toc dropdown menu
+                ,
+                htmlDecode: true        //是否开启Open the HTML tag identification
+                ,
+                pageBreak: true          //是否开启解析 page break [======]
                 ,
                 atLink: (typeof _config.atLink == "boolean") ? _config.atLink : true //是否开启@link功能
                 ,
@@ -129,6 +137,8 @@ var RomanySoftPlugins;
                 flowChart: (typeof _config.flowChart == "boolean") ? _config.flowChart : false //是否开启FlowChart 功能
                 ,
                 sequenceDiagram: (typeof _config.sequenceDiagram == "boolean") ? _config.sequenceDiagram : false //是否开启SequenceDiagram 功能
+                ,
+                previewCodeHighlight: true //是否开启预览代码高亮功能
                 ,
                 toolbarAutoFixed: (typeof _config.toolbarAutoFixed == "boolean") ? _config.toolbarAutoFixed : true //工具栏是否自动填充位置
                 ,

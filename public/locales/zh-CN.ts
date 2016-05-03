@@ -67,6 +67,11 @@ module I18N{
             "Title": "设置",
             btnReset:"重置",
             btnApply:"应用",
+            system:{
+                label: "[系统]",
+                userLanguage: "界面语言",
+                languageChangeTip: "需要重启应用"
+            },
             document:{
                 label:"[文档设置]",
                 maxDocumentCount: "最大同时编辑文档数量",

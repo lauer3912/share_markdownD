@@ -1,5 +1,6 @@
 body {
   font-family: ubuntu, consolas, monospace, sans-serif;
+  overflow: hidden !important;
 }
 #g-wrapper #app-header {
   position: fixed;
@@ -98,6 +99,9 @@ body {
 }
 #view-workspace .mui-panel {
   padding: 0px 15px 15px;
+}
+#view-workspace .editormd {
+    border: none !important;
 }
 #view-plugins {
   margin-left: auto;

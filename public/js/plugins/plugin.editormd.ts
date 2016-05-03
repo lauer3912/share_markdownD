@@ -5,7 +5,7 @@
 ///<reference path="../../tsd/typings/jquery/jquery.d.ts" />
 module RomanySoftPlugins {
     export class EditorMdServices{
-        version:string = "1.5.0";
+        version:string = "1.6.0";
         editormd:any = window["editormd"] ||{};
         default_lib_path:string = "common/editor.md/"+ this.version +"/editor.md/lib/";  // 默认版本哭路径
         default_lang_path:string = "locales/extend/editormd/";  // 默认版本路径
@@ -126,7 +126,7 @@ module RomanySoftPlugins {
                 ,matchWordHighlight: (typeof _config.matchWordHighlight == "boolean") ? _config.matchWordHighlight : true //是否匹配文件高亮
                 ,styleActiveLine: (typeof _config.styleActiveLine == "boolean") ? _config.styleActiveLine : true    //是否高亮当前行
                 //,dialogLockScreen: true   //是否对话框锁住屏幕
-                //,dialogShowMask: true     //是否对话框显示Mask
+                ,dialogShowMask: true     //是否对话框显示Mask
                 //,dialogDraggable: true    //是否对话框可以拖拽
                 //,dialogMaskBgColor: "#fff" //设置对话框的Mask背景颜色
                 //,dialogMaskOpacity: 0.1   //设置对话框的透明度
@@ -134,8 +134,8 @@ module RomanySoftPlugins {
                 //,saveHTMLToTextarea: false //开启是否保存HTML到文本区域
                 //,disabledKeyMaps: []      //屏蔽哪些快捷键
 
-                //,imageUpload: false       //图片是否上传
-                //,imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"] //至此的图片格式
+                //,imageUpload: true       //图片是否上传
+                ,imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"] //至此的图片格式
                 //,imageUploadURL: ""       //图片上传的URL地址
                 //,crossDomainUpload: false //是否跨域上传
                 //,uploadCallbackURL: ""    //图片上传的回调URL
@@ -145,8 +145,8 @@ module RomanySoftPlugins {
                 //,tocTitle: ""             //是否指定Toc dropdown menu btn
                 //,tocStartLevel：1         //指定 Said from H1 to create Toc
                 //,tocContainer: ""         //指定toc的容器
-                //,htmlDecode: false        //是否开启Open the HTML tag identification
-                //,pageBreak: true          //是否开启解析 page break [======]
+                ,htmlDecode: true        //是否开启Open the HTML tag identification
+                ,pageBreak: true          //是否开启解析 page break [======]
                 ,atLink: (typeof _config.atLink == "boolean") ? _config.atLink : true             //是否开启@link功能
                 ,emailLink: (typeof _config.emailLink == "boolean") ? _config.emailLink : true          //是否开启Email地址自动link功能
                 ,taskList: (typeof _config.taskList == "boolean") ? _config.taskList : false          //是否开启Github Flavored Markdown task lists
@@ -154,7 +154,7 @@ module RomanySoftPlugins {
                 ,tex: (typeof _config.tex == "boolean") ? _config.tex : false               //是否开启Tex(Latex)，based on KaTex功能
                 ,flowChart: (typeof _config.flowChart == "boolean") ? _config.flowChart : false         //是否开启FlowChart 功能
                 ,sequenceDiagram: (typeof _config.sequenceDiagram == "boolean") ? _config.sequenceDiagram : false   //是否开启SequenceDiagram 功能
-                //,previewCodeHighlight: true //是否开启预览代码高亮功能
+                ,previewCodeHighlight: true //是否开启预览代码高亮功能
                 //,toolbar: true            //是否显示工具栏
                 ,toolbarAutoFixed: (typeof _config.toolbarAutoFixed == "boolean") ? _config.toolbarAutoFixed : true   //工具栏是否自动填充位置
 

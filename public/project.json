@@ -1,5 +1,6 @@
 {
     "AppExInfoDescription" : "set App other information",
+    "enableDeveloperDebug": true,
     "AppExInfo" : {
         "#enableHttpServer" : true,
         "#onlyBuildInServer": false,
@@ -18,7 +19,7 @@
 
         "autoOffset": true,
         "minSize" : [720, 500],
-        "size" : [1440, 900],
+        "size" : [1024, 768],
         "#maxSize" : [1024, 500],
         "hasTitleBar" : true,
         "hasShadow" : true,

@@ -19,6 +19,7 @@
 
     var $Cache = null;                                                                  // 此单元的缓存部分
     var $NoticeCenter = c$.NoticeCenter = $.Callbacks();                                // 消息中心
+    var $NoticeCenterFncMap = c$.NoticeCenterFncMap = {};                               // 消息回调Map视图
     var $Router = c$.RouterMethods = {};                                                // 路由控制器
     var $EditorProvider = c$.EditorProvider = new RomanySoftPlugins.EditorMdServices(); // 编辑器服务
     var $IAPProvider = c$.IAPProvider = new RomanySoftPlugins.IAP.IAP$Helper();         // IAP服务
@@ -29,6 +30,22 @@
 
     // 默认的本地化语言
     c$.language = 'en-US';
+    c$.AcceptMarkdownFileTypes = ['*', 'md', 'mkd', 'mkdown', 'ron', 'markdown'];
+
+    /**
+     * [内部通用消息不重复添加方式]
+     * @param  {[type]} key [关键字]
+     * @param  {[type]} fnc 解析的函数
+     * @return {[type]}     [description]
+     */
+    c$._common_notice_add = function(key, fnc){
+        if(!$NoticeCenterFncMap.hasOwnProperty(key)){
+            $NoticeCenterFncMap[key] = fnc;
+            if(!$NoticeCenter.has($NoticeCenterFncMap[key])){
+                $NoticeCenter.add($NoticeCenterFncMap[key]);
+            }
+        }
+    };
 
 
     // 配置常用的工具类函数
@@ -42,12 +59,14 @@
          * @returns {*}
          */
         $Util.fn_tri18n = function(ele, parm){
+            var content = "";
             try{
-                return (new IntlMessageFormat(ele, c$.language)).format(parm);
+                content = (new IntlMessageFormat(ele, c$.language)).format(parm);
             }catch(e){
-                console.error(e);
-                return "";
+                console.warn(e);
+                content = "";
             }
+            return content;
         }
     };
 
@@ -67,6 +86,7 @@
             ,productPurchased: pre + "productPurchased"           // 商品已经被购买
             ,productRequested: pre + "productRequested"           // 商品发送到服务器，进行验证
             ,productSyncNoAppStore:pre + "productSyncNoAppStore"  // 在非AppStore产品状态下，同步插件信息
+            ,userDropSomeFiles: pre + "userDropSomeFiles"         // 用户拖拽文件到界面上，需要处理
         };
     };
 
@@ -74,31 +94,68 @@
     c$.configInternationalization = function(deferred){
         "use strict";
 
-        // 获取当前浏览器的语言
-        c$.language = window.navigator.language || window.navigator.browserLanguage;
-        function autoSetup(lang, success_cb, fail_cb) {
-            $.ajax({
-                url: "locales/" + lang + ".js",
-                dataType: "script",
-                success: function (data, status) {
-                    console.log(status);
-                    eval(data);
-                    deferred.resolve();
-                    success_cb && success_cb(data, status);
-                },
-                error: function (req, status, err) {
-                    console.log(status);
-                    fail_cb && fail_cb(req, status, err);
+        var loadSuccess = false; // 加载是否成功
+        function loadAppLanguage(languageFileList){
+            function tryLoad(filePath, langKey, next){
+                try{
+                    $.ajax({
+                        url: filePath,
+                        dataType: "script",
+                        success: function(data, status){
+                            console.log(filePath + " [] " + status);
+                            loadSuccess = true;
+                            eval(data);
+                            c$.language = langKey;
+
+                            deferred.resolve();
+                        },
+                        error: function(req, status, err){
+                            console.log(status);
+                            try{
+                                throw "no found.. continue";
+                            }catch(e){
+                                console.warn(e);
+                                next && next();
+                            }
+                        }
+                    })
+                }catch(e){
+                    next && next();
                 }
-            })
+            }
+
+            function gotoTry(langFileList){
+                if($.isArray(langFileList) && langFileList.length > 0){
+                    tryLoad(langFileList[0].path,  langFileList[0].key, function(){
+                        var newLangFileList = langFileList.splice(1);
+                        gotoTry(newLangFileList);
+                    })
+                }
+            }
+
+            //start
+            gotoTry(languageFileList);
         }
 
-        autoSetup(c$.language, function(data, staus){
-            autoSetup(c$.language);
-        }, function(req, status, err){
-            c$.language = "en-US"; // 上线删除
-            autoSetup(c$.language);
-        });
+        var curUserLanguage = b$.App.getUserLanguage() || window.navigator.language || window.navigator.browserLanguage;
+        var rootPath = "locales/";
+
+        var tryLangFileList = [
+            {path : rootPath + curUserLanguage + ".js", key : curUserLanguage},
+            {path : rootPath + curUserLanguage.toLowerCase() + ".js", key : curUserLanguage.toLowerCase()},
+            {path : rootPath + curUserLanguage.split('-')[0] + ".js", key : curUserLanguage.split('-')[0]},
+            {path : rootPath + curUserLanguage.split('-')[0].toLowerCase() + ".js", key : curUserLanguage.split('-')[0].toLowerCase()},
+            {path : rootPath + curUserLanguage.split('_')[0] + ".js", key: curUserLanguage.split('_')[0]},
+            {path : rootPath + curUserLanguage.split('_')[0].toLowerCase() + ".js", key: curUserLanguage.split('_')[0].toLowerCase()},
+            {path : rootPath + "en-US" + ".js", key : "en-US"},
+            {path : rootPath + "en-US".toLowerCase() + ".js", key : "en-US".toLowerCase()},
+            {path : rootPath + "en_US" + ".js", key : "en_US"},
+            {path : rootPath + "en_US".toLowerCase() + ".js", key : "en_US".toLowerCase()},
+            {path : rootPath + "locales/en.js", key: "en"}
+        ];
+
+        // try load
+        loadAppLanguage(tryLangFileList);
     };
 
 
@@ -116,6 +173,7 @@
         $Cache.restore();
     };
 
+    // 配置更新操作
     c$.checkUpdate = function(){
         "use strict";
         b$.checkUpdate();
@@ -238,7 +296,7 @@
                             title : $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-Title"]),
                             prompt: $Util.fn_tri18n(I18N.UI.filePage["SaveDialog-BtnSave"]),
                             fileName : fileObj.name,
-                            types : ['md']
+                            types : c$.AcceptMarkdownFileTypes
 
                         });
                     }
@@ -348,46 +406,53 @@
                     path:in_path
                 });
             }
+            ,pri_importFiles:function(fileObjList){
+                try {
+                    $.each(fileObjList, function(index, obj){
+                        //检测是否已经存在
+                        if(window.$fc.findFileEx({path:obj.filePath})){
+                            console.log('import file exist....');
+                            b$.Notice.dockMessage({
+                                message:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_message"], {path:obj.filePath}),
+                                title:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_title"])
+                            });
+                        }else{
+                            var newFileObj = window.$fc.getNewFileObj();
+                            newFileObj.name = obj.fileName;
+                            newFileObj.path = obj.filePath;
+                            newFileObj.ext = obj.extension;
+                            newFileObj.is_tmp = false;
+                            newFileObj.mustReloadNextTime = true;
+                            window.$fc.addFile(newFileObj, function(){});
+                            window.$fem.addNewFileObj(newFileObj);
+
+                            // 添加到监视器中
+                            c$.UIActions.addFileToWatcher(newFileObj.path);
+
+                            // 发送消息通知
+                            $NoticeCenter.fire(c$.NCMessage.fileChange);
+                        }
+
+                    });
+                } catch (e) {
+                    console.error(e);
+                } finally {
+                    $Router.go_files();
+                }
+            }
             ,importFiles:function(){
+                var t$ = this;
                 b$.importFiles({
                     callback: b$._get_callback(function(info){
                         if(info.success){
-                            $.each(info.filesArray, function(index, obj){
-
-                                //检测是否已经存在
-                                if(window.$fc.findFileEx({path:obj.filePath})){
-                                    console.log('import file exist....');
-                                    b$.Notice.dockMessage({
-                                        message:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_message"], {path:obj.filePath}),
-                                        title:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_title"])
-                                    });
-                                }else{
-                                    var newFileObj = window.$fc.getNewFileObj();
-                                    newFileObj.name = obj.fileName;
-                                    newFileObj.path = obj.filePath;
-                                    newFileObj.ext = obj.extension;
-                                    newFileObj.is_tmp = false;
-                                    newFileObj.mustReloadNextTime = true;
-                                    window.$fc.addFile(newFileObj, function(){});
-                                    window.$fem.addNewFileObj(newFileObj);
-
-                                    // 添加到监视器中
-                                    c$.UIActions.addFileToWatcher(newFileObj.path);
-
-                                    // 发送消息通知
-                                    $NoticeCenter.fire(c$.NCMessage.fileChange);
-                                }
-
-                            });
-
-                            $Router.go_files();
+                            t$.pri_importFiles(info.filesArray);
                         }
                     }, true),
                     title: $Util.fn_tri18n(I18N.UI.filePage["ImportDialog-Title"]),
                     prompt: $Util.fn_tri18n(I18N.UI.filePage["ImportDialog-BtnImport"]),
                     allowOtherFileTypes: true,
                     allowMulSelection: true,
-                    types:["*","md"]
+                    types:c$.AcceptMarkdownFileTypes
                 });
             }
 
@@ -433,42 +498,19 @@
                     callback:b$._get_callback(function(info){
                         if(info.success){
                             try{
-                                $.type(info.filesArray) === "array" && $.each(info.filesArray, function(index, obj){
-
-                                    //检测是否已经存在
-                                    if(window.$fc.findFileEx({path:obj.filePath})){
-                                        b$.Notice.dockMessage({
-                                            message:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_message"], {path:obj.filePath}),
-                                            title:$Util.fn_tri18n(I18N.UI.filePage.Message["existOnImport_title"])
-                                        });
-                                    }else{
-                                        var newFileObj = window.$fc.getNewFileObj();
-                                        newFileObj.name = obj.fileName;
-                                        newFileObj.path = obj.filePath;
-                                        newFileObj.ext = obj.extension;
-                                        newFileObj.is_tmp = false;
-                                        newFileObj.mustReloadNextTime = true;
-                                        window.$fc.addFile(newFileObj, function(){});
-                                        window.$fem.addNewFileObj(newFileObj);
-
-                                        // 添加到监视器中
-                                        c$.UIActions.addFileToWatcher(newFileObj.path);
-
-                                        // 发送消息通知
-                                        $NoticeCenter.fire(c$.NCMessage.fileChange);
-                                    }
-
-                                });
+                                if(!info.hasOwnProperty("filesArray")) return;
+                                //发送消息异步来处理
+                                $NoticeCenter.fire(c$.NCMessage.userDropSomeFiles, info.filesArray);
                             }catch(e){
-
+                                console.error(e);
                             }
                         }
                     }, true),
-                    fileTypes:['md']
+                    fileTypes:c$.AcceptMarkdownFileTypes
                 });
 
                 // 注册缓存数据变更的消息处理函数(来自消息中心)
-                $NoticeCenter.add(function(message, fileId){
+                c$._common_notice_add("$Cache.fileChange",function(message, fileId){
                     if(message === c$.NCMessage.fileChange){
 
                         // 缓存 "file-markdown-cache" 类型的内容
@@ -558,6 +600,7 @@
             console.log("left nav");
 
             var thisPage = '#leftNav';
+            c$.g_current_page = thisPage;
 
             var ele = $(thisPage);
             if($.trim(ele.html()).length == 0){
@@ -607,6 +650,35 @@
             $('#nav-title').html(c$.g_navTitle);
 
             var thisPage = '#view-files';
+            c$.g_current_page = thisPage;
+
+            //////////////////////////////////////////////////////////////////////////////////
+            /// 注册文件拖拽的处理方式
+            c$._common_notice_add(thisPage + c$.NCMessage.userDropSomeFiles, function(message, fileList){
+                if(message === c$.NCMessage.userDropSomeFiles){
+                    if(c$.g_current_page === thisPage){
+                        c$.UIActions.pri_importFiles(fileList);
+                    }
+                }
+            });
+            //////////////////////////////////////////////////////////////////////////////////
+            var ele = $(thisPage);
+
+
+            var _onResize = function(){
+                $(thisPage + ' .contentViewContainer').css({
+                    height: ($(window).height() - 96) + "px",
+                    overflow: "auto"
+                });
+            }
+
+
+            if($.trim(ele.html()).length == 0){
+                $(window).on('resize', function(e){
+                    _onResize();
+                });
+            }
+
             var o = {
                 files: window.$fc.getAllFiles(),
                 promptRenameFileTag: $Util.fn_tri18n(I18N.UI.filePage["PromptRenameFileTag"]),
@@ -619,9 +691,10 @@
                 noteLabel:$Util.fn_tri18n(I18N.UI.filePage["note-label"])
             };
 
-            var ele = $(thisPage);
+
             var html = template('tpl_files', o);
             ele.html(html);
+            _onResize();
 
             $Router.fn_showOrHide(allPageList, false);
             $Router.fn_showOrHide([thisPage], true);
@@ -645,18 +718,55 @@
         $Router.go_workspace = function(fileObj){
             console.log("workspace");
             var thisPage = '#view-workspace';
+            c$.g_current_page = thisPage;
+
+            /**
+             * [隐藏所有Markdown编辑器]
+             * @return {[type]} [description]
+             * @see https://api.jquery.com/hide/
+             */
+            function _hideAllEditor(duration, complete){
+                $(thisPage + " > div").hide(duration || 0, complete || function(){});
+            }
+
+            /**
+             * [显示指定Markdown编辑器]
+             * @param  {[type]} div_id [description]
+             * @return {[type]}        [description]
+             * @see https://api.jquery.com/show/
+             */
+            function _showEditor(div_id, duration, complete){
+                $('#' + div_id).show(duration || 0, complete || function(){});
+            }
+
 
             // 处理标题
             if(null === window.$fc.getLastModifyFileObj()){
                 fileObj = c$.UIActions.crateNewFileObj();
             }
 
+            //////////////////////////////////////////////////////////////////////////////////
             c$.g_curWorkFileObj = fileObj || window.$fc.getLastModifyFileObj();
             c$.g_curWorkFileObj.lastModify = $.now(); // 修改最后编辑的时间
 
 
-            // 注册缓存数据变更的消息处理函数(来自消息中心)
-            $NoticeCenter.add(function(message, fileId){
+            //////////////////////////////////////////////////////////////////////////////////
+            /// 注册文件拖拽的处理方式
+            c$._common_notice_add(thisPage + c$.NCMessage.userDropSomeFiles, function(message, fileList){
+                if(message === c$.NCMessage.userDropSomeFiles){
+                    if(c$.g_current_page === thisPage){
+                        console.log("------- 拖拽文件 -----");
+                        //TODO: 判断文件类型，然后进行操作。
+                        //支持1. 本地图片及文件自动建立链接
+                        //
+                        var _editor = window.$fem.findEditorByFileId(c$.g_curWorkFileObj.id);
+                        _editor.executePlugin("processDropFiles", "drop-plugin/drop-plugin", fileList);
+                    }
+                }
+            });
+
+            /// 注册文件变化的处理方式
+            c$._common_notice_add(thisPage + c$.NCMessage.fileChange, function(message, fileId){
                 if(message === c$.NCMessage.fileChange){
                     if(fileId === c$.g_curWorkFileObj.id){
                         var wk = $Util.fn_tri18n(I18N.UI.workspacePage["Title"]);
@@ -668,10 +778,12 @@
                 }
             });
 
+            //////////////////////////////////////////////////////////////////////////////////
+
             //发送消息通知
             $NoticeCenter.fire(c$.NCMessage.fileChange, c$.g_curWorkFileObj.id);
 
-
+            /////////////////////////////////////////////////////////////////////////////////
             // 初始化内容
             var ele = $(thisPage);
             if($.trim(ele.html()).length == 0){
@@ -679,7 +791,9 @@
                 ele.html(html);
 
                 // 注册与window.$fem 的处理变更方式
-                $NoticeCenter.add(function(message, info){
+                var key_onUserSettingChange = thisPage + c$.NCMessage.userSettingsChange;
+
+                c$._common_notice_add(thisPage + c$.NCMessage.userSettingsChange, function(message, info){
                     if(c$.NCMessage.userSettingsChange === message){
                         // 获取所有激活状态的下载的file 和 editor对象，然后对editor进行变化
                         var editor_list = window.$fem.getAllEditor();
@@ -710,13 +824,14 @@
             // 查找对应的Editor是否存在
             var div_id = c$.UIActions.getEditorDivEle(c$.g_curWorkFileObj.id);
 
-            if(window.$fem.findEditorByFileId(c$.g_curWorkFileObj.id)){
-                // 使用CSS来控制显示
-                $(thisPage + " > div").addClass("mui-hide").removeClass("mui-show");
-                $('#' + div_id).addClass("mui-show").removeClass("mui-hide");
-            }else{
-                $(thisPage + " > div").removeClass("mui-show").addClass("mui-hide");
+            _hideAllEditor(); // 隐藏所有markdown编辑器
 
+            var _foundExistEditor = window.$fem.findEditorByFileId(c$.g_curWorkFileObj.id);
+            if(_foundExistEditor){
+                _showEditor(div_id, 0, function(){
+                    _foundExistEditor.resize(); //存在的Editor需要刷新，重置界面大小
+                });
+            }else{ // 否则，需要创建新的Editor来处理
                 // 先创建Div
                 var html_ele = '<div id="' + div_id + '"' +' class="mui-panel"></div>';
                 ele.append(html_ele);
@@ -760,6 +875,7 @@
                         this['toolBar_offset'] = this.editor.offset();
                         c$.g_curWorkFileObj.lastModify = $.now(); // 修改最后编辑的时间
                         c$.g_curWorkFileObj.changed = false;
+                        this.resize();
                     }
                     ,onchange:function(){
                         var oldContent = c$.g_curWorkFileObj.content_utf8;
@@ -795,6 +911,24 @@
                     ,onscroll:function(){
 
                     }
+                    ,onpreviewing:function(){
+                        console.log("call onpreviewing -----------");
+                        $('#app-header').hide();
+                        this.resize();
+                    }
+                    ,onpreviewed:function(){
+                        console.log("call onpreviewed -----------");
+                        $('#app-header').show();
+                        this.resize();
+                    }
+                    ,onfullscreen:function(){
+                        console.log("call onfullscreen -----------");
+
+                    }
+                    ,onfullscreenExit:function(){
+                        console.log("call onfullscreenExit -----------");
+
+                    }
                 });
 
                 newEditorMd.setToolbarAutoFixed(false);
@@ -805,25 +939,27 @@
                     var editor_list = window.$fem.getAllEditor();
                     $.each(editor_list, function(index, editorObj){
                         try{
+
                             if(_.has(editorObj, "alreadyFixed")){
                                 if((editorObj["alreadyFixed"] == false) && !force){}
                                 else{
-                                    var toolbar = editorObj.toolbar;
-                                    var editor = editorObj.editor;
+                                   if(_.has(editorObj, "toolbar")){
+                                       var toolbar = editorObj["toolbar"];
+                                       var editor = editorObj["editor"];
 
-                                    toolbar.css({
-                                        position: "fixed",
-                                        "overflow-y": "auto",
-                                        //width: editor.width() + "px",
-                                        top: $('#app-header').height() + "px",
-                                        left: editorObj["toolBar_offset"].left + "px"
-                                    });
+                                       toolbar && toolbar.css({
+                                           position: "fixed",
+                                           "overflow-y": "auto",
+                                           //width: editor.width() + "px",
+                                           top: $('#app-header').height() + "px",
+                                           left: editorObj["toolBar_offset"].left + "px"
+                                       });
 
-                                    editorObj["alreadyFixed"] = true;
+                                       editorObj["alreadyFixed"] = true;
+                                   }
+
                                 }
                             }
-                            //console.log('customAutoFixedHandler');
-
                         }catch(e){console.log(e)}
                     });
                 };
@@ -839,11 +975,13 @@
 
             $Router.fn_showOrHide(allPageList, false);
             $Router.fn_showOrHide([thisPage], true, false, function(){
-                // 修正编辑器的尺寸
+                /**
+                 * 修正编辑器的尺寸
+                 */
                 try{
-                    window.$fem.findEditorByFileId(_curFileObj.id).resize();
+                    var curEditor = window.$fem.findEditorByFileId(c$.g_curWorkFileObj.id);
+                    curEditor.resize();
                 }catch(e){}
-
             });
 
         };
@@ -855,9 +993,21 @@
             $('#nav-title').html(c$.g_navTitle);
 
             var thisPage = '#view-settings';
+            c$.g_current_page = thisPage;
 
             var ele = $(thisPage);
             if($.trim(ele.html()).length == 0){
+                var _onResize = function(){
+                    $(thisPage + ' .contentViewContainer').css({
+                        height: ($(window).height() - 96) + "px",
+                        overflow: "auto"
+                    });
+                }
+
+                $(window).on('resize', function(e){
+                    _onResize();
+                });
+
 
                 var map_settings2Product = c$.Map_Settings2Product;
 
@@ -873,7 +1023,7 @@
 
                     initialize: function(){
                         var t = this;
-                        $NoticeCenter.add(function(message){
+                        c$._common_notice_add(thisPage + c$.NCMessage.userSettingsChange,function(message){
                             if(c$.NCMessage.userSettingsChange === message) {
                                 t.render();
                             }
@@ -885,7 +1035,32 @@
                         var o = {
                             btnReset:$Util.fn_tri18n(I18N.UI.settingsPage["btnReset"]),
                             btnApply:$Util.fn_tri18n(I18N.UI.settingsPage["btnApply"]),
-                            document:{
+                            "system":{
+                                label:$Util.fn_tri18n(I18N.UI.settingsPage.system["label"]) || "System",
+                                userLanguage:$Util.fn_tri18n(I18N.UI.settingsPage.system["userLanguage"]) || "Language",
+                                data: function(){
+                                    var obj = {};
+                                    try{
+                                        var dataInfo = b$.App.getCompatibleGoogleLanguageInfo();
+                                        var localLang = dataInfo.local;
+
+                                        /// 需要過濾一下, 查看界面部分支持的哪些語言
+                                        /// 當前桌面支持的語言有：[英文，中文，日文，德文]
+                                        obj.keys = ["en", "ja", "de", "zh-CN", "zh-TW"];//Object.keys(localLang);
+                                        obj.local = localLang;
+                                        obj.curUserLanguage = c$.language;
+
+
+                                    }catch(e){
+                                        console.error(e);
+                                    }
+
+                                    return obj;
+                                }()
+
+                            },
+
+                            "document":{
                                 label:$Util.fn_tri18n(I18N.UI.settingsPage.document["label"]),
                                 keys: Object.keys(m.documentSetting),
                                 key2I18NMap:(function(){
@@ -901,7 +1076,7 @@
                                 dataKey:"documentSetting"
                             },
 
-                            editor:{
+                            "editor":{
                                 label:$Util.fn_tri18n(I18N.UI.settingsPage.editor["label"]),
                                 keys:Object.keys(m.editorSetting),
                                 key2I18NMap:(function(){
@@ -922,6 +1097,18 @@
                         this.$el.html(html);
 
                         $('#nav-title').html(c$.g_navTitle);
+
+                        _onResize();
+
+                        $('.system-lang-select').on('change', function(evt){
+                            console.log("----------change----------------");
+                            var changeLang = $(this).val();
+                            if(changeLang !== b$.App.getUserLanguage()){
+                                b$.App.setUserLanguage(changeLang);
+                                alert($Util.fn_tri18n(I18N.UI.settingsPage.system["languageChangeTip"]));
+                            }
+                        });
+
                         return this;
                     },
 
@@ -1024,15 +1211,28 @@
             $('#nav-title').html(c$.g_navTitle);
 
             var thisPage = '#view-plugins';
+            c$.g_current_page = thisPage;
+
             var ele = $(thisPage);
 
             if($.trim(ele.html()).length == 0){
+                var _onResize = function(){
+                    $(thisPage + ' .contentViewContainer').css({
+                        height: ($(window).height() - 96) + "px",
+                        overflow: "auto"
+                    });
+                }
+
+                $(window).on('resize', function(e){
+                    _onResize();
+                });
+
                 var pageView = Backbone.View.extend({
                     el: ele,
 
                     initialize:function(){
                         var t = this;
-                        $NoticeCenter.add(function(message){
+                        c$._common_notice_add(thisPage + c$.NCMessage.userSettingsChange, function(message){
                             if(c$.NCMessage.userSettingsChange === message) {
                                 t.render();
                             }
@@ -1067,6 +1267,8 @@
 
                         $('#nav-title').html(c$.g_navTitle);
 
+                        _onResize();
+
                         return this;
                     }
                 });
@@ -1074,6 +1276,7 @@
                 var sv = new pageView();
                 sv.render();
             }
+
 
 
             $Router.fn_showOrHide(allPageList, false);
@@ -1088,10 +1291,22 @@
             $('#nav-title').html(c$.g_navTitle);
 
             var thisPage = '#view-about';
+            c$.g_current_page = thisPage;
 
 
             var ele = $(thisPage);
             if($.trim(ele.html()).length == 0){
+                var _onResize = function(){
+                    $(thisPage + ' .contentViewContainer').css({
+                        height: ($(window).height() - 96) + "px",
+                        overflow: "auto"
+                    });
+                }
+
+                $(window).on('resize', function(e){
+                    _onResize();
+                });
+
 
                 //动态创建Div来加载
                 $('<div id="tmp-load-div"style="display: none"></div>').appendTo('#g-wrapper');
@@ -1119,6 +1334,8 @@
 
                 var html = template('tpl_about', o);
                 ele.html(html);
+
+                _onResize();
 
                 //配置点击showlicense的动作
                 $('#view-about a.third-show').on("click", function(){
@@ -1165,6 +1382,7 @@
         // 全局路由
         c$.g_router = Router(myRoutes);
         c$.g_router.init();
+        c$.g_current_page = null;  // 当前所在的页面
 
     };
 
@@ -1358,7 +1576,7 @@
         "use strict";
 
         // 注册缓存数据变更的消息处理函数(来自消息中心)
-        $NoticeCenter.add(function(message){
+        c$._common_notice_add("configUserSettings", function(message){
             if(c$.NCMessage.userSettingsChange === message){
                 // 缓存 "user-settings-cache" 类型的内容
                 // 备注: 当前，默认仅支持一个，使用default 作为key
@@ -1426,7 +1644,7 @@
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // 注册数据变更的消息处理函数(来自消息中心)
-        $NoticeCenter.add(function(message, info){
+        c$._common_notice_add("configIAP",function(message, info){
 
             c$.Map_Settings2Product = {
                 // [商品]文档控制部分

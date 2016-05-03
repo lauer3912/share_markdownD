@@ -62,6 +62,11 @@ var I18N;
             "Title": "設置",
             btnReset: "重置",
             btnApply: "應用",
+            system:{
+                label: "[系統]",
+                userLanguage: "界面語言",
+                languageChangeTip: "需要重新啟動應用程序"
+            },
             document: {
                 label: "[文檔設置]",
                 maxDocumentCount: "最大同時編輯文檔數量",

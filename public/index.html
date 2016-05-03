@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" type="text/css" media="screen" href="styles/fonts/style.css" />
     <!--<link rel="stylesheet" type="text/css" media="screen" href="common/editor.md/1.4.5/editor.md/css/editormd.min.css"/>-->
-    <link rel="stylesheet" type="text/css" media="screen" href="common/editor.md/1.5.0/editor.md/css/editormd.min.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="common/editor.md/1.6.0/editor.md/css/editormd.min.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="common/mui/mui-0.1.2/css/mui.min.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="common/jquery/PrintArea/css/jquery.printarea.css"/>
 
@@ -63,7 +63,7 @@
 
 <script id="tpl_files" type='text/html'>
     <!--文件视图-->
-    <div class="mui-panel">
+    <div class="mui-panel contentViewContainer">
         <ul>
                     {{each files as obj i}}
             <li data-id="fileId_{{ obj.id }}">
@@ -120,7 +120,7 @@
             {{ /if }}
         </div>
 
-        <div class="mui-panel">
+        <div class="mui-panel contentViewContainer">
             {{each plugins as obj i}}
             <section class="mui-row">
                 <div class="mui-col-md-1">
@@ -157,7 +157,27 @@
 
 <script id="tpl_settings" type='text/html'>
     <!--设置-->
-    <div class="mui-panel">
+    <div class="mui-panel contentViewContainer">
+        <section class="mui-z3 mui-panel">
+            <legend>{{ system.label }}</legend>
+            <ul>
+                <li class="mui-row">
+                    <i class="mui-col-lg-6 mui-col-md-6 mui-col-xs-6"><label>{{system.userLanguage}}</label></i>
+                    <i class="mui-col-md-2 mui-col-xs-2">
+                        <select class="system-lang-select">
+                            {{ each system.data.keys as key i}}
+                                {{ if system.data.curUserLanguage === key}}
+                            <option value="{{key}}" selected="selected"> {{ system.data.local[key] }}</option>
+                                {{ else }}
+                            <option value="{{key}}"> {{ system.data.local[key] }}</option>
+                                {{ /if }}
+                            {{ /each }}
+                        </select>
+                    </i>
+                </li>
+            </ul>
+        </section>
+
         <section class="mui-z3 mui-panel">
             <legend>{{ document.label }}</legend>
             <ul>
@@ -209,7 +229,7 @@
 
 <script id="tpl_about" type='text/html'>
     <!--关于部分-->
-    <div class="mui-panel">
+    <div class="mui-panel contentViewContainer">
         <div class="mui-row">
             <div class="mui-col-lg-1 mui-col-md-1 mui-col-xs-2">
                 <img src="{{ logoUrl }}" />
@@ -263,7 +283,7 @@
 
 <!--基础库加载-->
 <script src="common/underscore/1.8.3/underscore-min.js"></script>
-<script src="common/jquery/jquery-1.12.2.min.js" onload="(function(){ try{window.$ = window.jQuery = module.exports;}catch(e){}})();"></script>
+<script src="common/jquery/jquery-1.12.3.min.js" onload="(function(){ try{window.$ = window.jQuery = module.exports;}catch(e){}})();"></script>
 <script src="common/jquery/jquery-json/2.5.1/jquery.json.min.js"></script>
 <script src="common/jquery/layer-v1.9.3/layer.js"></script>
 <script src="common/jquery/PrintArea/js/jquery.printarea.js"></script>
@@ -280,7 +300,7 @@
 <script src="common/director.js/director.min.js"></script>
 <script src="common/mui/mui-0.1.2/js/mui.min.js"></script>
 <script src="common/artTemplate/3.0/template.js"></script>
-<script src="common/editor.md/1.5.0/editor.md/editormd.min.js"></script>
+<script src="common/editor.md/1.6.0/editor.md/editormd.js"></script>
 
 <!--引入Backbone.js-->
 <script src="common/Backbone.js/1.2.3/backbone-min.js"></script>
