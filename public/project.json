@@ -1,6 +1,6 @@
 {
     "AppExInfoDescription" : "set App other information",
-    "enableDeveloperDebug": true,
+    "#enableDeveloperDebug": true,
     "AppExInfo" : {
         "#enableHttpServer" : true,
         "#onlyBuildInServer": false,

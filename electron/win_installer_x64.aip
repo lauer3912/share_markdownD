@@ -5,169 +5,163 @@
     <ROW Property="AI_FINDEXE_TITLE" Value="Select the installation package for [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
     <ROW Property="AI_ThemeStyle" Value="default" MultiBuildValue="DefaultBuild:style4" MsiKey="AI_ThemeStyle"/>
     <ROW Property="ALLUSERS" Value="1"/>
-    <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName][|ProductVersion]." ValueLocId="*"/>
+    <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="app.romanysoft@gmail.com"/>
-    <ROW Property="ARPHELPLINK" Value="https://github.com/Romanysoft/CSSDesigner/issues"/>
+    <ROW Property="ARPHELPLINK" Value="http://romanysoft.github.io/MarkdownD/issues"/>
     <ROW Property="ARPPRODUCTICON" Value="app.exe" Type="8"/>
-    <ROW Property="ARPURLINFOABOUT" Value="http://romanysoft.github.io/CSSDesigner"/>
-    <ROW Property="ARPURLUPDATEINFO" Value="http://romanysoft.github.io/CSSDesigner/versions"/>
+    <ROW Property="ARPURLINFOABOUT" Value="http://romanysoft.github.io/MarkdownD"/>
+    <ROW Property="ARPURLUPDATEINFO" Value="http://romanysoft.github.io/MarkdownD/versions"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="Romanysoft"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:v"/>
-    <ROW Property="ProductCode" Value="1033:{0AFDCA41-B3E2-4BE1-AA80-F11D0269EABA} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{28112B5C-1CC9-43F1-B2CE-4EFFCFFBFAB8} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
-    <ROW Property="ProductName" Value="CSSDesigner-v[|ProductVersion]"/>
-    <ROW Property="ProductVersion" Value="4.4" Type="32"/>
+    <ROW Property="ProductName" Value="MarkdownD-v[|ProductVersion]"/>
+    <ROW Property="ProductVersion" Value="3.0.0" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
-    <ROW Property="UpgradeCode" Value="{71F838EA-C5FD-4219-9D90-87379DF6C55D}"/>
+    <ROW Property="UpgradeCode" Value="{46672E91-1ED5-4E13-A0F3-87884E2632DB}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT" MultiBuildValue="DefaultBuild:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT64Display" MultiBuildValue="DefaultBuild:Windows XP x64" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT64Display" MultiBuildValue="DefaultBuild:Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="DefaultBuild:32 bit Operating Systems" ValueLocId="-"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
-    <ROW Directory="AppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="APPDAT~1|AppDataFolder" IsPseudoRoot="1"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="Far_Dir" Directory_Parent="z_Dir" DefaultDir="Far"/>
-    <ROW Directory="InternetExplorer_Dir" Directory_Parent="Microsoft_Dir" DefaultDir="INTERN~1|Internet Explorer"/>
-    <ROW Directory="Microsoft_Dir" Directory_Parent="AppDataFolder" DefaultDir="MICROS~1|Microsoft"/>
-    <ROW Directory="QuickLaunch_Dir" Directory_Parent="InternetExplorer_Dir" DefaultDir="QUICKL~1|Quick Launch"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
-    <ROW Directory="default_app_Dir" Directory_Parent="resources_Dir" DefaultDir="DEFAUL~1|default_app"/>
     <ROW Directory="locales_Dir" Directory_Parent="APPDIR" DefaultDir="locales"/>
     <ROW Directory="resources_Dir" Directory_Parent="APPDIR" DefaultDir="RESOUR~1|resources"/>
     <ROW Directory="tools_Dir" Directory_Parent="resources_Dir" DefaultDir="tools"/>
     <ROW Directory="z_Dir" Directory_Parent="tools_Dir" DefaultDir="7z"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_ExePath" ComponentId="{76C6DA70-0DC7-4953-9D04-468DD5D147A7}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
-    <ROW Component="CSSDesigner.exe" ComponentId="{2522A3C6-9A14-441D-A025-448C13CE1FE8}" Directory_="APPDIR" Attributes="256" KeyPath="CSSDesigner.exe"/>
+    <ROW Component="AI_ExePath" ComponentId="{2F37F0F1-2F43-41E5-9F98-9D86E3814588}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
+    <ROW Component="MarkdownD.exe" ComponentId="{266E9C41-961C-4F46-8ECF-68592BB2EDE7}" Directory_="APPDIR" Attributes="256" KeyPath="MarkdownD.exe"/>
     <ROW Component="ProductInformation" ComponentId="{C93B3499-7DAE-495A-AC02-A0DC4035FDDD}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="QuickLaunch" ComponentId="{CBBA3251-571C-47D7-9A81-49876E481FD4}" Directory_="QuickLaunch_Dir" Attributes="0"/>
-    <ROW Component="SHORTCUTDIR" ComponentId="{7CC6CB7A-B14B-4B65-AB18-8C44C05D1CD9}" Directory_="SHORTCUTDIR" Attributes="0"/>
-    <ROW Component="ZipEng.hlf" ComponentId="{C4A0EF8F-0B35-4755-BBE0-237902BFA730}" Directory_="Far_Dir" Attributes="0" KeyPath="ZipEng.hlf" Type="0"/>
-    <ROW Component="ZipFar.dll" ComponentId="{205E9DA8-6C98-449C-933E-95E93B4500F6}" Directory_="Far_Dir" Attributes="0" KeyPath="ZipFar.dll"/>
-    <ROW Component="ZipFar64.dll" ComponentId="{A6B4405B-45BE-4152-8EFD-7CEB39C6F208}" Directory_="Far_Dir" Attributes="256" KeyPath="ZipFar64.dll"/>
-    <ROW Component="am.pak" ComponentId="{4AA080AE-5B9F-4880-8A1B-F00475F83A9A}" Directory_="locales_Dir" Attributes="0" KeyPath="am.pak" Type="0"/>
-    <ROW Component="atom.asar" ComponentId="{81F9799F-79E7-4092-BEDF-0FE032E04CC3}" Directory_="resources_Dir" Attributes="0" KeyPath="atom.asar" Type="0"/>
-    <ROW Component="content_resources_200_percent.pak" ComponentId="{B6CA1BEE-4143-4075-954C-44036BAAE738}" Directory_="APPDIR" Attributes="0" KeyPath="content_resources_200_percent.pak" Type="0"/>
-    <ROW Component="d3dcompiler_47.dll" ComponentId="{D7F634F8-D30A-4124-B3E0-3884463D98CB}" Directory_="APPDIR" Attributes="256" KeyPath="d3dcompiler_47.dll"/>
-    <ROW Component="ffmpeg.dll" ComponentId="{8B5B7266-0816-4A92-B2E8-B655E1FA78D6}" Directory_="APPDIR" Attributes="256" KeyPath="ffmpeg.dll"/>
-    <ROW Component="libEGL.dll" ComponentId="{58F715F6-7E9C-43B5-B492-D44427683D4E}" Directory_="APPDIR" Attributes="256" KeyPath="libEGL.dll"/>
-    <ROW Component="libGLESv2.dll" ComponentId="{5FE1CA7D-3CB3-4B5F-979F-FE00BA5F818F}" Directory_="APPDIR" Attributes="256" KeyPath="libGLESv2.dll"/>
-    <ROW Component="main.min.js" ComponentId="{BA18952A-D68F-4627-BD80-760E8DA470CE}" Directory_="default_app_Dir" Attributes="0" KeyPath="main.min.js" Type="0"/>
-    <ROW Component="msvcp120.dll" ComponentId="{C5A72CAB-EDBB-40D0-B33E-D9B086ABD901}" Directory_="APPDIR" Attributes="256" KeyPath="msvcp120.dll"/>
-    <ROW Component="msvcr120.dll" ComponentId="{8D5667B9-69DD-41DD-B712-5F7789EB0078}" Directory_="APPDIR" Attributes="256" KeyPath="msvcr120.dll"/>
-    <ROW Component="node.dll" ComponentId="{61A49E5B-E3AC-41F7-BD22-FC47FE9024FB}" Directory_="APPDIR" Attributes="256" KeyPath="node.dll"/>
-    <ROW Component="vccorlib120.dll" ComponentId="{C6428FEA-2BF6-4270-9B5D-8CFA20A788F8}" Directory_="APPDIR" Attributes="256" KeyPath="vccorlib120.dll"/>
-    <ROW Component="xinput1_3.dll" ComponentId="{716FAE20-AF49-4A19-A639-A9D4B54761D2}" Directory_="APPDIR" Attributes="256" KeyPath="xinput1_3.dll"/>
-    <ROW Component="za.dll" ComponentId="{5B64D676-FD85-44DE-BA5B-FD9A29D8700E}" Directory_="z_Dir" Attributes="0" KeyPath="za.dll"/>
-    <ROW Component="za.exe" ComponentId="{4E84FB3D-A14F-436D-9CBC-5F4549DD29FE}" Directory_="z_Dir" Attributes="0" KeyPath="za.exe"/>
-    <ROW Component="zxa.dll" ComponentId="{11074BCA-1CB0-4798-841F-71E7786D11F7}" Directory_="z_Dir" Attributes="0" KeyPath="zxa.dll"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{B793D2A3-AD71-4392-BC6B-F852ECD1C1D6}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="ZipEng.hlf" ComponentId="{3EBEF9E5-9ACE-4E09-BB8D-72A9D0A72273}" Directory_="Far_Dir" Attributes="0" KeyPath="ZipEng.hlf" Type="0"/>
+    <ROW Component="ZipFar.dll" ComponentId="{7452C375-683B-41B7-8FD4-44BF9257231C}" Directory_="Far_Dir" Attributes="0" KeyPath="ZipFar.dll"/>
+    <ROW Component="ZipFar64.dll" ComponentId="{A6D817B0-5A6E-4904-B912-91964803F348}" Directory_="Far_Dir" Attributes="256" KeyPath="ZipFar64.dll"/>
+    <ROW Component="am.pak" ComponentId="{FE8F24EC-9FBD-4151-BA0A-C4C9C0A43ADD}" Directory_="locales_Dir" Attributes="0" KeyPath="am.pak" Type="0"/>
+    <ROW Component="atom.asar" ComponentId="{7B5D4AB4-13A5-4148-AA48-C810E9AED31C}" Directory_="resources_Dir" Attributes="0" KeyPath="app.zip" Type="0"/>
+    <ROW Component="content_resources_200_percent.pak" ComponentId="{02778475-E90F-4495-BA47-5DB83C17292F}" Directory_="APPDIR" Attributes="0" KeyPath="content_resources_200_percent.pak" Type="0"/>
+    <ROW Component="d3dcompiler_47.dll" ComponentId="{C2DC9938-4ED3-4A56-8FD7-9FB1AAEC2A40}" Directory_="APPDIR" Attributes="256" KeyPath="d3dcompiler_47.dll"/>
+    <ROW Component="ffmpeg.dll" ComponentId="{19F571F0-7753-41EA-BAFB-45A15BFD1ACE}" Directory_="APPDIR" Attributes="256" KeyPath="ffmpeg.dll"/>
+    <ROW Component="libEGL.dll" ComponentId="{1C94AB21-EE20-4D2F-BD5A-D7A894509A67}" Directory_="APPDIR" Attributes="256" KeyPath="libEGL.dll"/>
+    <ROW Component="libGLESv2.dll" ComponentId="{C08388D6-9AD3-44A5-84FD-7813314AD892}" Directory_="APPDIR" Attributes="256" KeyPath="libGLESv2.dll"/>
+    <ROW Component="msvcp120.dll" ComponentId="{4C1635C8-269E-4E94-A63A-120037084415}" Directory_="APPDIR" Attributes="256" KeyPath="msvcp120.dll"/>
+    <ROW Component="msvcr120.dll" ComponentId="{1994B492-98F2-436D-8789-215D3A943AD6}" Directory_="APPDIR" Attributes="256" KeyPath="msvcr120.dll"/>
+    <ROW Component="node.dll" ComponentId="{A228F082-1D1F-4632-B106-C04EA076DE39}" Directory_="APPDIR" Attributes="256" KeyPath="node.dll"/>
+    <ROW Component="vccorlib120.dll" ComponentId="{917B0BBD-FFC2-40EF-9EAF-D1E51B31BAA7}" Directory_="APPDIR" Attributes="256" KeyPath="vccorlib120.dll"/>
+    <ROW Component="xinput1_3.dll" ComponentId="{BD122814-11A9-4ADC-998E-A0FCB6D02379}" Directory_="APPDIR" Attributes="256" KeyPath="xinput1_3.dll"/>
+    <ROW Component="za.dll" ComponentId="{BDEB0C61-FED6-427C-94C7-4545126302DB}" Directory_="z_Dir" Attributes="0" KeyPath="za.dll"/>
+    <ROW Component="za.exe" ComponentId="{F52F9F7B-884D-402C-A37E-70AEB8EA597A}" Directory_="z_Dir" Attributes="0" KeyPath="za.exe"/>
+    <ROW Component="zxa.dll" ComponentId="{A1B3C92E-A243-454C-BB73-C728468C2B51}" Directory_="z_Dir" Attributes="0" KeyPath="zxa.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_ExePath CSSDesigner.exe ProductInformation QuickLaunch SHORTCUTDIR ZipEng.hlf ZipFar.dll ZipFar64.dll am.pak atom.asar content_resources_200_percent.pak d3dcompiler_47.dll ffmpeg.dll libEGL.dll libGLESv2.dll main.min.js msvcp120.dll msvcr120.dll node.dll vccorlib120.dll xinput1_3.dll za.dll za.exe zxa.dll"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_ExePath MarkdownD.exe ProductInformation SHORTCUTDIR ZipEng.hlf ZipFar.dll ZipFar64.dll am.pak atom.asar content_resources_200_percent.pak d3dcompiler_47.dll ffmpeg.dll libEGL.dll libGLESv2.dll msvcp120.dll msvcr120.dll node.dll vccorlib120.dll xinput1_3.dll za.dll za.exe zxa.dll"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="CSSDesigner.exe" Component_="CSSDesigner.exe" FileName="CSSDES~1.EXE|CSSDesigner.exe" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\CSSDesigner.exe" SelfReg="false" NextFile="am.pak" DigSign="true"/>
-    <ROW File="LICENSE" Component_="content_resources_200_percent.pak" FileName="LICENSE" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\LICENSE" SelfReg="false" NextFile="LICENSES.chromium.html"/>
-    <ROW File="LICENSES.chromium.html" Component_="content_resources_200_percent.pak" FileName="LICENS~1.HTM|LICENSES.chromium.html" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\LICENSES.chromium.html" SelfReg="false" NextFile="msvcp120.dll"/>
-    <ROW File="ZipEng.hlf" Component_="ZipEng.hlf" FileName="7-ZipEng.hlf" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\tools\7z\Far\7-ZipEng.hlf" SelfReg="false" NextFile="ZipEng.lng"/>
-    <ROW File="ZipEng.lng" Component_="ZipEng.hlf" FileName="7-ZipEng.lng" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\tools\7z\Far\7-ZipEng.lng" SelfReg="false" NextFile="ZipFar.dll"/>
-    <ROW File="ZipFar.dll" Component_="ZipFar.dll" FileName="7-ZipFar.dll" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\tools\7z\Far\7-ZipFar.dll" SelfReg="false" NextFile="ZipFar64.dll"/>
-    <ROW File="ZipFar64.dll" Component_="ZipFar64.dll" FileName="7-ZIPF~1.DLL|7-ZipFar64.dll" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\tools\7z\Far\7-ZipFar64.dll" SelfReg="false" NextFile="ZipRus.hlf"/>
-    <ROW File="ZipRus.hlf" Component_="ZipEng.hlf" FileName="7-ZipRus.hlf" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\tools\7z\Far\7-ZipRus.hlf" SelfReg="false" NextFile="ZipRus.lng"/>
-    <ROW File="ZipRus.lng" Component_="ZipEng.hlf" FileName="7-ZipRus.lng" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\tools\7z\Far\7-ZipRus.lng" SelfReg="false" NextFile="zToFar.ini"/>
-    <ROW File="am.pak" Component_="am.pak" FileName="am.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\am.pak" SelfReg="false" NextFile="ar.pak"/>
-    <ROW File="app.zip" Component_="atom.asar" FileName="app.zip" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\app.zip" SelfReg="false" NextFile="main.min.js"/>
-    <ROW File="ar.pak" Component_="am.pak" FileName="ar.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\ar.pak" SelfReg="false" NextFile="bg.pak"/>
-    <ROW File="atom.asar" Component_="atom.asar" FileName="ATOM~1.ASA|atom.asar" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\atom.asar" SelfReg="false" NextFile="content_resources_200_percent.pak"/>
-    <ROW File="bg.pak" Component_="am.pak" FileName="bg.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\bg.pak" SelfReg="false" NextFile="bn.pak"/>
-    <ROW File="bn.pak" Component_="am.pak" FileName="bn.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\bn.pak" SelfReg="false" NextFile="ca.pak"/>
-    <ROW File="ca.pak" Component_="am.pak" FileName="ca.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\ca.pak" SelfReg="false" NextFile="cs.pak"/>
-    <ROW File="content_resources_200_percent.pak" Component_="content_resources_200_percent.pak" FileName="CONTEN~1.PAK|content_resources_200_percent.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\content_resources_200_percent.pak" SelfReg="false" NextFile="content_shell.pak"/>
-    <ROW File="content_shell.pak" Component_="content_resources_200_percent.pak" FileName="CONTEN~2.PAK|content_shell.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\content_shell.pak" SelfReg="false" NextFile="d3dcompiler_47.dll"/>
-    <ROW File="cs.pak" Component_="am.pak" FileName="cs.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\cs.pak" SelfReg="false" NextFile="da.pak"/>
-    <ROW File="d3dcompiler_47.dll" Component_="d3dcompiler_47.dll" FileName="D3DCOM~1.DLL|d3dcompiler_47.dll" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\d3dcompiler_47.dll" SelfReg="false" NextFile="ffmpeg.dll"/>
-    <ROW File="da.pak" Component_="am.pak" FileName="da.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\da.pak" SelfReg="false" NextFile="de.pak"/>
-    <ROW File="de.pak" Component_="am.pak" FileName="de.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\de.pak" SelfReg="false" NextFile="el.pak"/>
-    <ROW File="el.pak" Component_="am.pak" FileName="el.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\el.pak" SelfReg="false" NextFile="enGB.pak"/>
-    <ROW File="enGB.pak" Component_="am.pak" FileName="en-GB.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\en-GB.pak" SelfReg="false" NextFile="enUS.pak"/>
-    <ROW File="enUS.pak" Component_="am.pak" FileName="en-US.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\en-US.pak" SelfReg="false" NextFile="es419.pak"/>
-    <ROW File="es.pak" Component_="am.pak" FileName="es.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\es.pak" SelfReg="false" NextFile="et.pak"/>
-    <ROW File="es419.pak" Component_="am.pak" FileName="es-419.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\es-419.pak" SelfReg="false" NextFile="es.pak"/>
-    <ROW File="et.pak" Component_="am.pak" FileName="et.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\et.pak" SelfReg="false" NextFile="fa.pak"/>
-    <ROW File="fa.pak" Component_="am.pak" FileName="fa.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\fa.pak" SelfReg="false" NextFile="fakebidi.pak"/>
-    <ROW File="fakebidi.pak" Component_="am.pak" FileName="FAKE-B~1.PAK|fake-bidi.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\fake-bidi.pak" SelfReg="false" NextFile="fi.pak"/>
-    <ROW File="far7z.reg" Component_="ZipEng.hlf" FileName="far7z.reg" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\tools\7z\Far\far7z.reg" SelfReg="false" NextFile="far7z.txt"/>
-    <ROW File="far7z.txt" Component_="ZipEng.hlf" FileName="far7z.txt" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\tools\7z\Far\far7z.txt" SelfReg="false"/>
-    <ROW File="ffmpeg.dll" Component_="ffmpeg.dll" FileName="ffmpeg.dll" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\ffmpeg.dll" SelfReg="false" NextFile="icudtl.dat"/>
-    <ROW File="fi.pak" Component_="am.pak" FileName="fi.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\fi.pak" SelfReg="false" NextFile="fil.pak"/>
-    <ROW File="fil.pak" Component_="am.pak" FileName="fil.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\fil.pak" SelfReg="false" NextFile="fr.pak"/>
-    <ROW File="fr.pak" Component_="am.pak" FileName="fr.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\fr.pak" SelfReg="false" NextFile="gu.pak"/>
-    <ROW File="gu.pak" Component_="am.pak" FileName="gu.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\gu.pak" SelfReg="false" NextFile="he.pak"/>
-    <ROW File="he.pak" Component_="am.pak" FileName="he.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\he.pak" SelfReg="false" NextFile="hi.pak"/>
-    <ROW File="hi.pak" Component_="am.pak" FileName="hi.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\hi.pak" SelfReg="false" NextFile="hr.pak"/>
-    <ROW File="hr.pak" Component_="am.pak" FileName="hr.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\hr.pak" SelfReg="false" NextFile="hu.pak"/>
-    <ROW File="hu.pak" Component_="am.pak" FileName="hu.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\hu.pak" SelfReg="false" NextFile="id.pak"/>
-    <ROW File="icudtl.dat" Component_="content_resources_200_percent.pak" FileName="icudtl.dat" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\icudtl.dat" SelfReg="false" NextFile="libEGL.dll"/>
-    <ROW File="id.pak" Component_="am.pak" FileName="id.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\id.pak" SelfReg="false" NextFile="it.pak"/>
-    <ROW File="it.pak" Component_="am.pak" FileName="it.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\it.pak" SelfReg="false" NextFile="ja.pak"/>
-    <ROW File="ja.pak" Component_="am.pak" FileName="ja.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\ja.pak" SelfReg="false" NextFile="kn.pak"/>
-    <ROW File="kn.pak" Component_="am.pak" FileName="kn.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\kn.pak" SelfReg="false" NextFile="ko.pak"/>
-    <ROW File="ko.pak" Component_="am.pak" FileName="ko.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\ko.pak" SelfReg="false" NextFile="lt.pak"/>
-    <ROW File="libEGL.dll" Component_="libEGL.dll" FileName="libEGL.dll" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\libEGL.dll" SelfReg="false" NextFile="libGLESv2.dll"/>
-    <ROW File="libGLESv2.dll" Component_="libGLESv2.dll" FileName="LIBGLE~1.DLL|libGLESv2.dll" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\libGLESv2.dll" SelfReg="false" NextFile="LICENSE"/>
-    <ROW File="lt.pak" Component_="am.pak" FileName="lt.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\lt.pak" SelfReg="false" NextFile="lv.pak"/>
-    <ROW File="lv.pak" Component_="am.pak" FileName="lv.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\lv.pak" SelfReg="false" NextFile="ml.pak"/>
-    <ROW File="main.min.js" Component_="main.min.js" FileName="MAINMI~1.JS|main.min.js" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\default_app\main.min.js" SelfReg="false" NextFile="package.json_3"/>
-    <ROW File="ml.pak" Component_="am.pak" FileName="ml.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\ml.pak" SelfReg="false" NextFile="mr.pak"/>
-    <ROW File="mr.pak" Component_="am.pak" FileName="mr.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\mr.pak" SelfReg="false" NextFile="ms.pak"/>
-    <ROW File="ms.pak" Component_="am.pak" FileName="ms.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\ms.pak" SelfReg="false" NextFile="nb.pak"/>
-    <ROW File="msvcp120.dll" Component_="msvcp120.dll" FileName="msvcp120.dll" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\msvcp120.dll" SelfReg="false" NextFile="msvcr120.dll"/>
-    <ROW File="msvcr120.dll" Component_="msvcr120.dll" FileName="msvcr120.dll" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\msvcr120.dll" SelfReg="false" NextFile="natives_blob.bin"/>
-    <ROW File="natives_blob.bin" Component_="content_resources_200_percent.pak" FileName="NATIVE~1.BIN|natives_blob.bin" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\natives_blob.bin" SelfReg="false" NextFile="node.dll"/>
-    <ROW File="nb.pak" Component_="am.pak" FileName="nb.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\nb.pak" SelfReg="false" NextFile="nl.pak"/>
-    <ROW File="nl.pak" Component_="am.pak" FileName="nl.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\nl.pak" SelfReg="false" NextFile="pl.pak"/>
-    <ROW File="node.dll" Component_="node.dll" FileName="node.dll" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\node.dll" SelfReg="false" NextFile="snapshot_blob.bin"/>
-    <ROW File="package.json_3" Component_="main.min.js" FileName="PACKAG~1.JSO|package.json" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\default_app\package.json" SelfReg="false" NextFile="za.dll"/>
-    <ROW File="pl.pak" Component_="am.pak" FileName="pl.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\pl.pak" SelfReg="false" NextFile="ptBR.pak"/>
-    <ROW File="ptBR.pak" Component_="am.pak" FileName="pt-BR.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\pt-BR.pak" SelfReg="false" NextFile="ptPT.pak"/>
-    <ROW File="ptPT.pak" Component_="am.pak" FileName="pt-PT.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\pt-PT.pak" SelfReg="false" NextFile="ro.pak"/>
-    <ROW File="ro.pak" Component_="am.pak" FileName="ro.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\ro.pak" SelfReg="false" NextFile="ru.pak"/>
-    <ROW File="ru.pak" Component_="am.pak" FileName="ru.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\ru.pak" SelfReg="false" NextFile="sk.pak"/>
-    <ROW File="sk.pak" Component_="am.pak" FileName="sk.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\sk.pak" SelfReg="false" NextFile="sl.pak"/>
-    <ROW File="sl.pak" Component_="am.pak" FileName="sl.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\sl.pak" SelfReg="false" NextFile="sr.pak"/>
-    <ROW File="snapshot_blob.bin" Component_="content_resources_200_percent.pak" FileName="SNAPSH~1.BIN|snapshot_blob.bin" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\snapshot_blob.bin" SelfReg="false" NextFile="ui_resources_200_percent.pak"/>
-    <ROW File="sr.pak" Component_="am.pak" FileName="sr.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\sr.pak" SelfReg="false" NextFile="sv.pak"/>
-    <ROW File="sv.pak" Component_="am.pak" FileName="sv.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\sv.pak" SelfReg="false" NextFile="sw.pak"/>
-    <ROW File="sw.pak" Component_="am.pak" FileName="sw.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\sw.pak" SelfReg="false" NextFile="ta.pak"/>
-    <ROW File="ta.pak" Component_="am.pak" FileName="ta.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\ta.pak" SelfReg="false" NextFile="te.pak"/>
-    <ROW File="te.pak" Component_="am.pak" FileName="te.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\te.pak" SelfReg="false" NextFile="th.pak"/>
-    <ROW File="th.pak" Component_="am.pak" FileName="th.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\th.pak" SelfReg="false" NextFile="tr.pak"/>
-    <ROW File="tr.pak" Component_="am.pak" FileName="tr.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\tr.pak" SelfReg="false" NextFile="uk.pak"/>
-    <ROW File="ui_resources_200_percent.pak" Component_="content_resources_200_percent.pak" FileName="UI_RES~1.PAK|ui_resources_200_percent.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\ui_resources_200_percent.pak" SelfReg="false" NextFile="vccorlib120.dll"/>
-    <ROW File="uk.pak" Component_="am.pak" FileName="uk.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\uk.pak" SelfReg="false" NextFile="vi.pak"/>
-    <ROW File="vccorlib120.dll" Component_="vccorlib120.dll" FileName="VCCORL~1.DLL|vccorlib120.dll" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\vccorlib120.dll" SelfReg="false" NextFile="version"/>
-    <ROW File="version" Component_="content_resources_200_percent.pak" FileName="version" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\version" SelfReg="false" NextFile="xinput1_3.dll"/>
-    <ROW File="vi.pak" Component_="am.pak" FileName="vi.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\vi.pak" SelfReg="false" NextFile="zhCN.pak"/>
-    <ROW File="xinput1_3.dll" Component_="xinput1_3.dll" FileName="XINPUT~1.DLL|xinput1_3.dll" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\xinput1_3.dll" SelfReg="false" NextFile="app.zip"/>
-    <ROW File="zToFar.ini" Component_="ZipEng.hlf" FileName="7zToFar.ini" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\tools\7z\Far\7zToFar.ini" SelfReg="false" NextFile="far7z.reg"/>
-    <ROW File="za.dll" Component_="za.dll" FileName="7za.dll" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\tools\7z\7za.dll" SelfReg="false" NextFile="za.exe"/>
-    <ROW File="za.exe" Component_="za.exe" FileName="7za.exe" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\tools\7z\7za.exe" SelfReg="false" NextFile="zxa.dll" DigSign="true"/>
-    <ROW File="zhCN.pak" Component_="am.pak" FileName="zh-CN.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\zh-CN.pak" SelfReg="false" NextFile="zhTW.pak"/>
-    <ROW File="zhTW.pak" Component_="am.pak" FileName="zh-TW.pak" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\locales\zh-TW.pak" SelfReg="false" NextFile="atom.asar"/>
-    <ROW File="zxa.dll" Component_="zxa.dll" FileName="7zxa.dll" Attributes="0" SourcePath="..\..\cssdesinger\release\win\tmp32\resources\tools\7z\7zxa.dll" SelfReg="false" NextFile="ZipEng.hlf"/>
+    <ROW File="LICENSE" Component_="content_resources_200_percent.pak" FileName="LICENSE" Attributes="0" SourcePath="..\release\win\tmp64\LICENSE" SelfReg="false" NextFile="LICENSES.chromium.html"/>
+    <ROW File="LICENSES.chromium.html" Component_="content_resources_200_percent.pak" FileName="LICENS~1.HTM|LICENSES.chromium.html" Attributes="0" SourcePath="..\release\win\tmp64\LICENSES.chromium.html" SelfReg="false" NextFile="am.pak"/>
+    <ROW File="MarkdownD.exe" Component_="MarkdownD.exe" FileName="MARKDO~1.EXE|MarkdownD.exe" Attributes="0" SourcePath="..\release\win\tmp64\MarkdownD.exe" SelfReg="false" NextFile="content_resources_200_percent.pak" DigSign="true"/>
+    <ROW File="ZipEng.hlf" Component_="ZipEng.hlf" FileName="7-ZipEng.hlf" Attributes="0" SourcePath="..\release\win\tmp64\resources\tools\7z\Far\7-ZipEng.hlf" SelfReg="false" NextFile="ZipEng.lng"/>
+    <ROW File="ZipEng.lng" Component_="ZipEng.hlf" FileName="7-ZipEng.lng" Attributes="0" SourcePath="..\release\win\tmp64\resources\tools\7z\Far\7-ZipEng.lng" SelfReg="false" NextFile="ZipFar.dll"/>
+    <ROW File="ZipFar.dll" Component_="ZipFar.dll" FileName="7-ZipFar.dll" Attributes="0" SourcePath="..\release\win\tmp64\resources\tools\7z\Far\7-ZipFar.dll" SelfReg="false" NextFile="ZipFar64.dll"/>
+    <ROW File="ZipFar64.dll" Component_="ZipFar64.dll" FileName="7-ZIPF~1.DLL|7-ZipFar64.dll" Attributes="0" SourcePath="..\release\win\tmp64\resources\tools\7z\Far\7-ZipFar64.dll" SelfReg="false" NextFile="ZipRus.hlf"/>
+    <ROW File="ZipRus.hlf" Component_="ZipEng.hlf" FileName="7-ZipRus.hlf" Attributes="0" SourcePath="..\release\win\tmp64\resources\tools\7z\Far\7-ZipRus.hlf" SelfReg="false" NextFile="ZipRus.lng"/>
+    <ROW File="ZipRus.lng" Component_="ZipEng.hlf" FileName="7-ZipRus.lng" Attributes="0" SourcePath="..\release\win\tmp64\resources\tools\7z\Far\7-ZipRus.lng" SelfReg="false" NextFile="zToFar.ini"/>
+    <ROW File="am.pak" Component_="am.pak" FileName="am.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\am.pak" SelfReg="false" NextFile="ar.pak"/>
+    <ROW File="app.zip" Component_="atom.asar" FileName="app.zip" Attributes="0" SourcePath="..\release\win\tmp64\resources\app.zip" SelfReg="false" NextFile="za.dll"/>
+    <ROW File="ar.pak" Component_="am.pak" FileName="ar.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\ar.pak" SelfReg="false" NextFile="bg.pak"/>
+    <ROW File="bg.pak" Component_="am.pak" FileName="bg.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\bg.pak" SelfReg="false" NextFile="bn.pak"/>
+    <ROW File="bn.pak" Component_="am.pak" FileName="bn.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\bn.pak" SelfReg="false" NextFile="ca.pak"/>
+    <ROW File="ca.pak" Component_="am.pak" FileName="ca.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\ca.pak" SelfReg="false" NextFile="cs.pak"/>
+    <ROW File="content_resources_200_percent.pak" Component_="content_resources_200_percent.pak" FileName="CONTEN~1.PAK|content_resources_200_percent.pak" Attributes="0" SourcePath="..\release\win\tmp64\content_resources_200_percent.pak" SelfReg="false" NextFile="content_shell.pak"/>
+    <ROW File="content_shell.pak" Component_="content_resources_200_percent.pak" FileName="CONTEN~2.PAK|content_shell.pak" Attributes="0" SourcePath="..\release\win\tmp64\content_shell.pak" SelfReg="false" NextFile="d3dcompiler_47.dll"/>
+    <ROW File="cs.pak" Component_="am.pak" FileName="cs.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\cs.pak" SelfReg="false" NextFile="da.pak"/>
+    <ROW File="d3dcompiler_47.dll" Component_="d3dcompiler_47.dll" FileName="D3DCOM~1.DLL|d3dcompiler_47.dll" Attributes="0" SourcePath="..\release\win\tmp64\d3dcompiler_47.dll" SelfReg="false" NextFile="ffmpeg.dll"/>
+    <ROW File="da.pak" Component_="am.pak" FileName="da.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\da.pak" SelfReg="false" NextFile="de.pak"/>
+    <ROW File="de.pak" Component_="am.pak" FileName="de.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\de.pak" SelfReg="false" NextFile="el.pak"/>
+    <ROW File="default_app.asar" Component_="atom.asar" FileName="DEFAUL~1.ASA|default_app.asar" Attributes="0" SourcePath="..\release\win\tmp64\resources\default_app.asar" SelfReg="false" NextFile="electron.asar"/>
+    <ROW File="el.pak" Component_="am.pak" FileName="el.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\el.pak" SelfReg="false" NextFile="enGB.pak"/>
+    <ROW File="electron.asar" Component_="atom.asar" FileName="ELECTR~1.ASA|electron.asar" Attributes="0" SourcePath="..\release\win\tmp64\resources\electron.asar" SelfReg="false"/>
+    <ROW File="enGB.pak" Component_="am.pak" FileName="en-GB.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\en-GB.pak" SelfReg="false" NextFile="enUS.pak"/>
+    <ROW File="enUS.pak" Component_="am.pak" FileName="en-US.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\en-US.pak" SelfReg="false" NextFile="es419.pak"/>
+    <ROW File="es.pak" Component_="am.pak" FileName="es.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\es.pak" SelfReg="false" NextFile="et.pak"/>
+    <ROW File="es419.pak" Component_="am.pak" FileName="es-419.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\es-419.pak" SelfReg="false" NextFile="es.pak"/>
+    <ROW File="et.pak" Component_="am.pak" FileName="et.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\et.pak" SelfReg="false" NextFile="fa.pak"/>
+    <ROW File="fa.pak" Component_="am.pak" FileName="fa.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\fa.pak" SelfReg="false" NextFile="fakebidi.pak"/>
+    <ROW File="fakebidi.pak" Component_="am.pak" FileName="FAKE-B~1.PAK|fake-bidi.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\fake-bidi.pak" SelfReg="false" NextFile="fi.pak"/>
+    <ROW File="far7z.reg" Component_="ZipEng.hlf" FileName="far7z.reg" Attributes="0" SourcePath="..\release\win\tmp64\resources\tools\7z\Far\far7z.reg" SelfReg="false" NextFile="far7z.txt"/>
+    <ROW File="far7z.txt" Component_="ZipEng.hlf" FileName="far7z.txt" Attributes="0" SourcePath="..\release\win\tmp64\resources\tools\7z\Far\far7z.txt" SelfReg="false" NextFile="default_app.asar"/>
+    <ROW File="ffmpeg.dll" Component_="ffmpeg.dll" FileName="ffmpeg.dll" Attributes="0" SourcePath="..\release\win\tmp64\ffmpeg.dll" SelfReg="false" NextFile="icudtl.dat"/>
+    <ROW File="fi.pak" Component_="am.pak" FileName="fi.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\fi.pak" SelfReg="false" NextFile="fil.pak"/>
+    <ROW File="fil.pak" Component_="am.pak" FileName="fil.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\fil.pak" SelfReg="false" NextFile="fr.pak"/>
+    <ROW File="fr.pak" Component_="am.pak" FileName="fr.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\fr.pak" SelfReg="false" NextFile="gu.pak"/>
+    <ROW File="gu.pak" Component_="am.pak" FileName="gu.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\gu.pak" SelfReg="false" NextFile="he.pak"/>
+    <ROW File="he.pak" Component_="am.pak" FileName="he.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\he.pak" SelfReg="false" NextFile="hi.pak"/>
+    <ROW File="hi.pak" Component_="am.pak" FileName="hi.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\hi.pak" SelfReg="false" NextFile="hr.pak"/>
+    <ROW File="hr.pak" Component_="am.pak" FileName="hr.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\hr.pak" SelfReg="false" NextFile="hu.pak"/>
+    <ROW File="hu.pak" Component_="am.pak" FileName="hu.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\hu.pak" SelfReg="false" NextFile="id.pak"/>
+    <ROW File="icudtl.dat" Component_="content_resources_200_percent.pak" FileName="icudtl.dat" Attributes="0" SourcePath="..\release\win\tmp64\icudtl.dat" SelfReg="false" NextFile="libEGL.dll"/>
+    <ROW File="id.pak" Component_="am.pak" FileName="id.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\id.pak" SelfReg="false" NextFile="it.pak"/>
+    <ROW File="it.pak" Component_="am.pak" FileName="it.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\it.pak" SelfReg="false" NextFile="ja.pak"/>
+    <ROW File="ja.pak" Component_="am.pak" FileName="ja.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\ja.pak" SelfReg="false" NextFile="kn.pak"/>
+    <ROW File="kn.pak" Component_="am.pak" FileName="kn.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\kn.pak" SelfReg="false" NextFile="ko.pak"/>
+    <ROW File="ko.pak" Component_="am.pak" FileName="ko.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\ko.pak" SelfReg="false" NextFile="lt.pak"/>
+    <ROW File="libEGL.dll" Component_="libEGL.dll" FileName="libEGL.dll" Attributes="0" SourcePath="..\release\win\tmp64\libEGL.dll" SelfReg="false" NextFile="libGLESv2.dll"/>
+    <ROW File="libGLESv2.dll" Component_="libGLESv2.dll" FileName="LIBGLE~1.DLL|libGLESv2.dll" Attributes="0" SourcePath="..\release\win\tmp64\libGLESv2.dll" SelfReg="false" NextFile="LICENSE"/>
+    <ROW File="lt.pak" Component_="am.pak" FileName="lt.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\lt.pak" SelfReg="false" NextFile="lv.pak"/>
+    <ROW File="lv.pak" Component_="am.pak" FileName="lv.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\lv.pak" SelfReg="false" NextFile="ml.pak"/>
+    <ROW File="ml.pak" Component_="am.pak" FileName="ml.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\ml.pak" SelfReg="false" NextFile="mr.pak"/>
+    <ROW File="mr.pak" Component_="am.pak" FileName="mr.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\mr.pak" SelfReg="false" NextFile="ms.pak"/>
+    <ROW File="ms.pak" Component_="am.pak" FileName="ms.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\ms.pak" SelfReg="false" NextFile="nb.pak"/>
+    <ROW File="msvcp120.dll" Component_="msvcp120.dll" FileName="msvcp120.dll" Attributes="0" SourcePath="..\release\win\tmp64\msvcp120.dll" SelfReg="false" NextFile="msvcr120.dll"/>
+    <ROW File="msvcr120.dll" Component_="msvcr120.dll" FileName="msvcr120.dll" Attributes="0" SourcePath="..\release\win\tmp64\msvcr120.dll" SelfReg="false" NextFile="natives_blob.bin"/>
+    <ROW File="natives_blob.bin" Component_="content_resources_200_percent.pak" FileName="NATIVE~1.BIN|natives_blob.bin" Attributes="0" SourcePath="..\release\win\tmp64\natives_blob.bin" SelfReg="false" NextFile="node.dll"/>
+    <ROW File="nb.pak" Component_="am.pak" FileName="nb.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\nb.pak" SelfReg="false" NextFile="nl.pak"/>
+    <ROW File="nl.pak" Component_="am.pak" FileName="nl.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\nl.pak" SelfReg="false" NextFile="pl.pak"/>
+    <ROW File="node.dll" Component_="node.dll" FileName="node.dll" Attributes="0" SourcePath="..\release\win\tmp64\node.dll" SelfReg="false" NextFile="snapshot_blob.bin"/>
+    <ROW File="pl.pak" Component_="am.pak" FileName="pl.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\pl.pak" SelfReg="false" NextFile="ptBR.pak"/>
+    <ROW File="ptBR.pak" Component_="am.pak" FileName="pt-BR.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\pt-BR.pak" SelfReg="false" NextFile="ptPT.pak"/>
+    <ROW File="ptPT.pak" Component_="am.pak" FileName="pt-PT.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\pt-PT.pak" SelfReg="false" NextFile="ro.pak"/>
+    <ROW File="ro.pak" Component_="am.pak" FileName="ro.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\ro.pak" SelfReg="false" NextFile="ru.pak"/>
+    <ROW File="ru.pak" Component_="am.pak" FileName="ru.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\ru.pak" SelfReg="false" NextFile="sk.pak"/>
+    <ROW File="sk.pak" Component_="am.pak" FileName="sk.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\sk.pak" SelfReg="false" NextFile="sl.pak"/>
+    <ROW File="sl.pak" Component_="am.pak" FileName="sl.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\sl.pak" SelfReg="false" NextFile="sr.pak"/>
+    <ROW File="snapshot_blob.bin" Component_="content_resources_200_percent.pak" FileName="SNAPSH~1.BIN|snapshot_blob.bin" Attributes="0" SourcePath="..\release\win\tmp64\snapshot_blob.bin" SelfReg="false" NextFile="ui_resources_200_percent.pak"/>
+    <ROW File="sr.pak" Component_="am.pak" FileName="sr.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\sr.pak" SelfReg="false" NextFile="sv.pak"/>
+    <ROW File="sv.pak" Component_="am.pak" FileName="sv.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\sv.pak" SelfReg="false" NextFile="sw.pak"/>
+    <ROW File="sw.pak" Component_="am.pak" FileName="sw.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\sw.pak" SelfReg="false" NextFile="ta.pak"/>
+    <ROW File="ta.pak" Component_="am.pak" FileName="ta.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\ta.pak" SelfReg="false" NextFile="te.pak"/>
+    <ROW File="te.pak" Component_="am.pak" FileName="te.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\te.pak" SelfReg="false" NextFile="th.pak"/>
+    <ROW File="th.pak" Component_="am.pak" FileName="th.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\th.pak" SelfReg="false" NextFile="tr.pak"/>
+    <ROW File="tr.pak" Component_="am.pak" FileName="tr.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\tr.pak" SelfReg="false" NextFile="uk.pak"/>
+    <ROW File="ui_resources_200_percent.pak" Component_="content_resources_200_percent.pak" FileName="UI_RES~1.PAK|ui_resources_200_percent.pak" Attributes="0" SourcePath="..\release\win\tmp64\ui_resources_200_percent.pak" SelfReg="false" NextFile="vccorlib120.dll"/>
+    <ROW File="uk.pak" Component_="am.pak" FileName="uk.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\uk.pak" SelfReg="false" NextFile="vi.pak"/>
+    <ROW File="vccorlib120.dll" Component_="vccorlib120.dll" FileName="VCCORL~1.DLL|vccorlib120.dll" Attributes="0" SourcePath="..\release\win\tmp64\vccorlib120.dll" SelfReg="false" NextFile="version_1"/>
+    <ROW File="version_1" Component_="content_resources_200_percent.pak" FileName="version" Attributes="0" SourcePath="..\release\win\tmp64\version" SelfReg="false" NextFile="xinput1_3.dll"/>
+    <ROW File="vi.pak" Component_="am.pak" FileName="vi.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\vi.pak" SelfReg="false" NextFile="zhCN.pak"/>
+    <ROW File="xinput1_3.dll" Component_="xinput1_3.dll" FileName="XINPUT~1.DLL|xinput1_3.dll" Attributes="0" SourcePath="..\release\win\tmp64\xinput1_3.dll" SelfReg="false" NextFile="app.zip"/>
+    <ROW File="zToFar.ini" Component_="ZipEng.hlf" FileName="7zToFar.ini" Attributes="0" SourcePath="..\release\win\tmp64\resources\tools\7z\Far\7zToFar.ini" SelfReg="false" NextFile="far7z.reg"/>
+    <ROW File="za.dll" Component_="za.dll" FileName="7za.dll" Attributes="0" SourcePath="..\release\win\tmp64\resources\tools\7z\7za.dll" SelfReg="false" NextFile="za.exe"/>
+    <ROW File="za.exe" Component_="za.exe" FileName="7za.exe" Attributes="0" SourcePath="..\release\win\tmp64\resources\tools\7z\7za.exe" SelfReg="false" NextFile="zxa.dll" DigSign="true"/>
+    <ROW File="zhCN.pak" Component_="am.pak" FileName="zh-CN.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\zh-CN.pak" SelfReg="false" NextFile="zhTW.pak"/>
+    <ROW File="zhTW.pak" Component_="am.pak" FileName="zh-TW.pak" Attributes="0" SourcePath="..\release\win\tmp64\locales\zh-TW.pak" SelfReg="false" NextFile="msvcp120.dll"/>
+    <ROW File="zxa.dll" Component_="zxa.dll" FileName="7zxa.dll" Attributes="0" SourcePath="..\release\win\tmp64\resources\tools\7z\7zxa.dll" SelfReg="false" NextFile="ZipEng.hlf"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="..\..\cssdesinger\release\win" PackageFileName="setup" Languages="en" InstallationType="2" CabsLocation="1" CompressCabs="false" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="4" PackageType="1" FilesInsideExe="true" ExeIconPath="..\..\cssdesinger\electron\bundle.app\Contents\Resources\app.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" UseLargeSchema="true" ExeName="[|ProductName]-win32-x86-setup" UACExecutionLevel="2"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="..\release\win" PackageFileName="setup" Languages="en" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExeIconPath="bundle.app\Contents\Resources\app.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" UseLargeSchema="true" ExeName="[|ProductName]-win32-x64-setup"/>
     <ATTRIBUTE name="CurrentBuild" value="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
@@ -178,7 +172,7 @@
     <ROW TimeStampUrl="http://timestamp.verisign.com/scripts/timstamp.dll" SignerDescription="[|ProductName]" SignOptions="0" SignTool="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FirewallExceptionComponent">
-    <ROW FirewallException="CSSDesinger" DisplayName="CSSDesinger" GroupName="Romanysoft" Enabled="1" Scope="*" Condition="((?CSSDesigner.exe=2) AND ($CSSDesigner.exe=3))" Profiles="0" AppPath="[#CSSDesigner.exe]" Port="*" Protocol="ANY"/>
+    <ROW FirewallException="MarkdownD" DisplayName="MarkdownD" GroupName="Romanysoft" Enabled="1" Scope="*" Condition="((?MarkdownD.exe=2) AND ($MarkdownD.exe=3))" Profiles="0" AppPath="[#MarkdownD.exe]" Port="*" Protocol="ANY"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
@@ -259,7 +253,6 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
-    <ROW Directory_="QuickLaunch_Dir" Component_="QuickLaunch" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
@@ -283,21 +276,20 @@
     <ROW Action="AI_FwRollback" Type="11521" Source="NetFirewall.dll" Target="OnFwRollback" WithoutSeq="true"/>
     <ROW Action="AI_FwUninstall" Type="1" Source="NetFirewall.dll" Target="OnFwUninstall" AdditionalSeq="AI_DATA_SETTER_2"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
-    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#CSSDesigner.exe]"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#MarkdownD.exe]"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
-    <ROW Action="OpenUrl" Type="2" Source="viewer.exe" Target="http://romanysoft.github.io/CSSDesigner/" Options="1"/>
+    <ROW Action="OpenUrl" Type="2" Source="viewer.exe" Target="http://romanysoft.github.io/MarkdownD/buy" Options="1"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="MarkdownDelectronbundle.appContentsResourcesapp.exe" SourcePath="..\..\MarkdownD/electron/bundle.app/Contents/Resources/app.ico" Index="0"/>
-    <ROW Name="app.exe" SourcePath="..\..\cssdesinger\electron\bundle.app\Contents\Resources\app.ico" Index="0"/>
+    <ROW Name="app.exe" SourcePath="bundle.app\Contents\Resources\app.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -331,12 +323,13 @@
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT40Display]" DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLockPermComponent">
-    <ROW LockObject="CSSDesigner.exe" Table="File" User="Everyone" Permission="1880096767" Flags="0"/>
+    <ROW LockObject="MarkdownD.exe" Table="File" User="Everyone" Permission="1880096767" Flags="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
     <ROW Signature_="AI_EXE_PATH_CU" Root="1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
@@ -348,10 +341,8 @@
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="CSSDesigner" Directory_="SHORTCUTDIR" Name="CSSDES~1|CSSDesigner" Component_="CSSDesigner.exe" Target="[#CSSDesigner.exe]" Description="Is a full-featured and powerful CSS designing app." Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="CSSDesigner_1" Directory_="DesktopFolder" Name="CSSDES~1|CSSDesigner" Component_="CSSDesigner.exe" Target="[#CSSDesigner.exe]" Description="Is a full-featured and powerful CSS designing app." Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="CSSDesigner_2" Directory_="QuickLaunch_Dir" Name="CSSDES~1|CSSDesigner" Component_="CSSDesigner.exe" Target="[#CSSDesigner.exe]" Description="Is a full-featured and powerful CSS designing app." Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="SHORTCUTDIR" Directory_="APPDIR" Name="SHORTC~1|SHORTCUTDIR" Component_="AI_ExePath" Target="[SHORTCUTDIR]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
+    <ROW Shortcut="MarkdownD" Directory_="SHORTCUTDIR" Name="MARKDO~1|MarkdownD" Component_="MarkdownD.exe" Target="[#MarkdownD.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="MarkdownD_1" Directory_="DesktopFolder" Name="MARKDO~1|MarkdownD" Component_="MarkdownD.exe" Target="[#MarkdownD.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
@@ -361,6 +352,6 @@
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.SynchronizedFolderComponent">
-    <ROW Directory_="APPDIR" SourcePath="..\..\cssdesinger\release\win\tmp32" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6"/>
+    <ROW Directory_="APPDIR" SourcePath="..\release\win\tmp64" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6"/>
   </COMPONENT>
 </DOCUMENT>

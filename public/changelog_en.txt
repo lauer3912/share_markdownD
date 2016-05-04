@@ -1,0 +1,15 @@
+2016-04-29 08:06:48
+
+[Upgrade] It can enhance drag and drop capabilities, and distinguish file types and the current state of the page.
+[Upgrade] Workspace, supports drag and drop images and other documents to establish quick links and image preview.
+[Upgrade] PDF exports without displaying file names.
+[Upgrade] Strengthened Workspace Editor¡¯s built-in functions.
+[Upgrade] Provide Simplified Chinese, Traditional Chinese, Japanese, German operation interface.
+[Fixed] Fixed the user interface layout confusing issue, when switch to other Markdown files.
+[Fixed] Fixed the preview area on the right layout error problem, when a current Markdown files which is in full-screen preview to switch to another Markdown document. 
+[Fixed] Fixed problems when preview Markdown files without navigation toolbar hidden.
+[Fixed] Fixed the problem of chaotic contents when Markdown files export to PDF.
+[Fixed] Support files which use [ "markdown", "md", "mkd", "markdown", "ron"] as extension names.
+[Fixed] Fixed the desktop notifications no pop problem.
+[Fixed] Fixed the drag and drop files into the workspace¡¯s failure problem.
+[Fixed] File¡¯s Change triggered message delivered repeatedly in a multi-file editing mode.

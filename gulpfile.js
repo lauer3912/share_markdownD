@@ -88,25 +88,7 @@ var releaseDir = "./release";   // 产品发布目录
 
 
 gulp.task('build_public_del', function (cb) {
-    return gulp.src(destDir, {read: false})
-		.pipe(clean({force: true}));
-
-
-    var deferred = Q.defer();
-
-    var cleanor = clean({force: true});
-    cleanor.on('finish', function(){
-        console.log('### always delete dir... ####');
-        deferred.resolve();
-    })
-
-    // 刪除原先文件
-    gulp.src(destDir, {read: false})
-        .pipe(cleanor);
-
-    Q.when(deferred.promise).then(function(){
-        cb && cb();
-    });
+    return g_common_del(destDir);
 });
 
 gulp.task('public_main', function () {
@@ -128,7 +110,11 @@ gulp.task('public_copy', function () {
     gulp.src('./public/3rdparty/**')
         .pipe(gulp.dest(destDir + '/3rdparty'));
 
-    gulp.src('./public/common/**')
+    gulp.src(['./public/common/**/*', '!./public/common/**/*.js'])
+        .pipe(gulp.dest(destDir + '/common'));    
+    
+    gulp.src('./public/common/**/*.js')
+        .pipe(uglify())
         .pipe(gulp.dest(destDir + '/common'));
 
     gulp.src('./public/images/**')
@@ -441,7 +427,7 @@ function g_npm_romanysoftSDK(tmp_destDir){
     return gulp.src(forElectronDir + '/package.json')
         .pipe(replace(/for_electronSDK/g, validAppName))  //修改app目录下面的resources\app\package.json 修改name
         .pipe(gulp.dest(tmp_destDir + '/resources/app/'))
-        .pipe(install());
+        .pipe(install({production: true}));
 }
 
 /**
@@ -655,6 +641,49 @@ function g_common_del(destPath){
 
             });
      return deferred.promise;
+}
+
+/**
+ * 公共函数 npm install
+ */
+function g_npm_install(tmp_destDir, cb) {
+    var deferred = Q.defer();
+    var exe_npm = 'npm.cmd',
+        commandList = [],
+        options = {},
+        errorBuf = null;
+    
+    options.env = process.env;
+    options.cwd = tmp_destDir;
+
+    console.log("options.cwd = ", options.cwd)    
+
+    RTYUtils.queue()
+        .next(function(next){
+            commandList = [
+              "install"
+            ];
+
+            console.log(commandList);
+            sysChildProcess.execFile(exe_npm, commandList, options, function(err){
+              next && next(err);
+            });
+
+        })
+        .done(function(err) {
+            if (err) {
+              console.log("Error:", err);
+              console.log(err.toString("utf8"));
+              deferred.reject(err);
+            }else{
+              cb ? cb (function(){
+                deferred.resolve();
+              }) : deferred.resolve();
+            }
+        });
+
+
+    return deferred.promise;
 }
 
 // Windows准备打包
@@ -883,6 +912,7 @@ gulp.task('package_win_getInstaller_squirrel', function (cb) {
 gulp.task('package_win_process_zipAndOther', function(){
   var tmp_destDir = g_getOSTempDestDir();
   var _refCallback = null;
+    
   var deferred = Q.defer();
   RTYUtils.queue()
           .next(function(next){
@@ -901,18 +931,23 @@ gulp.task('package_win_process_zipAndOther', function(){
               console.log("validAppName = ", validAppName);
               gulp.src(bootElectronDir + '/package.json')
                   .pipe(replace(/BOOTELECTRON/g, validAppName))  //修改app目录下面的resources\default_app\package.json 修改name
-                  .pipe(gulp.dest(tmp_destDir + '/resources/default_app/').on('finish', function(){
+                  .pipe(gulp.dest(tmp_destDir + '/resources/default_app/').on('finish', function () {
+                          
                       //3.0.0 asar default_app
                       var srcDir = tmp_destDir + '/resources/default_app/',
-                          destDir =  tmp_destDir + '/resources/';
-                      g_make_asar(srcDir, destDir, 'default_app', function(_cb){
-                          _refCallback = _cb;
-                          //3.0.1 delete "default_app" dir
-                          console.log('.... must delete default_app dir....');
-                          if(g_common_del(srcDir)){
-                             next && next();
-                          }
-                      })
+                          destDir = tmp_destDir + '/resources/';
+
+                      g_npm_install(srcDir, function () {
+                          g_make_asar(srcDir, destDir, 'default_app', function (_cb) {
+                              _refCallback = _cb;
+                              //3.0.1 delete "default_app" dir
+                              console.log('.... must delete default_app dir....');
+                              if (g_common_del(srcDir)) {
+                                  next && next();
+                              }
+                          });
+                      })    
+
                   }))
           })
           .next(function(next){
@@ -1201,15 +1236,18 @@ gulp.task('package-linux-zip', function(){
                     .pipe(gulp.dest(tmp_destDir + '/resources/default_app/').on('finish', function(){
                         //3.0.0 asar default_app
                         var srcDir = tmp_destDir + '/resources/default_app/',
-                            destDir =  tmp_destDir + '/resources/';
-                        g_make_asar(srcDir, destDir, 'default_app', function(_cb){
-                            _refCallback = _cb;
-                            //3.0.1 delete "default_app" dir
-                            console.log('.... must delete default_app dir....');
-                            if(g_common_del(srcDir)){
-                               next && next();
-                            }
-                        })
+                            destDir = tmp_destDir + '/resources/';
+                        
+                        g_npm_install(srcDir, function () {
+                            g_make_asar(srcDir, destDir, 'default_app', function (_cb) {
+                                _refCallback = _cb;
+                                //3.0.1 delete "default_app" dir
+                                console.log('.... must delete default_app dir....');
+                                if (g_common_del(srcDir)) {
+                                    next && next();
+                                }
+                            });
+                        });  
                     }))
             })
             .next(function(next){

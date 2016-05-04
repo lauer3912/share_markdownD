@@ -1,0 +1,1 @@
+com.romanysoft.app.macos.MarkdownD.plugin.如果你希望编辑文档的时候，具备自动保存功能，那么，请购买If you want to edit a document when AutoSave feature, then please purchase
