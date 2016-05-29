@@ -11,13 +11,15 @@
  * 					   兼容Electron文件拖拽功能的集成
  * 					   优化本地的Dock.Notice 部分的代码
  * 2016年5月2日15:54:27 添加兼容Google翻译的语言标识 getCompatibleGoogleLanguageInfo
+ * 2016年5月26日12:03:31 添加b$.pN = b$.pNative = require("remote").require("./romanysoft/maccocojs"); // Electron引擎
+ * 						支持Electron1.1.3版本的变化
  */
 
-(function (factory) {
+(function(factory) {
     "use strict";
 
     if (typeof define === "function" && define.amd) {
-        define("BS.b$", ["jquery"], function () {
+        define("BS.b$", ["jquery"], function() {
             return factory(jQuery || $);
         });
     } else {
@@ -28,32 +30,40 @@
         module.exports = factory(jQuery || $);
     }
 
-}(function ($) {
+}(function($) {
     "use strict";
 
 
-    (function () {
+    (function() {
         window.BS = window.BS || {};
         window.BS.b$ = window.BS.b$ || {};
     })();
 
-    (function ($) {
+    (function($) {
         $.toJSON = $.toJSON || JSON.stringify;
         var b$ = {};
         b$ = $.extend(window.BS.b$, {});
         b$.pN = b$.pNative = null;
         b$.pIsUseElectron = false; //是否使用了Electron引擎,默认是没有使用
-        if ((typeof maccocojs !== 'undefined') && (typeof maccocojs == 'object') && maccocojs.hasOwnProperty("app")) {
+        if ((typeof maccocojs !== 'undefined') && (typeof maccocojs == 'object') && maccocojs.hasOwnProperty(
+                "app")) {
             b$.pN = b$.pNative = maccocojs; // 原MacOSX本地引擎
-        } else if ((typeof process === 'object') && (typeof require === 'function') && (process.hasOwnProperty("pid"))) {
+        } else if ((typeof process === 'object') && (typeof require === 'function') && (process.hasOwnProperty(
+                "pid"))) {
             try {
                 console.log("============= must first load =================");
-                b$.pN = b$.pNative = require("remote").require("./romanysoft/maccocojs"); // Electron引擎
 
                 // 一定要干掉Electron的内置指定
                 try {
                     window["eletron_require"] = window.require;
                     window["eletron_module"] = window.module;
+
+                    // Electron引擎加载方式，兼容新的及老的版本。支持：最新1.1.3和0.34版本系列
+                    try {
+                        b$.pN = b$.pNative = require("remote").require("./romanysoft/maccocojs");
+                    } catch (e) {
+                        b$.pN = b$.pNative = require('electron').remote.require("./romanysoft/maccocojs");
+                    }
 
                     window.require = undefined;
                     window.module.exports = undefined;
@@ -62,10 +72,6 @@
                     console.error(e);
                 }
                 // end
-
-                if (!b$.pN) {
-                    b$.pN = b$.pNative = window.eletron_require("remote").require("./romanysoft/maccocojs"); // Electron引擎
-                }
 
                 b$.pIsUseElectron = true;
                 window.BS.b$ = $.extend(window.BS.b$, b$);
@@ -77,11 +83,11 @@
 
         // 定义临时回调处理函数定义接口
         b$._ncb_idx = 0;
-        b$._get_callback = function (func, noDelete) {
+        b$._get_callback = function(func, noDelete) {
             window._nativeCallback = window._nativeCallback || {};
             var _nativeCallback = window._nativeCallback;
             var r = 'ncb' + b$._ncb_idx++;
-            _nativeCallback[r] = function () {
+            _nativeCallback[r] = function() {
                 try {
                     if (!noDelete) {
                         delete _nativeCallback[r];
@@ -112,7 +118,7 @@
         b$.IAP = {
 
             /// 获取本地配置是否可以使用IAP。参见：project.json
-            getEnable: function () {
+            getEnable: function() {
                 if (b$.pN) {
                     try {
                         return b$.pN.app.getIAPEnable();
@@ -123,18 +129,18 @@
                 return false;
             },
 
-            enableIAP: function (in_parms, cb) {
+            enableIAP: function(in_parms, cb) {
                 try {
                     $.testObjectType(in_parms, 'object');
 
                     var parms = {};
-                    parms["cb_IAP_js"] = in_parms["cb_IAP_js"] || b$._get_callback(function (obj) {
-                            if ($.isFunction(b$.cb_handleIAPCallback)) {
-                                b$.cb_handleIAPCallback && b$.cb_handleIAPCallback(obj);
-                            } else {
-                                cb && cb(obj);
-                            }
-                        }, true);
+                    parms["cb_IAP_js"] = in_parms["cb_IAP_js"] || b$._get_callback(function(obj) {
+                        if ($.isFunction(b$.cb_handleIAPCallback)) {
+                            b$.cb_handleIAPCallback && b$.cb_handleIAPCallback(obj);
+                        } else {
+                            cb && cb(obj);
+                        }
+                    }, true);
                     parms["productIds"] = in_parms["productIds"] || [];
 
                     if (b$.pN) {
@@ -164,14 +170,14 @@
 
             },
 
-            restore: function () {
+            restore: function() {
                 if (b$.pN) {
                     //发送购买请求
                     b$.pN.iap.restoreIAP();
                 }
             },
 
-            buyProduct: function (parms) {
+            buyProduct: function(parms) {
                 if (b$.pN) {
                     //发送购买请求
                     b$.pN.iap.buyProduct($.toJSON({
@@ -181,7 +187,7 @@
                 }
             },
 
-            getPrice: function (productIdentifier) {
+            getPrice: function(productIdentifier) {
                 if (b$.pN) {
                     return b$.pN.iap.getPrice(productIdentifier);
                 }
@@ -189,7 +195,7 @@
                 return "";
             },
 
-            getUseableProductCount: function (productIdentifier) {
+            getUseableProductCount: function(productIdentifier) {
                 if (b$.pN) {
                     return b$.pN.iap.getUseableProductCount(productIdentifier);
                 }
@@ -197,7 +203,7 @@
                 return 0;
             },
 
-            setUseableProductCount: function (jsonObj) {
+            setUseableProductCount: function(jsonObj) {
                 if (b$.pN) {
                     var params = {
                         identifier: jsonObj.productIdentifier || '',
@@ -209,7 +215,7 @@
                 return 0;
             },
 
-            add1Useable: function (productIdentifier) {
+            add1Useable: function(productIdentifier) {
                 if (b$.pN) {
                     return b$.pN.iap.add1Useable(productIdentifier);
                 }
@@ -217,7 +223,7 @@
                 return 0;
             },
 
-            sub1Useable: function (productIdentifier) {
+            sub1Useable: function(productIdentifier) {
                 if (b$.pN) {
                     return b$.pN.iap.sub1Useable(productIdentifier);
                 }
@@ -230,7 +236,7 @@
          * Notice 内容封装
          */
         b$.Notice = {
-            alert: function (jsonObj) {
+            alert: function(jsonObj) {
                 if (b$.pN) {
                     var params = {
                         message: jsonObj.message || 'Tip',
@@ -245,12 +251,12 @@
                 }
             },
 
-            notify: function (jsonObj, cb) {
+            notify: function(jsonObj, cb) {
                 if (b$.pN) {
                     var params = {
                         content: jsonObj.message || 'Tip',
                         title: jsonObj.title || 'title',
-                        callback: jsonObj['callback'] || b$._get_callback(function (obj) {
+                        callback: jsonObj['callback'] || b$._get_callback(function(obj) {
                             cb && cb(obj);
                         }, true)
                     };
@@ -261,26 +267,28 @@
                 }
             },
 
-            dockMessage: function (jsonObj, cb) {
+            dockMessage: function(jsonObj, cb) {
                 if (b$.pN) {
                     var params = {
                         content: jsonObj.message || 'Tip',
                         title: jsonObj.title || 'title',
-                        callback: jsonObj['callback'] || b$._get_callback(function (obj) {
+                        callback: jsonObj['callback'] || b$._get_callback(function(obj) {
                             cb && cb(obj);
                         }, true)
                     };
 
-                    if(b$.pIsUseElectron){
-                         if(window.Notification){
-                             //参照HTML5 Notification API
-                             //http://electron.atom.io/docs/v0.37.8/tutorial/desktop-environment-integration/
-                             var _notification = new window.Notification(params.title, {body: params.content});
-                             _notification.onclick = function(){
-                                 params.callback && params.callback();
-                             }
-                         }
-                    }else{
+                    if (b$.pIsUseElectron) {
+                        if (window.Notification) {
+                            //参照HTML5 Notification API
+                            //http://electron.atom.io/docs/v0.37.8/tutorial/desktop-environment-integration/
+                            var _notification = new window.Notification(params.title, {
+                                body: params.content
+                            });
+                            _notification.onclick = function() {
+                                params.callback && params.callback();
+                            }
+                        }
+                    } else {
                         return b$.pN.growl.notify($.toJSON(params));
                     }
                 } else {
@@ -296,7 +304,7 @@
 
             /// 获得App的名称
             appName: null,
-            getAppName: function () {
+            getAppName: function() {
                 if (b$.pN) {
                     var t = this;
                     if (t.appName) return t.appName;
@@ -308,7 +316,7 @@
 
             /// 获得产品的版本
             appVersion: null,
-            getAppVersion: function () {
+            getAppVersion: function() {
                 if (b$.pN) {
                     var t = this;
                     if (t.appVersion) return t.appVersion;
@@ -320,7 +328,7 @@
 
             /// 获得产品的构建包的版本
             appBuildVersion: null,
-            getAppBuildVersion: function () {
+            getAppBuildVersion: function() {
                 if (b$.pN) {
                     var t = this;
                     if (t.appBuildVersion) return t.appBuildVersion;
@@ -332,7 +340,7 @@
 
             /// 获得产品的ID
             appId: null,
-            getAppId: function () {
+            getAppId: function() {
                 if (b$.pN) {
                     var t = this;
                     if (t.appId) return t.appId;
@@ -344,7 +352,7 @@
 
             /// 获得产品的运行的操作系统及平台
             sysOS: null,
-            getAppRunOnOS: function () {
+            getAppRunOnOS: function() {
                 if (b$.pN) {
                     var t = this;
                     if (t.sysOS) return t.sysOS;
@@ -355,7 +363,7 @@
             },
 
             /// 获得App是否在沙盒内
-            getSandboxEnable: function () {
+            getSandboxEnable: function() {
                 if (b$.pN) {
                     var sandboxEnable = b$.pN.app.getSandboxEnable();
                     return sandboxEnable;
@@ -364,7 +372,7 @@
             },
 
             /// 获取App内部注册信息
-            getRegInfoJSONString: function () {
+            getRegInfoJSONString: function() {
                 if (b$.pN) {
                     var str = b$.pN.app.getRegInfoJSONString();
                     return str;
@@ -373,7 +381,7 @@
             },
 
             /// 获取App认证的内部序列号信息
-            getSerialNumber: function () {
+            getSerialNumber: function() {
                 if (b$.pN) {
                     var str = b$.pN.app.getStringSerialNumber();
                     return str;
@@ -382,7 +390,7 @@
             },
 
             /// 获取本地IP地址
-            getLocalIP: function () {
+            getLocalIP: function() {
                 if (b$.pN) {
                     var str = b$.pN.app.getLocalIP();
                     return str;
@@ -392,42 +400,42 @@
 
 
             /// 终止运行，退出系统
-            terminate: function () {
+            terminate: function() {
                 if (b$.pN) {
                     b$.pN.app.terminate();
                 }
             },
 
             /// 激活自己
-            activate: function () {
+            activate: function() {
                 if (b$.pN) {
                     b$.pN.app.activate();
                 }
             },
 
             /// 隐藏自己
-            hide: function () {
+            hide: function() {
                 if (b$.pN) {
                     b$.pN.app.hide();
                 }
             },
 
             /// 取消隐藏自己
-            unhide: function () {
+            unhide: function() {
                 if (b$.pN) {
                     b$.pN.app.unhide();
                 }
             },
 
             /// 发出beep声音
-            beep: function () {
+            beep: function() {
                 if (b$.pN) {
                     b$.pN.app.beep();
                 }
             },
 
             /// 激活Bounce事件
-            bounce: function () {
+            bounce: function() {
                 if (b$.pN) {
                     b$.pN.app.bounce();
                 }
@@ -435,21 +443,20 @@
 
 
             /// 打开链接地址
-            open: function (data) {
+            open: function(data) {
                 if (b$.pN) {
                     return b$.pN.app.open(data || "http://www.baidu.com");
                 } else {
                     try {
                         window.open(data);
-                    } catch (e) {
-                    }
+                    } catch (e) {}
 
                 }
             },
 
 
             /// 打开文件，使用系统默认行为
-            openFileWithDefaultApp: function (filePath) {
+            openFileWithDefaultApp: function(filePath) {
                 if (b$.pN) {
                     var _path = filePath || (b$.pN.path.tempDir() + "tmp.txt");
                     b$.pN.app.openFile(_path);
@@ -458,14 +465,14 @@
 
 
             /// 通过应用程序的名称，启动应用程序
-            launchApplication: function (applicationName) {
+            launchApplication: function(applicationName) {
                 if (b$.pN) {
                     b$.pN.app.launch(applicationName || 'Safari'); //Safari.app
                 }
             },
 
             /// 发送电子邮件
-            sendEmail: function (parms) {
+            sendEmail: function(parms) {
                 if (b$.pN) {
                     try {
                         parms = parms || {};
@@ -488,7 +495,7 @@
 
             //{开启启动部分}
             //是否开启自动启动{苹果商店App 无效}
-            isStartAtLogin: function () {
+            isStartAtLogin: function() {
                 if (b$.pN) {
                     return b$.pN.app.isStartAtLogin();
                 }
@@ -497,7 +504,7 @@
             },
 
             //开启自动启动功能{苹果商店App 无效}
-            setStartAtLogin: function (enable) {
+            setStartAtLogin: function(enable) {
                 if (b$.pN) {
                     return b$.pN.app.setStartAtLogin(enable); //备注：沙盒状态下无效
                 }
@@ -505,35 +512,48 @@
 
             //{NSUserDefaults}
             //存储信息{key: value: }方式,Map方式
-            setInfoToUserDefaults: function (jsonObj) {
+            setInfoToUserDefaults: function(jsonObj) {
                 if (b$.pN) {
-                    var obj = jsonObj || {callback: 'console.log', key: '', value: ''};
+                    var obj = jsonObj || {
+                        callback: 'console.log',
+                        key: '',
+                        value: ''
+                    };
                     b$.pN.window.setInfoToUserDefaults($.toJSON(obj));
                 }
             },
             //获取存储信息{key: value: }方式,Map方式
-            getInfoFromUserDefaults: function (jsonObj) {
+            getInfoFromUserDefaults: function(jsonObj) {
                 if (b$.pN) {
-                    var obj = jsonObj || {callback: 'console.log', key: ''};
+                    var obj = jsonObj || {
+                        callback: 'console.log',
+                        key: ''
+                    };
                     b$.pN.window.getInfoFromUserDefaults($.toJSON(obj));
                 }
             },
             //移除存储信息{key: value: }方式,Map方式
-            removeItemFromUserDefaults: function (jsonObj) {
+            removeItemFromUserDefaults: function(jsonObj) {
                 if (b$.pN) {
-                    var obj = jsonObj || {callback: 'console.log', key: ''};
+                    var obj = jsonObj || {
+                        callback: 'console.log',
+                        key: ''
+                    };
                     b$.pN.window.removeItemFromUserDefaults($.toJSON(obj));
                 }
             },
 
             ///{方便函数，设置评价App功能是否开启}
-            setOptions_RateAppClose: function (enable) {
-                b$.App.setInfoToUserDefaults({key: 'RateApp_CLOSE', value: enable});
+            setOptions_RateAppClose: function(enable) {
+                b$.App.setInfoToUserDefaults({
+                    key: 'RateApp_CLOSE',
+                    value: enable
+                });
             },
 
 
             ///{获取开通的服务器端口}
-            getServerPort: function () {
+            getServerPort: function() {
                 var default_port = 8888;
                 if (b$.pN) {
                     return b$.pN.app.getHttpServerPort() || default_port;
@@ -543,7 +563,7 @@
             },
 
             /// 获得App的插件目录
-            getAppPluginDir: b$.getAppPluginDir = function () {
+            getAppPluginDir: b$.getAppPluginDir = function() {
                 if (b$.pN) {
                     return b$.pN.path.appPluginDirPath();
                 }
@@ -551,7 +571,7 @@
             },
 
             /// 获得Application的Resource目录
-            getAppResourceDir: b$.getAppResourceDir = function () {
+            getAppResourceDir: b$.getAppResourceDir = function() {
                 if (b$.pN) {
                     return b$.pN.path.resource();
                 }
@@ -559,7 +579,7 @@
             },
 
             /// 获得Public目录
-            getAppResourcePublicDir: b$.getAppResourcePublicDir = function () {
+            getAppResourcePublicDir: b$.getAppResourcePublicDir = function() {
                 if (b$.pN) {
                     return b$.pN.path.resource() + "/public";
                 }
@@ -567,7 +587,7 @@
             },
 
             /// 获得App的包的目录
-            getAppBundlePath: function () {
+            getAppBundlePath: function() {
                 if (b$.pN) {
                     return b$.pN.path.application();
                 }
@@ -575,7 +595,7 @@
             },
 
             /// 获得AppDataHomeDir
-            getAppDataHomeDir: function () {
+            getAppDataHomeDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.appDataHomeDir();
                 }
@@ -583,7 +603,7 @@
             },
 
             /// 获得Home Directory
-            getHomeDir: function () {
+            getHomeDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.homeDir();
                 }
@@ -591,7 +611,7 @@
             },
 
             /// 获得DocumentsDir
-            getDocumentsDir: function () {
+            getDocumentsDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.documentsDir();
                 }
@@ -599,7 +619,7 @@
             },
 
             /// 获得本地Documents目录
-            getLocalDocumentsDir: function () {
+            getLocalDocumentsDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.localDocumentsDir();
                 }
@@ -607,7 +627,7 @@
             },
 
             /// 获得LibraryDir
-            getLibraryDir: function () {
+            getLibraryDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.libraryDir();
                 }
@@ -615,7 +635,7 @@
             },
 
             /// 获得临时目录
-            getTempDir: function () {
+            getTempDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.tempDir();
                 }
@@ -623,7 +643,7 @@
             },
 
             /// 获得Cache目录
-            getCacheDir: function () {
+            getCacheDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.cacheDir();
                 }
@@ -631,7 +651,7 @@
             },
 
             /// 获得Application目录
-            getApplicationDir: function () {
+            getApplicationDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.applicationDir();
                 }
@@ -639,7 +659,7 @@
             },
 
             /// 获得DesktopDir，桌面路径
-            getDesktopDir: function () {
+            getDesktopDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.desktopDir();
                 }
@@ -647,7 +667,7 @@
             },
 
             /// 获得downloadDir，下载目录路径
-            getDownloadDir: function () {
+            getDownloadDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.downloadDir();
                 }
@@ -655,7 +675,7 @@
             },
 
             /// 获得本地download目录路径
-            getLocalDownloadDir: function () {
+            getLocalDownloadDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.localDownloadDir();
                 }
@@ -663,7 +683,7 @@
             },
 
             /// 获得Movies目录路径
-            getMoviesDir: function () {
+            getMoviesDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.moviesDir();
                 }
@@ -671,7 +691,7 @@
             },
 
             /// 获得本地Movies目录路径
-            getLocalMoviesDir: function () {
+            getLocalMoviesDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.localMoviesDir();
                 }
@@ -679,7 +699,7 @@
             },
 
             /// 获得Music目录
-            getMusicDir: function () {
+            getMusicDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.musicDir();
                 }
@@ -687,7 +707,7 @@
             },
 
             /// 获得本地Music目录
-            getLocalMusicDir: function () {
+            getLocalMusicDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.localMusicDir();
                 }
@@ -695,7 +715,7 @@
             },
 
             /// 获得本地Pictures目录
-            getLocalPicturesDir: function () {
+            getLocalPicturesDir: function() {
                 if (b$.pN) {
                     return b$.pN.path.localPicturesDir();
                 }
@@ -703,7 +723,7 @@
             },
 
             /// 获得UserName
-            getUserName: function () {
+            getUserName: function() {
                 if (b$.pN) {
                     return b$.pN.path.userName();
                 }
@@ -711,7 +731,7 @@
             },
 
             /// 获得User全名(UserFullName)
-            getUserFullName: function () {
+            getUserFullName: function() {
                 if (b$.pN) {
                     return b$.pN.path.userFullName();
                 }
@@ -720,7 +740,7 @@
 
 
             /// 检测路径是否存在
-            checkPathIsExist: b$.pathIsExist = function (path) {
+            checkPathIsExist: b$.pathIsExist = function(path) {
                 if ($.trim(path) === "") return false;
 
                 if (b$.pN) {
@@ -732,7 +752,7 @@
             },
 
             ///文件是否为0Byte
-            checkFileIsZero: b$.checkFileIsZeroSize = function (file_path) {
+            checkFileIsZero: b$.checkFileIsZeroSize = function(file_path) {
                 if ($.trim(file_path) === "") return false;
 
                 if (b$.pN) {
@@ -744,7 +764,7 @@
             },
 
             ///路径是否可以写
-            checkPathIsWritable: b$.checkPathIsWritable = function (path) {
+            checkPathIsWritable: b$.checkPathIsWritable = function(path) {
                 if ($.trim(path) === "") return false;
 
                 if (b$.pN) {
@@ -756,24 +776,26 @@
             },
 
             ///创建空文件
-            createEmptyFile: b$.createEmptyFile = function (file_path) {
+            createEmptyFile: b$.createEmptyFile = function(file_path) {
                 if (b$.pN) {
                     var _path = file_path || (b$.pN.path.tempDir() + "tmp.txt");
-                    return b$.pN.window.createEmptyFile($.toJSON({path: _path}));
+                    return b$.pN.window.createEmptyFile($.toJSON({
+                        path: _path
+                    }));
                 }
             },
 
             ///创建目录
-            createDir: b$.createDir = function (dir_path, atts, cb) {
+            createDir: b$.createDir = function(dir_path, atts, cb) {
                 if (b$.pN) {
                     try {
                         var parms = {};
                         //限制内部属性：
-                        parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                                cb && cb(obj);
-                            }, true);
+                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj) {
+                            cb && cb(obj);
+                        }, true);
                         parms['path'] = dir_path || (b$.pN.path.tempDir() + "tmp_dir001");
-                        if (atts)  parms['atts'] = atts || {};
+                        if (atts) parms['atts'] = atts || {};
 
                         b$.pN.window.createDir($.toJSON(parms));
                     } catch (e) {
@@ -783,22 +805,24 @@
             },
 
             ///删除文件
-            removeFile: b$.removeFile = function (file_path) {
+            removeFile: b$.removeFile = function(file_path) {
                 if (b$.pN) {
                     var _path = file_path || (b$.pN.path.tempDir() + "tmp.txt");
-                    return b$.pN.window.removeFile($.toJSON({path: _path}));
+                    return b$.pN.window.removeFile($.toJSON({
+                        path: _path
+                    }));
                 }
             },
 
             ///删除目录
-            removeDir: b$.removeDir = function (dir_path, cb) {
+            removeDir: b$.removeDir = function(dir_path, cb) {
                 if (b$.pN) {
                     try {
                         var parms = {};
                         //限制内部属性：
-                        parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                                cb && cb(obj);
-                            }, true);
+                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj) {
+                            cb && cb(obj);
+                        }, true);
                         parms['path'] = dir_path || (b$.pN.path.tempDir() + "/tmp_dir001");
 
 
@@ -810,14 +834,14 @@
             },
 
             ///拷贝文件
-            copyFile: b$.copyFile = function (parms, cb) {
+            copyFile: b$.copyFile = function(parms, cb) {
                 if (b$.pN) {
                     try {
                         parms = parms || {};
                         //限制内部属性：
-                        parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                                cb && cb(obj);
-                            }, true);
+                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj) {
+                            cb && cb(obj);
+                        }, true);
                         parms['src'] = parms['src'] || "";
                         parms['dest'] = parms['dest'] || "";
 
@@ -829,14 +853,14 @@
             },
 
             ///拷贝目录
-            copyDir: b$.copyDir = function (parms, cb) {
+            copyDir: b$.copyDir = function(parms, cb) {
                 if (b$.pN) {
                     try {
                         parms = parms || {};
                         //限制内部属性：
-                        parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                                cb && cb(obj);
-                            }, true);
+                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj) {
+                            cb && cb(obj);
+                        }, true);
                         parms['src'] = parms['src'] || "";
                         parms['dest'] = parms['dest'] || "";
 
@@ -848,14 +872,14 @@
             },
 
             ///移动文件
-            moveFile: b$.moveFile = function (parms, cb) {
+            moveFile: b$.moveFile = function(parms, cb) {
                 if (b$.pN) {
                     try {
                         parms = parms || {};
                         //限制内部属性：
-                        parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                                cb && cb(obj);
-                            }, true);
+                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj) {
+                            cb && cb(obj);
+                        }, true);
                         parms['src'] = parms['src'] || "";
                         parms['dest'] = parms['dest'] || "";
 
@@ -867,14 +891,14 @@
             },
 
             ///移动目录
-            moveDir: b$.moveDir = function (parms, cb) {
+            moveDir: b$.moveDir = function(parms, cb) {
                 if (b$.pN) {
                     try {
                         parms = parms || {};
                         //限制内部属性：
-                        parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                                cb && cb(obj);
-                            }, true);
+                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj) {
+                            cb && cb(obj);
+                        }, true);
                         parms['src'] = parms['src'] || "";
                         parms['dest'] = parms['dest'] || "";
 
@@ -886,13 +910,13 @@
             },
 
             ///查找文件是否在此目录中存在
-            findFile: b$.findFile = function (dir, fileName, cbName, cb) {
+            findFile: b$.findFile = function(dir, fileName, cbName, cb) {
                 if (b$.pN) {
                     var _dir = dir || b$.pN.path.tempDir();
                     var _fileName = fileName || 'tmp.txt';
 
                     var parms = {
-                        callback: cbName || b$._get_callback(function (obj) {
+                        callback: cbName || b$._get_callback(function(obj) {
                             cb && cb(obj);
                         }, true),
                         dir: _dir,
@@ -906,7 +930,7 @@
             },
 
             ///判断路径是否可读
-            checkPathIsReadable: function (path) {
+            checkPathIsReadable: function(path) {
                 if (b$.pN) {
                     var _path = path || b$.pN.path.tempDir();
                     return b$.pN.path.checkPathIsReadable(_path);
@@ -916,7 +940,7 @@
             },
 
             ///判断路径是否可运行
-            checkPathIsExecutable: function (path) {
+            checkPathIsExecutable: function(path) {
                 if (b$.pN) {
                     var _path = path || b$.pN.path.tempDir();
                     return b$.pN.path.checkPathIsExecutable(_path);
@@ -926,7 +950,7 @@
             },
 
             ///判断路径是否可删除
-            checkPathIsDeletable: function (path) {
+            checkPathIsDeletable: function(path) {
                 if (b$.pN) {
                     var _path = path || b$.pN.path.tempDir();
                     return b$.pN.path.checkPathIsDeletable(_path);
@@ -937,7 +961,7 @@
 
 
             ///判断是否为文件
-            checkPathIsFile: function (path) {
+            checkPathIsFile: function(path) {
                 if (b$.pN) {
                     var _path = path || b$.pN.path.tempDir();
                     return b$.pN.path.checkPathIsFile(_path);
@@ -947,7 +971,7 @@
             },
 
             ///判断是否为目录
-            checkPathIsDir: function (path) {
+            checkPathIsDir: function(path) {
                 if (b$.pN) {
                     var _path = path || b$.pN.path.tempDir();
                     return b$.pN.path.checkPathIsDir(_path);
@@ -957,7 +981,7 @@
             },
 
             ///获取文件扩展名
-            getFileExt: function (path) {
+            getFileExt: function(path) {
                 if (b$.pN) {
                     var _path = path || (b$.pN.path.tempDir() + "tmp.txt");
                     return b$.pN.path.getFileExt(_path);
@@ -967,7 +991,7 @@
             },
 
             ///获取路径上一级目录路径
-            getPathParentPath: function (path) {
+            getPathParentPath: function(path) {
                 if (b$.pN) {
                     var _path = path || b$.pN.path.tempDir();
                     return b$.pN.path.getPathParentPath(_path);
@@ -978,7 +1002,7 @@
 
 
             ///获取文件的基本属性
-            getFilePropertyJSONString: function (path) {
+            getFilePropertyJSONString: function(path) {
                 if (b$.pN) {
                     var _path = path || (b$.pN.path.tempDir() + "tmp.txt");
                     return b$.pN.path.getFilePropertyJSONString(_path);
@@ -989,7 +1013,7 @@
 
 
             ///获得文件/目录size(实际字节数 1024)
-            fileSizeAtPath: function (path) {
+            fileSizeAtPath: function(path) {
                 if (b$.pN) {
                     var _path = path || (b$.pN.path.tempDir() + "tmp.txt");
                     return b$.pN.app.fileSizeAtPath(_path);
@@ -999,7 +1023,7 @@
             },
 
             ///获得文件/目录占用磁盘(字节数 1000)
-            diskSizeAtPath: function (path) {
+            diskSizeAtPath: function(path) {
                 if (b$.pN) {
                     var _path = path || (b$.pN.path.tempDir() + "tmp.txt");
                     return b$.pN.app.diskSizeAtPath(_path);
@@ -1009,7 +1033,7 @@
             },
 
             ///获得字符串的md5值
-            md5Digest: function (str) {
+            md5Digest: function(str) {
                 if (b$.pN) {
                     return b$.pN.app.md5Digest(str || "testMd5");
                 }
@@ -1019,7 +1043,7 @@
 
 
             ///获得当前苹果操作系统本地的语言
-            getAppleLanguage: function () {
+            getAppleLanguage: function() {
                 if (b$.pN) {
                     return b$.pN.app.curAppleLanguage();
                 }
@@ -1029,7 +1053,7 @@
 
 
             /// 获取兼容Google翻译的语言标识信息
-            getCompatibleGoogleLanguageInfo: function(){
+            getCompatibleGoogleLanguageInfo: function() {
                 var info = {
                     "auto": {
                         "af": "Spoor taal",
@@ -1222,48 +1246,81 @@
 
 
             ///获得兼容浏览器的语言标识, 发起者，为Native
-            getCompatibleWebkitLanguageList: function (_getType) {
+            getCompatibleWebkitLanguageList: function(_getType) {
 
                 var getType = _getType || 'Native2Webkit'; // 获取类型，默认是获取兼容WebKit的语言标识数组
 
                 var defaultLanguage = 'en';
                 //本地对应浏览器的语言标识
                 var NativeApple2WebKit_LanguageMap = {
-                    'Unknown': ['']
-                    , 'en': ['en', 'en-US', 'en-us']                    // 英语
-                    , 'fr': ['fr', 'fr-FR', 'fr-fr']                  // French (fr) 法语
-                    , 'de': ['de', 'de-DE', 'de-de']                  // German (de) 德语
-                    , 'zh-Hans': ['zh', 'zh-CN', 'zh-cn', 'zh-Hans']  // Chinese (Simplified) (zh-Hans) 中文简体
-                    , 'zh-Hant': ['zh-TW', 'zh-tw', 'zh-Hant']        // Chinese (Traditional) (zh-Hant) 中文繁体
-                    , 'ja': ['ja', 'ja-JP', 'ja-jp']                  // Japanese (ja) 日语
-                    , 'es': ['es', 'es-ES', 'es-es']                  // Spanish (es) 西班牙语
-                    , 'es-MX': ['es-MX', 'es-XL', 'es-xl']            // Spanish (Mexico) (es-MX) 西班牙语（墨西哥）
-                    , 'it': ['it', 'it-IT', 'it-it']                  // Italian (it) 意大利语
-                    , 'nl': ['nl', 'nl-NL', 'nl-nl']                  // Dutch (nl) 荷兰语
-                    , 'ko': ['ko', 'ko-KR', 'ko-kr']                  // Korean (ko) 韩语
-                    , 'pt': ['pt', 'pt-BR', 'pt-br']                  // Portuguese (pt) 葡萄牙语
-                    , 'pt-PT': ['pt-PT', 'pt-pt']                      // Portuguese (Portugal) (pt) 葡萄牙语（葡萄牙）
-                    , 'da': ['da', 'da-DK', 'da-da']                  // Danish (da) 丹麦语
-                    , 'fi': ['fi', 'fi-FI', 'fi-fi']                  // Finnish (fi) 芬兰语
-                    , 'nb': ['nb', 'nb-NO', 'nb-no']                  // Norwegian Bokmal (nb) 挪威语
-                    , 'sv': ['sv', 'sv-SE', 'sv-se']                  // Swedish (sv) 瑞典语
-                    , 'ru': ['ru', 'ru-RU', 'ru-ru']                  // Russian (ru) 俄语
-                    , 'pl': ['pl', 'pl-PL', 'pl-pl']                  // Polish (pl) 波兰语
-                    , 'tr': ['tr', 'tr-TR', 'tr-tr']                  // Turkish (tr) 土耳其语
-                    , 'ar': ['ar', 'AR']                              // Arabic (ar) 阿拉伯语
-                    , 'th': ['th', 'th-TH', 'th-th']                  // Thai (th) 泰语
-                    , 'cs': ['cs', 'cs-CZ', 'cs-cz']                  // Czech (cs) 捷克语
-                    , 'hu': ['hu', 'hu-HU', 'hu-hu']                  // Hungarian (hu) 匈牙利语
-                    , 'ca': ['ca', 'ca-ES', 'ca-es']                  // Catalan (ca) 加泰罗尼亚语
-                    , 'hr': ['hr', 'hr-HR', 'hr-hr']                  // Croatian (hr) 克罗地亚语
-                    , 'el': ['el', 'el-GR', 'el-gr']                  // Greek (el) 希腊语
-                    , 'he': ['he', 'he-IL', 'he-il']                  // Hebrew (he) 希伯来语
-                    , 'ro': ['ro', 'ro-RO', 'ro-ro']                  // Romanian (ro) 罗马尼亚语
-                    , 'sk': ['sk', 'sk-SK', 'sk-sk']                  // Slovak (sk) 斯洛伐克语
-                    , 'uk': ['uk', 'uk-UA', 'uk-ua']                  // Ukrainian (uk) 乌克兰语
-                    , 'id': ['id', 'ID', 'id-ID', 'id-id']            // Indonesian (id) 印尼语
-                    , 'ms': ['ms', 'MS', 'ms-MS', 'ms-ms']            // Malay (ms) 马来西亚语
-                    , 'vi': ['vi', 'vi-VN', 'vi-vn']                  // Vietnamese (vi) 越南语
+                    'Unknown': [''],
+                    'en': ['en', 'en-US', 'en-us'] // 英语
+                        ,
+                    'fr': ['fr', 'fr-FR', 'fr-fr'] // French (fr) 法语
+                        ,
+                    'de': ['de', 'de-DE', 'de-de'] // German (de) 德语
+                        ,
+                    'zh-Hans': ['zh', 'zh-CN', 'zh-cn', 'zh-Hans'] // Chinese (Simplified) (zh-Hans) 中文简体
+                        ,
+                    'zh-Hant': ['zh-TW', 'zh-tw', 'zh-Hant'] // Chinese (Traditional) (zh-Hant) 中文繁体
+                        ,
+                    'ja': ['ja', 'ja-JP', 'ja-jp'] // Japanese (ja) 日语
+                        ,
+                    'es': ['es', 'es-ES', 'es-es'] // Spanish (es) 西班牙语
+                        ,
+                    'es-MX': ['es-MX', 'es-XL', 'es-xl'] // Spanish (Mexico) (es-MX) 西班牙语（墨西哥）
+                        ,
+                    'it': ['it', 'it-IT', 'it-it'] // Italian (it) 意大利语
+                        ,
+                    'nl': ['nl', 'nl-NL', 'nl-nl'] // Dutch (nl) 荷兰语
+                        ,
+                    'ko': ['ko', 'ko-KR', 'ko-kr'] // Korean (ko) 韩语
+                        ,
+                    'pt': ['pt', 'pt-BR', 'pt-br'] // Portuguese (pt) 葡萄牙语
+                        ,
+                    'pt-PT': ['pt-PT', 'pt-pt'] // Portuguese (Portugal) (pt) 葡萄牙语（葡萄牙）
+                        ,
+                    'da': ['da', 'da-DK', 'da-da'] // Danish (da) 丹麦语
+                        ,
+                    'fi': ['fi', 'fi-FI', 'fi-fi'] // Finnish (fi) 芬兰语
+                        ,
+                    'nb': ['nb', 'nb-NO', 'nb-no'] // Norwegian Bokmal (nb) 挪威语
+                        ,
+                    'sv': ['sv', 'sv-SE', 'sv-se'] // Swedish (sv) 瑞典语
+                        ,
+                    'ru': ['ru', 'ru-RU', 'ru-ru'] // Russian (ru) 俄语
+                        ,
+                    'pl': ['pl', 'pl-PL', 'pl-pl'] // Polish (pl) 波兰语
+                        ,
+                    'tr': ['tr', 'tr-TR', 'tr-tr'] // Turkish (tr) 土耳其语
+                        ,
+                    'ar': ['ar', 'AR'] // Arabic (ar) 阿拉伯语
+                        ,
+                    'th': ['th', 'th-TH', 'th-th'] // Thai (th) 泰语
+                        ,
+                    'cs': ['cs', 'cs-CZ', 'cs-cz'] // Czech (cs) 捷克语
+                        ,
+                    'hu': ['hu', 'hu-HU', 'hu-hu'] // Hungarian (hu) 匈牙利语
+                        ,
+                    'ca': ['ca', 'ca-ES', 'ca-es'] // Catalan (ca) 加泰罗尼亚语
+                        ,
+                    'hr': ['hr', 'hr-HR', 'hr-hr'] // Croatian (hr) 克罗地亚语
+                        ,
+                    'el': ['el', 'el-GR', 'el-gr'] // Greek (el) 希腊语
+                        ,
+                    'he': ['he', 'he-IL', 'he-il'] // Hebrew (he) 希伯来语
+                        ,
+                    'ro': ['ro', 'ro-RO', 'ro-ro'] // Romanian (ro) 罗马尼亚语
+                        ,
+                    'sk': ['sk', 'sk-SK', 'sk-sk'] // Slovak (sk) 斯洛伐克语
+                        ,
+                    'uk': ['uk', 'uk-UA', 'uk-ua'] // Ukrainian (uk) 乌克兰语
+                        ,
+                    'id': ['id', 'ID', 'id-ID', 'id-id'] // Indonesian (id) 印尼语
+                        ,
+                    'ms': ['ms', 'MS', 'ms-MS', 'ms-ms'] // Malay (ms) 马来西亚语
+                        ,
+                    'vi': ['vi', 'vi-VN', 'vi-vn'] // Vietnamese (vi) 越南语
                 };
 
                 if (getType === 'Native2Webkit') { // 先获取Native的语言，然后查找Map
@@ -1278,9 +1335,10 @@
 
                     return NativeApple2WebKit_LanguageMap[defaultLanguage];
                 } else if (getType === 'webkitCompatible') {
-                    var mapValue = null, webLanguage = navigator.language || 'en';
+                    var mapValue = null,
+                        webLanguage = navigator.language || 'en';
 
-                    var inArray = function (value, array) {
+                    var inArray = function(value, array) {
                         if (Array.prototype.indexOf) {
                             return array.indexOf(value);
                         } else {
@@ -1309,14 +1367,14 @@
 
 
             ///设置用户的语言
-            setUserLanguage: function (language) {
+            setUserLanguage: function(language) {
                 if (b$.pN) {
                     b$.pN.app.setUserLanguage(language || 'en-US');
                 }
             },
 
             ///获取用户设置的语言
-            getUserLanguage: function () {
+            getUserLanguage: function() {
                 if (b$.pN) {
                     return b$.pN.app.curUserLanguage();
                 }
@@ -1325,15 +1383,16 @@
             },
 
             ///截屏[整个屏幕]
-            captureFull: function (jsonObj, cb) {
+            captureFull: function(jsonObj, cb) {
                 if (b$.pN) {
                     try {
                         var parms = jsonObj || {};
                         //限制内部属性：
-                        parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                                cb && cb(obj);
-                            }, true);
-                        parms['filePath'] = parms['filePath'] || (b$.pN.path.tempDir() + "cap_screen.png");// 保存文件
+                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj) {
+                            cb && cb(obj);
+                        }, true);
+                        parms['filePath'] = parms['filePath'] || (b$.pN.path.tempDir() +
+                            "cap_screen.png"); // 保存文件
 
 
                         b$.pN.window.capture($.toJSON(parms));
@@ -1344,21 +1403,21 @@
             },
 
             /// 添加目录到变化监视器
-            addDirPathToChangeWatcher: function (jsonObj, cb) {
+            addDirPathToChangeWatcher: function(jsonObj, cb) {
                 if (b$.pN) {
                     try {
                         var parms = jsonObj || {};
 
-                        parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileWritten"} (app.js, line 270)
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileAttributesChanged"} (app.js, line 270)
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileSizeIncreased"} (app.js, line 270)
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"AccessWasRevoked"} (app.js, line 270)
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"LinkCountChanged"} (app.js, line 270)
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileRenamed"} (app.js, line 270)
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileDeleted"} (app.js, line 270)
-                                cb && cb(obj);
-                            }, true);
+                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj) {
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileWritten"} (app.js, line 270)
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileAttributesChanged"} (app.js, line 270)
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileSizeIncreased"} (app.js, line 270)
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"AccessWasRevoked"} (app.js, line 270)
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"LinkCountChanged"} (app.js, line 270)
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileRenamed"} (app.js, line 270)
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileDeleted"} (app.js, line 270)
+                            cb && cb(obj);
+                        }, true);
                         parms['path'] = parms['path'] || (b$.pN.path.tempDir());
 
                         b$.pN.window.createDirChangeWatcher($.toJSON(parms));
@@ -1369,21 +1428,21 @@
             },
 
             /// 添加文件目录到变化监视器
-            addFilePathToChangeWatcher: function (jsonObj, cb) {
+            addFilePathToChangeWatcher: function(jsonObj, cb) {
                 if (b$.pN) {
                     try {
                         var parms = jsonObj || {};
 
-                        parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileWritten"} (app.js, line 270)
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileAttributesChanged"} (app.js, line 270)
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileSizeIncreased"} (app.js, line 270)
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"AccessWasRevoked"} (app.js, line 270)
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"LinkCountChanged"} (app.js, line 270)
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileRenamed"} (app.js, line 270)
-                                //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileDeleted"} (app.js, line 270)
-                                cb && cb(obj);
-                            }, true);
+                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj) {
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileWritten"} (app.js, line 270)
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileAttributesChanged"} (app.js, line 270)
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileSizeIncreased"} (app.js, line 270)
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"AccessWasRevoked"} (app.js, line 270)
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"LinkCountChanged"} (app.js, line 270)
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileRenamed"} (app.js, line 270)
+                            //[Log] {"path":"/Users/Ian/Documents/New_1433573622398.md","flag":"FileDeleted"} (app.js, line 270)
+                            cb && cb(obj);
+                        }, true);
                         parms['path'] = parms['path'] || (b$.pN.path.tempDir());
 
                         b$.pN.window.createFileChangeWatcher($.toJSON(parms));
@@ -1394,7 +1453,7 @@
             },
 
             /// 从变化监视器中移除
-            removeFromChangeWatcher: function (jsonObj) {
+            removeFromChangeWatcher: function(jsonObj) {
                 if (b$.pN) {
                     try {
                         var parms = jsonObj || {};
@@ -1411,7 +1470,7 @@
 
 
             /// 打印 (一般情况下，不建议使用)
-            print: function (jsonObj) {
+            print: function(jsonObj) {
                 if (b$.pN) {
                     try {
                         var parms = jsonObj || {};
@@ -1426,21 +1485,22 @@
             },
 
             /// 打印到PDF  (一般情况下，不建议使用)
-            printToPDF: function (jsonObj, cb) {
+            printToPDF: function(jsonObj, cb) {
                 if (b$.pN) {
                     try {
                         $.testObjectType(jsonObj, 'object');
 
                         var parms = jsonObj || {};
-                        parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                                cb && cb(obj);
-                            }, true);
+                        parms['callback'] = parms['callback'] || b$._get_callback(function(obj) {
+                            cb && cb(obj);
+                        }, true);
                         parms['marginsType'] = parms['marginsType'] || 0;
                         parms['pageSize'] = parms['pageSize'] || 'A4';
                         parms['printBackground'] = parms['printBackground'] || false;
                         parms['printSelectionOnly'] = parms['printSelectionOnly'] || false;
                         parms['landscape'] = parms['landscape'] || false;
-                        parms['filePath'] = parms['filePath'] || (b$.pN.path.tempDir() + "/" + Date.now() + ".pdf");
+                        parms['filePath'] = parms['filePath'] || (b$.pN.path.tempDir() + "/" + Date
+                            .now() + ".pdf");
 
                         return b$.pN.window.printToPDF($.toJSON(parms));
                     } catch (e) {
@@ -1461,7 +1521,7 @@
              * @param jsonObj
              * @returns {*}
              */
-            install: function (jsonObj) {
+            install: function(jsonObj) {
                 if (b$.pN) {
                     try {
                         var _jsonObj = jsonObj || {};
@@ -1484,7 +1544,7 @@
              * @param xpc_key
              * @returns {*}
              */
-            unInstall: function (xpc_key) {
+            unInstall: function(xpc_key) {
                 if (b$.pN) {
                     try {
                         return b$.pN.app.unRegisterXPCService(xpc_key);
@@ -1502,7 +1562,7 @@
              * @param xpc_key  xpc关联的Key的唯一标识
              * @returns {true/false}
              */
-            find: function (xpc_key) {
+            find: function(xpc_key) {
                 if (b$.pN) {
                     try {
                         return b$.pN.app.hasXPCService(xpc_key || "default");
@@ -1518,7 +1578,7 @@
              * 恢复XPC服务
              * @param xpc_key
              */
-            resume: function (xpc_key) {
+            resume: function(xpc_key) {
                 if (b$.pN) {
                     try {
                         b$.pN.app.resumeXPCService(xpc_key);
@@ -1533,7 +1593,7 @@
              * 挂起XPC服务
              * @param xpc_key
              */
-            suspend: function (xpc_key) {
+            suspend: function(xpc_key) {
                 if (b$.pN) {
                     try {
                         b$.pN.app.suspendXPCService(xpc_key);
@@ -1548,7 +1608,7 @@
              * 使XPC服务失效
              * @param xpc_key
              */
-            invalidate: function (xpc_key) {
+            invalidate: function(xpc_key) {
                 if (b$.pN) {
                     try {
                         b$.pN.app.invalidateXPCService(xpc_key);
@@ -1565,13 +1625,13 @@
              * @param cb 回调函数
              * @returns {*}
              */
-            sendMessage: function (jsonObj, cb) {
+            sendMessage: function(jsonObj, cb) {
                 if (b$.pN) {
                     try {
                         var _json = jsonObj || {};
                         var params = {
                             xpc_key: _json.xpc_key || "default",
-                            callback: _json.callback || b$._get_callback(function (obj) {
+                            callback: _json.callback || b$._get_callback(function(obj) {
                                 console.log($.obj2string(obj));
                                 cb && cb(obj)
                             }, true),
@@ -1595,7 +1655,7 @@
              * 获得默认的Node XPC Key
              * @returns {string}
              */
-            getXPCKey: function () {
+            getXPCKey: function() {
                 return "g_romanysoft_node_xpc";
             },
 
@@ -1603,7 +1663,7 @@
              * 获得NodeHelper的关键字
              * @returns {string}
              */
-            getHelperBundleID: function () {
+            getHelperBundleID: function() {
                 return "com.romanysoft.app.mac.xpc.NodeHelper";
             },
 
@@ -1613,7 +1673,7 @@
              * @param successCB 成功函数
              * @param failedCB  失败函数
              */
-            exec: function (jsonObj, successCB, failedCB) {
+            exec: function(jsonObj, successCB, failedCB) {
                 var $t = this;
 
                 var xpc_key = $t.getXPCKey();
@@ -1626,7 +1686,10 @@
 
                 // 检查是否已经安装过
                 if (false == b$.XPC.find(xpc_key)) {
-                    canExec = b$.XPC.install({xpc_key: xpc_key, bundleID: helperID});
+                    canExec = b$.XPC.install({
+                        xpc_key: xpc_key,
+                        bundleID: helperID
+                    });
                 } else {
                     canExec = true;
                 }
@@ -1654,7 +1717,7 @@
                     b$.XPC.sendMessage({
                         "xpc_key": xpc_key,
                         "messageDic": messageDic
-                    }, function (obj) {
+                    }, function(obj) {
                         console.log("XPCNodeHelper log: " + $.obj2string(obj));
                         successCB && successCB(obj);
                     })
@@ -1673,7 +1736,7 @@
              * 获得默认的Node XPC Key
              * @returns {string}
              */
-            getXPCKey: function () {
+            getXPCKey: function() {
                 return "g_romanysoft_python_xpc";
             },
 
@@ -1681,7 +1744,7 @@
              * 获得NodeHelper的关键字
              * @returns {string}
              */
-            getHelperBundleID: function () {
+            getHelperBundleID: function() {
                 return "com.romanysoft.app.mac.xpc.PythonHelper";
             },
 
@@ -1691,7 +1754,7 @@
              * @param successCB
              * @param failedCB
              */
-            common_exec: function (jsonObj, successCB, failedCB) {
+            common_exec: function(jsonObj, successCB, failedCB) {
                 var $t = this;
 
                 var xpc_key = $t.getXPCKey();
@@ -1704,7 +1767,10 @@
 
                 // 检查是否已经安装过
                 if (false == b$.XPC.find(xpc_key)) {
-                    canExec = b$.XPC.install({xpc_key: xpc_key, bundleID: helperID});
+                    canExec = b$.XPC.install({
+                        xpc_key: xpc_key,
+                        bundleID: helperID
+                    });
                 } else {
                     canExec = true;
                 }
@@ -1732,7 +1798,7 @@
                     b$.XPC.sendMessage({
                         "xpc_key": xpc_key,
                         "messageDic": messageDic
-                    }, function (obj) {
+                    }, function(obj) {
                         console.log("XPCNodeHelper log: " + $.obj2string(obj));
                         successCB && successCB(obj);
                     })
@@ -1743,7 +1809,7 @@
                 }
             },
 
-            _formatCommand: function (pythonCommand) {
+            _formatCommand: function(pythonCommand) {
                 if (typeof pythonCommand != "string") {
                     console.error('command must be string');
                     alert('command must be string');
@@ -1756,7 +1822,8 @@
                 var configFile = "Resources/config.plist";
 
                 // 格式化
-                var regCommand = '["-i","id.pythonCLI","-c","%config%","-r","%resourceDir%","-w","%workDir%","-m","%command%"]';
+                var regCommand =
+                    '["-i","id.pythonCLI","-c","%config%","-r","%resourceDir%","-w","%workDir%","-m","%command%"]';
                 var formatCommonStr = regCommand.replace(/%config%/g, configFile);
                 formatCommonStr = formatCommonStr.replace(/%resourceDir%/g, resourceDir);
                 formatCommonStr = formatCommonStr.replace(/%workDir%/g, workDir);
@@ -1774,7 +1841,7 @@
              * @param successCB
              * @param failedCB
              */
-            exec: function (jsonObj, successCB, failedCB) {
+            exec: function(jsonObj, successCB, failedCB) {
                 var $t = this;
                 var _json = jsonObj || {};
 
@@ -1798,7 +1865,7 @@
              * @param successCB
              * @param failedCB
              */
-            startWebServer: function (jsonObj, successCB, failedCB) {
+            startWebServer: function(jsonObj, successCB, failedCB) {
                 var $t = this;
 
                 var _json = jsonObj || {};
@@ -1825,27 +1892,27 @@
         b$.Window = {
 
             // 最小化窗体
-            minimize: function () {
+            minimize: function() {
                 if (b$.pN) b$.pN.window.minimize();
             },
 
             // 最大化窗体
-            maximize: function () {
+            maximize: function() {
                 if (b$.pN) b$.pN.window.maximize();
             },
 
             // 全屏切换
-            toggleFullScreen: function () {
+            toggleFullScreen: function() {
                 if (b$.pN) b$.pN.window.toggleFullscreen();
             },
 
             // 窗体状态恢复
-            restore: function () {
+            restore: function() {
                 if (b$.pN) b$.pN.window.restore();
             },
 
             // 是否最大化
-            isMaximized: function () {
+            isMaximized: function() {
                 if (b$.pN) {
                     return b$.pN.window.isMaximized();
                 }
@@ -1854,15 +1921,18 @@
             },
 
             // 获取原点坐标
-            getOrigin: function () {
+            getOrigin: function() {
                 if (b$.pN) {
                     return JSON.parse(b$.pN.window.getOrigin());
                 }
-                return {x: 0, y: 0};
+                return {
+                    x: 0,
+                    y: 0
+                };
             },
 
             // 移动窗体
-            move: function (parms) {
+            move: function(parms) {
                 if (b$.pN) {
                     try {
                         parms = parms || {};
@@ -1880,7 +1950,7 @@
             },
 
             // 改变窗体大小
-            resize: function (parms) {
+            resize: function(parms) {
                 if (b$.pN) {
                     try {
                         parms = parms || {};
@@ -1898,15 +1968,18 @@
             },
 
             // 获取窗体尺寸最小值
-            getMinSize: function () {
+            getMinSize: function() {
                 if (b$.pN) {
                     return JSON.parse(b$.pN.window.getMinSize());
                 }
-                return {width: 600, height: 400};
+                return {
+                    width: 600,
+                    height: 400
+                };
             },
 
             // 设置窗体尺寸最小值
-            setMinSize: function (parms) {
+            setMinSize: function(parms) {
                 if (b$.pN) {
                     try {
                         parms = parms || {};
@@ -1924,15 +1997,18 @@
             },
 
             // 获取窗体最大值
-            getMaxSize: function () {
+            getMaxSize: function() {
                 if (b$.pN) {
                     return JSON.parse(b$.pN.window.getMaxSize());
                 }
-                return {width: 600, height: 400};
+                return {
+                    width: 600,
+                    height: 400
+                };
             },
 
             // 设置窗体最大值
-            setMaxSize: function (parms) {
+            setMaxSize: function(parms) {
                 if (b$.pN) {
                     try {
                         parms = parms || {};
@@ -1950,16 +2026,19 @@
             },
 
             // 获取窗体当前尺寸
-            getSize: function () {
+            getSize: function() {
                 if (b$.pN) {
                     return JSON.parse(b$.pN.window.getSize());
                 }
 
-                return {width: 600, height: 400};
+                return {
+                    width: 600,
+                    height: 400
+                };
             },
 
             // 设置窗体当前尺寸
-            setSize: function (parms) {
+            setSize: function(parms) {
                 b$.Window.resize(parms);
             }
 
@@ -1971,22 +2050,22 @@
          * @type {{setMenuProperty: Function, maxRecentDocumentCount: Function, addRecentDocument: Function, clearAllRecentDocuments: Function}}
          */
         b$.SystemMenus = {
-            setMenuProperty: function (in_parms, cb, actionCB) {
+            setMenuProperty: function(in_parms, cb, actionCB) {
                 try {
                     $.testObjectType(in_parms, 'object');
 
                     var parms = {};
                     //限制内部属性：
-                    parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
-                            cb && cb(obj);
-                        }, true);
+                    parms['callback'] = in_parms['callback'] || b$._get_callback(function(obj) {
+                        cb && cb(obj);
+                    }, true);
                     parms['menuTag'] = in_parms['menuTag'] || 999;
                     parms['hideMenu'] = in_parms['hideMenu'] || false;
                     parms['isSeparatorItem'] = in_parms['isSeparatorItem'] || false; // 是否为分割线，用来创建新的Item
-                    parms['title'] = in_parms['title'] || "##**";//"MenuTitle";
-                    parms['action'] = in_parms['action'] || b$._get_callback(function (obj) {
-                            actionCB && actionCB(obj);
-                        }, true);
+                    parms['title'] = in_parms['title'] || "##**"; //"MenuTitle";
+                    parms['action'] = in_parms['action'] || b$._get_callback(function(obj) {
+                        actionCB && actionCB(obj);
+                    }, true);
 
 
                     if (b$.pN) {
@@ -1999,14 +2078,14 @@
                 }
 
             },
-            maxRecentDocumentCount: function () {
+            maxRecentDocumentCount: function() {
                 if (b$.pN) {
                     return b$.pN.window.maxRecentDocumentCount();
                 }
 
                 return 0;
             },
-            addRecentDocument: function (parms) {
+            addRecentDocument: function(parms) {
                 if (b$.pN) {
                     try {
                         parms = parms || {};
@@ -2022,7 +2101,7 @@
                     alert('启动添加最近使用文档功能')
                 }
             },
-            clearAllRecentDocuments: function () {
+            clearAllRecentDocuments: function() {
                 if (b$.pN) b$.pN.window.clearAllRecentDocuments();
             }
 
@@ -2034,12 +2113,12 @@
          * @type {{copy: Function, paste: Function}}
          */
         b$.Clipboard = {
-            copy: function (stringText) {
+            copy: function(stringText) {
                 if (b$.pN) {
                     b$.pN.clipboard.copy(stringText);
                 }
             },
-            paste: function () {
+            paste: function() {
                 if (b$.pN) {
                     return b$.pN.clipboard.paste();
                 }
@@ -2052,12 +2131,12 @@
          * @type {{setBadge: Function, getBadge: Function}}
          */
         b$.Dock = {
-            setBadge: function (text) {
+            setBadge: function(text) {
                 if (b$.pN) {
                     b$.pN.dock.setBadge(text);
                 }
             },
-            getBadge: function () {
+            getBadge: function() {
                 if (b$.pN) {
                     return b$.pN.dock.badge;
                 }
@@ -2071,15 +2150,15 @@
          * @type {{createBinaryFile: Function, createTextFile: Function, getUTF8TextContentFromFile: Function, base64ToFile: Function, base64ToImageFile: Function, imageFileConvertToOthers: Function}}
          */
         b$.Binary = {
-            createBinaryFile: function (in_parms, cb) {
+            createBinaryFile: function(in_parms, cb) {
                 try {
                     $.testObjectType(in_parms, 'object');
 
                     var parms = {};
                     //限制内部属性：
-                    parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
-                            cb && cb(obj);
-                        }, true);
+                    parms['callback'] = in_parms['callback'] || b$._get_callback(function(obj) {
+                        cb && cb(obj);
+                    }, true);
                     parms['filePath'] = in_parms['filePath'] || "";
                     parms['data'] = in_parms['data'] || "";
                     parms['offset'] = in_parms['offset'] || 0;
@@ -2096,15 +2175,15 @@
                 }
             },
 
-            createTextFile: function (in_parms, cb) {
+            createTextFile: function(in_parms, cb) {
                 try {
                     $.testObjectType(in_parms, 'object');
 
                     var parms = {};
                     //限制内部属性：
-                    parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
-                            cb && cb(obj);
-                        }, true);
+                    parms['callback'] = in_parms['callback'] || b$._get_callback(function(obj) {
+                        cb && cb(obj);
+                    }, true);
                     parms['filePath'] = in_parms['filePath'] || "";
                     parms['text'] = in_parms['text'] || "";
                     parms['offset'] = in_parms['offset'] || 0;
@@ -2121,24 +2200,24 @@
                 }
             },
 
-            getUTF8TextContentFromFile: function (in_parms, cb) {
+            getUTF8TextContentFromFile: function(in_parms, cb) {
                 try {
                     $.testObjectType(in_parms, 'object');
 
                     var parms = {};
                     //限制内部属性：
-                    parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
-                            console.log($.obj2string(obj));
-                            /**
-                             obj.success = true || false
-                             obj.content =  //内容
-                             obj.error =    //出错信息
-                             **/
-                            cb && cb(obj);
-                        }, true);
+                    parms['callback'] = in_parms['callback'] || b$._get_callback(function(obj) {
+                        console.log($.obj2string(obj));
+                        /**
+                         obj.success = true || false
+                         obj.content =  //内容
+                         obj.error =    //出错信息
+                         **/
+                        cb && cb(obj);
+                    }, true);
                     parms['filePath'] = in_parms['filePath'] || "";
                     parms['encode'] = in_parms['encode'] || 'utf8';
-                    parms['async'] = in_parms['async'] || true;  // 异步的时候，回调函数有效，否则无效，直接返回内容值
+                    parms['async'] = in_parms['async'] || true; // 异步的时候，回调函数有效，否则无效，直接返回内容值
 
                     /**
                      encode: 说明，不区分大小写
@@ -2148,7 +2227,7 @@
                      **/
 
                     if (b$.pN) {
-                        return b$.pN.binaryFileWriter.getTextFromFile($.toJSON(parms));  //使用非异步模式(async == false)，直接返回content内容
+                        return b$.pN.binaryFileWriter.getTextFromFile($.toJSON(parms)); //使用非异步模式(async == false)，直接返回content内容
                     } else {
                         alert('获取文本文件中的内容（UTF8编码）')
                     }
@@ -2159,15 +2238,15 @@
             },
 
 
-            base64ToFile: function (in_parms, cb) {
+            base64ToFile: function(in_parms, cb) {
                 try {
                     $.testObjectType(in_parms, 'object');
 
                     var parms = {};
                     //限制内部属性：
-                    parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
-                            cb && cb(obj);
-                        }, true);
+                    parms['callback'] = in_parms['callback'] || b$._get_callback(function(obj) {
+                        cb && cb(obj);
+                    }, true);
                     parms['filePath'] = in_parms['filePath'] || "";
                     parms['base64String'] = in_parms['base64String'] || "";
                     parms['dataAppend'] = in_parms['dataAppend'] || false;
@@ -2184,15 +2263,15 @@
 
             },
 
-            base64ToImageFile: function (in_parms, cb) {
+            base64ToImageFile: function(in_parms, cb) {
                 try {
                     $.testObjectType(in_parms, 'object');
 
                     var parms = {};
                     //限制内部属性：
-                    parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
-                            cb && cb(obj);
-                        }, true);
+                    parms['callback'] = in_parms['callback'] || b$._get_callback(function(obj) {
+                        cb && cb(obj);
+                    }, true);
                     parms['filePath'] = in_parms['filePath'] || "";
                     parms['base64String'] = in_parms['base64String'] || "";
                     parms['imageType'] = in_parms['imageType'] || 'jpeg'; //png,bmp
@@ -2210,15 +2289,15 @@
 
             },
 
-            imageFileConvertToOthers: function (in_parms, cb) {
+            imageFileConvertToOthers: function(in_parms, cb) {
                 try {
                     $.testObjectType(in_parms, 'object');
 
                     var parms = {};
                     //限制内部属性：
-                    parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
-                            cb && cb(obj);
-                        }, true);
+                    parms['callback'] = in_parms['callback'] || b$._get_callback(function(obj) {
+                        cb && cb(obj);
+                    }, true);
                     parms['filePath'] = in_parms['filePath'] || ""; // 目标文件
                     parms['orgFilePath'] = in_parms['orgFilePath'] || ""; // 源文件
                     parms['imageType'] = in_parms['imageType'] || 'jpeg'; //png,bmp
@@ -2238,7 +2317,7 @@
 
 
             Sound: {
-                playResourceSoundFile: function (fileUrl) {
+                playResourceSoundFile: function(fileUrl) {
                     if (b$.pN) b$.pN.sound.play(fileUrl);
                 }
             },
@@ -2249,7 +2328,7 @@
 
 
         // 启动核心插件功能
-        b$.enablePluginCore = function (pluginList, cbFuncName) {
+        b$.enablePluginCore = function(pluginList, cbFuncName) {
             if (b$.pN) {
                 try {
                     var org_pluginArray = pluginList || []; // 插件信息数组
@@ -2285,44 +2364,44 @@
          *
          * @param parms 参数处理
          */
-        b$.enableDragDropFeature = function (jsonObj, cb) {
+        b$.enableDragDropFeature = function(jsonObj, cb) {
             var t$ = this;
             if (t$.pN) {
                 try {
                     var parms = jsonObj || {};
-                    parms["callback"] = jsonObj["callback"] || t$._get_callback(function (obj) {
-                            if ($.isFunction(t$.cb_dragdrop)) {
-                                t$.cb_dragdrop && t$.cb_dragdrop(obj);
-                            } else {
-                                cb && cb(obj);
-                            }
+                    parms["callback"] = jsonObj["callback"] || t$._get_callback(function(obj) {
+                        if ($.isFunction(t$.cb_dragdrop)) {
+                            t$.cb_dragdrop && t$.cb_dragdrop(obj);
+                        } else {
+                            cb && cb(obj);
+                        }
 
-                        }, true);
+                    }, true);
                     parms["enableDir"] = jsonObj["enableDir"] || false;
                     parms["enableFile"] = jsonObj["enableFile"] || true;
                     parms["fileTypes"] = jsonObj["fileTypes"] || ["*"]; // ["*","mp3","md", "xls"] 类似这样的格式
 
-                    if(t$.pIsUseElectron){
+                    if (t$.pIsUseElectron) {
                         // document.ondragover = document.ondrop = function(e) {
                         //   e.preventDefault();
                         //   return false;
                         // };
 
                         // var holder = document.getElementsByTagName('body');
-                        document.ondragover = function () {
-                          return false;
+                        document.ondragover = function() {
+                            return false;
                         };
-                        document.ondragleave = document.ondragend = function () {
-                          //this.className = '';
-                          return false;
+                        document.ondragleave = document.ondragend = function() {
+                            //this.className = '';
+                            return false;
                         };
-                        document.ondrop = function (e) {
+                        document.ondrop = function(e) {
                             //this.className = '';
                             e.preventDefault();
 
                             //传递dataTransfer.files 给本地引擎，让本地引擎去详细处理
                             var pathList = [];
-                            $.each(e.dataTransfer.files, function(index, fileObj){
+                            $.each(e.dataTransfer.files, function(index, fileObj) {
                                 pathList.push(fileObj.path);
                             });
                             t$.pN.window.proxyProcessDragDropWithPaths(pathList);
@@ -2333,7 +2412,7 @@
                 } catch (e) {
                     console.error(e);
                 }
-            }else{
+            } else {
                 console.log("[Notice] Not Native enableDragDropFeature");
             }
         };
@@ -2351,10 +2430,10 @@
          b$.createTask(copyPlugin.callMethod, Date.now(), [copyPlugin.tool], b$._get_callback(function(obj)
          * @param commandList
          */
-        b$.formatCommand = function (commandList) {
+        b$.formatCommand = function(commandList) {
             //命令自动加入''
             var formatArgs = [];
-            $.each(commandList || [], function (index, ele) {
+            $.each(commandList || [], function(index, ele) {
                 var fm_ele = "";
                 if ($.type(ele) === "boolean") fm_ele = "'" + ele + "'";
                 if ($.type(ele) === "number") fm_ele = ele;
@@ -2379,7 +2458,7 @@
          * @param args
          * @param cbFuncName callback 回调函数的名称
          */
-        b$.createTask = function (callMethod, taskId, args, cbFuncName) {
+        b$.createTask = function(callMethod, taskId, args, cbFuncName) {
             try {
                 var extendObj = $.objClone(b$.pCorePlugin);
                 extendObj["passBack"] = cbFuncName || extendObj["passBack"];
@@ -2398,7 +2477,7 @@
         };
 
         // 自动判断几种任务类型，自动启动任务(2016.1.20)添加，方便函数
-        b$.autoStartTask = function (obj, cbFuncName) {
+        b$.autoStartTask = function(obj, cbFuncName) {
             try {
                 if (b$.pN) {
                     var infoType = obj.type;
@@ -2413,12 +2492,11 @@
                 } else {
                     cbFuncName && eval(cbFuncName + "()");
                 }
-            } catch (e) {
-            }
+            } catch (e) {}
         };
 
         // 发送任务事件
-        b$.sendQueueEvent = function (queueID, queueType, event, cbFuncName) {
+        b$.sendQueueEvent = function(queueID, queueType, event, cbFuncName) {
             try {
                 var extendObj = $.objClone(b$.pCorePlugin);
                 extendObj["passBack"] = cbFuncName || extendObj["passBack"];
@@ -2466,7 +2544,7 @@
          * @param noNcb 非Native的状态下，执行的回调函数
          * @param cb    Native状态下，执行的回调函数是，默认是优化外部传入函数
          */
-        b$.importFiles = function (in_parms, noNcb, cb) {
+        b$.importFiles = function(in_parms, noNcb, cb) {
             var _this = this;
             try {
                 var parms = {};
@@ -2474,14 +2552,14 @@
                 $.testObjectType(in_parms, 'object');
 
                 //限制内部属性：
-                parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
-                        if (_this.cb_importFiles) {
-                            _this.cb_importFiles && _this.cb_importFiles(obj);
-                        } else {
-                            cb && cb(obj);
-                        }
+                parms['callback'] = in_parms['callback'] || b$._get_callback(function(obj) {
+                    if (_this.cb_importFiles) {
+                        _this.cb_importFiles && _this.cb_importFiles(obj);
+                    } else {
+                        cb && cb(obj);
+                    }
 
-                    }, true);
+                }, true);
                 parms['title'] = in_parms['title'] || "Select a file";
                 parms['prompt'] = in_parms['prompt'] || "Open";
 
@@ -2534,21 +2612,21 @@
          * @param noNcb 非Native状态下，执行
          * @param cb 在Native下，可以通过传递cb来执行
          */
-        b$.selectOutDir = function (in_parms, noNcb, cb) {
+        b$.selectOutDir = function(in_parms, noNcb, cb) {
             try {
                 var parms = {};
 
                 $.testObjectType(in_parms, 'object');
 
                 //限制内部属性：
-                parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
-                        if ($.isFunction(b$.cb_selectOutDir)) {
-                            b$.cb_selectOutDir && b$.cb_selectOutDir(obj);
-                        } else {
-                            cb && cb(obj);
-                        }
+                parms['callback'] = in_parms['callback'] || b$._get_callback(function(obj) {
+                    if ($.isFunction(b$.cb_selectOutDir)) {
+                        b$.cb_selectOutDir && b$.cb_selectOutDir(obj);
+                    } else {
+                        cb && cb(obj);
+                    }
 
-                    }, true);
+                }, true);
                 parms['title'] = in_parms['title'] || "Select Directory";
                 parms['prompt'] = in_parms['prompt'] || "Select";
 
@@ -2589,7 +2667,7 @@
          * @param noNcb 非Native状态下，执行
          * @param cb 在Native下，可以通过传递cb来执行
          */
-        b$.selectOutFile = function (in_parms, noNcb, cb) {
+        b$.selectOutFile = function(in_parms, noNcb, cb) {
             if (b$.pN) {
                 try {
                     var parms = {};
@@ -2597,14 +2675,14 @@
                     $.testObjectType(in_parms, 'object');
 
                     //限制内部属性：
-                    parms['callback'] = in_parms['callback'] || b$._get_callback(function (obj) {
-                            if ($.isFunction(b$.cb_selectOutFile)) {
-                                b$.cb_selectOutFile && b$.cb_selectOutFile(obj);
-                            } else {
-                                cb && cb(obj);
-                            }
+                    parms['callback'] = in_parms['callback'] || b$._get_callback(function(obj) {
+                        if ($.isFunction(b$.cb_selectOutFile)) {
+                            b$.cb_selectOutFile && b$.cb_selectOutFile(obj);
+                        } else {
+                            cb && cb(obj);
+                        }
 
-                        }, true);
+                    }, true);
                     parms['title'] = in_parms['title'] || "Save as";
                     parms['prompt'] = in_parms['prompt'] || "Save";
 
@@ -2627,13 +2705,13 @@
 
         // 定位文件/目录
         b$.cb_revealInFinder = null; // 选择定位文件的回调
-        b$.revealInFinder = function (path, cb) {
+        b$.revealInFinder = function(path, cb) {
             path = path || "";
             path = $.trim(path);
             if (b$.pN && path !== "") {
                 try {
                     b$.pN.window.revealInFinder($.toJSON({
-                        callback: b$._get_callback(function (obj) {
+                        callback: b$._get_callback(function(obj) {
                             cb && cb(obj);
                         }, false),
                         filePath: path
@@ -2647,14 +2725,14 @@
         };
 
         // 预览文件
-        b$.previewFile = function (parms, cb) {
+        b$.previewFile = function(parms, cb) {
             if (b$.pN) {
                 try {
                     parms = parms || {};
                     //限制内部属性：
-                    parms['callback'] = parms['callback'] || b$._get_callback(function (obj) {
-                            cb && cb(obj);
-                        }, true);
+                    parms['callback'] = parms['callback'] || b$._get_callback(function(obj) {
+                        cb && cb(obj);
+                    }, true);
                     parms['filePath'] = parms['filePath'] || "";
 
                     b$.pN.window.preveiwFile($.toJSON(parms));
@@ -2668,7 +2746,7 @@
 
 
         // 检测是否支持本地存储
-        b$.check_supportHtml5Storage = function () {
+        b$.check_supportHtml5Storage = function() {
             try {
                 return 'localStorage' in window && window['localStorage'] != null;
             } catch (e) {
@@ -2681,16 +2759,18 @@
         b$.defaultManifest = {};
 
         // 保存默认Manifest对象
-        b$.saveDefaultManifest = function (newManifest) {
+        b$.saveDefaultManifest = function(newManifest) {
             if (!b$.check_supportHtml5Storage()) return false;
-            var obj = {manifest: newManifest || b$.defaultManifest};
+            var obj = {
+                manifest: newManifest || b$.defaultManifest
+            };
             var encoded = $.toJSON(obj);
             window.localStorage.setItem(b$.defaultManifest_key, encoded);
             return true;
         };
 
         // 还原默认Manifest对象
-        b$.revertDefaultManifest = function () {
+        b$.revertDefaultManifest = function() {
             if (!b$.check_supportHtml5Storage()) return false;
             var encoded = window.localStorage.getItem(b$.defaultManifest_key);
             if (encoded != null) {
@@ -2708,10 +2788,10 @@
          * getDataCB. 获得数据后的处理方式
          * cb, 内置处理完成后，回调处理
          */
-        b$.checkUpdate = function (appId, promptText, getDataCB, cb) {
+        b$.checkUpdate = function(appId, promptText, getDataCB, cb) {
             try {
                 var t$ = this;
-                var _checkUpdate = function (data) {
+                var _checkUpdate = function(data) {
                     try {
                         var lastVersion = data.checkUpdate.lastVersion || "";
                         var updateURL = data.checkUpdate.updateURL || "";
@@ -2720,7 +2800,8 @@
                         var curAppVersion = t$.App.getAppVersion();
                         console.log("last:" + lastVersion + ",cur:" + curAppVersion);
                         if (1 === $.compareVersion(lastVersion, curAppVersion)) {
-                            var foundNewVersion = promptText || data.checkUpdate.prompt || "The new version has been released.";
+                            var foundNewVersion = promptText || data.checkUpdate.prompt ||
+                                "The new version has been released.";
                             alert(foundNewVersion);
                             updateURL !== "" && b$.App.open(updateURL);
                             cb && cb(data);
@@ -2734,9 +2815,11 @@
                 // 尝试读取服务器配置
                 var jsonFile = appId || b$.App.getAppId() + ".json";
                 var serverUrl = "http://romanysoft.github.io/assert-config/configs/" + jsonFile;
-                $.getJSON(serverUrl, function (data) {
+                $.getJSON(serverUrl, function(data) {
                     data = typeof data === "object" ? data : {};
-                    data = data instanceof Array ? {"data": data} : data;
+                    data = data instanceof Array ? {
+                        "data": data
+                    } : data;
 
                     getDataCB && getDataCB(data);
 
@@ -2752,11 +2835,12 @@
         window.BS.b$ = $.extend(window.BS.b$, b$);
 
         // 内核加入自启动部分代码
-        (function () {
+        (function() {
             try {
-                $(document).ready(function () {
+                $(document).ready(function() {
                     var b$ = window.BS.b$;
-                    console.log("-------------Delayed loading method, do not reflect here-------");
+                    console.log(
+                        "-------------Delayed loading method, do not reflect here-------");
                 })
             } catch (e) {
                 console.error(e)

@@ -1,3 +1,37 @@
+2016年5月20日18:44:23
+
+[Upgrade] 界面样式升级
+[Upgrade] KATEX 组件升级到 V0.6.0。 https://khan.github.io/KaTeX/
+[Upgrade] 组件升级：Jquery 升级到1.12.4
+[Upgrade] 组件升级：utils.js 升级
+[Upgrade] CodeMirror 升级到5.15.2
+[Upgrade] code-block 升级语言配置
+[Upgrade] 优化Image插件
+
+[Improvement] 标记当前编辑的Markdown文件
+[Improvement] 文件工作区文件列表取消按照最后编辑时间排序
+[Improvement] eidtormd.js 新增before函数。例如：加载前，变化前，预览前，全屏前
+[Improvement] 在编辑器工作区域，标题栏上实现编辑文件快速切换功能
+[Improvement] 变更设置部分样式
+
+
+[Bug] unwatch状态下，还能预览，但预览没有内容。解决方式：预览前，先打开实时预览，然后再关闭
+[Note] 侧边栏对Editor的影响处理
+
+[TODO] 下一版本
+3. [Improvement ?] Markdown文件分享及工具
+2. 需要解决临时存储空间不足的问题。太多文件会导致location没有空间 
+1. 增加更多的编辑插件：
+                ,tex:  true                 //是否开启Tex(Latex)，based on KaTex功能
+                ,flowChart:  true           //是否开启FlowChart 功能
+                ,sequenceDiagram: true      //是否开启SequenceDiagram 功能
+                ,toc:  true                 //是否开启Table of contents 功能
+                ,tocm:  true                //是否Using [TOCM] auto create Toc dropdown menu
+                ,tocTitle: ""               //是否指定Toc dropdown menu btn
+                ,tocStartLevel: 1           //指定 Said from H1 to create Toc
+
+
+========================================================================================================
 2016-04-29 08:06:48
 
 [Upgrade] 增强拖拽功能，区分文件类型及当前所处于的页面状态

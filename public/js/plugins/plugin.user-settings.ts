@@ -2,8 +2,17 @@
  * Created by Ian on 2015/5/14.
  */
 
-module RomanySoftPlugins {
-    export module Settings {
+///<reference path="../../typings/jquery/jquery.d.ts" />
+
+namespace RomanySoftPlugins {
+
+    export namespace Settings {
+        // 应用程序整体部分
+        class AppUnit{
+            systemLanguage: string = "en";   // 系统默认语言英文
+        }
+
+
         // 文档控制部分
         class DocumentUnit{
 
@@ -11,32 +20,31 @@ module RomanySoftPlugins {
 
             autoSave:boolean = false;         // 是否默认自动保存
             autoSaveSecs:number = 300;        // 自动保存的间隔时间(秒数)，默认是立即保存，
-
-            autoRestore: boolean = true;    // 是否自动恢复之前使用的文档
+            autoRestore: boolean = true;      // 是否自动恢复之前使用的文档
         }
 
         // 编辑器部分
         class EditorUnit{
 
-            //[商品关联]
-            enable_TaskList:boolean = true;       // 是否开启TaskList
-            enable_Emoji:boolean = true;          // 是否开启Emoji
-            enable_AtLink:boolean = true;         // 是否开启AtLink
-            enable_EmailLink:boolean = true;      // 是否开启EmailLink
-            enable_FlowChart:boolean = true;      // 是否开启FlowChart
-            enable_SequenceDiagram:boolean = true;// 是否开启SequenceDiagram
-            enable_Tex:boolean = true;            // 是否开启Tex
-            enable_Toc:boolean = true;            // 是否开启Toc
-            enable_CodeFold:boolean = true;       // 是否开启CodeFold
-            enable_HtmlDecode:boolean = true;     // 是否开启HTMLDecode
-            enable_StyleActiveLine:boolean = true;// 是否开启StyleActiveLine
-            enable_LineNumbers:boolean = true;    // 是否开启LineNumbers
-            enable_SearchReplace:boolean = true;  // 是否开启SearchReplace
-            enable_Tocm:boolean = true;           // 是否开启Tocm
-
-            //[内置]
-            enable_matchWordHighlight:boolean = true; // 是否开启匹配文件高亮
-
+            constructor(){
+                let _config = new RomanySoftPlugins["EditorConfig"]();
+                let formmatConfig = {
+                    "switchDelay": 15 // 添加自定义的参数，Editor之间切换动画的间隔
+                };
+                let excludeSettings = [
+                    "mode", "name", "value", "width", "height", "path", "toolbarIcons", "appendMarkdown",
+                    "theme", "previewTheme", "imageFormats", "toolbarAutoFixed"
+                ];
+                for(var key in _config ){
+                    if($.inArray(key, excludeSettings) === -1){ // 排除
+                        var valueType = $.type(_config[key]);
+                        if(valueType === "boolean" || valueType === "array" || valueType === "number" || valueType === "string"){
+                            formmatConfig[key] = _config[key];
+                        }
+                    }
+                }
+                return formmatConfig;
+            }
 
         }
 
@@ -54,6 +62,9 @@ module RomanySoftPlugins {
 
 
         export class UserSetting{
+            appSetting:AppUnit = new AppUnit();
+            default_appSetting:AppUnit = new AppUnit();                 // 默认系统语言
+
             documentSetting: DocumentUnit = new DocumentUnit();
             default_documentSetting: DocumentUnit = new DocumentUnit(); // 默认文档设置
 
@@ -77,14 +88,51 @@ module RomanySoftPlugins {
                     }
                 }
 
+                // appSetting
+                fn("appSetting", info, this);
+
                 // document
                 fn("documentSetting", info, this);
 
                 // editor
                 fn("editorSetting", info, this);
 
-
+                return this;
             }
+
+            //===========================================================================
+            // forUser
+            //===========================================================================
+
+            // 去除默认数据，得到用户设置
+            public forUserCoreData(): any{
+                var obj = {};
+                for(var key in this){
+                    if(key.indexOf("default_") === -1 ){
+                        obj[key] = this[key];
+                    }
+                }
+
+                return obj;
+            }
+
+            //===========================================================================
+            // default
+            //===========================================================================
+            public forDefaultcoreData(): any{
+                var obj = {};
+                for(var key in this){
+                    if(key.indexOf("default_") !== -1 ){
+                        obj[key] = this[key];
+                    }
+                }
+
+                return obj;
+            }
+
+            //===========================================================================
+            // forAll
+            //===========================================================================
 
             // 获取核心的数据的json系列化
             public coreDataToJSON():string{
@@ -93,7 +141,7 @@ module RomanySoftPlugins {
                     obj[key] = this[key];
                 }
 
-                return JSON.stringify(obj);
+                return JSON.stringify(obj, null, 4);
             }
 
             // 核心数据的反序列化
@@ -102,8 +150,12 @@ module RomanySoftPlugins {
                     var obj:any = JSON.parse(str);
                     this.restoreCoreDataWithInfo(obj);
                 }catch(e){}
+
+                return this;
             }
         }
     }
 
 }
+
+export default RomanySoftPlugins;

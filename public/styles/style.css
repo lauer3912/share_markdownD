@@ -1,101 +1,166 @@
+/**
+ * Body CSS
+ */
+html,
 body {
-  font-family: ubuntu, consolas, monospace, sans-serif;
-  overflow: hidden !important;
+  height: 100%;
 }
-#g-wrapper #app-header {
+html,
+body,
+input,
+textarea,
+buttons {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+/**
+ * Romanysoft Custom CSS
+ */
+.rs-top-pandding-panel {
+  margin-top: 16px;
+  padding: 12px;
+}
+/**
+ * Layout CSS
+ */
+#header {
   position: fixed;
   top: 0;
-  z-index: 999;
-  width: 100%;
+  right: 0;
+  left: 0;
+  z-index: 99;
+  transition: left 0.2s;
 }
-#g-wrapper .app-content-container {
-  width: 100%;
+#sidedrawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  left: -200px;
+  overflow: auto;
+  z-index: 100;
+  background-color: #fff;
+  transition: transform 0.2s;
+  border-radius: 0;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.66), 0 0 2px 0 rgba(0, 0, 0, 0.12);
 }
-.mui-appbar {
-  color: #000000;
+#content-wrapper {
+  min-height: 100%;
+  overflow-x: hidden;
+  margin-left: 0px;
+  transition: margin-left 0.2s;
+  /* sticky bottom */
+  margin-bottom: -48px;
+  padding-bottom: 48px;
 }
-.mui-appbar .mui-container {
-  width: 100%;
+@media (min-width: 768px) {
+  #header {
+    left: 200px;
+  }
+  #sidedrawer {
+    transform: translate(200px);
+  }
+  #content-wrapper {
+    margin-left: 200px;
+  }
+  body.hide-sidedrawer #header {
+    left: 0;
+  }
+  body.hide-sidedrawer #sidedrawer {
+    transform: translate(0px);
+  }
+  body.hide-sidedrawer #content-wrapper {
+    margin-left: 0;
+  }
+  body.hide-sidedrawer #footer {
+    margin-left: 0;
+  }
 }
-.mui-appbar #appbar-sidenav-toggle,
-.mui-appbar #appbar-help {
-  width: 63px;
-  height: 63px;
-  line-height: 63px;
-  display: inline-block;
-  text-align: center;
+/**
+ * Toggle Sidedrawer
+ */
+#sidedrawer.active {
+  transform: translate(200px);
+}
+/**
+ * Header CSS
+ */
+.sidedrawer-toggle {
   color: #fff;
   cursor: pointer;
-  font-size: 24px;
-  text-decoration: none !important;
-  background-color: transparent;
+  font-size: 20px;
+  line-height: 20px;
+  margin-right: 10px;
 }
-.mui-appbar #appbar-sidenav-toggle :focus,
-.mui-appbar #appbar-help :focus {
-  outline: none !important;
-}
-.mui-appbar #nav-title {
-  line-height: 63px;
-  font-size: 24px;
+.sidedrawer-toggle:hover {
   color: #fff;
-  text-decoration: none !important;
-  background-color: transparent;
-}
-#appbar-inner {
-  width: 100%;
-}
-#sidenav {
-  position: fixed;
-  top: 63px;
-  background: -webkit-linear-gradient(left, #fff 0, rgba(255, 255, 255, 0.65) 70%, rgba(255, 255, 255, 0) 100%);
-  background: -ms-linear-gradient(left, #fff 0, rgba(255, 255, 255, 0.65) 70%, rgba(255, 255, 255, 0) 100%);
-  background: linear-gradient(to right, #fff 0, rgba(255, 255, 255, 0.65) 70%, rgba(255, 255, 255, 0) 100%);
-  overflow: auto;
-  width: 240px;
-  box-shadow: 0px 1px 1px #909090;
-  z-index: 999;
-}
-#sidenav .app-description {
-  margin-left: 15px;
-}
-#sidenav ul {
-  padding-left: 0;
-  font-size: 24px;
-  list-style: none;
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-#sidenav ul li {
-  display: list-item;
-  text-align: -webkit-match-parent;
   text-decoration: none;
 }
-#sidenav ul li button {
-  text-transform: none;
+#header-workspace-filelist .rs-badge {
+  border-radius: 999999px;
+  background-color: #616161;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+}
+#header-workspace-filelist .rs-ul-filelist {
+  overflow: auto;
+  height: 500%;
+}
+#header-workspace-filelist .rs-ul-filelist li .rs-badge {
+  border-radius: 0px;
+  padding: 4px;
+  color: #FFFFFF;
+}
+#header-workspace-filelist .rs-ul-filelist li .rs-mark-current {
+  background-color: #2196F3;
+  border-radius: 8px 0px 0px 0px;
+}
+/**
+ * Sidedrawer CSS
+ */
+#sidedrawer #sidedrawer-brand {
+  padding-left: 20px;
+  font-size: 20px;
+  font-weight: 400;
+}
+#sidedrawer ul {
+  list-style: none;
+}
+#sidedrawer > ul {
+  padding-left: 0px;
+}
+#sidedrawer > ul > li:first-child {
+  padding-top: 15px;
+}
+#sidedrawer > ul > li .mui-btn {
+  text-align: left;
   width: 100%;
+}
+#sidedrawer strong {
+  display: block;
+  padding: 15px 22px;
+  cursor: pointer;
+}
+#sidedrawer strong:hover {
+  background-color: #E0E0E0;
+}
+#sidedrawer strong + ul > li {
+  padding: 6px 0px;
 }
 #view-files {
   margin-left: auto;
   margin-right: auto;
 }
-#view-files ul {
-  list-style: none;
+#view-files .rs-mark-current {
+  background-color: #2196F3;
+  color: #FFFFFF;
+  padding: 4px;
+  border-radius: 8px 0px 0px 0px;
 }
-#view-files ul input {
+#view-files input {
   font-size: 11px;
-}
-#view-files ul button {
-  font-size: 32px;
-  padding: 0 5px;
-}
-#view-files ul button span {
-  font-size: 0.8em;
-}
-#view-files button {
-  text-transform: capitalize;
-}
-#view-files em {
-  color: #FF0000;
 }
 #view-workspace .mui-panel {
   padding: 0px 15px 15px;
@@ -103,32 +168,12 @@ body {
 #view-workspace .editormd {
   border: none !important;
 }
-#view-plugins {
-  margin-left: auto;
-  margin-right: auto;
+#view-settings .jsoneditor {
+  border: none !important;
 }
-#view-plugins section {
-  padding: 10px;
-}
-#view-settings {
-  margin-left: auto;
-  margin-right: auto;
-}
-#view-settings ul {
-  list-style: none;
-}
-#view-settings ul input {
-  font-size: 11px;
-}
-#view-settings ul button {
-  width: 84px;
-  padding: 0 5px;
-}
-#view-settings ul button span {
-  font-size: 0.8em;
-}
-#view-settings button {
-  text-transform: capitalize;
+#view-settings .jsoneditor .jsoneditor-menu {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 #view-about {
   margin-left: auto;

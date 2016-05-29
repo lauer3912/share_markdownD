@@ -2,37 +2,124 @@
  * Created by Ian on 2015/5/14.
  */
 
-///<reference path="../../tsd/typings/jquery/jquery.d.ts" />
-module RomanySoftPlugins {
+///<reference path="../../typings/jquery/jquery.d.ts" />
+
+export namespace RomanySoftPlugins {
+    const VERSION:string = "1.6.0";
+    const DEFAULT_LIB_PATH:string = "common/editor.md/"+ VERSION +"/editor.md/lib/";  // 默认版本哭路径
+    const DEFAULT_LANG_PATH:string = "locales/extend/editormd/";  // 默认版本路径
+
+    const DEFAULT_TOOLBARICONS = [
+        "undo", "redo", "|",
+        "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
+        "h1", "h2", "h3", "h4", "h5", "h6", "|",
+        "list-ul", "list-ol", "hr", "|",
+        "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime",
+        "emoji",
+        "html-entities", "pagebreak", "|",
+        "goto-line", "watch", "preview", "|",
+        "theme", "|",
+        "search", "clear"
+    ];
+
+    /**
+     * 标准的编辑器配置
+     */
+    export class EditorConfig {
+        constructor(){
+            return {
+                width: "100%",
+                height: "100%"
+                ,path: DEFAULT_LIB_PATH
+                ,toolbarIcons: DEFAULT_TOOLBARICONS
+                ,appendMarkdown: ""   // 附加的md内容
+
+
+                //其他配置项
+                ,theme: "" // Editor.md self themes, before v1.5.0 is CodeMirror theme, default empty
+                ,editorTheme:  "default" // Editor area, this is CodeMirror theme at v1.5.0
+                ,previewTheme:  "" // Preview area theme, default empty
+                //,pluginPath: ''           //插件路径
+                //,delay: 300               //启动延时处理
+                //,watch: true              //开启实时预览
+                //,placeholder: ""          //默认替换文字
+                //,gotoLine: true           //是否开启gotoLine的功能
+                ,codeFold:  true            //是否开启代码折叠功能
+                //,autoHeight: false        //是否开启自动高度
+                ,autoCloseTags: true        //是否自动补全标签
+                ,searchReplace:true         //是否开启查找替换功能
+                //,readOnly:  false          //是否开启只读模式
+                ,lineNumbers: true        //是否显示行号
+                ,matchWordHighlight:  true //是否匹配文件高亮
+                ,styleActiveLine:  true    //是否高亮当前行
+                ,dialogLockScreen: true   //是否对话框锁住屏幕
+                ,dialogShowMask: true     //是否对话框显示Mask
+                //,dialogDraggable: true    //是否对话框可以拖拽
+                //,dialogMaskBgColor: "#fff" //设置对话框的Mask背景颜色
+                //,dialogMaskOpacity: 0.1   //设置对话框的透明度
+                ,fontSize: "13px"         //设置编辑器的字体大小
+                //,saveHTMLToTextarea: false //开启是否保存HTML到文本区域
+                //,disabledKeyMaps: []      //屏蔽哪些快捷键
+
+                //,imageUpload: true       //图片是否上传
+                ,imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"] //至此的图片格式
+                //,imageUploadURL: ""       //图片上传的URL地址
+                //,crossDomainUpload: false //是否跨域上传
+                //,uploadCallbackURL: ""    //图片上传的回调URL
+
+                ,toc:  true                 //是否开启Table of contents 功能
+                ,tocm:  true                //是否Using [TOCM] auto create Toc dropdown menu
+                ,tocTitle: ""               //是否指定Toc dropdown menu btn
+                ,tocStartLevel: 1           //指定 Said from H1 to create Toc
+                //,tocContainer: ""         //指定toc的容器
+                ,htmlDecode: true           //是否开启Open the HTML tag identification
+                ,pageBreak: true            //是否开启解析 page break [======]
+                ,atLink: true               //是否开启@link功能
+                ,emailLink: true            //是否开启Email地址自动link功能
+                ,taskList: true             //是否开启Github Flavored Markdown task lists
+                ,emoji:true                 //是否开启emoji
+                ,tex:  true                 //是否开启Tex(Latex)，based on KaTex功能
+                ,flowChart:  true           //是否开启FlowChart 功能
+                ,sequenceDiagram: true      //是否开启SequenceDiagram 功能
+                ,previewCodeHighlight: true //是否开启预览代码高亮功能
+                //,toolbar: true            //是否显示工具栏
+                ,toolbarAutoFixed:  true    //工具栏是否自动填充位置
+
+
+                ////////////加载Handler的处理方式
+                ,beforeLoad: function(){}     //加载成功前的处理
+                ,onload:function(){}     //加载成功后的处理
+                ,beforeResize:function(){}   //大小发生变化前的时候
+                ,onresize: function(){}   //大小发生变化的时候
+                ,beforeChange:  function(){}   //内容发生变化前的时候
+                ,onchange:  function(){}   //内容发生变化的时候
+                ,beforeWatch:  function(){}    //实时预览的时候
+                ,onwatch:  function(){}    //实时预览的时候
+                ,beforeUnwatch:function(){}  //实时预览关闭的时候
+                ,onunwatch:  function(){}  //实时预览关闭的时候
+                ,beforePreviewing: function(){} //当预览的时候
+                ,onpreviewing: function(){} //当预览的时候
+                ,beforePreviewed: function(){}  //当已经预览过的时候
+                ,onpreviewed: function(){}  //当已经预览过的时候
+                ,beforeFullscreen: function(){}  //当全屏的时候
+                ,onfullscreen: function(){}  //当全屏的时候
+                ,beforeFullscreenExit: function(){} //当全屏退出的时候
+                ,onfullscreenExit: function(){} //当全屏退出的时候
+                ,onscroll:function(){}     //当滚动的时候
+                ,onpreviewscroll: function(){} //当预览滚动的时候
+            };
+        }
+    }
+
+
     export class EditorMdServices{
-        version:string = "1.6.0";
+        version:string = VERSION;
         editormd:any = window["editormd"] ||{};
-        default_lib_path:string = "common/editor.md/"+ this.version +"/editor.md/lib/";  // 默认版本哭路径
-        default_lang_path:string = "locales/extend/editormd/";  // 默认版本路径
+        default_lib_path:string = DEFAULT_LIB_PATH;  // 默认版本哭路径
+        default_lang_path:string = DEFAULT_LANG_PATH;  // 默认版本路径
 
         getDefault_toolbarIcons(){
-            var toolList = [];
-            if(this.editormd.version >= "1.4.0"){
-
-                var allList = [
-                    "undo", "redo", "|",
-                    "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
-                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
-                    "list-ul", "list-ol", "hr", "|",
-                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime",
-                    "emoji",
-                    "html-entities", "pagebreak", "|",
-                    "goto-line", "watch", "preview", "|",
-                    "search", "clear"];
-
-                $.each(allList, function(index, obj){
-                   if(null != obj){
-                       toolList.push(obj);
-                   }
-                });
-            }
-
-            return toolList;
+            return DEFAULT_TOOLBARICONS;
         }
 
         configEmoji(cb:Function){
@@ -97,82 +184,91 @@ module RomanySoftPlugins {
             }
         }
 
+        // 获得编辑器的配置
+        getEditorSettings(in_config:any){
+            var _config = in_config || {};
+            var _cloneConfig =  new EditorConfig();
+
+            for(var key in _config){
+                if(key in _cloneConfig){
+                    _cloneConfig[key] = _config[key];
+                }
+            }
+
+            return _cloneConfig;
+        }
+
+        // 更新Editor的默认设置
+        updateSettings(in_settings:{}, editor: any){
+            if(!editor) return null;
+
+            var _config = in_settings || {};
+            var settings = editor.settings;
+
+            if(settings){
+                for(var key in _config){
+                    if(key in settings){
+                        settings[key] = _config[key];
+
+                        if(key === "editorTheme"){
+                            editor.setEditorTheme(_config[key]);
+                        }
+                    }
+                }
+            }
+
+            return editor;
+        }
+
+        /**
+         * [updateToolbarUIWhenLanguageChanged 当外部语言变化时，更新EditorUI]
+         * @param  {any}    editor [description]
+         * @return {[type]}        [description]
+         */
+        updateUIWhenLanguageChanged(editor: any){
+            try{
+                editor.updateToolbar();
+            }catch(e){
+                console.error(e);
+            }
+        }
+
+        /**
+         * [让Editor处于焦点中]
+         * @param  {any}    editor [description]
+         * @return {[type]}        [description]
+         */
+        focus(editor:any){
+            try{
+                editor.focus();
+            }catch(e){
+                console.error(e);
+            }
+
+        }
+
+        refresh(editor:any){
+            try{
+                editor.cm.refresh();
+            }catch(e){
+                console.error(e);
+            }
+        }
+
+        /**
+         * [getCodeMirror 获得CodeMirror]
+         * @return {[type]} [description]
+         */
+        getCodeMirror(){
+            return this.editormd.$CodeMirror;
+        }
 
         createEditor(ui_ele:string, in_config:any){
 
             var _config = in_config || {};
 
             // 插件部分
-            var ui_ele_editor = this.editormd(ui_ele,{
-                width: _config.width || "100%",
-                height: _config.height || $(document).height
-                ,path: this.default_lib_path
-                ,toolbarIcons: this.getDefault_toolbarIcons()
-                ,appendMarkdown: _config.content || ""   // 附加的md内容
-
-
-                //其他配置项
-                //,pluginPath: ''           //插件路径
-                //,delay: 300               //启动延时处理
-                //,watch: true              //开启实时预览
-                //,placeholder: ""          //默认替换文字
-                //,gotoLine: true           //是否开启gotoLine的功能
-                ,codeFold: (typeof _config.codeFold == "boolean") ? _config.codeFold : false          //是否开启代码折叠功能
-                //,autoHeight: false        //是否开启自动高度
-                ,autoCloseTags: true      //是否自动补全标签
-                ,searchReplace: (typeof _config.searchReplace == "boolean") ?  _config.searchReplace : true      //是否开启查找替换功能
-                ,readOnly: (typeof _config.readOnly == "boolean") ? _config.readOnly : false          //是否开启只读模式
-                ,lineNumbers: (typeof _config.lineNumbers == "boolean") ? _config.lineNumbers : true        //是否显示行号
-                ,matchWordHighlight: (typeof _config.matchWordHighlight == "boolean") ? _config.matchWordHighlight : true //是否匹配文件高亮
-                ,styleActiveLine: (typeof _config.styleActiveLine == "boolean") ? _config.styleActiveLine : true    //是否高亮当前行
-                //,dialogLockScreen: true   //是否对话框锁住屏幕
-                ,dialogShowMask: true     //是否对话框显示Mask
-                //,dialogDraggable: true    //是否对话框可以拖拽
-                //,dialogMaskBgColor: "#fff" //设置对话框的Mask背景颜色
-                //,dialogMaskOpacity: 0.1   //设置对话框的透明度
-                //,fontSize: "13px"         //设置编辑器的字体大小
-                //,saveHTMLToTextarea: false //开启是否保存HTML到文本区域
-                //,disabledKeyMaps: []      //屏蔽哪些快捷键
-
-                //,imageUpload: true       //图片是否上传
-                ,imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"] //至此的图片格式
-                //,imageUploadURL: ""       //图片上传的URL地址
-                //,crossDomainUpload: false //是否跨域上传
-                //,uploadCallbackURL: ""    //图片上传的回调URL
-
-                ,toc: (typeof _config.toc == "boolean") ? _config.toc : true                //是否开启Table of contents 功能
-                ,tocm: (typeof _config.tocm == "boolean") ? _config.tocm : false              //是否Using [TOCM] auto create Toc dropdown menu
-                //,tocTitle: ""             //是否指定Toc dropdown menu btn
-                //,tocStartLevel：1         //指定 Said from H1 to create Toc
-                //,tocContainer: ""         //指定toc的容器
-                ,htmlDecode: true        //是否开启Open the HTML tag identification
-                ,pageBreak: true          //是否开启解析 page break [======]
-                ,atLink: (typeof _config.atLink == "boolean") ? _config.atLink : true             //是否开启@link功能
-                ,emailLink: (typeof _config.emailLink == "boolean") ? _config.emailLink : true          //是否开启Email地址自动link功能
-                ,taskList: (typeof _config.taskList == "boolean") ? _config.taskList : false          //是否开启Github Flavored Markdown task lists
-                ,emoji: (typeof _config.emoji == "boolean") ? _config.emoji : false             //是否开启emoji
-                ,tex: (typeof _config.tex == "boolean") ? _config.tex : false               //是否开启Tex(Latex)，based on KaTex功能
-                ,flowChart: (typeof _config.flowChart == "boolean") ? _config.flowChart : false         //是否开启FlowChart 功能
-                ,sequenceDiagram: (typeof _config.sequenceDiagram == "boolean") ? _config.sequenceDiagram : false   //是否开启SequenceDiagram 功能
-                ,previewCodeHighlight: true //是否开启预览代码高亮功能
-                //,toolbar: true            //是否显示工具栏
-                ,toolbarAutoFixed: (typeof _config.toolbarAutoFixed == "boolean") ? _config.toolbarAutoFixed : true   //工具栏是否自动填充位置
-
-
-                ////////////加载Handler的处理方式
-                ,onload: _config.onload || function(){}     //加载成功后的处理
-                ,onresize: _config.onresize || function(){}   //大小发生变化的时候
-                ,onchange: _config.onchange || function(){}   //内容发生变化的时候
-                ,onwatch: _config.onwatch || function(){}    //实时预览的时候
-                ,onunwatch: _config.onunwatch || function(){}  //实时预览关闭的时候
-                ,onpreviewing: _config.onpreviewing || function(){} //当预览的时候
-                ,onpreviewed:_config.onpreviewed ||  function(){}  //当已经预览过的时候
-                ,onfullscreen:_config.onfullscreen || function(){}  //当全屏的时候
-                ,onfullscreenExit:_config.onfullscreenExit || function(){} //当全屏退出的时候
-                ,onscroll:_config.onscroll || function(){}     //当滚动的时候
-                ,onpreviewscroll:_config.onpreviewscroll || function(){} //当预览滚动的时候
-            });
-
+            var ui_ele_editor = this.editormd(ui_ele, this.getEditorSettings(in_config));
             return ui_ele_editor;
         }
 
@@ -186,8 +282,20 @@ module RomanySoftPlugins {
             editor.setMarkdown(content);
         }
 
+        // 附加内容到编辑器
         appendContent(content: string, editor: any) {
             editor.appendMarkdown(content);
+        }
+
+        // 获得编辑器主题样式
+        getEditorTheme(editor: any){
+            var settings = editor.settings;
+            return settings.editorTheme;
+        }
+
+        // 设置编辑器主题样式
+        setEditorTheme(theme: string, editor: any){
+            editor.setEditorTheme(theme);
         }
 
 
@@ -264,3 +372,6 @@ module RomanySoftPlugins {
 
     }
 }
+
+
+export default RomanySoftPlugins;

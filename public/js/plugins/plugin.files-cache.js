@@ -1,14 +1,14 @@
 /**
  * Created by Ian on 2015/5/14.
  */
-///<reference path="../../tsd/typings/jquery/jquery.d.ts" />
+///<reference path="../../typings/jquery/jquery.d.ts" />
 var RomanySoftPlugins;
 (function (RomanySoftPlugins) {
     // 单一的文件对象
     var FileObj = (function () {
         function FileObj() {
             this.id = $.now(); // 唯一标识
-            this.name = "New_" + $.now(); // 别名
+            this.name = "Untitled"; // 别名
             this.is_tmp = true; // 是否是临时文件, 默认是临时的
             this.path = ""; // 路径
             this.ext = "md"; // 扩展名
@@ -16,6 +16,7 @@ var RomanySoftPlugins;
             this.mustReloadNextTime = false; // 下次是否必须从文件中加载内容
             this.lastModify = $.now(); // 最后修改时间戳
             this.assEditor = null; // 关联的Editor的对象的信息
+            this.assEditorSettings = {}; // 关联的设置
             this.content_utf8 = ""; // 内容
         }
         // 获取核心的数据的json系列化
@@ -48,12 +49,13 @@ var RomanySoftPlugins;
         function FilesCache() {
             this.data = [];
         }
-        // 获取所有文件对象
+        // 获取所有文件对象.排序
         FilesCache.prototype.getAllFiles = function () {
             "use strict";
             if (this.data.length <= 1)
                 return this.data;
-            var sortDataList = this.data.sort(function (a, b) {
+            var coloneData = [].concat(this.data);
+            var sortDataList = coloneData.sort(function (a, b) {
                 if (a.lastModify < b.lastModify)
                     return 1;
                 if (a.lastModify > b.lastModify)
@@ -62,23 +64,27 @@ var RomanySoftPlugins;
             });
             return sortDataList;
         };
+        // 获取所有文件对象，没有排序的
+        FilesCache.prototype.getAllFilesWithNoSort = function () {
+            "use strict";
+            if (this.data.length < 1)
+                return [];
+            return this.data;
+        };
         // 获取一个新的文件对象
         FilesCache.prototype.getNewFileObj = function () {
             "use strict";
-            return new FileObj();
+            var t$ = this;
+            var obj = new FileObj();
+            obj.name = obj.name + (t$.data.length + 1);
+            return obj;
         };
         // 获取最后一个修改的文件对象
         FilesCache.prototype.getLastModifyFileObj = function () {
             "use strict";
             if (this.data.length == 0)
                 return null;
-            var sortDataList = this.data.sort(function (a, b) {
-                if (a.lastModify < b.lastModify)
-                    return 1;
-                if (a.lastModify > b.lastModify)
-                    return -1;
-                return 0;
-            });
+            var sortDataList = this.getAllFiles();
             return sortDataList[0];
         };
         // 添加文件对象到缓存中
@@ -115,7 +121,7 @@ var RomanySoftPlugins;
             var t = this;
             $.each(t.data, function (index, obj) {
                 if (obj.id == id) {
-                    t.data.splice($.inArray(obj, t.data), 1);
+                    t.data.splice(index, 1);
                     cb && cb(obj);
                     return false;
                 }

@@ -1,61 +1,96 @@
 {
-    "AppExInfoDescription" : "set App other information",
+    "AppExInfoDescription": "set App other information",
     "#enableDeveloperDebug": true,
-    "AppExInfo" : {
-        "#enableHttpServer" : true,
+    "AppExInfo": {
+        "#enableHttpServer": true,
         "#onlyBuildInServer": false,
-        "enableNativeRate":true,
+        "enableNativeRate": true,
 
-        "BuyURL":"http://romanysoft.github.io/MarkdownD/buy",
-        "FAQURL":"https://github.com/Romanysoft/MarkdownD/issues",
+        "BuyURL": "http://romanysoft.github.io/MarkdownD/buy",
+        "FAQURL": "https://github.com/Romanysoft/MarkdownD/issues",
 
-        "HomePageURL":"http://romanysoft.github.io/MarkdownD/",
-        "DocumentPageURL":"http://romanysoft.github.io/MarkdownD/documents",
-        "RoadmapPageURL":"http://romanysoft.github.io/MarkdownD/roadmap",
-        "ReportIssuePageURL":"https://github.com/Romanysoft/MarkdownD/issues",
-        "ViewLicensePageURL":"",
-        "ReleaseNotesPageURL":"http://romanysoft.github.io/MarkdownD/releasenotes",
-        "CheckForUpdatePageURL":"http://romanysoft.github.io/MarkdownD/versions",
+        "HomePageURL": "http://romanysoft.github.io/MarkdownD/",
+        "DocumentPageURL": "https://github.com/Romanysoft/MarkdownD/wiki/Document",
+        "RoadmapPageURL": "https://github.com/Romanysoft/MarkdownD/wiki/Roadmap",
+        "ReportIssuePageURL": "https://github.com/Romanysoft/MarkdownD/issues",
+        "ViewLicensePageURL": "",
+        "ReleaseNotesPageURL": "https://github.com/Romanysoft/MarkdownD/wiki/Changelog",
+        "CheckForUpdatePageURL": "http://romanysoft.github.io/MarkdownD/versions",
 
         "autoOffset": true,
-        "minSize" : [720, 500],
-        "size" : [1024, 768],
-        "#maxSize" : [1024, 500],
-        "hasTitleBar" : true,
-        "hasShadow" : true,
-        "hasTextured" : true,
-        "hasUnifiedTitleAndToolbarWindow" : true,
-        "hasCloseControls" : true,
-        "hasMinimizeControls" : true,
-        "hasResizeControls" : true,
-        "hasToolbarButtonControls" : true,
-        "hideCloseButton" : false,
+        "minSize": [720, 500],
+        "size": [1024, 768],
+        "#maxSize": [1024, 500],
+        "hasTitleBar": true,
+        "hasShadow": true,
+        "hasTextured": true,
+        "hasUnifiedTitleAndToolbarWindow": true,
+        "hasCloseControls": true,
+        "hasMinimizeControls": true,
+        "hasResizeControls": true,
+        "hasToolbarButtonControls": true,
+        "hideCloseButton": false,
         "hideMiniaturizeButton": false,
-        "hideZoomButton" : false,
-        "hideToolbarButton" : false,
-        "hideDocumentIconButton" : false,
-        "hideDocumentVersionsButton" : false,
-        "hideFullScreenButton" : true,
-        "menuHideList" : [
-            {"tag":100,"hide":false},
-            {"tag":103,"hide":true},
-            {"tag":108,"hide":true},
-            {"tag":190,"hide":true},
-            {"tag":191,"hide":true},
-            {"tag":192,"hide":true},
-            {"tag":193,"hide":true},
-            {"tag":195,"hide":true},
-            {"tag":196,"hide":true},
+        "hideZoomButton": false,
+        "hideToolbarButton": false,
+        "hideDocumentIconButton": false,
+        "hideDocumentVersionsButton": false,
+        "hideFullScreenButton": true,
+        "menuHideList": [{
+                "tag": 100,
+                "hide": false
+            }, {
+                "tag": 103,
+                "hide": true
+            }, {
+                "tag": 108,
+                "hide": true
+            }, {
+                "tag": 190,
+                "hide": true
+            }, {
+                "tag": 191,
+                "hide": true
+            }, {
+                "tag": 192,
+                "hide": true
+            }, {
+                "tag": 193,
+                "hide": true
+            }, {
+                "tag": 195,
+                "hide": true
+            }, {
+                "tag": 196,
+                "hide": true
+            },
 
-            {"tag":110,"hide":true},
+            {
+                "tag": 110,
+                "hide": true
+            },
 
-            {"tag":200,"hide":false}
+            {
+                "tag": 200,
+                "hide": false
+            }
         ],
-        "menuTitleList" : [
-            {"tag":901,"title":"","method":"re", "descript":"About"},
-            {"tag":907,"title":"","method":"re", "descript":"Hide"},
-            {"tag":911,"title":"","method":"re", "descript":"Quit"}
-        ]
+        "menuTitleList": [{
+            "tag": 901,
+            "title": "",
+            "method": "re",
+            "descript": "About"
+        }, {
+            "tag": 907,
+            "title": "",
+            "method": "re",
+            "descript": "Hide"
+        }, {
+            "tag": 911,
+            "title": "",
+            "method": "re",
+            "descript": "Quit"
+        }]
     },
-    "EnableIAP" : false
+    "EnableIAP": false
 }

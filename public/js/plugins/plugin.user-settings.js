@@ -1,10 +1,19 @@
 /**
  * Created by Ian on 2015/5/14.
  */
+"use strict";
+///<reference path="../../typings/jquery/jquery.d.ts" />
 var RomanySoftPlugins;
 (function (RomanySoftPlugins) {
     var Settings;
     (function (Settings) {
+        // 应用程序整体部分
+        var AppUnit = (function () {
+            function AppUnit() {
+                this.systemLanguage = "en"; // 系统默认语言英文
+            }
+            return AppUnit;
+        }());
         // 文档控制部分
         var DocumentUnit = (function () {
             function DocumentUnit() {
@@ -14,44 +23,46 @@ var RomanySoftPlugins;
                 this.autoRestore = true; // 是否自动恢复之前使用的文档
             }
             return DocumentUnit;
-        })();
+        }());
         // 编辑器部分
         var EditorUnit = (function () {
             function EditorUnit() {
-                //[商品关联]
-                this.enable_TaskList = true; // 是否开启TaskList
-                this.enable_Emoji = true; // 是否开启Emoji
-                this.enable_AtLink = true; // 是否开启AtLink
-                this.enable_EmailLink = true; // 是否开启EmailLink
-                this.enable_FlowChart = true; // 是否开启FlowChart
-                this.enable_SequenceDiagram = true; // 是否开启SequenceDiagram
-                this.enable_Tex = true; // 是否开启Tex
-                this.enable_Toc = true; // 是否开启Toc
-                this.enable_CodeFold = true; // 是否开启CodeFold
-                this.enable_HtmlDecode = true; // 是否开启HTMLDecode
-                this.enable_StyleActiveLine = true; // 是否开启StyleActiveLine
-                this.enable_LineNumbers = true; // 是否开启LineNumbers
-                this.enable_SearchReplace = true; // 是否开启SearchReplace
-                this.enable_Tocm = true; // 是否开启Tocm
-                //[内置]
-                this.enable_matchWordHighlight = true; // 是否开启匹配文件高亮
+                var _config = new RomanySoftPlugins["EditorConfig"]();
+                var formmatConfig = {
+                    "switchDelay": 15 // 添加自定义的参数，Editor之间切换动画的间隔
+                };
+                var excludeSettings = [
+                    "mode", "name", "value", "width", "height", "path", "toolbarIcons", "appendMarkdown",
+                    "theme", "previewTheme", "imageFormats", "toolbarAutoFixed"
+                ];
+                for (var key in _config) {
+                    if ($.inArray(key, excludeSettings) === -1) {
+                        var valueType = $.type(_config[key]);
+                        if (valueType === "boolean" || valueType === "array" || valueType === "number" || valueType === "string") {
+                            formmatConfig[key] = _config[key];
+                        }
+                    }
+                }
+                return formmatConfig;
             }
             return EditorUnit;
-        })();
+        }());
         // 云端存储
         var CloudStorageUnit = (function () {
             function CloudStorageUnit() {
             }
             return CloudStorageUnit;
-        })();
+        }());
         // 云端帮助
         var CloudHelpUnit = (function () {
             function CloudHelpUnit() {
             }
             return CloudHelpUnit;
-        })();
+        }());
         var UserSetting = (function () {
             function UserSetting() {
+                this.appSetting = new AppUnit();
+                this.default_appSetting = new AppUnit(); // 默认系统语言
                 this.documentSetting = new DocumentUnit();
                 this.default_documentSetting = new DocumentUnit(); // 默认文档设置
                 this.editorSetting = new EditorUnit();
@@ -72,18 +83,49 @@ var RomanySoftPlugins;
                         }
                     }
                 }
+                // appSetting
+                fn("appSetting", info, this);
                 // document
                 fn("documentSetting", info, this);
                 // editor
                 fn("editorSetting", info, this);
+                return this;
             };
+            //===========================================================================
+            // forUser
+            //===========================================================================
+            // 去除默认数据，得到用户设置
+            UserSetting.prototype.forUserCoreData = function () {
+                var obj = {};
+                for (var key in this) {
+                    if (key.indexOf("default_") === -1) {
+                        obj[key] = this[key];
+                    }
+                }
+                return obj;
+            };
+            //===========================================================================
+            // default
+            //===========================================================================
+            UserSetting.prototype.forDefaultcoreData = function () {
+                var obj = {};
+                for (var key in this) {
+                    if (key.indexOf("default_") !== -1) {
+                        obj[key] = this[key];
+                    }
+                }
+                return obj;
+            };
+            //===========================================================================
+            // forAll
+            //===========================================================================
             // 获取核心的数据的json系列化
             UserSetting.prototype.coreDataToJSON = function () {
                 var obj = {};
                 for (var key in this) {
                     obj[key] = this[key];
                 }
-                return JSON.stringify(obj);
+                return JSON.stringify(obj, null, 4);
             };
             // 核心数据的反序列化
             UserSetting.prototype.coreDataFromJSON = function (str) {
@@ -91,12 +133,14 @@ var RomanySoftPlugins;
                     var obj = JSON.parse(str);
                     this.restoreCoreDataWithInfo(obj);
                 }
-                catch (e) {
-                }
+                catch (e) { }
+                return this;
             };
             return UserSetting;
-        })();
+        }());
         Settings.UserSetting = UserSetting;
     })(Settings = RomanySoftPlugins.Settings || (RomanySoftPlugins.Settings = {}));
 })(RomanySoftPlugins || (RomanySoftPlugins = {}));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = RomanySoftPlugins;
 //# sourceMappingURL=plugin.user-settings.js.map
