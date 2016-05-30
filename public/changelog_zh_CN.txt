@@ -7,14 +7,11 @@
 [Upgrade] CodeMirror 升级到5.15.2
 [Upgrade] code-block 升级语言配置
 [Upgrade] 优化Image插件
-
 [Improvement] 标记当前编辑的Markdown文件
 [Improvement] 文件工作区文件列表取消按照最后编辑时间排序
 [Improvement] eidtormd.js 新增before函数。例如：加载前，变化前，预览前，全屏前
 [Improvement] 在编辑器工作区域，标题栏上实现编辑文件快速切换功能
 [Improvement] 变更设置部分样式
-
-
 [Bug] unwatch状态下，还能预览，但预览没有内容。解决方式：预览前，先打开实时预览，然后再关闭
 [Note] 侧边栏对Editor的影响处理
 

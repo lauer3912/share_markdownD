@@ -118,6 +118,7 @@
             try {
                 eval(obj.data);
                 c$.language = obj.info.langID;
+                $UserSettings.appSetting.systemLanguage = c$.language;
                 deferred && deferred.resolve();
             } catch (e) {
                 console.error(e);
