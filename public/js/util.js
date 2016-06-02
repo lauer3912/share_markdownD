@@ -65,6 +65,7 @@
                 var isSafari = t$.isSafari();
 
                 /** 各版本对照关系
+                 * 可以通过 http://www.51.la/report/3_Client.asp?t=soft&id=2812271 获取现在机器的配置
                  * AppleWebKit/601.6.17    MacOSX 10.11.5
                  * AppleWebKit 601.5.17
                  * AppleWebKit 601.1.46
