@@ -7,6 +7,8 @@
  * 2016年5月28日15:34:19 添加统一的加载多语言的方式
  * 2016年5月29日09:17:08 添加google语言标识识别
  * 2016年5月29日09:17:24 添加帮助函数。判断undefined和null。 参数转换成数组
+ * 2016年6月2日13:26:33 更新$.RTYWebHelper 代码结构，无实质功能升级
+ * 2016年6月2日14:27:43 添加$.RTYWebHelper.isSafariExtend 用来扩展判断Safari版本
  */
 ;
 (function(factory) {
@@ -31,23 +33,55 @@
         window['$'] = $ || {};
 
         $.RTYWebHelper = {
-            isOpera: function() {
+            ua: function() {
                 var ua = navigator.userAgent.toLowerCase();
+                return ua;
+            },
+            isOpera: function() {
+                var t$ = this;
+                var ua = t$.ua();
                 return ua.indexOf("opera") > -1;
             },
             isChrome: function() {
-                var ua = navigator.userAgent.toLowerCase();
+                var t$ = this;
+                var ua = t$.ua();
                 return ua.indexOf("chrome") > -1;
             },
             isSafari: function() {
-                var ua = navigator.userAgent.toLowerCase();
-                var isChrome = $.RTYWebHelper.isChrome();
+                var t$ = this;
+                var ua = t$.ua();
+                var isChrome = t$.isChrome();
                 return !isChrome && (/webkit|khtml/).test(ua);
             },
             isSafari3: function() {
-                var ua = navigator.userAgent.toLowerCase();
-                var isSafari = $.RTYWebHelper.isSafari();
+                var t$ = this;
+                var ua = t$.ua();
+                var isSafari = t$.isSafari();
                 return isSafari && ua.indexOf('webkit/5') != -1;
+            },
+            isSafariExtend: function(version) {
+                var t$ = this;
+                var ua = t$.ua();
+                var isSafari = t$.isSafari();
+
+                /** 各版本对照关系
+                 * AppleWebKit/601.6.17    MacOSX 10.11.5
+                 * AppleWebKit 601.5.17
+                 * AppleWebKit 601.1.46
+                 * AppleWebKit/600.8.9     MacSOX 10.10.5
+                 * AppleWebKit 600.1.4
+
+                 * AppleWebKit/537.75.14   MacSOX 10.9.3
+                 * AppleWebKit/534.57      ====================　windows机器上测试环境
+                 * AppleWebKit/534.55      MacSOX 10.7.3
+                 * AppleWebKit/534.46
+                 * AppleWebKit 534.34
+                 * AppleWebKit/537.13      MacSOX 10.6.8
+                 * AppleWebKit 534.30
+                 * AppleWebKit/534.15      MacSOX 10.6.5
+                 * AppleWebKit/533.1
+                 */
+                return isSafari && ua.indexOf('webkit/' + version) != -1; //Mac 10.10.5
             },
             isMacOS: function() {
                 var nav = navigator;
@@ -79,6 +113,10 @@
             },
         };
 
+
+        //============================================================================================
+        //兼容函数处理
+        //============================================================================================
         if (typeof window.console === "undefined") {
             window.console = {
                 log: function() {}
@@ -91,6 +129,94 @@
             }
         }
 
+        if (!Array.from) {
+            Array.from = (function() {
+                var toStr = Object.prototype.toString;
+                var isCallable = function(fn) {
+                    return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
+                };
+                var toInteger = function(value) {
+                    var number = Number(value);
+                    if (isNaN(number)) {
+                        return 0;
+                    }
+                    if (number === 0 || !isFinite(number)) {
+                        return number;
+                    }
+                    return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
+                };
+                var maxSafeInteger = Math.pow(2, 53) - 1;
+                var toLength = function(value) {
+                    var len = toInteger(value);
+                    return Math.min(Math.max(len, 0), maxSafeInteger);
+                };
+
+                // The length property of the from method is 1.
+                return function from(arrayLike /*, mapFn, thisArg */ ) {
+                    // 1. Let C be the this value.
+                    var C = this;
+
+                    // 2. Let items be ToObject(arrayLike).
+                    var items = Object(arrayLike);
+
+                    // 3. ReturnIfAbrupt(items).
+                    if (arrayLike == null) {
+                        throw new TypeError(
+                            "Array.from requires an array-like object - not null or undefined"
+                        );
+                    }
+
+                    // 4. If mapfn is undefined, then let mapping be false.
+                    var mapFn = arguments.length > 1 ? arguments[1] : void undefined;
+                    var T;
+                    if (typeof mapFn !== 'undefined') {
+                        // 5. else
+                        // 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
+                        if (!isCallable(mapFn)) {
+                            throw new TypeError(
+                                'Array.from: when provided, the second argument must be a function'
+                            );
+                        }
+
+                        // 5. b. If thisArg was supplied, let T be thisArg; else let T be undefined.
+                        if (arguments.length > 2) {
+                            T = arguments[2];
+                        }
+                    }
+
+                    // 10. Let lenValue be Get(items, "length").
+                    // 11. Let len be ToLength(lenValue).
+                    var len = toLength(items.length);
+
+                    // 13. If IsConstructor(C) is true, then
+                    // 13. a. Let A be the result of calling the [[Construct]] internal method of C with an argument list containing the single item len.
+                    // 14. a. Else, Let A be ArrayCreate(len).
+                    var A = isCallable(C) ? Object(new C(len)) : new Array(len);
+
+                    // 16. Let k be 0.
+                    var k = 0;
+                    // 17. Repeat, while k < len… (also steps a - h)
+                    var kValue;
+                    while (k < len) {
+                        kValue = items[k];
+                        if (mapFn) {
+                            A[k] = typeof T === 'undefined' ? mapFn(kValue, k) : mapFn.call(T,
+                                kValue, k);
+                        } else {
+                            A[k] = kValue;
+                        }
+                        k += 1;
+                    }
+                    // 18. Let putStatus be Put(A, "length", len, true).
+                    A.length = len;
+                    // 20. Return A.
+                    return A;
+                };
+            }());
+        }
+
+        //=============================================================================================
+        //end 兼容函数处理
 
         $.enable_AppConfig_debug = false;
 
@@ -1157,7 +1283,7 @@
                 "use strict";
 
                 var t$ = this;
-                var foundLangID = "";
+                var foundLangID = null;
 
                 // 查找过程
                 for (var key in t$.googleLangIDMaps) {
@@ -1252,7 +1378,7 @@
                                     fn_callback && fn_callback(obj);
                                 },
                                 error: function(req, status, err) {
-                                    console.log(status);
+                                    console.log(err);
                                     try {
                                         throw "[x]no found... continue.. = " + file;
                                     } catch (e) {
@@ -1316,18 +1442,40 @@
                         "en"
                     ];
 
+                    // 检测当前语言标识是否有兼容的Google语言ID
+                    var langID = t$.getGoogleLangID(curUserLanguage); // 找到的话, 要放到前面来处理
+                    if (langID) {
+                        defaultLangKeys.push(langID);
+                    }
+
+
                     // 检测当前语言是否在SafeList中
-                    if ($.inArray(curUserLanguage.toLowerCase(), __sefaList) !== -1) {
+                    if ($.inArray(curUserLanguage.toLowerCase(), __sefaList) > -1) { // 是英语
                         defaultLangKeys = defaultLangKeys.concat(__sefaList);
                     } else {
+                        // 不是英语, 需要优化来处理
                         defaultLangKeys = defaultLangKeys.concat([
                             curUserLanguage,
-                            curUserLanguage.toLowerCase(),
-                            curUserLanguage.split('-')[0],
-                            curUserLanguage.split('-')[0].toLowerCase(),
-                            curUserLanguage.split('_')[0],
-                            curUserLanguage.split('_')[0].toLowerCase()
-                        ]).concat(__sefaList);
+                            curUserLanguage.toLowerCase()
+                        ]);
+
+                        // 如果是："zh-CN"
+                        if (curUserLanguage.split('-').length >= 2) {
+                            defaultLangKeys = defaultLangKeys.concat([
+                                curUserLanguage.split('-')[0],
+                                curUserLanguage.split('-')[0].toLowerCase()
+                            ]);
+                        };
+
+                        // 如果是："zh_CN"
+                        if (curUserLanguage.split('_').length >= 2) {
+                            defaultLangKeys = defaultLangKeys.concat([
+                                curUserLanguage.split('_')[0],
+                                curUserLanguage.split('_')[0].toLowerCase()
+                            ]);
+                        };
+
+                        defaultLangKeys = defaultLangKeys.concat(__sefaList);
                     }
                 }
 
@@ -1336,12 +1484,16 @@
 
                 /// 开始解析处理
                 var tryLangFileList = [];
+                console.log("tryLangFileList = \n");
                 $.each(defaultLangKeys, function(index, element) {
                     tryLangFileList.push({
                         key: element,
                         path: languageFilesPath + element + fileExt
                     });
+
+                    console.log(element);
                 });
+
                 gotoLoadLanuageFile(tryLangFileList, fileExt, callback);
             }
 
@@ -1450,16 +1602,20 @@
        */
             window.addEventListener('error', function(e) {
                 try {
-                    var stack = e.error.stack;
-                    var message = e.error.toString();
-                    if (stack) {
-                        message += '\n' + stack;
+                    if (e.error) {
+                        var stack = e.error["stack"] || null;
+                        var message = e.error.toString();
+                        if (stack) {
+                            message += '\n' + stack.toString();
+                        }
+
+                        // 发送到服务器
+                        $.reportInfo({
+                            errorMessage: message
+                        });
                     }
 
-                    // 发送到服务器
-                    $.reportInfo({
-                        errorMessage: message
-                    });
+
                 } catch (err) {
                     console.error(err);
                 }

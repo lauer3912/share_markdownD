@@ -10,6 +10,7 @@ body {
   // background-color: #eee;
 }
 
+/* Add font-smoothing */
 html,
 body,
 input,
@@ -40,7 +41,12 @@ buttons {
     right: 0;
     left: 0;
     z-index: 99;
+
     transition: left 0.2s;
+    -ms-transition: left 0.2s;	/* IE 9 */
+    -moz-transition: left 0.2s;	/* Firefox */
+    -webkit-transition: left 0.2s;/* Safari 和 Chrome */
+    -o-transition: left 0.2s; 	/* Opera */
 }
 
 // 左侧边栏
@@ -54,6 +60,10 @@ buttons {
     z-index: 100;
     background-color: #fff;
     transition: transform 0.2s;
+    -ms-transform:transform 0.2s;	/* IE 9 */
+    -moz-transform:transform 0.2s;	/* Firefox */
+    -webkit-transform:transform 0.2s;/* Safari 和 Chrome */
+    -o-transform:transform 0.2s; 	/* Opera */
 
     border-radius: 0;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.66),0 0 2px 0 rgba(0,0,0,.12);
@@ -63,7 +73,12 @@ buttons {
     min-height: 100%;
     overflow-x: hidden;
     margin-left: 0px;
+
     transition: margin-left 0.2s;
+    -ms-transition: margin-left 0.2s;	/* IE 9 */
+    -moz-transition: margin-left 0.2s;	/* Firefox */
+    -webkit-transition: margin-left 0.2s;/* Safari 和 Chrome */
+    -o-transition: margin-left 0.2s; 	/* Opera */
 
     /* sticky bottom */
     margin-bottom: -48px;
@@ -81,6 +96,10 @@ buttons {
 
   #sidedrawer {
     transform: translate(200px);
+    -ms-transform:translate(200px);	/* IE 9 */
+    -moz-transform:translate(200px);	/* Firefox */
+    -webkit-transform:translate(200px);/* Safari 和 Chrome */
+    -o-transform:translate(200px); 	/* Opera */
   }
 
   #content-wrapper {
@@ -93,6 +112,10 @@ buttons {
 
   body.hide-sidedrawer #sidedrawer {
     transform: translate(0px);
+    -ms-transform:translate(0px);	/* IE 9 */
+    -moz-transform:translate(0px);	/* Firefox */
+    -webkit-transform:translate(0px);/* Safari 和 Chrome */
+    -o-transform:translate(0px);	/* Opera */
   }
 
   body.hide-sidedrawer #content-wrapper {
@@ -109,6 +132,10 @@ buttons {
  */
 #sidedrawer.active {
   transform: translate(200px);
+  -ms-transform: translate(200px);/* IE 9 */
+  -moz-transform: translate(200px);	/* Firefox */
+  -webkit-transform: translate(200px);/* Safari 和 Chrome */
+  -o-transform: translate(200px); 	/* Opera */
 }
 
 

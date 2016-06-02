@@ -1881,13 +1881,23 @@
                     return this;
                 }
 
-                previewContainer.find(".flowchart").flowChart();
+                try {
+                    var ele = previewContainer.find(".flowchart");
+                    ele && ele.flowChart();
+                } catch (e) {
+                    console.warn(e);
+                }
             }
 
             if (settings.sequenceDiagram) {
-                previewContainer.find(".sequence-diagram").sequenceDiagram({
-                    theme: "simple"
-                });
+                try {
+                    var ele = previewContainer.find(".sequence-diagram")
+                    ele && ele.sequenceDiagram({
+                        theme: "simple"
+                    });
+                } catch (e) {
+                    console.warn(e);
+                }
             }
 
             var preview = $this.preview;

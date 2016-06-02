@@ -1,3 +1,19 @@
+2016Äê5ÔÂ30ÈÕ15:34:33
+[Upgrade] To upgrade interface style
+[Upgrade] Upgrade the KATEX component to V0.6.0. https://khan.github.io/KaTeX/
+[Upgrade] Upgrade components : Jquery upgrades to 1.12.4
+[Upgrade] Upgrade components : utils.js upgraded
+[Upgrade] CodeMirror upgraded to 5.15.2
+[Upgrade] code-block upgrade language configuration
+[Upgrade] Optimize the Image plug-in
+[Improvement] Mark the current Markdown document being edited
+[Improvement] To the workspace file listing, we canceled sorting by last editing time
+[Improvement] Eidtormd.js added before function . For example: before loading , before the change, preview, before full screen 
+[Improvement]In the editor¡¯s work area, the title bar can realize fast switch the edit files.
+[Improvement] To change the style of the setting
+Under [Bug]Under the unwatch state , we also can preview, but without preview content. Solution: Before preview, open the live preview first , and then close.
+
+
 2016-04-29 08:06:48
 
 [Upgrade] It can enhance drag and drop capabilities, and distinguish file types and the current state of the page.

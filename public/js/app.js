@@ -50,7 +50,7 @@
 
     // 配置常用的工具类函数
     c$.configUtil = function() {
-        "use strict";
+
 
         /**
          * 统一国际化翻译处理
@@ -77,7 +77,7 @@
 
     // 配置消息中心统一标识
     c$.configNoticeCenter = function() {
-        "use strict";
+
         var pre = "Message_";
         c$.NCMessage = {
             UNKnown: pre + "UNKnown",
@@ -111,7 +111,7 @@
 
     // 配置国际化
     c$.configInternationalization = function(deferred) {
-        "use strict";
+
 
         $.RTYUtils.loadLanguage("locales/", ".js", function(obj) {
             //console.log($.obj2string(obj));
@@ -153,7 +153,7 @@
 
     // 配置Cache
     c$.configCache = function() {
-        "use strict";
+
         $Cache = c$.Cache = new RomanySoftPlugins.Cache("UI.c$.cache");
 
         c$.CacheType = {
@@ -167,13 +167,13 @@
 
     // 配置更新操作
     c$.checkUpdate = function() {
-        "use strict";
+
         b$.checkUpdate();
     };
 
     // 设置UI部分与逻辑交互
     c$.setupUI = function() {
-        "use strict";
+
         // 激活内置的$EditorProvider配置
         $EditorProvider.configEmoji();
         $EditorProvider.configKatexURL("common/katex/katex.min", "common/katex/katex.min", function() {});
@@ -263,7 +263,7 @@
 
     // 配置UIActions
     c$.configUIActions = function() {
-        "use strict";
+
         // UI 的Actions
         c$.UIActions = {
             buyPlugin: function(id) {
@@ -744,7 +744,7 @@
 
     // 配置路由控制
     c$.configRoute = function() {
-        "use strict";
+
 
         if (typeof Router === "undefined") {
             console.error('director router not config...');
@@ -1316,6 +1316,16 @@
                                 $EditorProvider.focus(curEditor);
                                 $EditorProvider.refresh(curEditor);
                             } catch (e) {}
+
+                            //Fixed: for safari verion 5
+                            try {
+                                if ($.RTYWebHelper.isSafariExtend(600) ||
+                                    $.RTYWebHelper.isSafariExtend(5)) {
+                                    mui && mui.dropdown.initListeners();
+                                }
+
+                            } catch (e) {}
+                            //end Fiexed
                         });
                 })
 
@@ -1492,7 +1502,7 @@
 
     // 绑定系统Preferences菜单
     c$.bindSystemPreferencesMenu = function(cb) {
-        "use strict";
+
         var cbName = b$._get_callback(function(info) {
             cb && cb(info)
         }, true);
@@ -1508,7 +1518,7 @@
 
     // 配置系统菜单
     c$.configSystemMenu = function(cb) {
-        "use strict";
+
 
         // File部分
         if (b$.pN) {
@@ -1580,7 +1590,7 @@
 
     // 绑定插件引导及相关的插件
     c$.startPluginEngine = function(cb) {
-        "use strict";
+
 
         c$.plugin_callbacks = $.Callbacks(); // 注册业务逻辑回调(使用Jquery的Callbacks())
         c$.plugin_callbacks.add(cb || function(obj) {
@@ -1717,7 +1727,7 @@
 
     // 配置UserSettings
     c$.configUserSettings = function(cb) {
-        "use strict";
+
 
         // 注册缓存数据变更的消息处理函数(来自消息中心)
         c$._common_notice_add("configUserSettings", function(message) {
@@ -1748,7 +1758,7 @@
 
     // 启动
     c$.launch = function() {
-        "use strict";
+
 
         var deferred = $.Deferred();
 

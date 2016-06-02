@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MarkdownD</title>
 
     <link rel="stylesheet" type="text/css" media="screen" href="common/font-awesome-4.5.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="common/editor.md/1.6.0/editor.md/css/editormd.min.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="common/mui/mui-0.5.9/css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="common/mui/mui-0.6.0/css/mui.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="common/jsoneditor/5.5.5/jsoneditor.min.css"/>
 
     <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css"/>
@@ -79,22 +79,25 @@
 <!-- 标题栏右侧的工具栏，适用于Workspace状态 -->
 <script id="tpl_header-workspace-filelist" type='text/html'>
     <!-- 文件浏览 -->
-    <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
-      <div class="mui--text-center align-middle rs-badge">{{fileList.length}}</div>
-    </button>
-    <ul class="mui-dropdown__menu mui-dropdown__menu--right rs-ul-filelist">
-      {{each fileList as fileObj i}}
-      <li data-id="{{ fileObj.id }}">
-          <a href="#/worksace_file/{{ fileObj.id }}" title="{{fileObj.path}}">
-              {{ if curFileId === fileObj.id }}
-                   <span class="mui--text-center align-middle rs-badge rs-mark-current">{{++i}}.</span> {{fileObj.name}}
-              {{ else }}
-                   <span class="mui--text-center align-middle rs-badge">{{++i}}.</span> {{fileObj.name}}
-              {{ /if }}
-          </a>
-      </li>
-      {{/each}}
-    </ul>
+    <div class="mui-dropdown">
+        <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+          <div class="mui--text-center align-middle rs-badge">{{fileList.length}}</div>
+        </button>
+        <ul class="mui-dropdown__menu mui-dropdown__menu--right rs-ul-filelist">
+          {{each fileList as fileObj i}}
+          <li data-id="{{ fileObj.id }}">
+              <a href="#/worksace_file/{{ fileObj.id }}" title="{{fileObj.path}}">
+                  {{ if curFileId === fileObj.id }}
+                       <span class="mui--text-center align-middle rs-badge rs-mark-current">{{++i}}.</span> {{fileObj.name}}
+                  {{ else }}
+                       <span class="mui--text-center align-middle rs-badge">{{++i}}.</span> {{fileObj.name}}
+                  {{ /if }}
+              </a>
+          </li>
+          {{/each}}
+        </ul>
+    </div>
+
     <!-- 文件分享及发布工具 -->
     {{if moreTools.enable}}
     <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
@@ -295,7 +298,8 @@
 <script src="common/director.js/director.min.js"></script>
 
 <!--加载组件 -->
-<script src="common/mui/mui-0.5.9/js/mui.min.js"></script>
+<script src="common/mui/mui-0.6.0/js/mui_rsfix.js"></script>
+<script src="common/mui/mui-0.6.0/extra/mui-angular-combined.js"></script>
 <script src="common/artTemplate/3.0/template.js"></script>
 <script src="common/editor.md/1.6.0/editor.md/editormd.js"></script>
 <script src="common/jsoneditor/5.5.5/jsoneditor.min.js"></script>
