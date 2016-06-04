@@ -194,7 +194,10 @@ gulp.task('public_copy', function(cb) {
             }).next(function(nxt) {
                 g_autohelper_checkpathexist('./public/common/', function() {
                     pump([
-                            g_track_src('./public/common/**/*.js', nxt),
+                            g_track_src(['./public/common/**/*.js',
+                                    '!./public/common/kendoui/**/*.js'
+                                ],
+                                nxt),
                             uglify(),
                             g_track_dest(destDir + '/common', nxt)
                         ],
