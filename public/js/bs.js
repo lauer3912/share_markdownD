@@ -13,6 +13,7 @@
  * 2016年5月2日15:54:27 添加兼容Google翻译的语言标识 getCompatibleGoogleLanguageInfo
  * 2016年5月26日12:03:31 添加b$.pN = b$.pNative = require("remote").require("./romanysoft/maccocojs"); // Electron引擎
  * 						支持Electron1.1.3版本的变化
+ * 2016年6月4日06:54:58 针对提示升级，加入enableForMacOSAppStore 和 enableForElectron 来控制
  */
 
 (function(factory) {
@@ -45,9 +46,12 @@
         b$ = $.extend(window.BS.b$, {});
         b$.pN = b$.pNative = null;
         b$.pIsUseElectron = false; //是否使用了Electron引擎,默认是没有使用
+        b$.pIsUseMacCocoEngine = false; //是否使用了MacOSX本地引擎
         if ((typeof maccocojs !== 'undefined') && (typeof maccocojs == 'object') && maccocojs.hasOwnProperty(
                 "app")) {
             b$.pN = b$.pNative = maccocojs; // 原MacOSX本地引擎
+            b$.pIsUseMacCocoEngine = true;
+            b$.pIsUseElectron = false;
         } else if ((typeof process === 'object') && (typeof require === 'function') && (process.hasOwnProperty(
                 "pid"))) {
             try {
@@ -74,6 +78,7 @@
                 // end
 
                 b$.pIsUseElectron = true;
+                b$.pIsUseMacCocoEngine = false;
                 window.BS.b$ = $.extend(window.BS.b$, b$);
                 console.log("============= must first load [end]=================");
             } catch (e) {
@@ -353,7 +358,7 @@
             /// 获得产品的运行的操作系统及平台
             sysOS: null,
             getAppRunOnOS: function() {
-                if (b$.pN) {
+                if (b$.pN && b$.pIsUseMacCocoEngine) {
                     var t = this;
                     if (t.sysOS) return t.sysOS;
                     t.sysOS = b$.pN.app.getAppRunOnOS();
@@ -2796,15 +2801,28 @@
                         var lastVersion = data.checkUpdate.lastVersion || "";
                         var updateURL = data.checkUpdate.updateURL || "";
 
-                        // 比较
-                        var curAppVersion = t$.App.getAppVersion();
-                        console.log("last:" + lastVersion + ",cur:" + curAppVersion);
-                        if (1 === $.compareVersion(lastVersion, curAppVersion)) {
-                            var foundNewVersion = promptText || data.checkUpdate.prompt ||
-                                "The new version has been released.";
-                            alert(foundNewVersion);
-                            updateURL !== "" && b$.App.open(updateURL);
-                            cb && cb(data);
+                        // 检查是否有队苹果Apple 应用或者不使用
+                        var enableForMacOSAppStore = data.checkUpdate.enableForMacOSAppStore ===
+                            false ? false : true;
+                        var enableForElectron = data.checkUpdate.enableForElectron === false ?
+                            false : true;
+
+                        enableForMacOSAppStore = enableForMacOSAppStore && t$.pIsUseMacCocoEngine &&
+                            t$.App.getSandboxEnable();
+                        enableForElectron = enableForElectron && t$.pIsUseElectron;
+
+                        // 任意符合两种模式都可以启用
+                        if (enableForMacOSAppStore || enableForElectron) {
+                            // 比较
+                            var curAppVersion = t$.App.getAppVersion();
+                            console.log("last:" + lastVersion + ",cur:" + curAppVersion);
+                            if (1 === $.compareVersion(lastVersion, curAppVersion)) {
+                                var foundNewVersion = promptText || data.checkUpdate.prompt ||
+                                    "The new version has been released.";
+                                alert(foundNewVersion);
+                                updateURL !== "" && t$.App.open(updateURL);
+                                cb && cb(data);
+                            }
                         }
 
                     } catch (e) {
