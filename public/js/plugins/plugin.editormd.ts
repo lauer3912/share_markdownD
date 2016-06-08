@@ -11,10 +11,12 @@ export namespace RomanySoftPlugins {
 
     const DEFAULT_TOOLBARICONS = [
         "undo", "redo", "|",
-        "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
+        "bold", "del", "italic", "ins", "mark", "ucwords", "uppercase", "lowercase", "|",
         "h1", "h2", "h3", "h4", "h5", "h6", "|",
         "list-ul", "list-ol", "hr", "|",
-        "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime",
+        "quote", "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table",
+        "incomplete-task-list", "complete-task-list",
+        "datetime","math","flowchart", "sequence-diagram",
         "emoji",
         "html-entities", "pagebreak", "|",
         "goto-line", "watch", "preview", "|",

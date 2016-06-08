@@ -66,11 +66,11 @@
     editormd.toolbarModes = {
         full: [
             "undo", "redo", "|",
-            "bold", "del", "italic", "ins", "mark", "ucwords", "uppercase", "lowercase", "|",
+            "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
             "h1", "h2", "h3", "h4", "h5", "h6", "|",
             "list-ul", "list-ol", "hr", "|",
             "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table",
-            "quote", "datetime", "emoji", "html-entities", "pagebreak", "|",
+            "datetime", "emoji", "html-entities", "pagebreak", "|",
             "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|",
             "theme", "|",
             "help", "info"
@@ -206,8 +206,6 @@
             bold: "fa-bold",
             del: "fa-strikethrough",
             italic: "fa-italic",
-            ins: "fa-underline",
-            mark: "fa-pencil",
             quote: "fa-quote-left",
             uppercase: "fa-font",
             h1: editormd.classPrefix + "bold",
@@ -226,12 +224,7 @@
             "preformatted-text": "fa-file-code-o",
             "code-block": "fa-file-code-o",
             table: "fa-table",
-            "incomplete-task-list": "fa-square-o",
-            "complete-task-list": "fa-check-square-o",
             datetime: "fa-clock-o",
-            math: "fa-superscript",
-            "flowchart": "fa-long-arrow-right",
-            "sequence-diagram": "fa-exchange",
             emoji: "fa-smile-o",
             "html-entities": "fa-copyright",
             pagebreak: "fa-newspaper-o",
@@ -258,13 +251,9 @@
     editormd.dialogZindex = 99999;
 
     editormd.$katex = null;
+    editormd.$marked = null;
     editormd.$CodeMirror = null;
     editormd.$prettyPrint = null;
-
-    // markdown 解析引擎
-    editormd.$marked = null;
-    editormd.$itMarkedown = null;
-    editormd.useItMarkdown = false; // 是否使用Markdown-it 引擎
 
     var timer, flowchartTimer;
 
@@ -404,10 +393,6 @@
 
                 if (typeof marked !== "undefined") {
                     editormd.$marked = marked;
-                }
-
-                if (typeof markdownit !== "undefined") {
-                    editormd.$itMarkedown = makrdownit;
                 }
 
                 this.setCodeMirror().setToolbar().loadedDisplay();
@@ -882,28 +867,18 @@
 
                     _this.setToolbar();
 
-                    //editormd.loadScript(loadPath + "marked.min", function() {
-                    editormd.loadScript(loadPath + "marked_rsfix", function() {
+                    editormd.loadScript(loadPath + "marked.min", function() {
 
                         editormd.$marked = marked;
 
                         if (settings.previewCodeHighlight) {
                             editormd.loadScript(loadPath + "prettify.min", function() {
                                 loadFlowChartOrSequenceDiagram();
-                                next && next();
                             });
                         } else {
                             loadFlowChartOrSequenceDiagram();
-                            next && next();
                         }
                     });
-                })
-                .next(function(next) {
-                    editormd.loadScript(loadPath + "markdown-it.min", function() {
-                        editormd.$itMarkedown = markdownit;
-                        next && next();
-                    });
-
                 })
                 .done(function(err) {
 
@@ -2313,70 +2288,6 @@
             return this;
         },
 
-        pri_get_markdownToC: function() {
-            var markdownToC = this.markdownToC = [];
-            return markdownToC;
-        },
-
-        /**
-         * 私有函数：获取渲染配置
-         * @return {[type]} [description]
-         */
-        pri_get_rendererOptions: function() {
-            var _this = this;
-            var state = this.state;
-            var settings = this.settings;
-            var cm = this.cm;
-
-
-            if (!editormd.useItMarkdown) {
-                return {
-                    toc: settings.toc,
-                    tocm: settings.tocm,
-                    tocStartLevel: settings.tocStartLevel,
-                    pageBreak: settings.pageBreak,
-                    taskList: settings.taskList,
-                    emoji: settings.emoji,
-                    tex: settings.tex,
-                    atLink: settings.atLink, // for @link
-                    emailLink: settings.emailLink, // for mail address auto link
-                    flowChart: settings.flowChart,
-                    sequenceDiagram: settings.sequenceDiagram,
-                    previewCodeHighlight: settings.previewCodeHighlight,
-                };
-            } else {
-                //TODO:
-            }
-
-            return null;
-        },
-
-        pri_get_markdownOptions: function(markdownToC, rendererOptions) {
-            var _this = this;
-            var state = this.state;
-            var settings = this.settings;
-            var cm = this.cm;
-
-
-
-            if (!editormd.useItMarkdown) {
-                return { // for marked.min.js
-                    renderer: editormd.markedRenderer(markdownToC, rendererOptions),
-                    gfm: true,
-                    tables: true,
-                    breaks: true,
-                    pedantic: false,
-                    sanitize: (settings.htmlDecode) ? false : true, // 关闭忽略HTML标签，即开启识别HTML标签，默认为false
-                    smartLists: true,
-                    smartypants: true
-                };
-            } else {
-                //TODO:
-            }
-
-            return null;
-        },
-
         /**
          * 解析和保存Markdown代码
          * Parse & Saving Markdown source code
@@ -2404,25 +2315,38 @@
             }
 
             var marked = editormd.$marked;
-            var itMarkedown = editormd.$itMarkedown; // 添加MarkdownD-it 的实现
+            var markdownToC = this.markdownToC = [];
+            var rendererOptions = this.markedRendererOptions = {
+                toc: settings.toc,
+                tocm: settings.tocm,
+                tocStartLevel: settings.tocStartLevel,
+                pageBreak: settings.pageBreak,
+                taskList: settings.taskList,
+                emoji: settings.emoji,
+                tex: settings.tex,
+                atLink: settings.atLink, // for @link
+                emailLink: settings.emailLink, // for mail address auto link
+                flowChart: settings.flowChart,
+                sequenceDiagram: settings.sequenceDiagram,
+                previewCodeHighlight: settings.previewCodeHighlight,
+            };
+
+            var markedOptions = this.markedOptions = {
+                renderer: editormd.markedRenderer(markdownToC, rendererOptions),
+                gfm: true,
+                tables: true,
+                breaks: true,
+                pedantic: false,
+                sanitize: (settings.htmlDecode) ? false : true, // 关闭忽略HTML标签，即开启识别HTML标签，默认为false
+                smartLists: true,
+                smartypants: true
+            };
 
             $.proxy(settings.beforeChange, this)();
 
-            var markdownToC = this.pri_get_markdownToC();
-            ///////////////////////////////////////////////////////////////////////////////////////////
-            /// 根据系统设定的引擎来启动
-            var newMarkdownDoc = null;
-            var rendererOptions = _this.markedRendererOptions = _this.pri_get_rendererOptions();
-            var markedOptions = this.markedOptions = _this.pri_get_markdownOptions(markdownToC,
-                rendererOptions);
+            marked.setOptions(markedOptions);
 
-            if (!editormd.useItMarkdown) {
-                marked.setOptions(markedOptions);
-                newMarkdownDoc = editormd.$marked(cmValue, markedOptions);
-            } else {
-                //TODO:
-            }
-
+            var newMarkdownDoc = editormd.$marked(cmValue, markedOptions);
 
             //console.info("cmValue", cmValue, newMarkdownDoc);
 
@@ -3269,30 +3193,6 @@
             }
         },
 
-        ins: function() {
-            var cm = this.cm;
-            var cursor = cm.getCursor();
-            var selection = cm.getSelection();
-
-            cm.replaceSelection("++" + selection + "++");
-
-            if (selection === "") {
-                cm.setCursor(cursor.line, cursor.ch + 2);
-            }
-        },
-
-        mark: function() {
-            var cm = this.cm;
-            var cursor = cm.getCursor();
-            var selection = cm.getSelection();
-
-            cm.replaceSelection("==" + selection + "==");
-
-            if (selection === "") {
-                cm.setCursor(cursor.line, cursor.ch + 2);
-            }
-        },
-
         quote: function() {
             var cm = this.cm;
             var cursor = cm.getCursor();
@@ -3510,11 +3410,7 @@
             var cm = this.cm;
             var selection = cm.getSelection();
 
-            var _cont = "";
-            for (var i = 0; i < 8; ++i) {
-                _cont += "pb-#";
-            }
-            cm.replaceSelection("\r\n[" + _cont + "]\r\n");
+            cm.replaceSelection("\r\n[========]\r\n");
         },
 
         image: function() {
@@ -3546,29 +3442,6 @@
             this.executePlugin("tableDialog", "table-dialog/table-dialog");
         },
 
-        "incomplete-task-list": function() {
-            var cm = this.cm;
-            var cursor = cm.getCursor();
-            var selection = cm.getSelection();
-
-            cm.replaceSelection("- [ ] " + selection + "\r\n");
-
-            if (selection === "") {
-                cm.setCursor(cursor.line + 1, cursor.ch + 6);
-            }
-        },
-
-        "complete-task-list": function() {
-            var cm = this.cm;
-            var selection = cm.getSelection();
-
-            cm.replaceSelection("- [x] " + selection + "\r\n");
-
-            if (selection === "") {
-                cm.setCursor(cursor.line + 1, cursor.ch + 6);
-            }
-        },
-
         datetime: function() {
             var cm = this.cm;
             var selection = cm.getSelection();
@@ -3578,60 +3451,6 @@
                 langName === "zh-tw") ? "cn-week-day" : "week-day");
 
             cm.replaceSelection(datefmt);
-        },
-
-        math: function() {
-            var cm = this.cm;
-            var cursor = cm.getCursor();
-            var selection = cm.getSelection();
-
-            var content = "\r\n```math \n" +
-                "E = mc^2 \n" +
-                "```\n";
-            cm.replaceSelection(content);
-
-            if (selection === "") {
-                cm.setCursor(cursor.line + 5, cursor.ch + 0);
-            }
-        },
-
-        "flowchart": function() {
-            var cm = this.cm;
-            var cursor = cm.getCursor();
-            var selection = cm.getSelection();
-
-            var content = "\r\n```flow\n" +
-                "st=>start: Login\r" +
-                "op=>operation: Login operation\r" +
-                "cond=>condition: Successful Yes or No?\r" +
-                "e=>end: To admin\r\r" +
-                "st->op->cond\r" +
-                "cond(yes)->e\r" +
-                "cond(no)->op\r" +
-                "```\n";
-            cm.replaceSelection(content);
-
-            if (selection === "") {
-                cm.setCursor(cursor.line + 12, cursor.ch + 0);
-            }
-        },
-
-        "sequence-diagram": function() {
-            var cm = this.cm;
-            var cursor = cm.getCursor();
-            var selection = cm.getSelection();
-
-            var content = "\r\n```seq\n" +
-                "Andrew->China: Says Hello\r" +
-                "Note right of China: China thinks\\nabout it\r" +
-                "China-->Andrew: How are you?\r" +
-                "Andrew->>China: I am good thanks!\r" +
-                "```\n";
-            cm.replaceSelection(content);
-
-            if (selection === "") {
-                cm.setCursor(cursor.line + 9, cursor.ch + 0);
-            }
         },
 
         emoji: function() {
@@ -3854,7 +3673,7 @@
         twemoji: /:(tw-([\w]+)-?(\w+)?):/g,
         fontAwesome: /:(fa-([\w]+)(-(\w+)){0,}):/g,
         editormdLogo: /:(editormd-logo-?(\w+)?):/g,
-        pageBreak: /^\[(pb-#){8,}\]$/
+        pageBreak: /^\[[=]{8,}\]$/
     };
 
     // Emoji graphics files url path
