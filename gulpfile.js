@@ -581,12 +581,12 @@ function g_copy_romanysoft_func(tmp_destDir) {
 
     //###forElectronDir
     gulp.src(forElectronDir + '/main.js')
-        .pipe(minify().on('error', gutil.log))
+        .pipe(uglify().on('error', gutil.log))
         .pipe(gulp.dest(tmp_destDir + '/resources/app/'));
 
 
     gulp.src(forElectronDir + '/romanysoft/Classes/**/*.js')
-        .pipe(minify().on('error', gutil.log))
+        .pipe(uglify().on('error', gutil.log))
         .pipe(gulp.dest(tmp_destDir + '/resources/app/romanysoft/Classes/'));
 
     gulp.src(forElectronDir + '/romanysoft/l10n/**')
@@ -595,12 +595,13 @@ function g_copy_romanysoft_func(tmp_destDir) {
     gulp.src(forElectronDir + '/romanysoft/UI/**')
         .pipe(gulp.dest(tmp_destDir + '/resources/app/romanysoft/UI/'));
 
-    gulp.src(forElectronDir + '/romanysoft/UnitTest/**')
+    gulp.src(forElectronDir + '/romanysoft/UnitTest/**/*.js')
+        .pipe(uglify().on('error', gutil.log))
         .pipe(gulp.dest(tmp_destDir + '/resources/app/romanysoft/UnitTest/'));
 
 
     gulp.src(forElectronDir + '/romanysoft/maccocojs.js')
-        .pipe(minify().on('error', gutil.log))
+        .pipe(uglify().on('error', gutil.log))
         .pipe(gulp.dest(tmp_destDir + '/resources/app/romanysoft/'));
 
     // do async stuff

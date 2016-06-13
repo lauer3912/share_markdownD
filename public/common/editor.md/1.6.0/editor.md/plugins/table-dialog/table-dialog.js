@@ -17,7 +17,7 @@
 		var pluginName = "table-dialog";
 
 		var langs = {
-			"zh-cn": {
+			"zh-CN": {
 				toolbar: {
 					table: "表格"
 				},
@@ -32,7 +32,7 @@
 					}
 				}
 			},
-			"zh-tw": {
+			"zh-TW": {
 				toolbar: {
 					table: "添加表格"
 				},
@@ -74,7 +74,7 @@
 			var dialogName = classPrefix + pluginName,
 				dialog;
 
-			$.extend(true, this.lang, langs[this.lang.name]);
+			$.extend(true, this.lang, langs[this.lang.name] || langs["en"]);
 			this.setToolbar();
 
 			var lang = this.lang;

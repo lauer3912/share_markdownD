@@ -10,6 +10,8 @@
                 bold: "粗體",
                 del: "刪除線",
                 italic: "斜體",
+                ins: "下劃線",
+                mark: "標記",
                 quote: "引用",
                 ucwords: "將所選的每個單詞首字母轉成大寫",
                 uppercase: "將所選文本轉成大寫",
@@ -30,7 +32,12 @@
                 "preformatted-text": "預格式文本 / 代碼塊（縮進風格）",
                 "code-block": "代碼塊（多語言風格）",
                 table: "添加表格",
+                "incomplete-task-list": "未完成的任務列表",
+                "complete-task-list": "完成的任務列表",
                 datetime: "日期時間",
+                "math": "數學公式",
+                "flowchart": "流程圖",
+                "sequence-diagram": "序列圖",
                 emoji: "Emoji 表情",
                 "html-entities": "HTML 實體字符",
                 pagebreak: "插入分頁符",
@@ -43,7 +50,7 @@
                 search: "搜尋",
                 help: "使用幫助",
                 theme: "主題",
-                info: "關於" + exports.title
+                info: "關於"
             },
             buttons: {
                 enter: "確定",

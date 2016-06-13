@@ -20,7 +20,7 @@
 		var selecteds = [];
 
 		var langs = {
-			"zh-cn": {
+			"zh-CN": {
 				toolbar: {
 					emoji: "Emoji 表情"
 				},
@@ -30,7 +30,7 @@
 					}
 				}
 			},
-			"zh-tw": {
+			"zh-TW": {
 				toolbar: {
 					emoji: "Emoji 表情"
 				},
@@ -68,7 +68,7 @@
 			var selection = cm.getSelection();
 			var classPrefix = this.classPrefix;
 
-			$.extend(true, this.lang, langs[this.lang.name]);
+			$.extend(true, this.lang, langs[this.lang.name] || langs["en"]);
 			this.setToolbar();
 
 			var lang = this.lang;

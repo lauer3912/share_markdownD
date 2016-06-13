@@ -10,6 +10,8 @@
                 bold: "Bold",
                 del: "Strikethrough",
                 italic: "Italic",
+                ins: "Underline",
+                mark: "Mark",
                 quote: "Block quote",
                 ucwords: "Words first letter convert to uppercase",
                 uppercase: "Selection text convert to uppercase",
@@ -30,7 +32,12 @@
                 "preformatted-text": "Preformatted text / Code block (Tab indent)",
                 "code-block": "Code block (Multi-languages)",
                 table: "Tables",
+                "incomplete-task-list": "Incomplete task list",
+                "complete-task-list": "Complete task list",
                 datetime: "Datetime",
+                "math": "Math",
+                "flowchart": "FlowChart",
+                "sequence-diagram": "Sequence Diagram",
                 emoji: "Emoji",
                 "html-entities": "HTML Entities",
                 pagebreak: "Page break",
@@ -43,7 +50,7 @@
                 search: "Search",
                 help: "Help",
                 theme: "Theme",
-                info: "About " + exports.title
+                info: "About "
             },
             buttons: {
                 enter: "OK",
