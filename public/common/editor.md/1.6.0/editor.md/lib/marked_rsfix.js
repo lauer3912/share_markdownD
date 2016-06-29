@@ -365,11 +365,14 @@
             if (top && (cap = this.rules.table.exec(src))) {
                 src = src.substring(cap[0].length);
 
+                //old: cells: cap[3].replace(/(?: *\| *)?\n$/, '').split('\n')
+                var fixCells = cap[3].replace(/(?: *\| *)?$/, '').split('\n');
+                fixCells.pop();
                 item = {
                     type: 'table',
                     header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
                     align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
-                    cells: cap[3].replace(/(?: *\| *)?\n$/, '').split('\n')
+                    cells: fixCells
                 };
 
                 for (i = 0; i < item.align.length; i++) {
@@ -991,7 +994,7 @@
 
                     // header
                     cell = '';
-                    for (i = 0; i < this.token.header.length; i++) {
+                    for (i = 0; i < this.token.header.length; ++i) {
                         flags = {
                             header: true,
                             align: this.token.align[i]
@@ -1005,7 +1008,7 @@
                     }
                     header += this.renderer.tablerow(cell);
 
-                    for (i = 0; i < this.token.cells.length; i++) {
+                    for (i = 0; i < this.token.cells.length; ++i) {
                         row = this.token.cells[i];
 
                         cell = '';

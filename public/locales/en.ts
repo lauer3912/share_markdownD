@@ -26,6 +26,7 @@
                 ,"Btn-Remove": "Remove"
                 ,"Btn-Export": "Export"
                 ,"Btn-New": "New File"
+                ,"Btn-RevealIn": "Reveal in the File Manager"
                 ,"Btn-ImportFiles": "Import Files"
                 ,"Btn-Help": "Online help"
                 ,"SaveDialog-Title": "Save as"
@@ -53,7 +54,14 @@
                     "fileReloadConfirm_title":"Warning",
                     "fileReloadConfirm_message":"The local file '{path}' content has changed, whether to reload?",
                     "fileReloadConfirm_btnOK":"Reload",
-                    "fileReloadConfirm_btnCancel":"Don't Reload"
+                    "fileReloadConfirm_btnCancel":"Don't Reload",
+                    "filesChangeWantSaveConfirm_message":"The following files content have changed but not saved \n '{filePaths}' \n, whether to save? \n",
+                    "filesChangeWantSaveConfirm_saveAll": "Save all",
+                    "filesChangeWantSaveConfirm_dontSave": "Do not save",
+                    "fileExportPDFSelect_message":"Export to PDF Operation tips: \nYou can choose to export live preview (Markdown) content or you can choose to export the current operation edit view.",
+                    "fileExportPDFSelect_exportPreview":"Export the preview",
+                    "fileExportPDFSelect_exportCurrentView":"Export the view"
+
 
                 }
             };

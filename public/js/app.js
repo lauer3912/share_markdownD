@@ -220,6 +220,7 @@
             });
 
             // 检查用户设置，是否设置了自动恢复功能
+            var specFileObj = null;
             var mustCreateNew = true; // 是否必须创建一个新的文件对象
             if (c$.UserSettings.documentSetting.autoRestore) {
                 // 查找是否有缓存的数据文件
@@ -242,8 +243,37 @@
                 }
             }
 
+            //////////////////////////////////////////////
+            /// 检测是否从外部调用过来
+            var process_argv = b$.App.getAppArgv();
+            var argv_fileObjList = [];
+            $.each(process_argv, function(index, arg) {
+                //检查是否为文件
+                if (b$.App.checkPathIsFile(arg)) {
+                    var _path = arg;
+                    argv_fileObjList.push({
+                        fileName: b$.App.getFileName(_path),
+                        filePath: _path,
+                        extension: b$.App.getFileExt(_path)
+                    })
+                }
+            });
+
+            if (argv_fileObjList.length > 0) {
+                var noSwitchView = true,
+                    noNoticeMeesage = true;
+                c$.UIActions.pri_importFiles(argv_fileObjList, noSwitchView, noNoticeMeesage);
+                window.$fc.findFileEx({
+                    path: argv_fileObjList[0].filePath
+                }, function(fileObj) {
+                    specFileObj = fileObj;
+                });
+                mustCreateNew = false;
+            }
+
+            ///////////////////////////////////////////////
             if (mustCreateNew) {
-                c$.UIActions.crateNewFileObj();
+                specFileObj = c$.UIActions.crateNewFileObj();
             } else {
                 //发送消息通知
                 $NoticeCenter.fire(c$.NCMessage.fileChange);
@@ -251,7 +281,7 @@
 
             // 默认启动，开启新的编辑对象
             try {
-                $Router.go_workspace();
+                $Router.go_workspace(specFileObj);
             } catch (error) {
 
             }
@@ -280,6 +310,16 @@
             getEditorDivEle: function(id) {
                 var div_id = "div_editor" + id;
                 return div_id;
+            },
+            revealIn: function(id) {
+                try {
+                    window.$fc.findFile(id, function(fileObj) {
+                        b$.revealInFinder(fileObj.path);
+                    });
+
+                } catch (e) {
+
+                }
             },
             loadFile: function(id) {
                 window.$fc.reLoadFile(id || window.$fc.getLastModifyFileObj().id, function(fileObj) {
@@ -407,7 +447,7 @@
                                 "SaveDialog-Title"]),
                             prompt: $Util.fn_tri18n(I18N[c$.language].UI.filePage[
                                 "SaveDialog-BtnSave"]),
-                            fileName: fileObj.name,
+                            fileName: fileObj.name + ".md",
                             types: c$.AcceptMarkdownFileTypes
 
                         });
@@ -424,7 +464,10 @@
             },
             exportAsPDF: function(id) {
                 // 共用方式
-                function callExportToPdf(pdfFileName) {
+                function callExportToPdf(pdfFileName, cb) {
+
+                    var _fileName = pdfFileName || "export_pdf_by_markdownd";
+
                     // 保存到本地
                     b$.selectOutFile({
                         callback: b$._get_callback(function(info) {
@@ -436,30 +479,96 @@
                                     if (obj.success) {
                                         b$.revealInFinder(pdfPath);
                                     } else {
-                                        alert(obj.error);
+                                        alert($.obj2string(obj.error));
                                     }
+
+                                    cb && cb();
                                 });
                             }
                         }, true),
                         title: $Util.fn_tri18n(I18N[c$.language].UI.filePage["SaveDialog-Title"]),
                         prompt: $Util.fn_tri18n(I18N[c$.language].UI.filePage[
                             "SaveDialog-BtnSave"]),
-                        fileName: pdfFileName || "export_MarkdownD",
+                        fileName: _fileName + ".pdf",
                         types: ['pdf']
 
                     });
                 }
 
+                var _editor = null,
+                    _previewChang = false;
+                _fileObj = window.$fc.getLastModifyFileObj();
 
-                // 获取文件的名称
-                var fileId = id || window.$fc.getLastModifyFileObj().id;
-                var find = window.$fc.findFile(fileId, function(fileObj) {
-                    callExportToPdf(fileObj.name);
-                });
+                $.RTYUtils.queue()
+                    .next(function(nxt) {
+                        var fileId = id || _fileObj.id;
+                        var find = window.$fc.findFile(fileId, function(fileObj) {
+                            _fileObj = fileObj;
+                            _editor = window.$fem.findEditorByFileId(fileId);
 
-                if (!find) {
-                    callExportToPdf();
-                }
+                            nxt && nxt();
+                        });
+                    })
+                    .next(function(nxt) {
+                        // 提示是导出整个窗体还是导出预览区域
+                        // 检测当前所处的页面。
+                        if (c$.g_current_page === "#view-workspace") {
+                            if (_editor.state.preview === false) {
+
+                                var _lng = I18N[c$.language].UI.filePage;
+                                var _lng_message = $Util.fn_tri18n(_lng.Message[
+                                        "fileExportPDFSelect_message"
+                                    ]),
+                                    _lng_exportPreview = $Util.fn_tri18n(_lng.Message[
+                                        "fileExportPDFSelect_exportPreview"]),
+                                    _lng_exportCurrentView = $Util.fn_tri18n(_lng.Message[
+                                        "fileExportPDFSelect_exportCurrentView"]);
+
+                                var rSelected = b$.Notice.alert({
+                                    title: b$.App.getAppName(),
+                                    message: _lng_message,
+                                    buttons: [_lng_exportPreview, _lng_exportCurrentView,
+                                        "Cancel"
+                                    ]
+                                });
+                                console.log(rSelected);
+                                if (rSelected === 0) {
+                                    //切换MarkdownD到预览区域
+                                    //检测当前状态
+                                    if (_editor.state.preview === false) {
+                                        _previewChang = true;
+                                        _editor.previewing();
+                                    }
+
+                                } else if (rSelected === 1) {}
+
+                                if (rSelected === 2) return;
+                            }
+                        }
+
+                        setTimeout(function() {
+                            nxt && nxt();
+                        }, 200);
+
+                    })
+                    .next(function(nxt) {
+                        // 获取文件的名称
+                        var err = null;
+                        try {
+                            callExportToPdf(_fileObj.name || "Untitled.pdf", function() {
+                                if (_previewChang) {
+                                    _editor.previewing();
+                                }
+                            });
+                        } catch (e) {
+                            err = e;
+                        } finally {
+                            nxt && nxt(err);
+                        }
+                    })
+                    .done(function(err) {
+                        console.log(err || "");
+                    });
             },
             removeFile: function(id) {
                 window.$fc.removeFile(id, function(fileObj) {
@@ -546,7 +655,7 @@
                     path: in_path
                 });
             },
-            pri_importFiles: function(fileObjList) {
+            pri_importFiles: function(fileObjList, noSwitchView, noNoticeMeesage) {
                 try {
                     $.each(fileObjList, function(index, obj) {
                         //检测是否已经存在
@@ -554,14 +663,19 @@
                                 path: obj.filePath
                             })) {
                             console.log('import file exist....');
-                            b$.Notice.dockMessage({
-                                message: $Util.fn_tri18n(I18N[c$.language].UI.filePage.Message[
-                                    "existOnImport_message"], {
-                                    path: obj.filePath
-                                }),
-                                title: $Util.fn_tri18n(I18N[c$.language].UI.filePage.Message[
-                                    "existOnImport_title"])
-                            });
+
+                            if (!noNoticeMeesage) {
+                                b$.Notice.dockMessage({
+                                    message: $Util.fn_tri18n(I18N[c$.language].UI.filePage
+                                        .Message[
+                                            "existOnImport_message"], {
+                                            path: obj.filePath
+                                        }),
+                                    title: $Util.fn_tri18n(I18N[c$.language].UI.filePage
+                                        .Message[
+                                            "existOnImport_title"])
+                                });
+                            }
                         } else {
                             var newFileObj = window.$fc.getNewFileObj();
                             newFileObj.name = obj.fileName;
@@ -583,7 +697,7 @@
                 } catch (e) {
                     console.error(e);
                 } finally {
-                    $Router.go_files();
+                    !noSwitchView && $Router.go_files();
                 }
             },
             importFiles: function() {
@@ -601,6 +715,59 @@
                     allowMulSelection: true,
                     types: c$.AcceptMarkdownFileTypes
                 });
+            },
+
+            /**
+             * 检测编辑器中的文件变化情况，提示是否保存
+             * @return {[type]} [description]
+             */
+            detectFilesStateAndSaveWhenAppQuit: function() {
+                var t$ = this;
+                var fileList = window.$fc.getAllFiles();
+
+                var wantSaveFilesList = [];
+                $.each(fileList, function(index, fileObj) {
+                    if (fileObj.is_tmp === false && fileObj.changed) {
+                        wantSaveFilesList.push(fileObj);
+                    }
+                });
+
+                //如果发现有没有保存的本地文件，提示用户保存
+                if (wantSaveFilesList.length > 0) {
+
+                    var _filePaths = [];
+                    $.each(wantSaveFilesList, function(index, fileObj) {
+                        _filePaths.push(fileObj.path)
+                    })
+
+                    var _lng = I18N[c$.language].UI.filePage;
+                    var _lng_message = $Util.fn_tri18n(_lng.Message[
+                            "filesChangeWantSaveConfirm_message"
+                        ], {
+                            filePaths: _filePaths.join('\n')
+                        }),
+                        _lng_saveAll = $Util.fn_tri18n(_lng.Message[
+                            "filesChangeWantSaveConfirm_saveAll"]),
+                        _lng_dontSave = $Util.fn_tri18n(_lng.Message[
+                            "filesChangeWantSaveConfirm_dontSave"]);
+
+
+                    var rSelected = b$.Notice.alert({
+                        title: b$.App.getAppName(),
+                        message: _lng_message,
+                        buttons: [_lng_saveAll, _lng_dontSave, "Cancel"]
+                    });
+
+                    if (rSelected === 0) {
+                        $.each(wantSaveFilesList, function(index, fileObj) {
+                            t$.saveFile(fileObj.id);
+                        })
+                    } else if (rSelected === 2) {
+                        return false;
+                    }
+                }
+
+                return true;
             },
 
             //===============================================================
@@ -863,6 +1030,10 @@
                     name: $Util.fn_tri18n(I18N[c$.language].UI.filePage["Btn-Remove"]),
                     class: "fa-remove",
                     href: "#/uiactions_withid/file_remove"
+                }, {
+                    name: $Util.fn_tri18n(I18N[c$.language].UI.filePage["Btn-RevealIn"]),
+                    class: "fa-folder-o",
+                    href: "#/uiactions_withid/file_revealin"
                 }]
             };
 
@@ -1294,8 +1465,14 @@
                         });
                         c$._common_notice_add(div_id + "_sidedrawer", function(message) {
                             if (message === c$.NCMessage.onSidedrawerHide || message === c$.NCMessage
-                                .onSidedrawerShow)
+                                .onSidedrawerShow) {
+                                (message === c$.NCMessage.onSidedrawerHide) ? $('#sidedrawer').hide():
+                                    $('#sidedrawer').show();
                                 _p_common_resize_editor();
+                            }
+
+
+
                         })
 
                         next && next();
@@ -1482,6 +1659,8 @@
                     c$.UIActions.saveFile(_s_id);
                 } else if (action === "file_remove") {
                     c$.UIActions.removeFile(_s_id);
+                } else if (action === "file_revealin") {
+                    c$.UIActions.revealIn(_s_id);
                 }
             },
 
@@ -1756,6 +1935,41 @@
     };
 
 
+    // 当关闭的时候
+    c$.configWhenQuit = function(cb) {
+
+        /**
+         * http://electron.atom.io/docs/api/browser-window/
+         *Event: ‘close’
+            Returns:
+
+            event Event
+            Emitted when the window is going to be closed. It’s emitted before the beforeunload and unload event of the DOM. Calling event.preventDefault() will cancel the close.
+
+            Usually you would want to use the beforeunload handler to decide whether the window should be closed, which will also be called when the window is reloaded. In Electron, returning any value other than undefined would cancel the close. For example:
+
+            window.onbeforeunload = (e) => {
+              console.log('I do not want to be closed');
+
+              // Unlike usual browsers that a message box will be prompted to users, returning
+              // a non-void value will silently cancel the close.
+              // It is recommended to use the dialog API to let the user confirm closing the
+              // application.
+              e.returnValue = false;
+            };
+         * @param  {[type]} e [description]
+         * @return {[type]}   [description]
+         */
+        window.onbeforeunload = function(e) {
+            // 提示并选择是否保存
+            var bValue = c$.UIActions.detectFilesStateAndSaveWhenAppQuit();
+            //
+            (e || window.event).returnValue = bValue;
+            return bValue;
+        };
+
+    };
+
     // 启动
     c$.launch = function() {
 
@@ -1775,6 +1989,7 @@
             c$.configSystemMenu();
             c$.setupUI();
             c$.checkUpdate();
+            c$.configWhenQuit();
 
         });
 

@@ -355,10 +355,20 @@
                 return "AppID";
             },
 
+            /// 获取启动的时候进程附带的参数
+            getAppArgv: function() {
+                var t = this;
+                if (b$.pN) {
+                    return b$.pN.app.getAppArgv();
+                }
+
+                return [];
+            },
+
             /// 获得产品的运行的操作系统及平台
             sysOS: null,
             getAppRunOnOS: function() {
-                if (b$.pN && b$.pIsUseMacCocoEngine) {
+                if (b$.pN && !b$.pIsUseMacCocoEngine) {
                     var t = this;
                     if (t.sysOS) return t.sysOS;
                     t.sysOS = b$.pN.app.getAppRunOnOS();
@@ -983,6 +993,15 @@
                 }
 
                 return false;
+            },
+
+            getFileName: function(path) {
+                if (b$.pN) {
+                    var _path = path || (b$.pN.path.tempDir() + "tmp.txt");
+                    return b$.pN.path.getFileName(_path);
+                }
+
+                return "";
             },
 
             ///获取文件扩展名

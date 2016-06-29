@@ -24,6 +24,7 @@
             ,"Btn-Save": "Speichern"
             ,"Btn-Remove": "Entfernen"
             ,"Btn-New": "Neue Dateien"
+            ,"Btn-RevealIn": "Reveal in the File Manager"
             ,"Btn-ImportFiles": "Datei importieren"
             ,"Btn-Help": "Online-Hilfe"
             ,"SaveDialog-Title": "Speichern als"
@@ -51,7 +52,13 @@
                 "fileReloadConfirm_title":"Vorbehalt",
                 "fileReloadConfirm_message":"lokale Dokumente '{path}' Inhalt ändert, ob sie neu zu laden?",
                 "fileReloadConfirm_btnOK":"nachladen",
-                "fileReloadConfirm_btnCancel":"nicht geladen"
+                "fileReloadConfirm_btnCancel":"nicht geladen",
+                "filesChangeWantSaveConfirm_message":"The following files content have changed but not saved \n '{filePaths}' \n, whether to save? \n",
+                "filesChangeWantSaveConfirm_saveAll": "Save all",
+                "filesChangeWantSaveConfirm_dontSave": "Do not save",
+                "fileExportPDFSelect_message":"Export to PDF Operation tips: \nYou can choose to export live preview (Markdown) content or you can choose to export the current operation edit view.",
+                "fileExportPDFSelect_exportPreview":"Export the preview",
+                "fileExportPDFSelect_exportCurrentView":"Export the view"                
 
             }
         };

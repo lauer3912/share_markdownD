@@ -25,6 +25,7 @@
             ,"Btn-Save": "保存"
             ,"Btn-Remove": "削除します"
             ,"Btn-New": "新しいファイル"
+            ,"Btn-RevealIn": "ファイルマネージャに表示"
             ,"Btn-ImportFiles": "インポートファイル"
             ,"Btn-Help": "オンラインヘルプ"
             ,"SaveDialog-Title": "名前を付けて保存"
@@ -52,7 +53,13 @@
                 "fileReloadConfirm_title":"警告",
                 "fileReloadConfirm_message":"本地ファイル '{path}' コンテンツの変更、かどうかをリロードするには？",
                 "fileReloadConfirm_btnOK":"リロード",
-                "fileReloadConfirm_btnCancel":"ロードされていません"
+                "fileReloadConfirm_btnCancel":"ロードされていません",
+                "filesChangeWantSaveConfirm_message":"The following files content have changed but not saved \n '{filePaths}' \n, whether to save? \n",
+                "filesChangeWantSaveConfirm_saveAll": "Save all",
+                "filesChangeWantSaveConfirm_dontSave": "Do not save",
+                "fileExportPDFSelect_message":"Export to PDF Operation tips: \nYou can choose to export live preview (Markdown) content or you can choose to export the current operation edit view.",
+                "fileExportPDFSelect_exportPreview":"Export the preview",
+                "fileExportPDFSelect_exportCurrentView":"Export the view"
 
             }
         };

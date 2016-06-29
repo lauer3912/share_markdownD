@@ -21,6 +21,7 @@
                 "Btn-Save": "保存",
                 "Btn-Remove": "移除",
                 "Btn-New": "新建文件",
+                "Btn-RevealIn": "在文件管理器中顯示",
                 "Btn-ImportFiles": "導入文件",
                 "Btn-Help": "在線幫助",
                 "SaveDialog-Title": "另存為",
@@ -45,7 +46,13 @@
                     "fileReloadConfirm_title": "警告",
                     "fileReloadConfirm_message": "本地文檔 '{path}' 內容髮生變化, 是否重新加載?",
                     "fileReloadConfirm_btnOK": "重新加載",
-                    "fileReloadConfirm_btnCancel": "不加載"
+                    "fileReloadConfirm_btnCancel": "不加載",
+                    "filesChangeWantSaveConfirm_message": "以下文件內容髮生變更但是沒有被保存 \n '{filePaths}' \n, 是否立即保存? \n",
+                    "filesChangeWantSaveConfirm_saveAll": "保存所有",
+                    "filesChangeWantSaveConfirm_dontSave": "不保存",
+                    "fileExportPDFSelect_message": "導出PDF操作提示: \n你可以選擇導出當前Markdown實時預覽內容也可以選擇導出當前操作視圖內容",
+                    "fileExportPDFSelect_exportPreview": "導出預覽內容",
+                    "fileExportPDFSelect_exportCurrentView": "導出操作視圖"
                 }
             };
             this.workspacePage = {

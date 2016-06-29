@@ -23,6 +23,7 @@
              ,"Btn-Save": "保存"
              ,"Btn-Remove": "移除"
              ,"Btn-New": "新建文件"
+             ,"Btn-RevealIn": "在文件管理器中显示"
              ,"Btn-ImportFiles": "导入文件"
              ,"Btn-Help": "在线帮助"
              ,"SaveDialog-Title": "另存为"
@@ -50,7 +51,13 @@
                  "fileReloadConfirm_title":"警告",
                  "fileReloadConfirm_message":"本地文档 '{path}' 内容发生变化, 是否重新加载?",
                  "fileReloadConfirm_btnOK":"重新加载",
-                 "fileReloadConfirm_btnCancel":"不加载"
+                 "fileReloadConfirm_btnCancel":"不加载",
+                 "filesChangeWantSaveConfirm_message":"以下文件内容发生变更但是没有被保存 \n '{filePaths}' \n, 是否立即保存? \n",
+                 "filesChangeWantSaveConfirm_saveAll": "保存所有",
+                 "filesChangeWantSaveConfirm_dontSave": "不保存",
+                 "fileExportPDFSelect_message":"导出PDF操作提示: \n你可以选择导出当前Markdown实时预览内容也可以选择导出当前操作视图内容",
+                 "fileExportPDFSelect_exportPreview":"导出预览内容",
+                 "fileExportPDFSelect_exportCurrentView":"导出操作视图"
 
              }
          };

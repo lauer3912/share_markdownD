@@ -202,6 +202,24 @@ buttons {
   margin-left: auto;
   margin-right: auto;
 }
+#view-files tbody tr td:nth-child(1) {
+  width: 4%;
+}
+#view-files tbody tr td:nth-child(2) {
+  width: 30%;
+}
+#view-files tbody tr td:nth-child(3) {
+  width: 44%;
+}
+#view-files tbody tr td:nth-child(4) {
+  width: 22%;
+}
+#view-files tbody tr td:nth-child(4) .mui-btn--small {
+  height: 16px;
+  line-height: 0px;
+  padding: 0 4px;
+  font-size: 13px;
+}
 #view-files .rs-mark-current {
   background-color: #2196F3;
   color: #FFFFFF;

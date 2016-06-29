@@ -4579,11 +4579,16 @@
 
         css.href = fileName + ".css";
 
-        if (into === "head") {
-            document.getElementsByTagName("head")[0].appendChild(css);
-        } else {
-            document.body.appendChild(css);
-        }
+        try {
+            if (into === "head") {
+                document.getElementsByTagName("head")[0].appendChild(css);
+            } else {
+                document.body.appendChild(css);
+            }
+        } catch (e) {
+            console.warn(e);
+        } finally {}
+
     };
 
     editormd.isIE = (navigator.appName == "Microsoft Internet Explorer");
