@@ -21,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.3.0</string>
+	<string>3.4.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -57,7 +57,7 @@
 	<key>NSSupportsAutomaticGraphicsSwitching</key>
 	<true/>
     <key>RomanysoftAppDescription</key>
-    <string>Is a full-featured Markdown editor.</string>
+    <string>MarkdownD Is a full-featured Markdown editor.</string>
 	<key>RomanysoftAppNotes</key>
 	<string>If you have any question please send email to app.romanysoft@gmail.com</string>
 </dict>

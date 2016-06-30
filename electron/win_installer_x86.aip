@@ -7,18 +7,18 @@
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]-v[|ProductVersion]." ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="app.romanysoft@gmail.com"/>
-    <ROW Property="ARPHELPLINK" Value="http://romanysoft.github.io/MarkdownD/issues"/>
+    <ROW Property="ARPHELPLINK" Value="https://romanysoft.github.io/MarkdownD/issues"/>
     <ROW Property="ARPPRODUCTICON" Value="app.exe" Type="8"/>
-    <ROW Property="ARPURLINFOABOUT" Value="http://romanysoft.github.io/MarkdownD"/>
-    <ROW Property="ARPURLUPDATEINFO" Value="http://romanysoft.github.io/MarkdownD/versions"/>
+    <ROW Property="ARPURLINFOABOUT" Value="https://romanysoft.github.io/MarkdownD"/>
+    <ROW Property="ARPURLUPDATEINFO" Value="https://romanysoft.github.io/MarkdownD/versions"/>
     <ROW Property="AiPreferFastOem" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="Romanysoft"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:v"/>
-    <ROW Property="ProductCode" Value="1033:{00D65ED7-5CC7-4433-A8D2-AFAFD5B73D5E} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{12945776-9F7E-4AD0-BA99-55CF419F27E2} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="MarkdownD"/>
-    <ROW Property="ProductVersion" Value="3.3.0" Type="32"/>
+    <ROW Property="ProductVersion" Value="3.4.0" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{46672E91-1ED5-4E13-A0F3-87884E2632DB}"/>
@@ -50,7 +50,7 @@
     <ROW Component="ZipFar.dll" ComponentId="{7452C375-683B-41B7-8FD4-44BF9257231C}" Directory_="Far_Dir" Attributes="0" KeyPath="ZipFar.dll"/>
     <ROW Component="ZipFar64.dll" ComponentId="{A6D817B0-5A6E-4904-B912-91964803F348}" Directory_="Far_Dir" Attributes="256" KeyPath="ZipFar64.dll"/>
     <ROW Component="am.pak" ComponentId="{FE8F24EC-9FBD-4151-BA0A-C4C9C0A43ADD}" Directory_="locales_Dir" Attributes="0" KeyPath="am.pak" Type="0"/>
-    <ROW Component="atom.asar" ComponentId="{7B5D4AB4-13A5-4148-AA48-C810E9AED31C}" Directory_="resources_Dir" Attributes="0" KeyPath="app.zip" Type="0"/>
+    <ROW Component="atom.asar" ComponentId="{7B5D4AB4-13A5-4148-AA48-C810E9AED31C}" Directory_="resources_Dir" Attributes="0" KeyPath="default_app.asar" Type="0"/>
     <ROW Component="content_resources_200_percent.pak" ComponentId="{02778475-E90F-4495-BA47-5DB83C17292F}" Directory_="APPDIR" Attributes="0" KeyPath="content_resources_200_percent.pak" Type="0"/>
     <ROW Component="d3dcompiler_47.dll" ComponentId="{C2DC9938-4ED3-4A56-8FD7-9FB1AAEC2A40}" Directory_="APPDIR" Attributes="256" KeyPath="d3dcompiler_47.dll"/>
     <ROW Component="ffmpeg.dll" ComponentId="{19F571F0-7753-41EA-BAFB-45A15BFD1ACE}" Directory_="APPDIR" Attributes="256" KeyPath="ffmpeg.dll"/>
@@ -77,20 +77,20 @@
     <ROW File="ZipRus.hlf" Component_="ZipEng.hlf" FileName="7-ZipRus.hlf" Attributes="0" SourcePath="..\release\win\tmp32\resources\tools\7z\Far\7-ZipRus.hlf" SelfReg="false" NextFile="ZipRus.lng"/>
     <ROW File="ZipRus.lng" Component_="ZipEng.hlf" FileName="7-ZipRus.lng" Attributes="0" SourcePath="..\release\win\tmp32\resources\tools\7z\Far\7-ZipRus.lng" SelfReg="false" NextFile="zToFar.ini"/>
     <ROW File="am.pak" Component_="am.pak" FileName="am.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\am.pak" SelfReg="false" NextFile="ar.pak"/>
-    <ROW File="app.zip" Component_="atom.asar" FileName="app.zip" Attributes="0" SourcePath="..\release\win\tmp32\resources\app.zip" SelfReg="false" NextFile="za.dll"/>
     <ROW File="ar.pak" Component_="am.pak" FileName="ar.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\ar.pak" SelfReg="false" NextFile="bg.pak"/>
     <ROW File="bg.pak" Component_="am.pak" FileName="bg.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\bg.pak" SelfReg="false" NextFile="bn.pak"/>
     <ROW File="bn.pak" Component_="am.pak" FileName="bn.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\bn.pak" SelfReg="false" NextFile="ca.pak"/>
     <ROW File="ca.pak" Component_="am.pak" FileName="ca.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\ca.pak" SelfReg="false" NextFile="cs.pak"/>
     <ROW File="content_resources_200_percent.pak" Component_="content_resources_200_percent.pak" FileName="CONTEN~1.PAK|content_resources_200_percent.pak" Attributes="0" SourcePath="..\release\win\tmp32\content_resources_200_percent.pak" SelfReg="false" NextFile="content_shell.pak"/>
     <ROW File="content_shell.pak" Component_="content_resources_200_percent.pak" FileName="CONTEN~2.PAK|content_shell.pak" Attributes="0" SourcePath="..\release\win\tmp32\content_shell.pak" SelfReg="false" NextFile="d3dcompiler_47.dll"/>
+    <ROW File="coreapp.zip" Component_="atom.asar" FileName="coreapp.zip" Attributes="0" SourcePath="..\release\win\tmp32\resources\coreapp.zip" SelfReg="false"/>
     <ROW File="cs.pak" Component_="am.pak" FileName="cs.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\cs.pak" SelfReg="false" NextFile="da.pak"/>
     <ROW File="d3dcompiler_47.dll" Component_="d3dcompiler_47.dll" FileName="D3DCOM~1.DLL|d3dcompiler_47.dll" Attributes="0" SourcePath="..\release\win\tmp32\d3dcompiler_47.dll" SelfReg="false" NextFile="ffmpeg.dll"/>
     <ROW File="da.pak" Component_="am.pak" FileName="da.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\da.pak" SelfReg="false" NextFile="de.pak"/>
     <ROW File="de.pak" Component_="am.pak" FileName="de.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\de.pak" SelfReg="false" NextFile="el.pak"/>
     <ROW File="default_app.asar" Component_="atom.asar" FileName="DEFAUL~1.ASA|default_app.asar" Attributes="0" SourcePath="..\release\win\tmp32\resources\default_app.asar" SelfReg="false" NextFile="electron.asar"/>
     <ROW File="el.pak" Component_="am.pak" FileName="el.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\el.pak" SelfReg="false" NextFile="enGB.pak"/>
-    <ROW File="electron.asar" Component_="atom.asar" FileName="ELECTR~1.ASA|electron.asar" Attributes="0" SourcePath="..\release\win\tmp32\resources\electron.asar" SelfReg="false"/>
+    <ROW File="electron.asar" Component_="atom.asar" FileName="ELECTR~1.ASA|electron.asar" Attributes="0" SourcePath="..\release\win\tmp32\resources\electron.asar" SelfReg="false" NextFile="coreapp.zip"/>
     <ROW File="enGB.pak" Component_="am.pak" FileName="en-GB.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\en-GB.pak" SelfReg="false" NextFile="enUS.pak"/>
     <ROW File="enUS.pak" Component_="am.pak" FileName="en-US.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\en-US.pak" SelfReg="false" NextFile="es419.pak"/>
     <ROW File="es.pak" Component_="am.pak" FileName="es.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\es.pak" SelfReg="false" NextFile="et.pak"/>
@@ -145,7 +145,7 @@
     <ROW File="uk.pak" Component_="am.pak" FileName="uk.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\uk.pak" SelfReg="false" NextFile="vi.pak"/>
     <ROW File="version_1" Component_="content_resources_200_percent.pak" FileName="version" Attributes="0" SourcePath="..\release\win\tmp32\version" SelfReg="false" NextFile="xinput1_3.dll"/>
     <ROW File="vi.pak" Component_="am.pak" FileName="vi.pak" Attributes="0" SourcePath="..\release\win\tmp32\locales\vi.pak" SelfReg="false" NextFile="zhCN.pak"/>
-    <ROW File="xinput1_3.dll" Component_="xinput1_3.dll" FileName="XINPUT~1.DLL|xinput1_3.dll" Attributes="0" SourcePath="..\release\win\tmp32\xinput1_3.dll" SelfReg="false" NextFile="app.zip"/>
+    <ROW File="xinput1_3.dll" Component_="xinput1_3.dll" FileName="XINPUT~1.DLL|xinput1_3.dll" Attributes="0" SourcePath="..\release\win\tmp32\xinput1_3.dll" SelfReg="false" NextFile="za.dll"/>
     <ROW File="zToFar.ini" Component_="ZipEng.hlf" FileName="7zToFar.ini" Attributes="0" SourcePath="..\release\win\tmp32\resources\tools\7z\Far\7zToFar.ini" SelfReg="false" NextFile="far7z.reg"/>
     <ROW File="za.dll" Component_="za.dll" FileName="7za.dll" Attributes="0" SourcePath="..\release\win\tmp32\resources\tools\7z\7za.dll" SelfReg="false" NextFile="za.exe"/>
     <ROW File="za.exe" Component_="za.exe" FileName="7za.exe" Attributes="0" SourcePath="..\release\win\tmp32\resources\tools\7z\7za.exe" SelfReg="false" NextFile="zxa.dll" DigSign="true"/>
@@ -162,7 +162,7 @@
     <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
-    <ROW TimeStampUrl="http://timestamp.verisign.com/scripts/timstamp.dll" SignerDescription="[|ProductName]" SignOptions="0" SignTool="0"/>
+    <ROW TimeStampUrl="https://timestamp.verisign.com/scripts/timstamp.dll" SignerDescription="[|ProductName]" SignOptions="0" SignTool="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FirewallExceptionComponent">
     <ROW FirewallException="MarkdownD" DisplayName="MarkdownD" GroupName="Romanysoft" Enabled="1" Scope="*" Condition="((?MarkdownD.exe=2) AND ($MarkdownD.exe=3))" Profiles="0" AppPath="[#MarkdownD.exe]" Port="*" Protocol="ANY"/>
@@ -284,7 +284,7 @@
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
-    <ROW Action="OpenUrl" Type="2" Source="viewer.exe" Target="http://romanysoft.github.io/MarkdownD/buy" Options="1"/>
+    <ROW Action="OpenUrl" Type="2" Source="viewer.exe" Target="https://romanysoft.github.io/MarkdownD/buy" Options="1"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>

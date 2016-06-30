@@ -6,16 +6,16 @@
         "#onlyBuildInServer": false,
         "enableNativeRate": true,
 
-        "BuyURL": "http://romanysoft.github.io/MarkdownD/buy",
+        "BuyURL": "https://romanysoft.github.io/MarkdownD/buy",
         "FAQURL": "https://github.com/Romanysoft/MarkdownD/issues",
 
-        "HomePageURL": "http://romanysoft.github.io/MarkdownD/",
+        "HomePageURL": "https://romanysoft.github.io/MarkdownD/",
         "DocumentPageURL": "https://github.com/Romanysoft/MarkdownD/wiki/Document",
         "RoadmapPageURL": "https://github.com/Romanysoft/MarkdownD/wiki/Roadmap",
         "ReportIssuePageURL": "https://github.com/Romanysoft/MarkdownD/issues",
         "ViewLicensePageURL": "",
         "ReleaseNotesPageURL": "https://github.com/Romanysoft/MarkdownD/wiki/Changelog",
-        "CheckForUpdatePageURL": "http://romanysoft.github.io/MarkdownD/versions",
+        "CheckForUpdatePageURL": "https://romanysoft.github.io/MarkdownD/versions",
 
         "autoOffset": true,
         "minSize": [720, 500],

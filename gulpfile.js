@@ -1175,7 +1175,7 @@ gulp.task('package_win_process_zipAndOther', function() {
             //{3.4} zip the "app" dir, then delete it.
             var appDirPath = tmp_destDir + '/resources/app/',
                 password = 'rfoptionsenv',
-                zipName = "app";
+                zipName = "coreapp";
             //3. zip the "app" dir
             g_genrate_zip(appDirPath, zipName, function(_cb) {
                 _refCallback = _cb;

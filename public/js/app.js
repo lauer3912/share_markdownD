@@ -1635,6 +1635,7 @@
                 $fc.findFile(fileObjID, function(fileObj) {
                     $Router.go_workspace(fileObj);
                 });
+                window.location.href = '#';
             },
             '/uiactions/:action': function(action) {
                 if (action === "create_new_file") c$.UIActions.createNew();
@@ -1662,6 +1663,7 @@
                 } else if (action === "file_revealin") {
                     c$.UIActions.revealIn(_s_id);
                 }
+                window.location.href = '#';
             },
 
             // 附加工具
