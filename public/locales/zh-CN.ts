@@ -57,7 +57,10 @@
                  "filesChangeWantSaveConfirm_dontSave": "不保存",
                  "fileExportPDFSelect_message":"导出PDF操作提示: \n你可以选择导出当前Markdown实时预览内容也可以选择导出当前操作视图内容",
                  "fileExportPDFSelect_exportPreview":"导出预览内容",
-                 "fileExportPDFSelect_exportCurrentView":"导出操作视图"
+                 "fileExportPDFSelect_exportCurrentView":"导出操作视图",
+                 "dropfileconfirm_message":"提示: 是导入文件还是创建文件链接?",
+                 "dropfileconfirm_import":"导入",
+                 "dropfileconfirm_createlink":"创建链接"
 
              }
          };

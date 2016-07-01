@@ -58,7 +58,10 @@
                 "filesChangeWantSaveConfirm_dontSave": "Do not save",
                 "fileExportPDFSelect_message":"Export to PDF Operation tips: \nYou can choose to export live preview (Markdown) content or you can choose to export the current operation edit view.",
                 "fileExportPDFSelect_exportPreview":"Export the preview",
-                "fileExportPDFSelect_exportCurrentView":"Export the view"                
+                "fileExportPDFSelect_exportCurrentView":"Export the view",
+                "dropfileconfirm_message":"Tips: Import the file or create the file link?",
+                "dropfileconfirm_import":"Import",
+                "dropfileconfirm_createlink":"Create file link"
 
             }
         };

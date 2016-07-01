@@ -250,7 +250,27 @@
                         alertType: jsonObj.alertType || 'Alert'
                     };
 
-                    return b$.pN.notice.alert($.toJSON(params));
+                    var returnValue = b$.pN.notice.alert($.toJSON(params));
+
+                    ///Fixed: 根据Electron及本地引擎的区别来处理返回的值
+                    if (b$.pIsUseElectron) {
+                        return returnValue;
+                    } else if (b$.pIsUseMacCocoEngine) {
+                        /**
+                            enum {
+                               NSAlertDefaultReturn = 1,
+                               NSAlertAlternateReturn = 0,
+                               NSAlertOtherReturn = -1,
+                               NSAlertErrorReturn = -2
+                            };
+                         */
+
+                        if (returnValue === 1) return 0;
+                        if (returnValue === 0) return 1;
+                        if (returnValue === -1) return 2;
+                        if (returnValue === -2) return 3;
+                    }
+
                 } else {
                     alert(jsonObj.message);
                 }
@@ -2743,7 +2763,7 @@
                 } catch (e) {
                     console.error(e)
                 }
-            } else {
+            } else if (!b$.pN) {
                 alert('启动定位路径功能')
             }
         };

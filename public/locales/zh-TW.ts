@@ -58,7 +58,10 @@
                 "filesChangeWantSaveConfirm_dontSave": "不保存",
                 "fileExportPDFSelect_message":"導出PDF操作提示: \n你可以選擇導出當前Markdown實時預覽內容也可以選擇導出當前操作視圖內容",
                 "fileExportPDFSelect_exportPreview":"導出預覽內容",
-                "fileExportPDFSelect_exportCurrentView":"導出操作視圖"
+                "fileExportPDFSelect_exportCurrentView":"導出操作視圖",
+                "dropfileconfirm_message":"Tips: Import the file or create the file link?",
+                "dropfileconfirm_import":"Import",
+                "dropfileconfirm_createlink":"Create file link"
             }
         };
 

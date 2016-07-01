@@ -514,7 +514,6 @@
                         // 检测当前所处的页面。
                         if (c$.g_current_page === "#view-workspace") {
                             if (_editor.state.preview === false) {
-
                                 var _lng = I18N[c$.language].UI.filePage;
                                 var _lng_message = $Util.fn_tri18n(_lng.Message[
                                         "fileExportPDFSelect_message"
@@ -541,15 +540,11 @@
                                     }
 
                                 } else if (rSelected === 1) {}
-
                                 if (rSelected === 2) return;
                             }
                         }
 
-                        setTimeout(function() {
-                            nxt && nxt();
-                        }, 200);
-
+                        nxt && nxt();
                     })
                     .next(function(nxt) {
                         // 获取文件的名称
@@ -1054,6 +1049,7 @@
                 }
             })
 
+            window.location.href = '#';
         };
 
         /**
@@ -1178,12 +1174,53 @@
                                 console.log("------- 拖拽文件 -----");
                                 //TODO: 判断文件类型，然后进行操作。
                                 //支持1. 本地图片及文件自动建立链接
-                                //
+                                //;
                                 var _editor = window.$fem.findEditorByFileId(c$.g_curWorkFileObj
                                     .id);
-                                _editor.executePlugin("processDropFiles",
-                                    "drop-plugin/drop-plugin",
-                                    fileList);
+
+                                // 获得所有支持md文件的
+                                var mdFiles = [],
+                                    otherFiles = [];
+                                $.each(fileList, function(index, fileObj) {
+                                    var ext = fileObj.extension;
+                                    if ($.inArray(ext, c$.AcceptMarkdownFileTypes) > -1) {
+                                        mdFiles.push(fileObj);
+                                    } else {
+                                        otherFiles.push(fileObj);
+                                    }
+                                });
+
+                                if (mdFiles.length > 0) {
+                                    var _lng = I18N[c$.language].UI.filePage;
+                                    var rSelected = b$.Notice.alert({
+                                        title: b$.App.getAppName(),
+                                        message: $Util.fn_tri18n(_lng.Message[
+                                            "dropfileconfirm_message"]),
+                                        buttons: [
+                                            $Util.fn_tri18n(_lng.Message[
+                                                "dropfileconfirm_import"]), $Util.fn_tri18n(
+                                                _lng.Message[
+                                                    "dropfileconfirm_createlink"]),
+                                            "Cancel"
+                                        ]
+                                    });
+
+                                    if (rSelected === 0) {
+                                        //导入
+                                        c$.UIActions.pri_importFiles(mdFiles);
+                                    } else if (rSelected === 1) {
+                                        //创建链接
+                                        _editor.executePlugin("processDropFiles",
+                                            "drop-plugin/drop-plugin",
+                                            mdFiles);
+                                    }
+                                }
+
+                                if (otherFiles.length > 0) {
+                                    _editor.executePlugin("processDropFiles",
+                                        "drop-plugin/drop-plugin",
+                                        otherFiles);
+                                }
                             }
                         }
                     });
@@ -1504,6 +1541,8 @@
                             } catch (e) {}
                             //end Fiexed
                         });
+
+                    window.location.href = '#';
                 })
 
 
@@ -1622,6 +1661,8 @@
 
             $Router.fn_showOrHide(allPageList, false);
             $Router.fn_showOrHide([thisPage], true);
+
+            window.location.href = '#';
         };
 
 
