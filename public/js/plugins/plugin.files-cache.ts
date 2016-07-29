@@ -14,6 +14,7 @@ module RomanySoftPlugins {
         changed: boolean = false;           // 是否正在编辑, reload, 或者进入到workspace
         mustReloadNextTime: boolean = false;// 下次是否必须从文件中加载内容
         lastModify: number = $.now();       // 最后修改时间戳
+        createTime: number = $.now();       // 创建的时间
         assEditor: any = null;              // 关联的Editor的对象的信息
         assEditorSettings: any = {};        // 关联的设置
         content_utf8: string = "";          // 内容
@@ -58,6 +59,22 @@ module RomanySoftPlugins {
             var sortDataList =  coloneData.sort(function(a, b){
                 if(a.lastModify < b.lastModify) return 1;
                 if(a.lastModify > b.lastModify) return -1;
+                return 0;
+            });
+
+            return sortDataList;
+        }
+
+        // 获取所有文件对象，方向排序的
+        getAllFilesWithSortByCreateTime() {
+            "use strict";
+            if(this.data.length <= 1)
+                return this.data;
+
+            var coloneData = [].concat(this.data);
+            var sortDataList =  coloneData.sort(function(a, b){
+                if(a.createTime < b.createTime) return 1;
+                if(a.createTime > b.createTime) return -1;
                 return 0;
             });
 

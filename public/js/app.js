@@ -1012,7 +1012,7 @@
             var curEditingFileObj = c$.g_curWorkFileObj;
             var o = {
                 curFileId: curEditingFileObj ? curEditingFileObj.id : "", /// 当前编辑的文件ID
-                files: window.$fc.getAllFilesWithNoSort(),
+                files: window.$fc.getAllFilesWithSortByCreateTime(),
                 buttons: [{
                     name: $Util.fn_tri18n(I18N[c$.language].UI.filePage["Btn-Load"]),
                     class: "fa-pencil",
@@ -1125,28 +1125,67 @@
             // 更新标题栏上右侧区域
             //=============================================================================
             var $ele_hear = $('#header-workspace-filelist');
-            var htmlContent = template('tpl_header-workspace-filelist', {
-                curFileId: c$.g_curWorkFileObj ? c$.g_curWorkFileObj.id : "", /// 当前编辑的文件ID
-                fileList: window.$fc.getAllFilesWithNoSort(),
-                moreTools: {
-                    enable: false, /// 是否可以启用更多工具
-                    class: "fa-cog fa-spin fa-lg",
-                    tools: [{
-                        name: "",
-                        description: "",
-                        class: "",
-                        href: ""
+            var getEleHearHtmlContent = function() {
+                var _getAllFiles = function() {
+                    var _fileList = [];
+                    $.each(window.$fc.getAllFilesWithSortByCreateTime(), function(index, obj) {
+                        var fileObj = {};
+                        fileObj.id = obj.id;
+                        fileObj.path = obj.path;
+                        fileObj.name = obj.changed ? obj.name + ' [*]' : obj.name;
+                        _fileList.push(fileObj);
+                    });
+                    return _fileList;
+                }
+
+
+                var htmlContent = template('tpl_header-workspace-filelist', {
+                    curFileId: c$.g_curWorkFileObj ? c$.g_curWorkFileObj.id : "", /// 当前编辑的文件ID
+                    fileList: _getAllFiles(),
+                    moreTools: {
+                        enable: false, /// 是否可以启用更多工具
+                        class: "fa-cog fa-spin fa-lg",
+                        tools: [{
+                            name: "",
+                            description: "",
+                            class: "",
+                            href: ""
+                        }]
+                    },
+                    buttons: [{
+                        name: $Util.fn_tri18n(I18N[c$.language].UI.filePage["Btn-New"]),
+                        class: "fa-file-text",
+                        href: "#/uiactions/create_new_file"
+                    }, {
+                        name: $Util.fn_tri18n(I18N[c$.language].UI.workspacePage[
+                            "Btn-Help"]),
+                        class: "fa-question-circle",
+                        href: "#/uiactions/help"
                     }]
-                },
-                buttons: [{
-                    name: $Util.fn_tri18n(I18N[c$.language].UI.workspacePage[
-                        "Btn-Help"]),
-                    class: "fa-question-circle",
-                    href: "#/uiactions/help"
-                }]
-            });
-            $ele_hear.html(htmlContent);
+                });
+
+                return htmlContent;
+            }
+
+            $ele_hear.html(getEleHearHtmlContent());
             $Router.fn_updateNavRight($ele_hear);
+
+            /// 注册外部消息导致标题栏右侧区域更新的消息句柄
+            c$._common_notice_add("fn_updateNavRight" + thisPage + c$.NCMessage.fileChange, function(
+                message, fileObj) {
+                if (message === c$.NCMessage.fileChange) {
+                    if (c$.g_current_page === thisPage) {
+                        try {
+                            $ele_hear.html(getEleHearHtmlContent());
+                            $Router.fn_updateNavRight($ele_hear);
+                        } catch (e) {
+                            console.error(e);
+                        }
+                    }
+                }
+            });
+
+
 
             // 初始化内容
             var ele = $(thisPage);
@@ -1225,7 +1264,8 @@
                         }
                     });
                     /// 注册文件变化的处理方式
-                    c$._common_notice_add(thisPage + c$.NCMessage.fileChange, function(message, fileId) {
+                    c$._common_notice_add("nav-title" + thisPage + c$.NCMessage.fileChange, function(
+                        message, fileId) {
                         if (message === c$.NCMessage.fileChange) {
                             if (fileId === c$.g_curWorkFileObj.id) {
                                 if (c$.g_current_page === thisPage) {
