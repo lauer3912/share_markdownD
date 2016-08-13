@@ -14,6 +14,9 @@
  * 2016年5月26日12:03:31 添加b$.pN = b$.pNative = require("remote").require("./romanysoft/maccocojs"); // Electron引擎
  * 						支持Electron1.1.3版本的变化
  * 2016年6月4日06:54:58 针对提示升级，加入enableForMacOSAppStore 和 enableForElectron 来控制
+ * 2016年7月1日11:37:11 新增获取进程参数的功能 getAppArgv
+ *                      统一Notice的Alert的返回值
+ *                      新增获取文件名称的方式
  */
 
 (function(factory) {
@@ -245,7 +248,7 @@
                 if (b$.pN) {
                     var params = {
                         message: jsonObj.message || 'Tip',
-                        title: jsonObj.title || 'title',
+                        title: jsonObj.title || 'Information',
                         buttons: jsonObj.buttons || ['Ok'],
                         alertType: jsonObj.alertType || 'Alert'
                     };
@@ -2426,30 +2429,46 @@
                     parms["fileTypes"] = jsonObj["fileTypes"] || ["*"]; // ["*","mp3","md", "xls"] 类似这样的格式
 
                     if (t$.pIsUseElectron) {
-                        // document.ondragover = document.ondrop = function(e) {
-                        //   e.preventDefault();
-                        //   return false;
-                        // };
+                        $(document).ready(function(){
+                            // document.ondragover = document.ondrop = function(e) {
+                            //   e.preventDefault();
+                            //   return false;
+                            // };
 
-                        // var holder = document.getElementsByTagName('body');
-                        document.ondragover = function() {
-                            return false;
-                        };
-                        document.ondragleave = document.ondragend = function() {
-                            //this.className = '';
-                            return false;
-                        };
-                        document.ondrop = function(e) {
-                            //this.className = '';
-                            e.preventDefault();
+                            var holder = document; //document.getElementsByTagName('body');
+                            holder.ondragstart = function(e){
+                                console.log("----- holder.ondragstart -----");
+                                e.preventDefault();
+                            };
+                            
+                            holder.ondragover = function() {
+                                console.log("----- holder.ondragover -----");
+                                return false;
+                            };
+                            holder.ondragleave = holder.ondragend = function() {
+                                console.log("----- holder.ondragleave or holder.ondragend -----");
+                                //this.className = '';
+                                return false;
+                            };
+                            holder.ondrop = function(e) {
+                                console.log("----- holder.ondrop -----");
+                                //this.className = '';
+                                e.preventDefault();
 
-                            //传递dataTransfer.files 给本地引擎，让本地引擎去详细处理
-                            var pathList = [];
-                            $.each(e.dataTransfer.files, function(index, fileObj) {
-                                pathList.push(fileObj.path);
-                            });
-                            t$.pN.window.proxyProcessDragDropWithPaths(pathList);
-                        };
+                                //传递dataTransfer.files 给本地引擎，让本地引擎去详细处理
+                                var pathList = [];
+                                $.each(e.dataTransfer.files, function(index, fileObj) {
+                                    pathList.push(fileObj.path);
+                                });
+                                
+                                try{
+                                    t$.pN.window.proxyProcessDragDropWithPaths(pathList);
+                                }catch(e){
+                                    console.error(e);
+                                }
+                                
+                            };
+                        })
                     }
 
                     t$.pN.window.setDragDropConfig($.toJSON(parms));

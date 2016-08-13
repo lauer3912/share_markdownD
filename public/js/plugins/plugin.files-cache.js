@@ -80,6 +80,14 @@ var RomanySoftPlugins;
             });
             return sortDataList;
         };
+        // 获取最新创建的的文件对象
+        FilesCache.prototype.getLastCreatedFileObj = function () {
+            "use strict";
+            var _allFilesWithSortByCreateTime = this.getAllFilesWithSortByCreateTime();
+            if (_allFilesWithSortByCreateTime.length > 0)
+                return _allFilesWithSortByCreateTime[0];
+            return null;
+        };
         // 获取所有文件对象，没有排序的
         FilesCache.prototype.getAllFilesWithNoSort = function () {
             "use strict";

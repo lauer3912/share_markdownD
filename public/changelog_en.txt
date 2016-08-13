@@ -1,3 +1,11 @@
+2016年7月31日15:46:17 Version 3.5
+[Improvement] To optimize the way create markdown files.
+[Improvement] File optimized scheduling.
+[Bugs] Fix some bugs.
+
+
+
+
 2016年5月30日15:34:33
 [Upgrade] To upgrade interface style
 [Upgrade] Upgrade the KATEX component to V0.6.0. https://khan.github.io/KaTeX/

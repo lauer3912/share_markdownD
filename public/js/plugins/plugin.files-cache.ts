@@ -81,6 +81,16 @@ module RomanySoftPlugins {
             return sortDataList;
         }
 
+        // 获取最新创建的的文件对象
+        getLastCreatedFileObj(){
+            "use strict";
+            var _allFilesWithSortByCreateTime = this.getAllFilesWithSortByCreateTime();
+            if (_allFilesWithSortByCreateTime.length > 0)
+                return _allFilesWithSortByCreateTime[0];
+
+            return null;
+        }
+
         // 获取所有文件对象，没有排序的
         getAllFilesWithNoSort() {
             "use strict";

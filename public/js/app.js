@@ -432,6 +432,18 @@
                     if (checkCanWritable && !wantSaveAs) {
                         t$.common_save_file(fileObj);
                     } else {
+                        var formatFileName = fileObj.name;
+                        $.each(c$.AcceptMarkdownFileTypes, function(index, content) {
+                            if (content !== "*") {
+                                var regObj = new RegExp("." + content + "$", "i");
+                                if (!regObj.test(formatFileName)) {
+                                    formatFileName += ".md";
+                                    return false;
+                                }
+                            }
+                        });
+
+
                         // 保存到本地
                         b$.selectOutFile({
                             callback: b$._get_callback(function(info) {
@@ -447,7 +459,7 @@
                                 "SaveDialog-Title"]),
                             prompt: $Util.fn_tri18n(I18N[c$.language].UI.filePage[
                                 "SaveDialog-BtnSave"]),
-                            fileName: fileObj.name + ".md",
+                            fileName: formatFileName,
                             types: c$.AcceptMarkdownFileTypes
 
                         });
@@ -584,8 +596,13 @@
                 return newFileObj;
             },
             createNew: function() {
-                c$.UIActions.crateNewFileObj();
-                $Router.go_files();
+                var fileObj = c$.UIActions.crateNewFileObj();
+                if (c$.g_current_page !== '#view-files') {
+                    $Router.go_workspace(fileObj);
+                } else {
+                    $Router.go_files();
+                }
+
             },
             addFileToWatcher: function(in_path) {
                 // 添加到系统变化监视器中
@@ -1153,10 +1170,10 @@
                         }]
                     },
                     buttons: [{
-                        name: $Util.fn_tri18n(I18N[c$.language].UI.filePage["Btn-New"]),
-                        class: "fa-file-text",
-                        href: "#/uiactions/create_new_file"
-                    }, {
+                        //     name: $Util.fn_tri18n(I18N[c$.language].UI.filePage["Btn-New"]),
+                        //     class: "fa-file-text",
+                        //     href: "#/uiactions/create_new_file"
+                        // }, {
                         name: $Util.fn_tri18n(I18N[c$.language].UI.workspacePage[
                             "Btn-Help"]),
                         class: "fa-question-circle",
@@ -1246,7 +1263,16 @@
 
                                     if (rSelected === 0) {
                                         //导入
-                                        c$.UIActions.pri_importFiles(mdFiles);
+                                        c$.UIActions.pri_importFiles(mdFiles, true);
+
+                                        //获取最新导入的文件对象
+                                        var _lastFileObj = window.$fc.getLastCreatedFileObj();
+
+                                        //然后打开这些文件
+                                        if (_lastFileObj) {
+                                            c$.UIActions.loadFile(_lastFileObj.id);
+                                            window.location.href = '#';
+                                        }
                                     } else if (rSelected === 1) {
                                         //创建链接
                                         _editor.executePlugin("processDropFiles",
